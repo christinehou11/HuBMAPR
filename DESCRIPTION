@@ -1,0 +1,22 @@
+Package: HuBMAPR
+Title: What the Package Does (One Line, Title Case)
+Version: 0.0.0.9000
+Authors@R: 
+    c(person(
+        given = "Martin",
+        family = "Morgan",
+        role = c("aut", "cre"),
+        email = "mtmorgan.bioc@gmail.com",
+        comment = c(ORCID = "0000-0002-5874-8148")
+    ),
+    person("Federico", "Marini", role = "aut"))
+
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: What the package does (one paragraph).
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+Imports: httr, dplyr, readr, tools, rjsoncons, jsonlite
+Collate: metadata.R dataset.R
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.2
