@@ -18,14 +18,14 @@ donors(columns = c("portal", "all"))
 \examples{
 datasets()
 datasets() |>
-    glimpse()
-datasets() |>
-    count(origin_sample.mapped_organ, sort = TRUE)
+    dplyr::glimpse()
+# datasets() |>
+#      dplyr::count(origin_sample.mapped_organ, sort = TRUE)
 samples()
 samples() |>
-    glimpse()
+    dplyr::glimpse()
 samples() |>
-    count("mapped_specimen_type", sort = TRUE)
+    dplyr::count("mapped_specimen_type", sort = TRUE)
 donors()
 donors() |>
     dplyr::glimpse()
@@ -35,10 +35,10 @@ donors() |>
 
 ## number of non-missing values
 donors() |>
-    summarize(across(.fns = ~sum(!is.na(.x)))) |>
+    dplyr::summarize(dplyr::across(.fns = ~sum(!is.na(.x)))) |>
     dplyr::glimpse()
 
 ## mostly complete data
 donors() |>
-    select(where(~ sum(!is.na(.x)) > 100L))
+    dplyr::select(where(~ sum(!is.na(.x)) > 100L))
 }

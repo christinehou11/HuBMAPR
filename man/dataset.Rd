@@ -6,12 +6,22 @@
 \usage{
 dataset(uuid)
 }
+\arguments{
+\item{uuid}{Character string, corresponding to the HuBMAP UUID string. This is
+expected to be a 32-digit hex number.}
+}
 \description{
 Retrieve information about a single dataset
+}
+\details{
+Additional details are provided on the HuBMAP consortium webpage,
+https://software.docs.hubmapconsortium.org/apis
 }
 \examples{
 uuid <-
     datasets() |>
     dplyr::slice(1) |>
     dplyr::pull("uuid")
+
+dataset(uuid)
 }
