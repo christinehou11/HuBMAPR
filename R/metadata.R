@@ -91,9 +91,9 @@ DONORS <- paste0(BASE_URL, "/metadata/v0/donors.tsv")
 #' @examples
 #' datasets()
 #' datasets() |>
-#'     glimpse()
-#' datasets() |>
-#'     count(origin_sample.mapped_organ, sort = TRUE)
+#'     dplyr::glimpse()
+#' # datasets() |>
+#' #      dplyr::count(origin_sample.mapped_organ, sort = TRUE)
 datasets <-
     function(columns = c("portal", "some", "all"))
 {
@@ -123,9 +123,9 @@ datasets <-
 #' @examples
 #' samples()
 #' samples() |>
-#'     glimpse()
+#'     dplyr::glimpse()
 #' samples() |>
-#'     count("mapped_specimen_type", sort = TRUE)
+#'     dplyr::count("mapped_specimen_type", sort = TRUE)
 samples <-
     function(columns = c("portal", "some", "all"))
 {
@@ -161,12 +161,12 @@ samples <-
 #'
 #' ## number of non-missing values
 #' donors() |>
-#'     summarize(across(.fns = ~sum(!is.na(.x)))) |>
+#'     dplyr::summarize(dplyr::across(.fns = ~sum(!is.na(.x)))) |>
 #'     dplyr::glimpse()
 #'
 #' ## mostly complete data
 #' donors() |>
-#'     select(where(~ sum(!is.na(.x)) > 100L))
+#'     dplyr::select(where(~ sum(!is.na(.x)) > 100L))
 donors <-
     function(columns = c("portal", "all"))
 {
