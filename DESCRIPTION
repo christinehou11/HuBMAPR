@@ -18,7 +18,14 @@ Authors@R:
 Description: What the package does (one paragraph).
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
-Imports: httr, dplyr, readr, tools, rjsoncons, jsonlite
+Imports: 
+    httr, 
+    dplyr, 
+    tidyselect, 
+    readr, 
+    tools, 
+    rjsoncons, 
+    jsonlite
 Collate: metadata.R dataset.R
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

@@ -51,6 +51,7 @@ DONORS <- paste0(BASE_URL, "/metadata/v0/donors.tsv")
 #' @importFrom readr read_tsv
 #'
 #' @importFrom dplyr summarize select across
+#' @importFrom tidyselect where
 .metadata <-
     function(uri, columns)
 {
