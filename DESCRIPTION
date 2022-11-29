@@ -9,9 +9,12 @@ Authors@R:
         email = "mtmorgan.bioc@gmail.com",
         comment = c(ORCID = "0000-0002-5874-8148")
     ),
-    person("Federico", "Marini", role = "aut"))
-
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+    person(
+        given = "Federico", 
+        family = "Marini", 
+        role = "aut",
+        comment = c(ORCID = "0000-0003-3252-7758"))
+    )
 Description: What the package does (one paragraph).
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
