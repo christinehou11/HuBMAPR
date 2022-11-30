@@ -1,6 +1,6 @@
 Package: HuBMAPR
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: Interface to 'HuBMAP'
+Version: 0.0.0.9001
 Authors@R: 
     c(person(
         given = "Martin",
@@ -15,17 +15,17 @@ Authors@R:
         role = "aut",
         comment = c(ORCID = "0000-0003-3252-7758"))
     )
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+Description: 'HuBMAP' provides an open, global genetic atlas of the
+    human body at the cellular level. 'HuBMAPR' provides an interface
+    to this atlas, allowing programmatic discovery of donors, samples,
+    and data sets, as well as file retrieval.
+License: Artistic-2.0
 Imports: 
     httr, 
     dplyr, 
     tidyselect, 
     readr, 
-    tools, 
-    rjsoncons, 
-    jsonlite
+    tools
 Collate: metadata.R dataset.R
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

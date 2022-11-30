@@ -4,7 +4,7 @@
 \alias{datasets}
 \alias{samples}
 \alias{donors}
-\title{"HuBMAP dataset, sample, and donor metadata"}
+\title{HuBMAP dataset, sample, and donor metadata}
 \usage{
 datasets(columns = c("portal", "some", "all"))
 
@@ -12,15 +12,22 @@ samples(columns = c("portal", "some", "all"))
 
 donors(columns = c("portal", "all"))
 }
+\arguments{
+\item{columns}{character(1) columns to extract from the
+database. \code{"portal"} (default): columns used in the
+corresponding page of the HuBMAP portal. \code{"some"} (available
+for \code{datasets()} and \code{samples()}): columns present in all
+entities; \code{"all"}: all columns in the database.}
+}
 \description{
-"HuBMAP dataset, sample, and donor metadata"
+HuBMAP dataset, sample, and donor metadata
 }
 \examples{
 datasets()
 datasets() |>
     dplyr::glimpse()
-# datasets() |>
-#      dplyr::count(origin_sample.mapped_organ, sort = TRUE)
+datasets() |>
+    dplyr::count(organ, sort = TRUE)
 samples()
 samples() |>
     dplyr::glimpse()
@@ -39,6 +46,6 @@ donors() |>
     dplyr::glimpse()
 
 ## mostly complete data
-donors() |>
+donors(columns = "all") |>
     dplyr::select(where(~ sum(!is.na(.x)) > 100L))
 }

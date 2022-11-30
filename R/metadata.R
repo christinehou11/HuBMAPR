@@ -7,7 +7,8 @@
     path
 }
 
-#' @importFrom httr GET progress write_disk status_code stop_for_status
+#' @importFrom httr GET progress write_disk status_code
+#'     stop_for_status
 .hubmapr_cache_get <-
     function(
         uri, file = basename(uri), progress = FALSE, overwrite = FALSE,
@@ -85,7 +86,13 @@ DONORS <- paste0(BASE_URL, "/metadata/v0/donors.tsv")
 
 #' @rdname metadata
 #'
-#' @title "HuBMAP dataset, sample, and donor metadata"
+#' @title HuBMAP dataset, sample, and donor metadata
+#'
+#' @param columns character(1) columns to extract from the
+#'     database. `"portal"` (default): columns used in the
+#'     corresponding page of the HuBMAP portal. `"some"` (available
+#'     for `datasets()` and `samples()`): columns present in all
+#'     entities; `"all"`: all columns in the database.
 #'
 #' @export
 #'
@@ -93,8 +100,8 @@ DONORS <- paste0(BASE_URL, "/metadata/v0/donors.tsv")
 #' datasets()
 #' datasets() |>
 #'     dplyr::glimpse()
-#' # datasets() |>
-#' #      dplyr::count(origin_sample.mapped_organ, sort = TRUE)
+#' datasets() |>
+#'     dplyr::count(organ, sort = TRUE)
 datasets <-
     function(columns = c("portal", "some", "all"))
 {
@@ -147,7 +154,6 @@ samples <-
     .metadata(SAMPLES, columns)
 }
 
-
 #' @rdname metadata
 #'
 #' @export
@@ -166,7 +172,7 @@ samples <-
 #'     dplyr::glimpse()
 #'
 #' ## mostly complete data
-#' donors() |>
+#' donors(columns = "all") |>
 #'     dplyr::select(where(~ sum(!is.na(.x)) > 100L))
 donors <-
     function(columns = c("portal", "all"))
