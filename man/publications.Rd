@@ -3,24 +3,35 @@
 \name{publications}
 \alias{publications}
 \alias{publications_default_columns}
-\alias{publications_detail}
-\alias{publication_contributors}
+\alias{publication_data}
+\alias{publications_information}
+\alias{publication_authors}
 \title{HuBMAP Samples}
 \usage{
-publications()
+publications(size = 10000L, from = 0L)
 
-publications_default_columns(as = c("character", "tibble"))
+publications_default_columns(as = c("tibble", "character"))
 
-publications_detail(uuid)
+publication_data(uuid, entity = c("Dataset", "Sample", "Donor"))
 
-publication_contributors(uuid)
+publications_information(uuid)
+
+publication_authors(uuid)
 }
 \arguments{
+\item{size}{integer(1) number of maximum results to return;
+The default (10000) is meant to be large enough to return all results.}
+
+\item{from}{integer(1) number of number of results to skip, defaulting to 0.}
+
 \item{as}{character(1) return format. One of \code{"tibble"} (default),
 or \code{"character"}.}
 
-\item{uuid}{character(1) corresponding to the HuBMAP UUID
+\item{uuid}{character(1) corresponding to the HuBMAP Publication UUID
 string. This is expected to be a 32-digit hex number.}
+
+\item{entity}{character(1) selected derived entity type.
+One of \code{"Sample"}, \code{"Donor"} or \code{"Dataset"}.}
 }
 \value{
 \verb{*_columns()} returns a named list \code{name}
@@ -30,18 +41,24 @@ containing the column name used in the tibble returned by
 with paths as elements and abbreviations as names.
 }
 \description{
-\code{publications()} returns details about available samples
+\code{publications()} returns details about available samples,
+ordered by last modified dates. \code{publication_status == TRUE} represents peer
+reviewed publications; \code{publication_status == FALSE} represents preprint
+publications.
 
 \verb{*_columns()} returns a tibble or named
 character vector describing the content of the tibble returned
 by \code{samples()}, \code{datasets()}, \code{donors()}, \code{collections()},
 or \code{publications()}.
 
-\code{publications_detail()} takes a unique publication_id and
-returns details about one specified publication as a tibble
+\code{publication_data()} takes a unique publication_id and
+returns details about one specified publication.
 
-\code{publication_contributors()} takes a unique collection_id and
-returns contributors information of one specified collection as a tibble
+\code{publications_information()} takes a unique publication_id and
+returns details about one specified publication.
+
+\code{publication_authors()} takes a unique publication_id and
+returns authors information of one specified collection as a tibble
 }
 \details{
 Additional details are provided on the HuBMAP consortium
@@ -52,21 +69,19 @@ webpage, https://software.docs.hubmapconsortium.org/apis
 
 Additional details are provided on the HuBMAP consortium
 webpage, https://software.docs.hubmapconsortium.org/apis
+
+Additional details are provided on the HuBMAP consortium
+webpage, https://software.docs.hubmapconsortium.org/apis
 }
 \examples{
-publications()
+publications(size = 3, from = 2)
 publications_default_columns()
 
-uuid <-
-    publications() |>
-    dplyr::slice(1) |>
-    dplyr::pull("uuid")
-    
-publications_detail(uuid)
-uuid <-
-    publications() |>
-    dplyr::slice(1) |>
-    dplyr::pull("uuid")
-    
-publication_contributors(uuid)
+uuid <- "3c7273660cdf9ab91a7901533b2cd9a5"
+publication_data(uuid)
+
+uuid <- "3c7273660cdf9ab91a7901533b2cd9a5"
+publications_information(uuid)
+uuid <- "3c7273660cdf9ab91a7901533b2cd9a5"
+publication_authors(uuid)
 }

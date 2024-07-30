@@ -1,0 +1,12 @@
+{
+  "from": {{from}},
+  "size": {{size}},
+  "query": {
+    "match": { "entity_type.keyword": "{{entity}}" }
+  },
+  "sort": [
+    {"last_modified_timestamp": "desc"}
+  ],
+  "fields": [{{{fields}}}],
+  "_source": false
+}

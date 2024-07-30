@@ -3,26 +3,34 @@
 \name{collections}
 \alias{collections}
 \alias{collections_default_columns}
-\alias{collections_detail}
-\alias{collection_contributors}
+\alias{collection_information}
+\alias{collection_contacts}
 \alias{collection_datasets}
+\alias{collection_contributors}
 \title{HuBMAP Collections}
 \usage{
-collections()
+collections(size = 10000L, from = 0L)
 
-collections_default_columns(as = c("character", "tibble"))
+collections_default_columns(as = c("tibble", "character"))
 
-collections_detail(uuid)
+collection_information(uuid)
 
-collection_contributors(uuid)
+collection_contacts(uuid)
 
 collection_datasets(uuid)
+
+collection_contributors(uuid)
 }
 \arguments{
+\item{size}{integer(1) number of maximum results to return;
+The default (10000) is meant to be large enough to return all results.}
+
+\item{from}{integer(1) number of number of results to skip, defaulting to 0.}
+
 \item{as}{character(1) return format. One of \code{"tibble"} (default),
 or \code{"character"}.}
 
-\item{uuid}{character(1) corresponding to the HuBMAP UUID
+\item{uuid}{character(1) corresponding to the HuBMAP Collection UUID
 string. This is expected to be a 32-digit hex number.}
 }
 \value{
@@ -33,23 +41,24 @@ or \code{publications()}. When \code{as = "tibble"}, the return value is a tibbl
 with paths as elements and abbreviations as names.
 }
 \description{
-\code{collections()} returns details about available collections
+\code{collections()} returns details about available collections,
+ordered by last modified dates
 
 \verb{*_columns()} returns a tibble or named
 character vector describing the content of the tibble returned
 by \code{samples()}, \code{datasets()},  \code{donors()}, \code{collections()},
 or \code{publications()}.
 
-\code{collections_detail()} takes a unique collection_id and
-returns details about one specified collection as a tibble
+\code{collection_information()} takes a unique collection_id and
+returns details about one specified collection.
 
-See \code{collection_information()} and \code{collection_title()} to
-easily summarize a collection from its project id.
-
-\code{collection_contributors()} takes a unique collection_id and
-returns contributors information of one specified collection as a tibble
+\code{collection_contacts()} takes a unique collection_id and
+returns contacts information of one specified collection as a tibble
 
 \code{collection_datasets()} takes a unique collection_id and
+returns contributors information of one specified collection as a tibble
+
+\code{collection_contributors()} takes a unique collection_id and
 returns contributors information of one specified collection as a tibble
 }
 \details{
@@ -64,27 +73,20 @@ webpage, https://software.docs.hubmapconsortium.org/apis
 
 Additional details are provided on the HuBMAP consortium
 webpage, https://software.docs.hubmapconsortium.org/apis
+
+Additional details are provided on the HuBMAP consortium
+webpage, https://software.docs.hubmapconsortium.org/apis
 }
 \examples{
-collections()
+collections(size = 4, from = 2)
 collections_default_columns()
 
-uuid <-
-    collections() |>
-    dplyr::slice(1) |>
-    dplyr::pull("uuid")
-    
-collections_detail(uuid)
-uuid <-
-    collections() |>
-    dplyr::slice(1) |>
-    dplyr::pull("uuid")
-    
-collection_contributors(uuid)
-uuid <-
-    collections() |>
-    dplyr::slice(1) |>
-    dplyr::pull("uuid")
-    
+uuid <- "6a6efd0c1a2681dc7d2faab8e4ab0bca"
+collection_information(uuid)
+uuid <- "381f65e58d5e2c1d16a9cef2cc203aab"
+collection_contacts(uuid)
+uuid <- "381f65e58d5e2c1d16a9cef2cc203aab"
 collection_datasets(uuid)
+uuid <- "590b0485a196956284b8f3344276bc50"
+collection_contributors(uuid)
 }

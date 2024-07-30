@@ -3,20 +3,25 @@
 \name{datasets}
 \alias{datasets}
 \alias{datasets_default_columns}
-\alias{datasets_detail}
+\alias{dataset_detail}
 \title{HuBMAP Datasets}
 \usage{
-datasets()
+datasets(size = 10000L, from = 0L)
 
-datasets_default_columns(as = c("character", "tibble"))
+datasets_default_columns(as = c("tibble", "character"))
 
-datasets_detail(uuid)
+dataset_detail(uuid)
 }
 \arguments{
+\item{size}{integer(1) number of maximum results to return;
+The default (10000) is meant to be large enough to return all results.}
+
+\item{from}{integer(1) number of number of results to skip, defaulting to 0.}
+
 \item{as}{character(1) return format. One of \code{"tibble"} (default),
 or \code{"character"}.}
 
-\item{uuid}{character(1) corresponding to the HuBMAP UUID
+\item{uuid}{character(1) corresponding to the HuBMAP Dataset UUID
 string. This is expected to be a 32-digit hex number.}
 }
 \value{
@@ -27,14 +32,15 @@ or \code{publications()}. When \code{as = "tibble"}, the return value is a tibbl
 with paths as elements and abbreviations as names.
 }
 \description{
-\code{datasets} returns the details available datasets
+\code{datasets} returns the details available datasets, ordered by
+last modified dates
 
 \verb{*_columns()} returns a tibble or named
 character vector describing the content of the tibble returned
 by \code{samples()}, \code{datasets()},  \code{donors()}, \code{collections()},
 or \code{publications()}.
 
-\code{datasets_detail()} takes a unique dataset_id and
+\code{dataset_detail()} takes a unique dataset_id and
 returns details about one specified dataset as a tibble
 }
 \details{
@@ -42,17 +48,9 @@ Additional details are provided on the HuBMAP consortium
 webpage, https://software.docs.hubmapconsortium.org/apis
 }
 \examples{
-datasets()
-datasets() |>
-    dplyr::glimpse()
-datasets() |>
-    dplyr::count(dataset_type, sort = TRUE)
+datasets(size = 100, from = 200)
 datasets_default_columns()
 
-uuid <-
-    datasets() |>
-    dplyr::slice(1) |>
-    dplyr::pull("uuid")
-    
-datasets_detail(uuid)
+uuid <- "7754aa5ebde628b5e92705e33e74a4ef"
+dataset_detail(uuid)
 }

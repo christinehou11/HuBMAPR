@@ -1,15 +1,16 @@
 #' @rdname datasets
 #' 
 #' @name datasets
-#' 
-#' @importFrom tidyr unnest_longer
-#' @importFrom dplyr mutate across
-#' @importFrom tidyselect all_of ends_with
 #'
 #' @title HuBMAP Datasets
 #' 
-#' @description `datasets` returns the details available datasets
+#' @description `datasets` returns the details available datasets, ordered by
+#' last modified dates
 #'
+#' @param size integer(1) number of maximum results to return; 
+#' The default (10000) is meant to be large enough to return all results.
+#'     
+#' @param from integer(1) number of number of results to skip, defaulting to 0.
 #'     
 #' @details Additional details are provided on the HuBMAP consortium
 #'     webpage, https://software.docs.hubmapconsortium.org/apis
@@ -17,30 +18,22 @@
 #' @export
 #'
 #' @examples
-#' datasets()
-#' datasets() |>
-#'     dplyr::glimpse()
-#' datasets() |>
-#'     dplyr::count(dataset_type, sort = TRUE)
+#' datasets(size = 100, from = 200)
 datasets <-
-  function()
+  function(size = 10000L,
+           from = 0L)
   {
     
-    fields = datasets_default_columns(as = "character")
-    fields_query = paste(fields, collapse = '", "')
+    stopifnot(
+      .is_size(size)
+    )
     
-    query_string <- paste0('{
-      "size": 3000,
-      "query": {
-         "match": { "entity_type.keyword": "Dataset" }
-      },
-      "fields": ["', fields_query, '"],
-      "_source": false
-    }')
+    remaining <- size
+    query_size <- min(10000L, remaining) # max = 10000 at a time
     
-    .query(query_string, option = "hits.hits[].fields") |>
-      unnest_longer(all_of(fields)) |>
-      mutate(across(ends_with("timestamp"), .timestamp_to_date))
+    tbl <-  .query_entity("Dataset", query_size, from)
+
+    .dataset_edit(tbl)
     
   }
 
@@ -68,42 +61,43 @@ datasets <-
 #'
 #' @export
 datasets_default_columns <-
-  function(as = c("character", "tibble"))
+  function(as = c( "tibble", "character"))
   {
-    .default_columns("dataset", as)
+    .default_columns("Dataset", as)
   }
 
 #' @rdname datasets
 #'
-#' @name datasets_detail
+#' @name dataset_detail
 #'
-#' @description `datasets_detail()` takes a unique dataset_id and 
+#' @description `dataset_detail()` takes a unique dataset_id and 
 #' returns details about one specified dataset as a tibble
 #' 
-#' @param uuid character(1) corresponding to the HuBMAP UUID
+#' @param uuid character(1) corresponding to the HuBMAP Dataset UUID
 #'     string. This is expected to be a 32-digit hex number.
 #'
 #' @export
 #' 
 #' @examples
-#' uuid <-
-#'     datasets() |>
-#'     dplyr::slice(1) |>
-#'     dplyr::pull("uuid")
-#'     
-#' datasets_detail(uuid)
-datasets_detail <-
+#' uuid <- "7754aa5ebde628b5e92705e33e74a4ef"
+#' dataset_detail(uuid)
+dataset_detail <-
   function (uuid)
   {
     stopifnot(
-      is.character(uuid), length(uuid) == 1L, nchar(uuid) == 32L
+      .is_uuid(uuid)
     )
     
-    query_string <- paste0('{
-    "query": {
-       "match": { "uuid": "',uuid,'" }
-    }
-    }')
-    
-    .query(query_string, "hits.hits[]._source")
+    .query_match(uuid, option = "hits.hits[]._source")
+  }
+
+
+#' @importFrom dplyr left_join rename select
+.dataset_edit <-
+  function (tbl) {
+    tbl |>
+      .unnest_mutate_relocate() |>
+      left_join(.organ(), by = c("origin_samples.organ" = "abbreviation")) |>
+      select(-"origin_samples.organ") |>
+      rename("organ" = "name")
   }
