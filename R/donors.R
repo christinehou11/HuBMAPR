@@ -99,7 +99,7 @@ donor_detail <-
 #'
 #' @name donor_derived
 #'
-#' @importFrom dplyr select filter if_else left_join any_of
+#' @importFrom dplyr select filter left_join any_of
 #' 
 #' @description `donor_derived()` takes a unique donor_id and 
 #' returns the derived dataset or/and sample details.
@@ -134,23 +134,28 @@ donor_derived <-
       select(any_of(.default_columns(entity,"character"))) |>
       .unnest_mutate_relocate()
     
-    if (identical(entity, "Sample")) {
+    if (identical(entity, "Sample")  && nrow(tbl) > 0L) {
       
-      tbl <- tbl |>
-        left_join(.organ(), by = c("organ" = "abbreviation"))
+      uuids <- tbl$uuid
+      organ_info <- rep("", length(uuids))
       
-      tbl$organ = if_else(is.na(tbl$name), tbl$organ, tbl$name)
+      for (i in seq_along(uuids)) {
+        
+        organ_info[i] = .query_match(uuids[i], "hits.hits[]._source.origin_samples[]") |>
+          left_join(.organ(), by = c("organ" = "abbreviation")) |>
+          select("name")
+      }
       
-      tbl |>
-        select(-"name")
-      
+      tbl$organ = organ_info
     } 
     else {
       
-      tbl |>
+      tbl <- tbl |>
         select(-"organ")
       
     }
+    
+    tbl
     
   }
 

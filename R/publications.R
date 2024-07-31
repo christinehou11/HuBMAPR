@@ -138,7 +138,7 @@ publication_data <-
 #'
 #' @name publications_information
 #' 
-#' @importFrom dplyr select mutate left_join pull
+#' @importFrom dplyr select mutate left_join
 #' @importFrom tidyr unnest_longer
 #'
 #' @description `publications_information()` takes a unique publication_id and 
@@ -172,24 +172,20 @@ publications_information <-
     
     # organ
     origin_samples <- .query_match(uuid, "hits.hits[]._source.origin_samples[]") |>
-      select("organ") |>
-      left_join(.organ(), by = c("organ" = "abbreviation")) |>
-      unique() |>
-      pull()
+      left_join(.organ(), by = c("organ" = "abbreviation"))
+    organs <- unique(origin_samples$"name")
     
     # data_types
     ancestors <- .query_match(uuid, "hits.hits[]._source.ancestors[]") |>
-      select("data_types") |>
-      unnest_longer("data_types") |>
-      unique() |>
-      pull()
+      unnest_longer("data_types")
+    data_types <- unique(ancestors$"data_types")
     
     tbl <- .query_match(uuid, option) |>
       .unnest_mutate_relocate() |>
       mutate(corresponding_authors = paste(paste(contacts$"name", contacts$"orcid_id"), 
                                             collapse = "\n - "),
-             organ = paste(origin_samples, collapse = "\n - "),
-             data_type = paste(ancestors, collapse = "\n - "))
+             organ = paste(organs, collapse = "\n - "),
+             data_type = paste(data_types, collapse = "\n - "))
     
     cat(
       "Title\n ",
