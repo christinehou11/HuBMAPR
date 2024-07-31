@@ -1,20 +1,20 @@
 Package: HuBMAPR
 Title: Interface to 'HuBMAP'
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: 
     c(person(
-        given = "Martin",
-        family = "Morgan",
-        role = c("aut", "cre"),
-        email = "mtmorgan.bioc@gmail.com",
-        comment = c(ORCID = "0000-0002-5874-8148")
-    ),
-    person(
         given = "Christine",
         family = "Hou",
-        role = "aut",
+        role = c("aut", "cre"),
         email = "chris2018hou@gmail.com",
         comment = c(ORCID = "0009-0001-5350-0629")
+    ),
+    person(
+        given = "Martin",
+        family = "Morgan",
+        role = "aut",
+        email = "mtmorgan.bioc@gmail.com",
+        comment = c(ORCID = "0000-0002-5874-8148")
     ),
     person(
         given = "Federico", 
