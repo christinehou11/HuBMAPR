@@ -136,12 +136,12 @@ publication_data <-
 
 #' @rdname publications
 #'
-#' @name publications_information
+#' @name publication_information
 #' 
 #' @importFrom dplyr select mutate left_join
 #' @importFrom tidyr unnest_longer
 #'
-#' @description `publications_information()` takes a unique publication_id and 
+#' @description `publication_information()` takes a unique publication_id and 
 #' returns details about one specified publication.
 #' 
 #' @param uuid character(1) corresponding to the HuBMAP Publication UUID
@@ -153,8 +153,8 @@ publication_data <-
 #' 
 #' @examples
 #' uuid <- "3c7273660cdf9ab91a7901533b2cd9a5"
-#' publications_information(uuid)
-publications_information <-
+#' publication_information(uuid)
+publication_information <-
   function(uuid) 
   {
     stopifnot(

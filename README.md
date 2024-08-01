@@ -1,6 +1,4 @@
-Hi! This is Christine. I am adding a sub branch to update what I have for the codes.
-
-Currently, I finished writing some basic functions to extract information from HuBMAP portal. The codes are still under development, and some textual descriptions/functionality may not be complete.
+### HuBMAPR
 
 In R, load the package which is cloning from this repository.
 
@@ -8,44 +6,94 @@ In R, load the package which is cloning from this repository.
 devtools::load_all()
 ```
 
-I am considering include five entity types:
+In HuBMAP consortium, there are five main entity types, and each entity type with its related functions are included in one separate R script.
 
--   dataset
+-   dataset: `datasets.R`
 
--   sample
+    -   datasets(size = 10000L, from = 0L): returns the selected information of all datasets in tibble. The maximum number of rows returned tibble is 10000L. size and from are numeric parameters, determining the arbitrary size to return and the location of dataset to return based on the last modified date.
 
--   donor
+    -   datasets_default_columns(as = c("tibble", "character")): returns the selected default columns as character or tibble included in the returned tibble from **datasets()**. The columns are *uuid, hubmap id, group name, dataset type, data types, organ, status, last modified timestamp,* and *donor hubmap id*.
 
--   collection
+    -   dataset_detail(uuid): return all available information of one specific dataset in tibble.
 
--   publication
+-   sample: `samples.R`
 
-All the information is extracted using `httr2` package, and please check `query.R` fo more details. There are different types of APIs, and the codes (so far) are based on [Search API](https://smart-api.info/ui/7aaf02b838022d564da776b03f357158#/search/search-post). Later, the [Entity API](https://smart-api.info/ui/0065e419668f3336a40d1f5ab89c6ba3#/) will be used to create Globus URL for user given uuid.
+    -   samples(size = 10000L, from = 0L)
 
-For every entity type, there will be one R script. The basic format is very similar in each entity R script. I will use `datasets.R` as example.
+    -   samples_default_columns(as = c("tibble", "character")): the selected default columns are *uuid, hubmap id, group name, sample category, organ, last modified timestamp,* and *donor hubmap id*
 
--   datasets()
+    -   sample_detail(uuid)
 
-    -   This function returns a tibble containing some basic information of all datasets (one row = one uuid = one dataset), including uuid, hubmap id, title, dataset type, and etc. The columns in the tibble is specifically seletced, which is not all the columns returned from API query (totally 35 columns; some column entries are list-of-lists). The columns match the information shown on portal page.
+    -   samples_derived(uuid, entity_type = c("Dataset", "Sample")): returns the derived Dataset(s) or Sample(s) information in tibble.
 
-    ![](images/1.png)
+        -   Derived dataset(s) include columns *uuid, hubmap id, group name, dataset type, data types, status, last modified timestamp* (same as portal page)
 
--   datasets_default_columns()
+        ![Example from HBM876.SJWP.278 (uuid = e3b74d607c3b20c9c2349d98c235ce72)](images/Screenshot%202024-07-31%20at%2019.32.12.png){style="class: center" width="270"}
 
-    -   This function displays the information shown from `datasets()` in character (default) or tibble.
+        -   Derived sample(s) include columns *uuid, hubmap id, group name, sample category, last modified timestamp, organ*
 
-```{r}
-HuBMAPR::datasets_default_columns()
-```
+            Note: The portal page does not show the tab to see the derived samples as the screenshot, but based on the provenance offered, there indeed is/are derived sample(s).
 
--   datasets_detail()
+    ![Example from HBM876.SJWP.278 (uuid = e3b74d607c3b20c9c2349d98c235ce72)](images/Screenshot%202024-07-31%20at%2019.50.43.png){width="408"}
 
-    -   This function returns all the information for one user given uuid.
+-   donor: `donors.R`
 
-```{r}
-HuBMAPR::datasets_detail(uuid = "e0b9d2fe1ba6e32c7b7c2ff6a5d14202")
-```
+    -   donors(size = 10000L, from = 0L)
 
-`samples.R`, `donors.R`, `collections.R`, and `publications.R` have these three basic functions to do similar work (returned default columns may be different). But `collections.R` and `publications.R` have additional functions to grab contributors, contacts, or related datasets. These are what I am exploring now, and are the details I will add later. What's more, `donors.R` is not uploaded (still work on it).
+    -   donors_default_columns(as = c("character","tibble")): the selected default columns are *uuid, hubmap id, group name, Sex, Age, Body Mass Index, Race,* and *last modified timestamp*
 
-I am looking forward to user feedback. Any comment/criticism is very important for me to develop a better package. Please have a try on this "simple, not advanced" draft codes and give me any suggestion you have. Thanks for the time!
+    -   donor_detail(uuid)
+
+    -   donor_derived(uuid, entity_type = c("Dataset", "Sample"))
+
+        The returned tibble(s) for derived dataset(s)/sample(s) has same selected columns.
+
+    ![Example from HBM666.XRTH.688 (uuid = a0bea4ae0ce4e03efd04c22cc38db644)](images/Screenshot%202024-07-31%20at%2019.53.29.png){width="242"}
+
+-   collection: `collections.R`
+
+    -   collections(size = 10000L, from = 0L)
+
+    -   collections\_\_default_columns(as = c("tibble", "character")): the selected default columns are *uuid, hubmap id, title,* and *last modified timestamp*
+
+    -   collection_information(uuid): print out the textual descriptions of specific collection
+
+    -   collection_datasets(uuid): return the related datasets in one collection. The selected default columns are *uuid, hubmap id, data types, dataset types, last modified timestamp, organ, created by user display name,* and *status*
+
+    -   collection_contacts(uuid): return the contact persons' *name, affiliation,* and *orcid id* in tibble
+
+    -   collection_contributors(uuid): return the contributors *name, affiliation,* and *orcid id* in tibble
+
+-   publication: `publications.R`
+
+    -   publications(size = 10000L, from = 0L)
+
+    -   publications\_\_default_columns(as = c("tibble", "character")): the selected default columns are *uuid, hubmap id, title, publication venue, publication date, publication status,* and *last modified timestamp*
+
+    -   publication_information(uuid)
+
+    -   publication_data(entity = c("Dataset","Sample","Donor"))
+
+    -   publication_authors(uuid)
+
+The complete list of data and visualizations available to download are mostly saved in Globus HuBMAP Collection, and `files.R` has the function files_globus_url(uuid) to download/access them. There are three different scenarios while accessing data and visualizations:
+
+1.  UUID with data available via Globus: jump into Globus page
+
+2.  UUID with data available via others (dbGAP or SRA):
+
+    dbGAP stands for "database for Genotypes and Phenotypes"
+
+    SRA stands for "Sequence Read Archive"
+
+    1.  dbGAP yes + SRA yes
+
+    2.  dbGAP yes + SRA no
+
+print out message to notify that the datasets are not available via Globus and give them dbGAP and SRA (if available) for them to explore
+
+3.  UUID not available: print out the message to notify the unavailability
+
+`template.R` has functions language_template(language, name, ...) and json_template(name, ...) functions to run the json queries saved in inst/json.
+
+`utilities.R` contains many internal functions.

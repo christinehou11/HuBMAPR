@@ -155,7 +155,7 @@ collection_contacts <-
 #' @name collection_datasets
 #'
 #' @description `collection_datasets()` takes a unique collection_id and 
-#' returns contributors information of one specified collection as a tibble
+#' returns related datasets of one specified collection as a tibble
 #' 
 #' @param uuid character(1) corresponding to the HuBMAP Collection UUID
 #'     string. This is expected to be a 32-digit hex number.
