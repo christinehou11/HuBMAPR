@@ -28,13 +28,13 @@ In HuBMAP consortium, there are five main entity types, and each entity type wit
 
         -   Derived dataset(s) include columns *uuid, hubmap id, group name, dataset type, data types, status, last modified timestamp* (same as portal page)
 
-        ![Example from HBM876.SJWP.278 (uuid = e3b74d607c3b20c9c2349d98c235ce72)](images/Screenshot%202024-07-31%20at%2019.32.12.png){style="class: center" width="270"}
+        ![Example from HBM876.SJWP.278 (uuid = e3b74d607c3b20c9c2349d98c235ce72)](images/Screenshot%202024-07-31%20at%2019.32.12.png)
 
         -   Derived sample(s) include columns *uuid, hubmap id, group name, sample category, last modified timestamp, organ*
 
             Note: The portal page does not show the tab to see the derived samples as the screenshot, but based on the provenance offered, there indeed is/are derived sample(s).
 
-    ![Example from HBM876.SJWP.278 (uuid = e3b74d607c3b20c9c2349d98c235ce72)](images/Screenshot%202024-07-31%20at%2019.50.43.png){width="408"}
+    ![Example from HBM876.SJWP.278 (uuid = e3b74d607c3b20c9c2349d98c235ce72)](images/Screenshot%202024-07-31%20at%2019.50.43.png)
 
 -   donor: `donors.R`
 
@@ -48,7 +48,7 @@ In HuBMAP consortium, there are five main entity types, and each entity type wit
 
         The returned tibble(s) for derived dataset(s)/sample(s) has same selected columns.
 
-    ![Example from HBM666.XRTH.688 (uuid = a0bea4ae0ce4e03efd04c22cc38db644)](images/Screenshot%202024-07-31%20at%2019.53.29.png){width="242"}
+    ![Example from HBM666.XRTH.688 (uuid = a0bea4ae0ce4e03efd04c22cc38db644)](images/Screenshot%202024-07-31%20at%2019.53.29.png)
 
 -   collection: `collections.R`
 
