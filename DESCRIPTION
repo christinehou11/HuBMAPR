@@ -24,9 +24,14 @@ Authors@R:
     )
     )
 Description: 'HuBMAP' provides an open, global genetic atlas of the
-    human body at the cellular level. 'HuBMAPR' provides an interface
-    to this atlas, allowing programmatic discovery of donors, samples,
-    and data sets, as well as file retrieval.
+    human body at the cellular level. The `datasets()`, `samples()`, `donors()`,
+    `publications()`, and `collections()` functions retrieves the information 
+    for each of these entity types; `*_details()` are available for individual 
+    entries of each entity type; `*_derived()` are available for retrieving 
+    derived datasets or samples for individual entries of each entity type. 
+    Data files can be accessed using `files_globus_url()`. 'HuBMAPR' allows user
+    to read through arbitrary size of result sets starting from specified 
+    location filtered by last modified time date.
 License: Artistic-2.0
 Imports: 
     httr2,

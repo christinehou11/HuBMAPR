@@ -97,14 +97,14 @@
   new_names <- c("data_value", "preferred_term", 
                  "grouping_concept_preferred_term", "data_type")
   
-  sapply(cols, function(col) {
+  vapply(cols, function(col) {
     for (i in seq_along(suffixes)) {
       if (grepl(suffixes[i], col)) {
         return(new_names[i])
       }
     }
     col
-  })
+  }, FUN.VALUE = character(1))
 }
 
 #' @importFrom dplyr mutate select case_when summarise group_by
@@ -114,7 +114,7 @@
   
   tbl <- tbl |>
     mutate(data_value = ifelse(.data$data_type == "Numeric",.data$data_value, ""),
-           data_value = sapply(.data$data_value, .to_numeric),
+           data_value = vapply(.data$data_value, .to_numeric, numeric(1)),
            preferred_term = ifelse(is.na(.data$data_value), .data$preferred_term, 
                                    .data$data_value))  |>
       pivot_wider(

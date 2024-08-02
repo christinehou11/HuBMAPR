@@ -4,7 +4,7 @@
 \alias{publications}
 \alias{publications_default_columns}
 \alias{publication_data}
-\alias{publications_information}
+\alias{publication_information}
 \alias{publication_authors}
 \title{HuBMAP Samples}
 \usage{
@@ -14,7 +14,7 @@ publications_default_columns(as = c("tibble", "character"))
 
 publication_data(uuid, entity = c("Dataset", "Sample", "Donor"))
 
-publications_information(uuid)
+publication_information(uuid)
 
 publication_authors(uuid)
 }
@@ -54,7 +54,7 @@ or \code{publications()}.
 \code{publication_data()} takes a unique publication_id and
 returns details about one specified publication.
 
-\code{publications_information()} takes a unique publication_id and
+\code{publication_information()} takes a unique publication_id and
 returns details about one specified publication.
 
 \code{publication_authors()} takes a unique publication_id and
@@ -81,7 +81,7 @@ uuid <- "3c7273660cdf9ab91a7901533b2cd9a5"
 publication_data(uuid)
 
 uuid <- "3c7273660cdf9ab91a7901533b2cd9a5"
-publications_information(uuid)
+publication_information(uuid)
 uuid <- "3c7273660cdf9ab91a7901533b2cd9a5"
 publication_authors(uuid)
 }

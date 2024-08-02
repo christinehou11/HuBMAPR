@@ -56,7 +56,7 @@ returns details about one specified collection.
 returns contacts information of one specified collection as a tibble
 
 \code{collection_datasets()} takes a unique collection_id and
-returns contributors information of one specified collection as a tibble
+returns related datasets of one specified collection as a tibble
 
 \code{collection_contributors()} takes a unique collection_id and
 returns contributors information of one specified collection as a tibble

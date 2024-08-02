@@ -160,7 +160,7 @@ donor_derived <-
   }
 
 ## helper function
-#' @importFrom dplyr coalesce mutate select rename_with
+#' @importFrom dplyr coalesce mutate select rename_with rename
 #' @importFrom tidyr unnest_longer everything
 #' 
 .donor_edit <-
