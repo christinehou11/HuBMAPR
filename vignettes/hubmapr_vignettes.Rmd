@@ -1,0 +1,39 @@
+---
+title: "Explore Human BioMolecular Atlas Program Data Portal"
+author: 
+  - name: "Christine Hou"
+    affiliation: Department of Biostatistics, Johns Hopkins Bloomberg School of Public Health
+    email: chris2018hou@gmail.com
+date: "`r doc_date()`"
+output: BiocStyle::html_document:
+    self_contained: yes
+    toc: true
+    toc_float: true
+    toc_depth: 2
+    code_folding: show
+package: "`r pkg_ver('HuBMAPR')`"
+vignette: >
+  %\VignetteIndexEntry{Accessing Human Cell Atlas Data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE
+)
+```
+
+```{r date, echo=FALSE}
+## Date the vignette was generated
+Sys.time()
+```
+
+`R` session information.
+
+```{r sessioninfo, echo=FALSE}
+## Session info
+library("sessioninfo")
+options(width = 120)
+session_info()
+```

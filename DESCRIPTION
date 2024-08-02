@@ -50,5 +50,11 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Suggests: 
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+biocViews: Software, SingleCell
+URL: https://mtmorgan.github.io/cellxgenedp/, https://github.com/christinehou11/HuBMAPR
+BugReports: https://github.com/christinehou11/HuBMAPR/issues
 Config/testthat/edition: 3
