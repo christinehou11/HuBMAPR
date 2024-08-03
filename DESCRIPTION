@@ -51,7 +51,8 @@ RoxygenNote: 7.3.2
 Suggests: 
     testthat (>= 3.0.0),
     knitr,
-    rmarkdown
+    rmarkdown,
+    BiocStyle
 VignetteBuilder: knitr
 biocViews: Software, SingleCell
 URL: https://christinehou11.github.io/HuBMAPR/, https://github.com/christinehou11/HuBMAPR
