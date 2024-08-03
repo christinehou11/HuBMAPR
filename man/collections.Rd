@@ -3,7 +3,6 @@
 \name{collections}
 \alias{collections}
 \alias{collections_default_columns}
-\alias{collection_information}
 \alias{collection_contacts}
 \alias{collection_datasets}
 \alias{collection_contributors}
@@ -12,8 +11,6 @@
 collections(size = 10000L, from = 0L)
 
 collections_default_columns(as = c("tibble", "character"))
-
-collection_information(uuid)
 
 collection_contacts(uuid)
 
@@ -36,8 +33,9 @@ string. This is expected to be a 32-digit hex number.}
 \value{
 \verb{*_columns()} returns a named list \code{name}
 containing the column name used in the tibble returned by
-\code{samples()}, \code{datasets()},  \code{donors()}, \code{collections()},
-or \code{publications()}. When \code{as = "tibble"}, the return value is a tibble
+\code{samples()}, \code{datasets()},  \code{donors()},
+\code{collections()},  or \code{publications()}.
+When \code{as = "tibble"},the return value is a tibble
 with paths as elements and abbreviations as names.
 }
 \description{
@@ -48,9 +46,6 @@ ordered by last modified dates
 character vector describing the content of the tibble returned
 by \code{samples()}, \code{datasets()},  \code{donors()}, \code{collections()},
 or \code{publications()}.
-
-\code{collection_information()} takes a unique collection_id and
-returns details about one specified collection.
 
 \code{collection_contacts()} takes a unique collection_id and
 returns contacts information of one specified collection as a tibble
@@ -73,16 +68,11 @@ webpage, https://software.docs.hubmapconsortium.org/apis
 
 Additional details are provided on the HuBMAP consortium
 webpage, https://software.docs.hubmapconsortium.org/apis
-
-Additional details are provided on the HuBMAP consortium
-webpage, https://software.docs.hubmapconsortium.org/apis
 }
 \examples{
 collections(size = 4, from = 2)
 collections_default_columns()
 
-uuid <- "6a6efd0c1a2681dc7d2faab8e4ab0bca"
-collection_information(uuid)
 uuid <- "381f65e58d5e2c1d16a9cef2cc203aab"
 collection_contacts(uuid)
 uuid <- "381f65e58d5e2c1d16a9cef2cc203aab"

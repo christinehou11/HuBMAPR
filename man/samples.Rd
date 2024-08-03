@@ -33,8 +33,9 @@ One of \code{"Sample"} or \code{"Dataset"}.}
 \value{
 \verb{*_columns()} returns a named list \code{name}
 containing the column name used in the tibble returned by
-\code{samples()}, \code{datasets()},  \code{donors()}, \code{collections()},
-or \code{publications()}. When \code{as = "tibble"}, the return value is a tibble
+\code{samples()}, \code{datasets()},  \code{donors()},
+\code{collections()},  or \code{publications()}.
+When \code{as = "tibble"},the return value is a tibble
 with paths as elements and abbreviations as names.
 }
 \description{

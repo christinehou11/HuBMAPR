@@ -9,15 +9,18 @@
 ##
 #' @importFrom whisker whisker.render
 json_template <-
-  function(name, ...)
-  {
+    function(name, ...) {
+    
     language_template("json", name, ...)
-  }
+    
+    }
 
 language_template <- function(language, name, ...) {
-  file <- paste0(name, ".", language)
-  path <- system.file(language, file, package = "HuBMAPR")
-  lines <- readLines(path, warn = FALSE)
-  template <- paste(lines, collapse = "\n")
-  whisker.render(template, list(...))
-}
+    
+    file <- paste0(name, ".", language)
+    path <- system.file(language, file, package = "HuBMAPR")
+    lines <- readLines(path, warn = FALSE)
+    template <- paste(lines, collapse = "\n")
+    whisker.render(template, list(...))
+    
+    }

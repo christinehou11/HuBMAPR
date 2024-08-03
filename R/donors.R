@@ -20,9 +20,9 @@
 #' @examples
 #' donors(size = 4)
 donors <-
-  function(size = 10000L,
-           from = 0L)
-  {
+    function(size = 10000L, from = 0L)
+    
+    {
     
     remaining <- size
     query_size <- min(10000L, remaining) # max = 10000 at a time
@@ -31,7 +31,7 @@ donors <-
     
     .donor_edit(tbl)
 
-  }
+    }
 
 
 #' @rdname donors
@@ -48,8 +48,9 @@ donors <-
 #'
 #' @return `*_columns()` returns a named list `name`
 #'     containing the column name used in the tibble returned by
-#'     `samples()`, `datasets()`,  `donors()`, `collections()`, 
-#'     or `publications()`. When `as = "tibble"`, the return value is a tibble 
+#'     `samples()`, `datasets()`,  `donors()`, 
+#'     `collections()`,  or `publications()`. 
+#'     When `as = "tibble"`,the return value is a tibble 
 #'     with paths as elements and abbreviations as names.
 #'
 #' @examples
@@ -57,14 +58,14 @@ donors <-
 #'
 #' @export
 donors_default_columns <-
-  function(as = c("tibble", "character"))
-  {
+    function(as = c("tibble", "character"))
+    {
     
     as <- match.arg(as)
     
     .default_columns("Donor", as)
     
-  }
+    }
 
 
 #' @rdname donors
@@ -86,14 +87,14 @@ donors_default_columns <-
 #' uuid <- "1dcde05aea3509b2cf89a41ceb3d700f"
 #' donor_detail(uuid)
 donor_detail <-
-  function (uuid)
-  {
-    stopifnot(
-      .is_uuid(uuid)
-    )
+    function (uuid)
+    {
+    
+    stopifnot(.is_uuid(uuid))
     
     .query_match(uuid, option = "hits.hits[]._source")
-  }
+    
+    }
 
 #' @rdname donors
 #'
@@ -120,84 +121,79 @@ donor_detail <-
 #' donor_derived(uuid, "Sample")
 #' 
 donor_derived <-
-  function(uuid, 
-           entity_type = c("Dataset", "Sample")) {
+    function(uuid, entity_type = c("Dataset", "Sample")) {
     
-    stopifnot(
-      .is_uuid(uuid)
-    )
+    stopifnot(.is_uuid(uuid))
     
     entity <- match.arg(entity_type)
     
     tbl <- .query_match(uuid, option = "hits.hits[]._source.descendants[]") |>
-      filter(entity_type == entity) |>
-      select(any_of(.default_columns(entity,"character"))) |>
-      .unnest_mutate_relocate()
+            filter(entity_type == entity) |>
+            select(any_of(.default_columns(entity,"character"))) |>
+            .unnest_mutate_relocate()
     
     if (identical(entity, "Sample")  && nrow(tbl) > 0L) {
-      
-      uuids <- tbl$uuid
-      organ_info <- rep("", length(uuids))
-      
-      for (i in seq_along(uuids)) {
+    
+        uuids <- tbl$uuid
+        organ_info <- rep("", length(uuids))
         
-        organ_info[i] = .query_match(uuids[i], "hits.hits[]._source.origin_samples[]") |>
-          left_join(.organ(), by = c("organ" = "abbreviation")) |>
-          select("name")
-      }
-      
-      tbl$organ = organ_info
+        for (i in seq_along(uuids)) {
+        
+        organ_info[i] <- .query_match(uuids[i], 
+                            "hits.hits[]._source.origin_samples[]") |>
+                            left_join(.organ(), 
+                                        by = c("organ" = "abbreviation")) |>
+                            select("name")
+        }
+        
+        tbl$organ <- organ_info
+        
     } 
     else {
-      
-      tbl <- tbl |>
-        select(-"organ")
-      
+    
+        tbl <- tbl |> select(-"organ")
+    
     }
     
     tbl
     
-  }
+    }
 
 ## helper function
 #' @importFrom dplyr coalesce mutate select rename_with rename
 #' @importFrom tidyr unnest_longer everything
 #' 
 .donor_edit <-
-  function(tbl) {
+    function(tbl) {
     
     if (ncol(tbl) == 8) {
-      tbl  <- tbl |>
+        tbl  <- tbl |>
         rename_with(.rename_columns, .cols = everything())
-      
+    
     } else {
-      tbl <- tbl |>
-        mutate(
-          data_value = coalesce(
-            tbl$metadata.organ_donor_data.data_value,
-            tbl$metadata.living_donor_data.data_value),
-          preferred_term = coalesce(
-            tbl$metadata.organ_donor_data.preferred_term,
-            tbl$metadata.living_donor_data.preferred_term
-          ),
-          grouping_concept_preferred_term = coalesce(
-            tbl$metadata.organ_donor_data.grouping_concept_preferred_term,
-            tbl$metadata.living_donor_data.grouping_concept_preferred_term
-          ),
-          data_type = coalesce(
-            tbl$metadata.living_donor_data.data_type,
-            tbl$metadata.organ_donor_data.data_type
-          )
+        tbl <- tbl |> mutate(
+            data_value = coalesce(
+                tbl$metadata.organ_donor_data.data_value,
+                tbl$metadata.living_donor_data.data_value),
+            preferred_term = coalesce(
+                tbl$metadata.organ_donor_data.preferred_term, 
+                tbl$metadata.living_donor_data.preferred_term),
+            grouping_concept_preferred_term = coalesce(
+                tbl$metadata.organ_donor_data.grouping_concept_preferred_term,
+                tbl$metadata.living_donor_data.grouping_concept_preferred_term),
+            data_type = coalesce(
+                tbl$metadata.living_donor_data.data_type,
+                tbl$metadata.organ_donor_data.data_type)
         )
     }
     
     tbl |>
-      select("hubmap_id", "uuid", "group_name", "last_modified_timestamp",
-               "data_value", "preferred_term", 
-               "grouping_concept_preferred_term", "data_type") |>
-      unnest_longer(c("data_value", "preferred_term", 
-                    "grouping_concept_preferred_term", "data_type")) |>
-      .donor_matadata_modify() |>
-      .unnest_mutate_relocate()
-   
-  }
+        select("hubmap_id", "uuid", "group_name", "last_modified_timestamp",
+                "data_value", "preferred_term", 
+                "grouping_concept_preferred_term", "data_type") |>
+        unnest_longer(c("data_value", "preferred_term", 
+                "grouping_concept_preferred_term", "data_type")) |>
+        .donor_matadata_modify() |>
+        .unnest_mutate_relocate()
+    
+    }

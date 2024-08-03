@@ -20,22 +20,19 @@
 #' @examples
 #' datasets(size = 100, from = 200)
 datasets <-
-  function(size = 10000L,
-           from = 0L)
-  {
+    function(size = 10000L, from = 0L)
+    {
     
-    stopifnot(
-      .is_size(size)
-    )
+    stopifnot( .is_size(size))
     
     remaining <- size
     query_size <- min(10000L, remaining) # max = 10000 at a time
     
     tbl <-  .query_entity("Dataset", query_size, from)
-
+    
     .dataset_edit(tbl)
     
-  }
+    }
 
 
 #' @rdname datasets
@@ -50,10 +47,11 @@ datasets <-
 #' @param as character(1) return format. One of `"tibble"` (default),
 #'      or `"character"`.
 #'
-#' @return `*_columns()` returns a named list with column `name`
+#' @return `*_columns()` returns a named list `name`
 #'     containing the column name used in the tibble returned by
-#'     `samples()`, `datasets()`,  `donors()`, `collections()`, 
-#'     or `publications()`. When `as = "tibble"`, the return value is a tibble 
+#'     `samples()`, `datasets()`,  `donors()`, 
+#'     `collections()`,  or `publications()`. 
+#'     When `as = "tibble"`,the return value is a tibble 
 #'     with paths as elements and abbreviations as names.
 #'
 #' @examples
@@ -61,10 +59,12 @@ datasets <-
 #'
 #' @export
 datasets_default_columns <-
-  function(as = c( "tibble", "character"))
-  {
+    function(as = c( "tibble", "character"))
+    {
+    
     .default_columns("Dataset", as)
-  }
+    
+    }
 
 #' @rdname datasets
 #'
@@ -82,22 +82,24 @@ datasets_default_columns <-
 #' uuid <- "7754aa5ebde628b5e92705e33e74a4ef"
 #' dataset_detail(uuid)
 dataset_detail <-
-  function (uuid)
-  {
-    stopifnot(
-      .is_uuid(uuid)
-    )
+    function (uuid)
+    {
+    
+    stopifnot( .is_uuid(uuid))
     
     .query_match(uuid, option = "hits.hits[]._source")
-  }
+    
+    }
 
 
 #' @importFrom dplyr left_join rename select
 .dataset_edit <-
-  function (tbl) {
+    function (tbl) {
+    
     tbl |>
-      .unnest_mutate_relocate() |>
-      left_join(.organ(), by = c("origin_samples.organ" = "abbreviation")) |>
-      select(-"origin_samples.organ") |>
-      rename("organ" = "name")
-  }
+        .unnest_mutate_relocate() |>
+        left_join(.organ(), by = c("origin_samples.organ" = "abbreviation")) |>
+        select(-"origin_samples.organ") |>
+        rename("organ" = "name")
+    
+    }

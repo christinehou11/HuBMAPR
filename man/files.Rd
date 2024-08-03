@@ -12,11 +12,26 @@ string. This is expected to be a 32-digit hex number. One unique Dataset
 UUID corresponds to one specific URL on Globus. Files corresponding to
 unique Dataset UUID are saved on Globus HuBMAP Public Collection webpage.}
 }
+\value{
+\code{file_globus_url()} helps to jump into Globus Collection webpage if
+Globus link is available for data files; otherwise, external links
+and related instructions. will be offered with
+}
 \description{
-\code{files_globus_url()} takes a unique dataset UUID or publication UUID
-to be used to query theHuBMAP API for information about available files.
+\code{files_globus_url()} takes a unique dataset UUID or publication
+UUID to be used to query theHuBMAP API for information about available
+files.
 }
 \details{
 Additional details are provided on the HuBMAP consortium
 webpage, https://software.docs.hubmapconsortium.org/apis
+}
+\examples{
+# Globus available
+uuid_globus <- "015153e7afb510d8624ee9f5fcad121d"
+uuid_sra_dbGaP <- "5ba6a5b81e95c93c26a33980f6e957d7"
+uuid_not_available <- "0eb5e457b4855ce28531bc97147196b6"
+
+# files_globus_url(*_globus)
+
 }

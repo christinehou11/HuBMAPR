@@ -4,7 +4,6 @@
 \alias{publications}
 \alias{publications_default_columns}
 \alias{publication_data}
-\alias{publication_information}
 \alias{publication_authors}
 \title{HuBMAP Samples}
 \usage{
@@ -13,8 +12,6 @@ publications(size = 10000L, from = 0L)
 publications_default_columns(as = c("tibble", "character"))
 
 publication_data(uuid, entity = c("Dataset", "Sample", "Donor"))
-
-publication_information(uuid)
 
 publication_authors(uuid)
 }
@@ -36,15 +33,16 @@ One of \code{"Sample"}, \code{"Donor"} or \code{"Dataset"}.}
 \value{
 \verb{*_columns()} returns a named list \code{name}
 containing the column name used in the tibble returned by
-\code{samples()}, \code{datasets()}, \code{donors()}, \code{collections()}, or
-\code{publications()}. When \code{as = "tibble"}, the return value is a tibble
+\code{samples()}, \code{datasets()},  \code{donors()},
+\code{collections()},  or \code{publications()}.
+When \code{as = "tibble"},the return value is a tibble
 with paths as elements and abbreviations as names.
 }
 \description{
 \code{publications()} returns details about available samples,
-ordered by last modified dates. \code{publication_status == TRUE} represents peer
-reviewed publications; \code{publication_status == FALSE} represents preprint
-publications.
+ordered by last modified dates.
+\code{publication_status == TRUE}: peer reviewed publication;
+\code{publication_status == FALSE}: pre-print publication.
 
 \verb{*_columns()} returns a tibble or named
 character vector describing the content of the tibble returned
@@ -54,16 +52,10 @@ or \code{publications()}.
 \code{publication_data()} takes a unique publication_id and
 returns details about one specified publication.
 
-\code{publication_information()} takes a unique publication_id and
-returns details about one specified publication.
-
 \code{publication_authors()} takes a unique publication_id and
 returns authors information of one specified collection as a tibble
 }
 \details{
-Additional details are provided on the HuBMAP consortium
-webpage, https://software.docs.hubmapconsortium.org/apis
-
 Additional details are provided on the HuBMAP consortium
 webpage, https://software.docs.hubmapconsortium.org/apis
 
@@ -80,8 +72,6 @@ publications_default_columns()
 uuid <- "3c7273660cdf9ab91a7901533b2cd9a5"
 publication_data(uuid)
 
-uuid <- "3c7273660cdf9ab91a7901533b2cd9a5"
-publication_information(uuid)
 uuid <- "3c7273660cdf9ab91a7901533b2cd9a5"
 publication_authors(uuid)
 }

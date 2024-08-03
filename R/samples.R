@@ -20,9 +20,7 @@
 #' @examples
 #' samples(size = 20, from = 5)
 samples <-
-  function(size = 10000L,
-           from = 0L)
-  {
+    function(size = 10000L, from = 0L) {
     
     remaining <- size
     query_size <- min(10000L, remaining) # max = 10000 at a time
@@ -30,7 +28,8 @@ samples <-
     tbl <- .query_entity("Sample", query_size, from)
     
     .sample_edit(tbl)
-  }
+    
+    }
 
 
 #' @rdname samples
@@ -47,8 +46,9 @@ samples <-
 #'
 #' @return `*_columns()` returns a named list `name`
 #'     containing the column name used in the tibble returned by
-#'     `samples()`, `datasets()`,  `donors()`, `collections()`, 
-#'     or `publications()`. When `as = "tibble"`, the return value is a tibble 
+#'     `samples()`, `datasets()`,  `donors()`, 
+#'     `collections()`,  or `publications()`. 
+#'     When `as = "tibble"`,the return value is a tibble 
 #'     with paths as elements and abbreviations as names.
 #'
 #' @examples
@@ -56,10 +56,12 @@ samples <-
 #'
 #' @export
 samples_default_columns <-
-  function(as = c("tibble", "character"))
-  {
+    function(as = c("tibble", "character"))
+    {
+    
     .default_columns("Sample", as)
-  }
+    
+    }
 
 
 #' @rdname samples
@@ -81,14 +83,13 @@ samples_default_columns <-
 #' uuid <- "d3525d35f6d5ee3dc3186613b0ab1762"
 #' sample_detail(uuid)
 sample_detail <-
-  function (uuid)
-  {
-    stopifnot(
-      .is_uuid(uuid)
-    )
+    function (uuid) {
+    
+    stopifnot(.is_uuid(uuid))
     
     .query_match(uuid, option = "hits.hits[]._source")
-  }
+    
+    }
 
 #' @rdname samples
 #'
@@ -114,47 +115,48 @@ sample_detail <-
 #' uuid <- "3e7dc14313262af577f686dcb09f5119"
 #' sample_derived(uuid, "Sample")
 sample_derived <-
-  function(uuid, 
-           entity_type = c("Dataset", "Sample")) {
+    function(uuid, entity_type = c("Dataset", "Sample")) {
     
-    stopifnot(
-      .is_uuid(uuid)
-    )
+    stopifnot(.is_uuid(uuid))
     
     entity <- match.arg(entity_type)
     
     tbl <- .query_match(uuid, option = "hits.hits[]._source.descendants[]") |>
-      filter(entity_type == entity) |>
-      select(any_of(.default_columns(entity, "character"))) |>
-      .unnest_mutate_relocate()
-      
+            filter(entity_type == entity) |>
+            select(any_of(.default_columns(entity, "character"))) |>
+            .unnest_mutate_relocate()
     
     if (identical(entity, "Sample")  && nrow(tbl) > 0L) {
-      
-      uuids <- tbl$uuid
-      organ_info <- rep("", length(uuids))
-      
-      for (i in seq_along(uuids)) {
+    
+        uuids <- tbl$uuid
+        organ_info <- rep("", length(uuids))
         
-        organ_info[i] = .query_match(uuids[i], "hits.hits[]._source.origin_samples[]") |>
-          left_join(.organ(), by = c("organ" = "abbreviation")) |>
-          select("name")
-      }
-      
-      tbl$organ = organ_info
+        for (i in seq_along(uuids)) {
+        
+            organ_info[i] <- .query_match(uuids[i], 
+                                "hits.hits[]._source.origin_samples[]") |>
+                                left_join(.organ(), 
+                                            by = c("organ" = "abbreviation")) |>
+                                select("name")
+        }
+        
+        tbl$organ <- organ_info
+        
     }
     
     tbl
     
-  }
+    }
 
 
 #' @importFrom dplyr left_join rename select 
 .sample_edit <-
-  function (tbl) {
+    function (tbl) {
+    
     tbl |>
-      .unnest_mutate_relocate() |>
-      left_join(.organ(), by = c("origin_samples.organ" = "abbreviation")) |>
-      select(-"origin_samples.organ") |>
-      rename("organ" = "name") 
-  }
+        .unnest_mutate_relocate() |>
+        left_join(.organ(), by = c("origin_samples.organ" = "abbreviation")) |>
+        select(-"origin_samples.organ") |>
+        rename("organ" = "name")
+    
+    }

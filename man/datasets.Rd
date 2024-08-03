@@ -25,10 +25,11 @@ or \code{"character"}.}
 string. This is expected to be a 32-digit hex number.}
 }
 \value{
-\verb{*_columns()} returns a named list with column \code{name}
+\verb{*_columns()} returns a named list \code{name}
 containing the column name used in the tibble returned by
-\code{samples()}, \code{datasets()},  \code{donors()}, \code{collections()},
-or \code{publications()}. When \code{as = "tibble"}, the return value is a tibble
+\code{samples()}, \code{datasets()},  \code{donors()},
+\code{collections()},  or \code{publications()}.
+When \code{as = "tibble"},the return value is a tibble
 with paths as elements and abbreviations as names.
 }
 \description{
