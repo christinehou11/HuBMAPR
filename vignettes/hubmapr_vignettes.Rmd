@@ -20,17 +20,84 @@ vignette: |
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
-    collapse = TRUE,
-    comment = "#>"
+    collapse = TRUE
 )
 ```
+
+# Overview
+
+'HuBMAP' data portal (https://portal.hubmapconsortium.org/) provides an open, global bio-molecular atlas of the human body at the cellular level. `HuBMAPR` package provides an alternative interface to access the data exploration and file retrieval.
+
+# Installation
+
+`HuBMAPR` is a R package available in *Bioconductor* version 3.19 and later. You can install `HuBMAPR` by using the following commands in R session from *Bioconductor*:
+
+```{r 'install', eval = FALSE}
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("HuBMAPR")
+
+## Check Bioconductor installation
+BiocManager::valid()
+```
+
+Additionally, you can install development version from [GitHub](https://christinehou11.github.io/HuBMAPR):
+
+```{r 'install dev', eval = FALSE}
+BiocManager::install("christinehou11/HuBMAPR")
+```
+
+# Basic User Guide
+
+## Load Necessary Packages
+
+Install additional required packages before running package codes, and you can use
+
+```{r, eval=FALSE}
+
+```
+
+Load additional packages. `dplyr` package is widely used in this vignettes to conduct data wrangling and specific information extraction.
+
+```{r, message=FALSE, comment=NA}
+library(tidyr)
+library(HuBMAPR)
+```
+
+## Data Discovery
+
+`HuBMAP` data portal page displays five categories of entity data (datasets, samples, donors, publications, and collections) chronologically (last modified date time). You can choose to explore arbitrary size of data starting from random location. By default, you can only page through less than 10000 data at one time using `from` and `size` numeric parameters. To read next or more pages, change `from` to other values. Using corresponding functions to explore entity data.
+
+### Datasets
+
+Retrieve the first 200 datasets using `datasets()`.
+
+```{r, comment=NA}
+datasets(size = 200, from = 0)
+```
+
+
+
+
+### Samples
+
+### Donors
+
+### Publications
+
+### Collections
+
+
+## File Retieval
+
 
 ```{r date, echo=FALSE}
 ## Date the vignette was generated
 Sys.time()
 ```
 
-`R` session information.
+# `R` session information {.unnumbered}
 
 ```{r sessionInfo, echo=FALSE}
 ## Session info
