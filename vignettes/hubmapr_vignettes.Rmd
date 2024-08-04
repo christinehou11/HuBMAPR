@@ -20,7 +20,8 @@ vignette: |
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
-    collapse = TRUE
+    collapse = TRUE,
+    comment = "#>"
 )
 ```
 
@@ -60,7 +61,7 @@ Install additional required packages before running package codes, and you can u
 
 Load additional packages. `dplyr` package is widely used in this vignettes to conduct data wrangling and specific information extraction.
 
-```{r, message=FALSE, comment=NA}
+```{r, message=FALSE}
 library(tidyr)
 library(HuBMAPR)
 ```
@@ -73,7 +74,7 @@ library(HuBMAPR)
 
 Retrieve the first 200 datasets using `datasets()`.
 
-```{r, comment=NA}
+```{r}
 datasets(size = 200, from = 0)
 ```
 
