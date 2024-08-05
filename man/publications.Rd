@@ -11,7 +11,7 @@ publications(size = 10000L, from = 0L)
 
 publications_default_columns(as = c("tibble", "character"))
 
-publication_data(uuid, entity = c("Dataset", "Sample", "Donor"))
+publication_data(uuid, entity_type = c("Dataset", "Sample", "Donor"))
 
 publication_authors(uuid)
 }
@@ -27,7 +27,7 @@ or \code{"character"}.}
 \item{uuid}{character(1) corresponding to the HuBMAP Publication UUID
 string. This is expected to be a 32-digit hex number.}
 
-\item{entity}{character(1) selected derived entity type.
+\item{entity_type}{character(1) selected derived entity type.
 One of \code{"Sample"}, \code{"Donor"} or \code{"Dataset"}.}
 }
 \value{

@@ -82,7 +82,7 @@ publications_default_columns <-
 #' @param uuid character(1) corresponding to the HuBMAP Publication UUID
 #'     string. This is expected to be a 32-digit hex number.
 #'     
-#' @param entity character(1) selected derived entity type. 
+#' @param entity_type character(1) selected derived entity type. 
 #' One of `"Sample"`, `"Donor"` or `"Dataset"`.
 #' 
 #' @details Additional details are provided on the HuBMAP consortium
