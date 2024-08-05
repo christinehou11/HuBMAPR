@@ -345,7 +345,7 @@ specific detail retrievals.</p>
 <code>*_detail()</code> to retrieve all available information for any
 entry of any entity category given <strong>UUID</strong>. Use
 <code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select()</a></code> and <code>unnest_*()</code> functions to expand
-the tibble of lists</p>
+list-columns.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dataset_uuid</span> <span class="op">&lt;-</span> <span class="va">datasets</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">dataset_type</span> <span class="op">==</span> <span class="st">"Auto-fluorescence"</span>,</span>
@@ -353,11 +353,21 @@ the tibble of lists</p>
 <span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># full tibble</span></span>
-<span><span class="va">dataset_uuid</span></span>
-<span><span class="co">#&gt; [1] "2e7123dcf2e9092a42ac42e44c2d686b"</span></span>
+<span><span class="co"># Full Information</span></span>
+<span><span class="fu"><a href="../reference/datasets.html">dataset_detail</a></span><span class="op">(</span><span class="va">dataset_uuid</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 35</span></span></span>
+<span><span class="co">#&gt;   ancestor_ids ancestors  contacts   contains_human_genetic_seque…¹ contributors</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>                          <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">&lt;chr [4]&gt;</span>    <span style="color: #949494;">&lt;list [4]&gt;</span> <span style="color: #949494;">&lt;list [1]&gt;</span> FALSE                          <span style="color: #949494;">&lt;list [16]&gt;</span> </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​contains_human_genetic_sequences</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 30 more variables: created_by_user_displayname &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   created_by_user_email &lt;chr&gt;, created_timestamp &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   creation_action &lt;chr&gt;, data_access_level &lt;chr&gt;, dataset_type &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   descendant_ids &lt;list&gt;, descendants &lt;list&gt;, description &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   display_subtype &lt;chr&gt;, doi_url &lt;chr&gt;, donor &lt;list&gt;, entity_type &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   files &lt;list&gt;, group_name &lt;chr&gt;, group_uuid &lt;chr&gt;, hubmap_id &lt;chr&gt;, …</span></span></span>
 <span></span>
-<span><span class="co"># specific information</span></span>
+<span><span class="co"># Specific Information</span></span>
 <span><span class="fu"><a href="../reference/datasets.html">dataset_detail</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">dataset_uuid</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">contributors</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest_longer.html" class="external-link">unnest_longer</a></span><span class="op">(</span><span class="va">contributors</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -388,7 +398,7 @@ the tibble of lists</p>
 <code>publication_detail(uuid)</code> work same as above.</p>
 <p><strong>Sample</strong> and <strong>Donor</strong> have derived
 samples and datasets. In <code>HuBAMPR</code> package,
-<code>sample_derived</code> and <code><a href="../reference/donors.html">donor_derived()</a></code> functions
+<code><a href="../reference/samples.html">sample_derived()</a></code> and <code><a href="../reference/donors.html">donor_derived()</a></code> functions
 are available to use to see the derived datasets and samples from one
 sample given sample UUID or one donor given donor UUID. Specify
 <code>entity_type</code> parameter to retrieve derived
@@ -404,6 +414,7 @@ sample given sample UUID or one donor given donor UUID. Specify
 <span><span class="va">sample_uuid</span></span>
 <span><span class="co">#&gt; [1] "c40774aa2f52a2811db15c5ca1949314"</span></span>
 <span></span>
+<span><span class="co"># Derived Datasets</span></span>
 <span><span class="fu"><a href="../reference/samples.html">sample_derived</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">sample_uuid</span>, entity_type <span class="op">=</span> <span class="st">"Dataset"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 12 × 7</span></span></span>
 <span><span class="co">#&gt;    uuid                      hubmap_id group_name dataset_type data_types status</span></span>
@@ -421,6 +432,8 @@ sample given sample UUID or one donor given donor UUID. Specify
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> 744647801573d1d5700ee752… HBM222.J… Vanderbil… Auto-fluore… AF         Publi…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> 4a98c43ab3b20b06c11dfbed… HBM973.L… Vanderbil… Auto-fluore… image_pyr… Publi…</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 1 more variable: last_modified_timestamp &lt;date&gt;</span></span></span>
+<span></span>
+<span><span class="co"># Derived Samples</span></span>
 <span><span class="fu"><a href="../reference/samples.html">sample_derived</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">sample_uuid</span>, entity_type <span class="op">=</span> <span class="st">"Sample"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 6</span></span></span>
 <span><span class="co">#&gt;   uuid         hubmap_id group_name sample_category last_modified_timest…¹ organ</span></span>
@@ -436,7 +449,7 @@ sample given sample UUID or one donor given donor UUID. Specify
 <code><a href="../reference/donors.html">donors()</a></code> with tibbles from <code><a href="../reference/datasets.html">datasets()</a></code> and
 <code><a href="../reference/samples.html">samples()</a></code>.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">donors_sub</span> <span class="op">&lt;-</span> <span class="va">donors</span> <span class="op">|&gt;</span></span>
+<code class="sourceCode R"><span><span class="va">donor_sub</span> <span class="op">&lt;-</span> <span class="va">donors</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">Sex</span> <span class="op">==</span> <span class="st">"Female"</span>,</span>
 <span>            <span class="va">Age</span> <span class="op">&lt;=</span> <span class="fl">76</span> <span class="op">&amp;</span> <span class="va">Age</span> <span class="op">&gt;=</span> <span class="fl">55</span>,</span>
 <span>            <span class="va">Race</span> <span class="op">==</span> <span class="st">"White"</span>,</span>
@@ -445,13 +458,15 @@ sample given sample UUID or one donor given donor UUID. Specify
 <span>            <span class="va">last_modified_timestamp</span> <span class="op">&lt;=</span> <span class="st">"2020-06-30"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">donors_sub_dataset</span> <span class="op">&lt;-</span> <span class="va">donors_sub</span> <span class="op">|&gt;</span></span>
+<span><span class="co"># Datasets</span></span>
+<span><span class="va">donor_sub_dataset</span> <span class="op">&lt;-</span> <span class="va">donor_sub</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">datasets</span> <span class="op">|&gt;</span></span>
 <span>                <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">group_name</span>, <span class="va">last_modified_timestamp</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>                <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span><span class="st">"dataset_uuid"</span> <span class="op">=</span> <span class="st">"uuid"</span>,</span>
 <span>                        <span class="st">"dataset_hubmap_id"</span> <span class="op">=</span> <span class="st">"hubmap_id"</span><span class="op">)</span>, </span>
 <span>                by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"hubmap_id"</span> <span class="op">=</span> <span class="st">"donor.hubmap_id"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">donors_sub_dataset</span></span>
+<span></span>
+<span><span class="va">donor_sub_dataset</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 76 × 14</span></span></span>
 <span><span class="co">#&gt;    uuid      hubmap_id group_name last_modified_timest…¹ Sex     Age Race    BMI</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
@@ -470,13 +485,15 @@ sample given sample UUID or one donor given donor UUID. Specify
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 6 more variables: dataset_uuid &lt;chr&gt;, dataset_hubmap_id &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   dataset_type &lt;chr&gt;, status &lt;chr&gt;, data_types &lt;chr&gt;, organ &lt;chr&gt;</span></span></span>
 <span></span>
-<span><span class="va">donors_sub_sample</span> <span class="op">&lt;-</span> <span class="va">donors_sub</span> <span class="op">|&gt;</span></span>
+<span><span class="co"># Samples</span></span>
+<span><span class="va">donor_sub_sample</span> <span class="op">&lt;-</span> <span class="va">donor_sub</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">samples</span> <span class="op">|&gt;</span></span>
 <span>                <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">group_name</span>, <span class="va">last_modified_timestamp</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>                <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span><span class="st">"sample_uuid"</span> <span class="op">=</span> <span class="st">"uuid"</span>,</span>
-<span>                       <span class="st">"sample_hubmap_id"</span> <span class="op">=</span> <span class="st">"hubmap_id"</span><span class="op">)</span>,</span>
+<span>                        <span class="st">"sample_hubmap_id"</span> <span class="op">=</span> <span class="st">"hubmap_id"</span><span class="op">)</span>,</span>
 <span>                by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"hubmap_id"</span> <span class="op">=</span> <span class="st">"donor.hubmap_id"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">donors_sub_sample</span></span>
+<span></span>
+<span><span class="va">donor_sub_sample</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 9 × 12</span></span></span>
 <span><span class="co">#&gt;   uuid       hubmap_id group_name last_modified_timest…¹ Sex     Age Race    BMI</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
@@ -496,21 +513,25 @@ sample given sample UUID or one donor given donor UUID. Specify
 <code>donor_derived(uuid, entity_type = "Dataset")</code> and
 <code>donor_derived(uuid, entity_type = "Sample")</code>.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">donors_sub_uuid</span> <span class="op">&lt;-</span> <span class="va">donors_sub</span> <span class="op">|&gt;</span></span>
+<code class="sourceCode R"><span><span class="co"># Derived Datasets</span></span>
+<span><span class="va">donor_sub_uuid</span> <span class="op">&lt;-</span> <span class="va">donor_sub</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">donors_sub_uuid_dataset</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/donors.html">donor_derived</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">donors_sub_uuid</span>,</span>
+<span><span class="va">donor_sub_uuid_dataset</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/donors.html">donor_derived</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">donor_sub_uuid</span>,</span>
 <span>                                        entity_type <span class="op">=</span> <span class="st">"Dataset"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/all.html" class="external-link">all</a></span><span class="op">(</span><span class="va">donors_sub_dataset</span><span class="op">$</span><span class="va">dataset_uuid</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">donors_sub_uuid_dataset</span><span class="op">$</span><span class="va">uuid</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/all.html" class="external-link">all</a></span><span class="op">(</span><span class="va">donor_sub_dataset</span><span class="op">$</span><span class="va">dataset_uuid</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">donor_sub_uuid_dataset</span><span class="op">$</span><span class="va">uuid</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span>
 <span></span>
-<span><span class="va">donors_sub_uuid_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/donors.html">donor_derived</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">donors_sub_uuid</span>,</span>
-<span>                                       entity_type <span class="op">=</span> <span class="st">"Sample"</span><span class="op">)</span></span>
+<span><span class="co"># Derived Samples</span></span>
+<span><span class="va">donor_sub_uuid_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/donors.html">donor_derived</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">donor_sub_uuid</span>,</span>
+<span>                                        entity_type <span class="op">=</span> <span class="st">"Sample"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/all.html" class="external-link">all</a></span><span class="op">(</span><span class="va">donors_sub_sample</span><span class="op">$</span><span class="va">sample_uuid</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">donors_sub_uuid_sample</span><span class="op">$</span><span class="va">uuid</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/all.html" class="external-link">all</a></span><span class="op">(</span><span class="va">donor_sub_sample</span><span class="op">$</span><span class="va">sample_uuid</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">donor_sub_uuid_sample</span><span class="op">$</span><span class="va">uuid</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">donors_sub_sample</span><span class="op">$</span><span class="va">sample_uuid</span><span class="op">)</span> <span class="op">==</span> </span>
-<span>        <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">donors_sub_uuid_sample</span><span class="op">$</span><span class="va">uuid</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">donor_sub_sample</span><span class="op">$</span><span class="va">sample_uuid</span><span class="op">)</span> <span class="op">==</span> </span>
+<span>        <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">donor_sub_uuid_sample</span><span class="op">$</span><span class="va">uuid</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 <p><strong>Note:</strong> For <strong>Donor</strong> entity,
 <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join()</a></code> and <code><a href="../reference/donors.html">donor_derived()</a></code> produce same
@@ -525,12 +546,14 @@ Example shows below.</p>
 <code class="sourceCode R"><span><span class="va">sample_donor_hubmap_id</span> <span class="op">&lt;-</span> <span class="va">samples</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">uuid</span> <span class="op">==</span> <span class="va">sample_uuid</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">donor.hubmap_id</span><span class="op">)</span></span>
+<span></span>
 <span><span class="va">sample_donor_hubmap_id</span></span>
 <span><span class="co">#&gt; [1] "HBM994.BBMC.798"</span></span>
 <span></span>
-<span><span class="co"># Derived Sample -&gt; Different</span></span>
+<span><span class="co"># Derived Samples -&gt; Different</span></span>
 <span><span class="va">sample_hubmap_id_sample_1</span> <span class="op">&lt;-</span> <span class="va">samples</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">donor.hubmap_id</span> <span class="op">==</span> <span class="va">sample_donor_hubmap_id</span><span class="op">)</span></span>
+<span></span>
 <span><span class="va">sample_hubmap_id_sample_1</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 7</span></span></span>
 <span><span class="co">#&gt;   uuid               hubmap_id donor.hubmap_id group_name last_modified_timest…¹</span></span>
@@ -544,7 +567,8 @@ Example shows below.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 2 more variables: sample_category &lt;chr&gt;, organ &lt;chr&gt;</span></span></span>
 <span></span>
 <span><span class="va">sample_hubmap_id_sample_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/samples.html">sample_derived</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">sample_uuid</span>, </span>
-<span>                                           entity_type <span class="op">=</span> <span class="st">"Sample"</span><span class="op">)</span></span>
+<span>                                            entity_type <span class="op">=</span> <span class="st">"Sample"</span><span class="op">)</span></span>
+<span></span>
 <span><span class="va">sample_hubmap_id_sample_2</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 6</span></span></span>
 <span><span class="co">#&gt;   uuid         hubmap_id group_name sample_category last_modified_timest…¹ organ</span></span>
@@ -553,12 +577,13 @@ Example shows below.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> ae98f6ca4f1… HBM636.L… Vanderbil… section         2021-08-18             Kidn…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> b099a37195f… HBM937.H… Vanderbil… section         2021-08-18             Kidn…</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​last_modified_timestamp</span></span></span>
+<span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">sample_hubmap_id_sample_1</span><span class="op">$</span><span class="va">uuid</span><span class="op">)</span> <span class="op">==</span> </span>
 <span>        <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">sample_hubmap_id_sample_2</span><span class="op">$</span><span class="va">uuid</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] FALSE</span></span>
 <span></span>
 <span></span>
-<span><span class="co"># Derived Dataset -&gt; Same</span></span>
+<span><span class="co"># Derived Datasets -&gt; Same</span></span>
 <span><span class="va">sample_hubmap_id_dataset_1</span> <span class="op">&lt;-</span> <span class="va">datasets</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">donor.hubmap_id</span> <span class="op">==</span> <span class="va">sample_donor_hubmap_id</span><span class="op">)</span></span>
 <span></span>
@@ -568,6 +593,7 @@ Example shows below.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/all.html" class="external-link">all</a></span><span class="op">(</span><span class="va">sample_hubmap_id_dataset_1</span><span class="op">$</span><span class="va">uuid</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span></span>
 <span>        <span class="va">sample_hubmap_id_dataset_2</span><span class="op">$</span><span class="va">uuid</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span>
+<span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">sample_hubmap_id_dataset_1</span><span class="op">$</span><span class="va">uuid</span><span class="op">)</span> <span class="op">==</span> </span>
 <span>        <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">sample_hubmap_id_dataset_2</span><span class="op">$</span><span class="va">uuid</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
@@ -575,9 +601,9 @@ Example shows below.</p>
 <code><a href="../reference/collections.html">collection_datasets()</a></code> to retrieve.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">collection_uuid</span> <span class="op">&lt;-</span> <span class="va">collections</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">last_modified_timestamp</span> <span class="op">&gt;=</span> <span class="st">"2023-01-01"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">last_modified_timestamp</span> <span class="op">&gt;=</span> <span class="st">"2023-01-01"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/collections.html">collection_datasets</a></span><span class="op">(</span><span class="va">collection_uuid</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 211 × 8</span></span></span>
@@ -603,9 +629,9 @@ Example shows below.</p>
 <code>Dataset</code> or <code>Sample</code></p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">publication_uuid</span> <span class="op">&lt;-</span> <span class="va">publications</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">publication_venue</span> <span class="op">==</span> <span class="st">"Nature"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">publication_venue</span> <span class="op">==</span> <span class="st">"Nature"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/publications.html">publication_data</a></span><span class="op">(</span><span class="va">publication_uuid</span>, entity_type <span class="op">=</span> <span class="st">"Dataset"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 7</span></span></span>
@@ -621,7 +647,7 @@ Example shows below.</p>
 <div class="section level3">
 <h3 id="file-retieval">File Retieval<a class="anchor" aria-label="anchor" href="#file-retieval"></a>
 </h3>
-<pre><code><span><span class="co">#&gt; [1] "2024-08-04 21:02:32 EDT"</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; [1] "2024-08-04 21:19:39 EDT"</span></span></code></pre>
 </div>
 </div>
 <div class="section level2">
