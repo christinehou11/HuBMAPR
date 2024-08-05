@@ -80,7 +80,7 @@ returns authors information of one specified collection as a tibble</p>
 <span></span>
 <span><span class="fu">publications_default_columns</span><span class="op">(</span>as <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tibble"</span>, <span class="st">"character"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">publication_data</span><span class="op">(</span><span class="va">uuid</span>, entity <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Dataset"</span>, <span class="st">"Sample"</span>, <span class="st">"Donor"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">publication_data</span><span class="op">(</span><span class="va">uuid</span>, entity_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Dataset"</span>, <span class="st">"Sample"</span>, <span class="st">"Donor"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">publication_authors</span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -108,7 +108,7 @@ or <code>"character"</code>.</p></dd>
 string. This is expected to be a 32-digit hex number.</p></dd>
 
 
-<dt id="arg-entity">entity<a class="anchor" aria-label="anchor" href="#arg-entity"></a></dt>
+<dt id="arg-entity-type">entity_type<a class="anchor" aria-label="anchor" href="#arg-entity-type"></a></dt>
 <dd><p>character(1) selected derived entity type.
 One of <code>"Sample"</code>, <code>"Donor"</code> or <code>"Dataset"</code>.</p></dd>
 
