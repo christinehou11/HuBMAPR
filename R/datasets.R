@@ -98,7 +98,7 @@ dataset_detail <-
     
     tbl |>
         .unnest_mutate_relocate() |>
-        left_join(.organ(), by = c("origin_samples.organ" = "abbreviation")) |>
+        left_join(organ(), by = c("origin_samples.organ" = "abbreviation")) |>
         select(-"origin_samples.organ") |>
         rename("organ" = "name")
     

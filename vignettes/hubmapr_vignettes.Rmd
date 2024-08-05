@@ -27,7 +27,7 @@ knitr::opts_chunk$set(
 
 # Overview
 
-'HuBMAP' data portal (https://portal.hubmapconsortium.org/) provides an open, global bio-molecular atlas of the human body at the cellular level. `HuBMAPR` package provides an alternative interface to access the data exploration and file retrieval.
+'HuBMAP' data portal (<https://portal.hubmapconsortium.org/>) provides an open, global bio-molecular atlas of the human body at the cellular level. `HuBMAPR` package provides an alternative interface to access the data exploration and file retrieval.
 
 # Installation
 
@@ -53,45 +53,251 @@ BiocManager::install("christinehou11/HuBMAPR")
 
 ## Load Necessary Packages
 
-Install additional required packages before running package codes, and you can use
+Install additional required packages before running package codes.
 
-```{r, eval=FALSE}
+```{r 'pkg install', eval=FALSE}
 
 ```
 
 Load additional packages. `dplyr` package is widely used in this vignettes to conduct data wrangling and specific information extraction.
 
-```{r, message=FALSE}
+```{r 'library', message=FALSE}
+library(dplyr)
 library(tidyr)
 library(HuBMAPR)
 ```
 
 ## Data Discovery
 
-`HuBMAP` data portal page displays five categories of entity data (datasets, samples, donors, publications, and collections) chronologically (last modified date time). You can choose to explore arbitrary size of data starting from random location. By default, you can only page through less than 10000 data at one time using `from` and `size` numeric parameters. To read next or more pages, change `from` to other values. Using corresponding functions to explore entity data.
+`HuBMAP` data portal page displays five categories of entity data, which are **Dataset, Sample, Donor, Publication, and Collection**, chronologically (last modified date time). You can choose to explore arbitrary size of data starting from random location. By default, you can only page through less than 10000 data at one time using `from` and `size` numeric parameters. To read next or more pages, change `from` to other values. Using corresponding functions to explore entity data.
 
-### Datasets
+```{r 'main functions'}
+# Retrieve the first 200 datasets
+datasets_sub <- datasets(size = 200, from = 0)
+datasets_sub
 
-Retrieve the first 200 datasets using `datasets()`.
+# Retrieve 200 samples from the 30th sample arranged chronologically
+samples_sub <- samples(size = 200, from = 10)
+samples_sub
+
+# Retrieve full
+datasets <- datasets()
+samples <- samples()
+
+donors <- donors()
+donors
+
+collections <- collections()
+collections
+
+publications <- publications()
+publications
+```
+
+The default tibble produced by corresponding entity function only reflects selected information. To see the names of selected information, use following commands for each entity category. Specify `as` parameter to display information in the format of `"character"` or `"tibble"`.
+
+```{r 'cols'}
+# as = "tibble" (default)
+datasets_col_tbl <- datasets_default_columns(as = "tibble")
+datasets_col_tbl
+
+# as = "character"
+datasets_col_char <- datasets_default_columns(as = "character")
+datasets_col_char
+```
+
+`samples_default_columns()`, `donors_default_columns()`, 
+`collections_default_columns()`, and `publications_default_columns()` 
+work same as above.
+
+A brief overview of selected information for five entity categories is:
+
+```{r 'summary cols'}
+tbl <- bind_cols(
+    dataset = datasets_default_columns(as = "character"),
+    sample = c(samples_default_columns(as = "character"), rep(NA, 2)),
+    donor = c(donors_default_columns(as = "character"), NA),
+    collection = c(collections_default_columns(as = "character"),
+                    rep(NA, 5)),
+    publication = c(publications_default_columns(as = "character"), 
+                    rep(NA, 2))
+)
+
+tbl
+```
+
+Use `organ()` to read through the available organs included in `HuBMAP`. It can be helpful to filter retrieved data based on organ information.
+
+```{r 'organs'}
+organs <- organ()
+organs
+```
+
+Data wrangling and filter are welcome to retrieve data based on interested information.
+
+```{r 'datasets filter'}
+# Example from datasets()
+datasets |>
+    filter(organ == 'Small Intestine') |>
+    count()
+```
+
+Any dataset, sample, donor, collection, and publication has special 
+**HuBMAP ID** and **UUID**, and **UUID** is the main ID to be used in most of 
+functions for specific detail retrievals. 
+
+Since `datasets()`, `samples()`, `donors()`, `collections()`, and 
+`publications()` returned selected information, you can use `*_detail()` to 
+retrieve all available information for any entry of any entity category given 
+**UUID**. Use `select()` and `unnest_*()` functions to expand the tibble of 
+lists
+
+```{r '*_detail()'}
+dataset_uuid <- datasets |>
+    filter(dataset_type == "Auto-fluorescence",
+            organ == "Kidney (Right)") |>
+    head(1) |>
+    pull(uuid)
+
+# full tibble
+dataset_uuid
+
+# specific information
+dataset_detail(uuid = dataset_uuid) |>
+    select(contributors) |>
+    unnest_longer(contributors) |>
+    unnest_wider(everything())
+```
+
+`sample_detail(uuid)`, `donor_detail(uuid)`, `collection_detail(uuid)`, and `publication_detail(uuid)` work same as above.
+
+**Sample** and **Donor** have derived samples and datasets. In `HuBAMPR` package, `sample_derived` and `donor_derived()` functions are available to use to see the derived datasets and samples from one sample given
+sample UUID or one donor given donor UUID. Specify `entity_type` parameter to retrieve derived `Dataset` or `Sample`.
+
+```{r 'derived using sample_derived'}
+sample_uuid <- samples |>
+    filter(last_modified_timestamp >= "2023-01-01" &
+            last_modified_timestamp <= "2023-10-01",
+            organ == "Kidney (Left)") |>
+    head(1) |>
+    pull(uuid)
+
+sample_uuid
+
+sample_derived(uuid = sample_uuid, entity_type = "Dataset")
+sample_derived(uuid = sample_uuid, entity_type = "Sample")
+```
+
+`donor_derived(uuid)` works same as above.
+
+In the retrieved tibbles using `samples()` and `donors()`, there is one column named **donor.hubmap_id**. This can help to join the tibble from `donors()` with tibbles from `datasets()` and `samples()`.
+
+```{r 'derived using left_join'}
+donors_sub <- donors |>
+    filter(Sex == "Female",
+            Age <= 76 & Age >= 55,
+            Race == "White",
+            BMI <= 25,
+            last_modified_timestamp >= "2020-01-08" &
+            last_modified_timestamp <= "2020-06-30") |>
+    head(1)
+
+donors_sub_dataset <- donors_sub |>
+    left_join(datasets |>
+                select(-c(group_name, last_modified_timestamp)) |>
+                rename("dataset_uuid" = "uuid",
+                        "dataset_hubmap_id" = "hubmap_id"), 
+                by = c("hubmap_id" = "donor.hubmap_id"))
+donors_sub_dataset
+
+donors_sub_sample <- donors_sub |>
+    left_join(samples |>
+                select(-c(group_name, last_modified_timestamp)) |>
+                rename("sample_uuid" = "uuid",
+                       "sample_hubmap_id" = "hubmap_id"),
+                by = c("hubmap_id" = "donor.hubmap_id"))
+donors_sub_sample
+```
+
+The retrieved tibbles are same as `donor_derived(uuid, entity_type = "Dataset")` and `donor_derived(uuid, entity_type = "Sample")`.
 
 ```{r}
-datasets(size = 200, from = 0)
+donors_sub_uuid <- donors_sub |>
+    pull(uuid)
+
+donors_sub_uuid_dataset <- donor_derived(uuid = donors_sub_uuid,
+                                        entity_type = "Dataset")
+all(donors_sub_dataset$dataset_uuid %in% donors_sub_uuid_dataset$uuid)
+
+donors_sub_uuid_sample <- donor_derived(uuid = donors_sub_uuid,
+                                       entity_type = "Sample")
+
+all(donors_sub_sample$sample_uuid %in% donors_sub_uuid_sample$uuid)
+length(donors_sub_sample$sample_uuid) == 
+        length(donors_sub_uuid_sample$uuid)
 ```
 
 
+**Note:** For **Donor** entity, `left_join()` and `donor_derived()` produce same results for both derived datasets and derived samples. For **Sample** entity, `left_join()` and `sample_derived()` produce same results only for derived datasets. *Some* samples are derived from another sample but they are all derived from one donor. Therefore, we may see more results than that from `sample_derived(uuid, entity_type = "Sample")`. Example shows below.
+
+```{r 'example derived sample left_join'}
+sample_donor_hubmap_id <- samples |>
+    filter(uuid == sample_uuid) |>
+    pull(donor.hubmap_id)
+sample_donor_hubmap_id
+
+# Derived Sample -> Different
+sample_hubmap_id_sample_1 <- samples |>
+    filter(donor.hubmap_id == sample_donor_hubmap_id)
+sample_hubmap_id_sample_1
+
+sample_hubmap_id_sample_2 <- sample_derived(uuid = sample_uuid, 
+                                           entity_type = "Sample")
+sample_hubmap_id_sample_2
+length(sample_hubmap_id_sample_1$uuid) == 
+        length(sample_hubmap_id_sample_2$uuid)
 
 
-### Samples
+# Derived Dataset -> Same
+sample_hubmap_id_dataset_1 <- datasets |>
+    filter(donor.hubmap_id == sample_donor_hubmap_id)
 
-### Donors
+sample_hubmap_id_dataset_2 <- sample_derived(uuid = sample_uuid,
+                                            entity_type = "Dataset")
 
-### Publications
+all(sample_hubmap_id_dataset_1$uuid %in%
+        sample_hubmap_id_dataset_2$uuid)
+length(sample_hubmap_id_dataset_1$uuid) == 
+        length(sample_hubmap_id_dataset_2$uuid)
+```
 
-### Collections
+Each collection has related datasets, and use `collection_datasets()` to retrieve.
 
+```{r 'collection datasets'}
+collection_uuid <- collections |>
+  filter(last_modified_timestamp >= "2023-01-01") |>
+  head(1) |>
+  pull(uuid)
+
+collection_datasets(collection_uuid)
+```
+
+
+Each publication has related datasets, samples, and donors, and use `publication_data()` to see, while specifying `entity_type` parameter to retrieve derived `Dataset` or `Sample` 
+
+```{r 'publication data'}
+publication_uuid <- publications |>
+  filter(publication_venue == "Nature") |>
+  head(1) |>
+  pull(uuid)
+
+publication_data(publication_uuid, entity_type = "Dataset")
+```
+
+
+### Additional
 
 ## File Retieval
-
 
 ```{r date, echo=FALSE}
 ## Date the vignette was generated

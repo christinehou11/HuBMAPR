@@ -35,7 +35,7 @@ Description: 'HuBMAP' provides an open, global bio-molecular atlas of the
 License: Artistic-2.0
 Imports: 
     httr2,
-    dplyr, 
+    dplyr,
     tidyr,
     tibble,
     rjsoncons,
@@ -44,11 +44,10 @@ Imports:
     stringr,
     whisker,
     purrr
-Collate: query.R datasets.R samples.R donors.R utilities.R publications.R publication_information.R collections.R collection_information.R files.R template.R
+Collate: query.R datasets.R samples.R donors.R utilities.R publications.R publication_information.R collections.R collection_information.R files.R organs.R template.R
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
-Depends: dplyr
 Suggests: 
     testthat (>= 3.0.0),
     knitr,

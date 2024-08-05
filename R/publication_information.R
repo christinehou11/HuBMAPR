@@ -75,7 +75,7 @@ publication_information <-
     # organ
     origin_samples <- .query_match(uuid, 
                                     "hits.hits[]._source.origin_samples[]") |>
-                        left_join(.organ(), by = c("organ" = "abbreviation"))
+                        left_join(organ(), by = c("organ" = "abbreviation"))
     organs <- unique(origin_samples$"name")
     
     # data_types

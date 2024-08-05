@@ -94,11 +94,11 @@ publications_default_columns <-
 #' @export
 #' 
 publication_data <-
-    function(uuid, entity = c("Dataset", "Sample", "Donor")) {
+    function(uuid, entity_type = c("Dataset", "Sample", "Donor")) {
     
     stopifnot(.is_uuid(uuid))
     
-    entity <- match.arg(entity)
+    entity <- match.arg(entity_type)
     columns <- switch(
         entity,
         Dataset = c("uuid", "hubmap_id", "data_types", "dataset_type",

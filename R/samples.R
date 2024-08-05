@@ -123,8 +123,7 @@ sample_derived <-
     
     tbl <- .query_match(uuid, option = "hits.hits[]._source.descendants[]") |>
             filter(entity_type == entity) |>
-            select(any_of(.default_columns(entity, "character"))) |>
-            .unnest_mutate_relocate()
+            select(any_of(.default_columns(entity, "character")))
     
     if (identical(entity, "Sample")  && nrow(tbl) > 0L) {
     
@@ -135,7 +134,7 @@ sample_derived <-
         
             organ_info[i] <- .query_match(uuids[i], 
                                 "hits.hits[]._source.origin_samples[]") |>
-                                left_join(.organ(), 
+                                left_join(organ(), 
                                             by = c("organ" = "abbreviation")) |>
                                 select("name")
         }
@@ -144,7 +143,7 @@ sample_derived <-
         
     }
     
-    tbl
+    .unnest_mutate_relocate(tbl)
     
     }
 
@@ -155,7 +154,7 @@ sample_derived <-
     
     tbl |>
         .unnest_mutate_relocate() |>
-        left_join(.organ(), by = c("origin_samples.organ" = "abbreviation")) |>
+        left_join(organ(), by = c("origin_samples.organ" = "abbreviation")) |>
         select(-"origin_samples.organ") |>
         rename("organ" = "name")
     

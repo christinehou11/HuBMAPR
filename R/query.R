@@ -3,7 +3,6 @@
 
 # available APIs
 SEARCH <- "https://search.api.hubmapconsortium.org/v3/search"
-ONTOLOGY <- "https://ontology.api.hubmapconsortium.org"
 
 .FIELDS <- list(
     Dataset = c("uuid", "hubmap_id", "group_name", "dataset_type", "data_types",
@@ -110,23 +109,3 @@ ONTOLOGY <- "https://ontology.api.hubmapconsortium.org"
     }
     }
 
-
-# retrieve organ categories and abbreviations
-#' @importFrom httr2 request req_url_path_append req_url_query req_perform 
-#'              resp_body_string
-#' @importFrom rjsoncons j_pivot
-#' @importFrom tidyr pivot_longer everything
-.organ <-
-    function() {
-    
-        request(ONTOLOGY) |>
-        req_url_path_append("organs/by-code") |>
-        req_url_query(application_context = "HUBMAP") |>
-        req_perform() |>
-        resp_body_string() |>
-        j_pivot(as = "tibble") |>
-        pivot_longer(cols = everything(), 
-                    names_to = "abbreviation", 
-                    values_to = "name")
-        
-    }
