@@ -131,12 +131,12 @@ A brief overview of selected information for five entity categories is:
 ```{r 'summary cols'}
 tbl <- bind_cols(
     dataset = datasets_default_columns(as = "character"),
-    sample = c(samples_default_columns(as = "character"), rep(NA, 2)),
-    donor = c(donors_default_columns(as = "character"), NA),
+    sample = c(samples_default_columns(as = "character"), rep(NA, 6)),
+    donor = c(donors_default_columns(as = "character"), rep(NA, 5)),
     collection = c(collections_default_columns(as = "character"),
-                    rep(NA, 5)),
+                    rep(NA, 9)),
     publication = c(publications_default_columns(as = "character"), 
-                    rep(NA, 2))
+                    rep(NA, 6))
 )
 
 tbl
@@ -343,19 +343,42 @@ publication_uuid <- publications |>
 publication_data(publication_uuid, entity_type = "Dataset")
 ```
 
+## Additional Information
 
-### Additional
+To read the textual description of one **Collection** or **Publication**, use
+`collection_information(uuid)` or `publication_information(uuid)` respectively.
 
-## File Retieval
+```{r 'information'}
+collection_information(uuid = collection_uuid)
 
-```{r date, echo=FALSE}
-## Date the vignette was generated
-Sys.time()
+publication_information(uuid = publication_uuid)
+```
+
+Some additional contact/author/contributor information can be retrieved using
+`collection_contact(uuid)` and `collection_contributors(uuid)` for
+**Collection** entity, or `publication_authors()` for **Publication** entity.
+
+```{r 'author'}
+# Collection
+collection_contacts(uuid = collection_uuid)
+
+collection_contributors(uuid = collection_uuid)
+
+# Publication
+publication_authors(uuid = publication_uuid)
+```
+
+# File Retieval
+
+
+
+```{r 'file retrieval'}
+
 ```
 
 # `R` session information {.unnumbered}
 
-```{r sessionInfo, echo=FALSE}
+```{r 'sessionInfo', echo=FALSE}
 ## Session info
 options(width = 120)
 sessionInfo()

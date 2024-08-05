@@ -120,15 +120,18 @@ collection_datasets <-
     
     option <- .list_to_option(path = "hits.hits[]._source.datasets[]",
                                 fields = c("uuid", "hubmap_id", "data_types", 
-                                            "dataset_type",
-                                            "last_modified_timestamp","title",
+                                            "dataset_type", "title",
+                                            "creation_action",
+                                            "last_modified_timestamp",
                                             "created_by_user_displayname",
                                             "status"))
+    
     tbl <- .query_match(uuid, option)
     tbl$organ <- .title_to_organ(tbl$title)
     
     tbl |>
-        .unnest_mutate_relocate() |>
+        unnest(everything()) |>
+        .dataset_processing_category() |>
         dplyr::select(-"title")
     }
 

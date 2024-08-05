@@ -7,7 +7,9 @@ SEARCH <- "https://search.api.hubmapconsortium.org/v3/search"
 .FIELDS <- list(
     Dataset = c("uuid", "hubmap_id", "group_name", "dataset_type", "data_types",
                 "origin_samples.organ", "status", "last_modified_timestamp", 
-                "donor.hubmap_id"),
+                "donor.hubmap_id", "metadata.metadata.analyte_class",
+                "source_samples.sample_category",
+                "created_by_user_displayname", "creation_action"),
     Sample = c("uuid", "hubmap_id", "group_name", "sample_category",  
                 "origin_samples.organ", "last_modified_timestamp", 
                 "donor.hubmap_id"),
@@ -90,16 +92,27 @@ SEARCH <- "https://search.api.hubmapconsortium.org/v3/search"
     view <- match.arg(view)
     as <- match.arg(as)
     
-    if (view %in% c("Sample", "Dataset")) {
-        option <- .FIELDS[[view]]
-        option <- gsub("origin_samples.organ", "organ", option)
-    } else if (view == "Donor") {
-        option <- c("hubmap_id", "uuid", "group_name",
-                    "last_modified_timestamp", "Sex", "Age", 
-                    "Body Mass Index", "Race")
-    } else {
-        option <- .FIELDS[[view]]
-    }
+    option <- .FIELDS[[view]]
+    
+    option <- switch(
+        view,
+        
+        Dataset = c("uuid", "hubmap_id", "group_name", 
+                    "data_types", "dataset_type", "organ", "analyte_class",
+                    "dataset_processing_category", "sample_category",  
+                    "registered_by", "status",
+                    "last_modified_timestamp", "donor.hubmap_id"),
+        
+        Sample = c("uuid", "hubmap_id", "group_name", "sample_category", 
+                    "organ", "last_modified_timestamp", "donor.hubmap_id"),
+        
+        Donor = c("hubmap_id", "uuid", "group_name", "Sex", "Age", 
+                    "Body Mass Index", "Race", "last_modified_timestamp"),
+        
+        Collection = option,
+        
+        Publication = option
+    )
     
     if (identical(as, "character")) {
         option

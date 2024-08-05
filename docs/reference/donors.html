@@ -146,12 +146,12 @@ webpage, https://software.docs.hubmapconsortium.org/apis</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">donors</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 7</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   uuid             hubmap_id group_name last_modified_timest…¹ Sex     Age Race </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> c09f875545a6469… HBM534.P… TTD - Uni… 2024-04-03             Fema…    90 White</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 0abacde24438813… HBM358.K… TTD - Uni… 2024-04-03             Male     90 White</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> d7c90f1fe1ae702… HBM639.M… TTD - Uni… 2024-04-03             Fema…    59 White</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> b1acd1731563347… HBM674.F… TTD - Uni… 2024-04-03             Fema…    60 White</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   uuid             hubmap_id group_name Sex   Age   Race  last_modified_timest…¹</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> c09f875545a6469… HBM534.P… TTD - Uni… Fema… 90    White 2024-04-03            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 0abacde24438813… HBM358.K… TTD - Uni… Male  90    White 2024-04-03            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> d7c90f1fe1ae702… HBM639.M… TTD - Uni… Fema… 59    White 2024-04-03            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> b1acd1731563347… HBM674.F… TTD - Uni… Fema… 60    White 2024-04-03            </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​last_modified_timestamp</span></span>
 <span class="r-in"><span><span class="fu">donors_default_columns</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 8 × 1</span></span>
@@ -160,11 +160,11 @@ webpage, https://software.docs.hubmapconsortium.org/apis</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> hubmap_id              </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> uuid                   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> group_name             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> last_modified_timestamp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Sex                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> Age                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> Body Mass Index        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> Race                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Sex                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Age                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> Body Mass Index        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> Race                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> last_modified_timestamp</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">uuid</span> <span class="op">&lt;-</span> <span class="st">"1dcde05aea3509b2cf89a41ceb3d700f"</span></span></span>
 <span class="r-in"><span><span class="fu">donor_detail</span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span></span>
@@ -182,13 +182,13 @@ webpage, https://software.docs.hubmapconsortium.org/apis</p>
 <span class="r-in"><span><span class="va">uuid</span> <span class="op">&lt;-</span> <span class="st">"1dcde05aea3509b2cf89a41ceb3d700f"</span></span></span>
 <span class="r-in"><span><span class="fu">donor_derived</span><span class="op">(</span><span class="va">uuid</span>, <span class="st">"Sample"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 6</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   uuid         hubmap_id group_name sample_category organ last_modified_timest…¹</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 146c221bca3… HBM847.D… Vanderbil… organ           Kidn… 2021-08-04            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 27485b21a22… HBM693.K… Vanderbil… block           Kidn… 2022-07-19            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> 1441346ca08… HBM488.F… Vanderbil… section         Kidn… 2021-08-25            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> e97fd3e2b6d… HBM695.M… Vanderbil… section         Kidn… 2021-08-25            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> 92cd878bf5b… HBM686.B… Vanderbil… section         Kidn… 2021-08-25            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   uuid         hubmap_id group_name sample_category last_modified_timest…¹ organ</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 146c221bca3… HBM847.D… Vanderbil… organ           2021-08-04             Kidn…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 27485b21a22… HBM693.K… Vanderbil… block           2022-07-19             Kidn…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> 1441346ca08… HBM488.F… Vanderbil… section         2021-08-25             Kidn…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> e97fd3e2b6d… HBM695.M… Vanderbil… section         2021-08-25             Kidn…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> 92cd878bf5b… HBM686.B… Vanderbil… section         2021-08-25             Kidn…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​last_modified_timestamp</span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

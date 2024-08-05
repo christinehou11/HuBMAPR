@@ -15,7 +15,7 @@ test_that("'.default_columns()' works", {
   test2 <- .default_columns("Sample")
   expect_true(tibble::is_tibble(test1) &&
                 tibble::is_tibble(test2))
-  expect_true(ncol(test1) >= 1L && nrow(test1) == 9L)
+  expect_true(ncol(test1) >= 1L && nrow(test1) == 13L)
   expect_true(ncol(test2) >= 1L && nrow(test2) == 7L)
   expect_true("organ" %in% test1$columns && "organ" %in% test2$columns)
   

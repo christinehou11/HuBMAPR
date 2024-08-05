@@ -128,34 +128,23 @@ webpage, https://software.docs.hubmapconsortium.org/apis</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">datasets</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">100</span>, from <span class="op">=</span> <span class="fl">200</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 100 × 9</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    uuid             hubmap_id data_types dataset_type donor.hubmap_id group_name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> dbc5beb00b135b9… HBM892.D… image_pyr… Auto-fluore… HBM889.KSKV.978 Vanderbil…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> a9503f75064c50b… HBM999.D… image_pyr… Auto-fluore… HBM285.XQXL.628 Vanderbil…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 1e6fd664bc0f5f9… HBM673.F… image_pyr… Auto-fluore… HBM938.LVRS.434 Vanderbil…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 82cbdc9a6eef422… HBM332.F… image_pyr… Auto-fluore… HBM687.KPKM.763 Vanderbil…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> ebec43b391090f6… HBM364.M… image_pyr… Auto-fluore… HBM322.KQBK.747 Vanderbil…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 6344050b82c0b5d… HBM575.L… image_pyr… Auto-fluore… HBM395.HCTC.292 Vanderbil…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> b444fe229aa2173… HBM238.J… image_pyr… Auto-fluore… HBM398.QCMJ.558 Vanderbil…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 647d7cf8d574dd9… HBM396.Z… image_pyr… Auto-fluore… HBM253.KBSM.226 Vanderbil…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 102da8a31557148… HBM277.N… AF         Auto-fluore… HBM357.GMBX.758 Vanderbil…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 5863df933c2d6e9… HBM466.H… image_pyr… Auto-fluore… HBM259.SNDB.787 Vanderbil…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 90 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 3 more variables: last_modified_timestamp &lt;date&gt;, status &lt;chr&gt;, organ &lt;chr&gt;</span></span>
 <span class="r-in"><span><span class="fu">datasets_default_columns</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 9 × 1</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   columns                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> uuid                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> hubmap_id              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> group_name             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> dataset_type           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> data_types             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> organ                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> status                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> last_modified_timestamp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">9</span> donor.hubmap_id        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 13 × 1</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    columns                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> uuid                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> hubmap_id                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> group_name                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> data_types                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> dataset_type               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> organ                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> analyte_class              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> dataset_processing_category</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> sample_category            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> registered_by              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> status                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> last_modified_timestamp    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> donor.hubmap_id            </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">uuid</span> <span class="op">&lt;-</span> <span class="st">"7754aa5ebde628b5e92705e33e74a4ef"</span></span></span>
 <span class="r-in"><span><span class="fu">dataset_detail</span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span></span>

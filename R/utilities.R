@@ -163,13 +163,35 @@
 
 #' @importFrom dplyr mutate relocate across ends_with
 #' @importFrom tidyr unnest everything
+#' @importFrom purrr map_chr map
 .unnest_mutate_relocate <-
     function(tbl) {
     
     tbl |> 
+        mutate(across(ends_with("timestamp"), .timestamp_to_date),
+                across(everything(), ~ 
+                map_chr(.x, ~ paste(.x, collapse = ", ")))) |>
         unnest(everything()) |>
-        mutate(across(ends_with("timestamp"), .timestamp_to_date)) |>
         relocate("uuid","hubmap_id",everything())
+    
+    }
+
+#' @importFrom dplyr mutate case_when rename
+#' @importFrom rlang .data
+.dataset_processing_category <-
+    function(tbl) {
+    
+    tbl |> 
+    rename("registered_by" = "created_by_user_displayname",
+            "dataset_processing_category" = "creation_action") |>
+    mutate(dataset_processing_category = case_when(
+        .data$dataset_processing_category == "Create Dataset Activity" ~ 
+            "Raw",
+        .data$dataset_processing_category == "Central Process" ~ 
+            "HuBMAP Process",
+        .data$dataset_processing_category == "Lab Process" ~ 
+            "Lab Process",
+        TRUE ~ dataset_processing_category))
     
     }
 

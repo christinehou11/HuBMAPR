@@ -96,10 +96,13 @@ dataset_detail <-
 .dataset_edit <-
     function (tbl) {
     
-    tbl |>
+    tbl <- tbl |>
         .unnest_mutate_relocate() |>
         left_join(organ(), by = c("origin_samples.organ" = "abbreviation")) |>
         select(-"origin_samples.organ") |>
-        rename("organ" = "name")
-    
+        rename("organ" = "name",
+                "analyte_class" = "metadata.metadata.analyte_class",
+                "sample_category" = "source_samples.sample_category") |>
+        .dataset_processing_category()
+        
     }

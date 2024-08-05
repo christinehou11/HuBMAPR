@@ -144,29 +144,31 @@ corresponding functions to explore entity data.</p>
 <code class="sourceCode R"><span><span class="co"># Retrieve the first 200 datasets</span></span>
 <span><span class="va">datasets_sub</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/datasets.html">datasets</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">200</span>, from <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
 <span><span class="va">datasets_sub</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 200 × 9</span></span></span>
-<span><span class="co">#&gt;    uuid                        hubmap_id dataset_type donor.hubmap_id group_name</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> bbbf5a5b29986dd57910daab00… HBM664.N… Histology [… HBM279.WPZP.978 Stanford …</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> db0d7736f53dcf9bc79af180d8… HBM762.L… Histology [… HBM279.WPZP.978 Stanford …</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 7ae50cd47b3d2291adfb58c810… HBM769.Q… Histology [… HBM279.WPZP.978 Stanford …</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 77e7f69bbda6a37658209f3544… HBM258.X… Histology [… HBM279.WPZP.978 Stanford …</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 1a3cf1aacd2e8ff688d5420b83… HBM592.T… Histology [… HBM279.WPZP.978 Stanford …</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 6c9bdbe57fc29b2f61620cf08e… HBM684.P… Histology [… HBM279.WPZP.978 Stanford …</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> baf976734dd652208d13134bc5… HBM468.M… Histology    HBM279.WPZP.978 Stanford …</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 57b475b8ad39fa2cf07ede0cf1… HBM579.L… Histology    HBM279.WPZP.978 Stanford …</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 856aa4e05b68a78411a2e20f26… HBM433.H… Histology    HBM279.WPZP.978 Stanford …</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 75fbf3b4452190bc5b3768c439… HBM727.S… Histology [… HBM765.TRHD.452 Stanford …</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 200 × 13</span></span></span>
+<span><span class="co">#&gt;    uuid              hubmap_id registered_by dataset_processing_c…¹ dataset_type</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> bbbf5a5b29986dd5… HBM664.N… HuBMAP Proce… HuBMAP Process         Histology […</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> db0d7736f53dcf9b… HBM762.L… HuBMAP Proce… HuBMAP Process         Histology […</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 7ae50cd47b3d2291… HBM769.Q… HuBMAP Proce… HuBMAP Process         Histology […</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 77e7f69bbda6a376… HBM258.X… HuBMAP Proce… HuBMAP Process         Histology […</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 1a3cf1aacd2e8ff6… HBM592.T… HuBMAP Proce… HuBMAP Process         Histology […</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 6c9bdbe57fc29b2f… HBM684.P… HuBMAP Proce… HuBMAP Process         Histology […</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> baf976734dd65220… HBM468.M… HuBMAP Proce… Raw                    Histology   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 57b475b8ad39fa2c… HBM579.L… HuBMAP Proce… Raw                    Histology   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 856aa4e05b68a784… HBM433.H… HuBMAP Proce… Raw                    Histology   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 75fbf3b4452190bc… HBM727.S… HuBMAP Proce… HuBMAP Process         Histology […</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 190 more rows</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 4 more variables: last_modified_timestamp &lt;date&gt;, status &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   data_types &lt;chr&gt;, organ &lt;chr&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​dataset_processing_category</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 8 more variables: donor.hubmap_id &lt;chr&gt;, group_name &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   last_modified_timestamp &lt;chr&gt;, sample_category &lt;chr&gt;, status &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   analyte_class &lt;chr&gt;, data_types &lt;chr&gt;, organ &lt;chr&gt;</span></span></span>
 <span></span>
 <span><span class="co"># Retrieve 200 samples from the 30th sample arranged chronologically</span></span>
 <span><span class="va">samples_sub</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/samples.html">samples</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">200</span>, from <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="va">samples_sub</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 200 × 7</span></span></span>
 <span><span class="co">#&gt;    uuid              hubmap_id donor.hubmap_id group_name last_modified_timest…¹</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>                </span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> e4ffe5a1de1e63b3… HBM867.F… HBM568.HLJW.252 Universit… 2024-05-29            </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 681f7f1d0a87427c… HBM788.K… HBM984.MHHN.738 Universit… 2024-05-29            </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> a6acb120173be820… HBM786.T… HBM662.VVHK.499 Universit… 2024-05-29            </span></span>
@@ -188,18 +190,18 @@ corresponding functions to explore entity data.</p>
 <span><span class="va">donors</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/donors.html">donors</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">donors</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 228 × 8</span></span></span>
-<span><span class="co">#&gt;    uuid      hubmap_id group_name last_modified_timest…¹ Sex     Age Race    BMI</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> c09f8755… HBM534.P… TTD - Uni… 2024-04-03             Fema…    90 White    <span style="color: #BB0000;">NA</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 0abacde2… HBM358.K… TTD - Uni… 2024-04-03             Male     90 White    <span style="color: #BB0000;">NA</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> d7c90f1f… HBM639.M… TTD - Uni… 2024-04-03             Fema…    59 White    <span style="color: #BB0000;">NA</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> b1acd173… HBM674.F… TTD - Uni… 2024-04-03             Fema…    60 White    <span style="color: #BB0000;">NA</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 24e69464… HBM379.B… TTD - Uni… 2024-04-03             Male     79 White    <span style="color: #BB0000;">NA</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> c9c39035… HBM543.J… TTD - Uni… 2024-04-03             Male     71 White    <span style="color: #BB0000;">NA</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> f079501e… HBM448.V… TTD - Uni… 2024-04-03             Fema…    82 White    <span style="color: #BB0000;">NA</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 03b62365… HBM263.S… TTD - Uni… 2024-04-03             Fema…    75 White    <span style="color: #BB0000;">NA</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> a0bea4ae… HBM666.X… TTD - Uni… 2024-04-03             Fema…    82 White    <span style="color: #BB0000;">NA</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 5cc62ac9… HBM993.R… TTD - Uni… 2024-04-03             Fema…    75 White    <span style="color: #BB0000;">NA</span></span></span>
+<span><span class="co">#&gt;    uuid      hubmap_id group_name Sex   Age   Race  last_modified_timest…¹ BMI  </span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> c09f8755… HBM534.P… TTD - Uni… Fema… 90    White 2024-04-03             NA   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 0abacde2… HBM358.K… TTD - Uni… Male  90    White 2024-04-03             NA   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> d7c90f1f… HBM639.M… TTD - Uni… Fema… 59    White 2024-04-03             NA   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> b1acd173… HBM674.F… TTD - Uni… Fema… 60    White 2024-04-03             NA   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 24e69464… HBM379.B… TTD - Uni… Male  79    White 2024-04-03             NA   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> c9c39035… HBM543.J… TTD - Uni… Male  71    White 2024-04-03             NA   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> f079501e… HBM448.V… TTD - Uni… Fema… 82    White 2024-04-03             NA   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 03b62365… HBM263.S… TTD - Uni… Fema… 75    White 2024-04-03             NA   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> a0bea4ae… HBM666.X… TTD - Uni… Fema… 82    White 2024-04-03             NA   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 5cc62ac9… HBM993.R… TTD - Uni… Fema… 75    White 2024-04-03             NA   </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 218 more rows</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​last_modified_timestamp</span></span></span>
 <span></span>
@@ -207,7 +209,7 @@ corresponding functions to explore entity data.</p>
 <span><span class="va">collections</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 18 × 4</span></span></span>
 <span><span class="co">#&gt;    uuid                             hubmap_id       last_modified_timest…¹ title</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 3ae4ddfc175d768af5526a010bfe95aa HBM585.QPDV.454 2023-03-27             <span style="color: #949494;">"</span>Spa…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 074df152c7d3dc2e09ec2400e947bc0c HBM692.JRZB.356 2022-10-27             <span style="color: #949494;">"</span>Hig…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> c87fa4ec3aa87af19a9ad29d2e2b4c5c HBM776.RGSW.867 2022-09-02             <span style="color: #949494;">"</span>\"A…</span></span>
@@ -232,7 +234,7 @@ corresponding functions to explore entity data.</p>
 <span><span class="va">publications</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 9 × 7</span></span></span>
 <span><span class="co">#&gt;   uuid      hubmap_id last_modified_timest…¹ publication_date publication_status</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>             </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 77ab3588… HBM222.S… 2023-07-18             2023-07-20       TRUE              </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> aea510e3… HBM332.M… 2023-07-18             2022-10-24       TRUE              </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 2ced91fd… HBM885.X… 2023-07-18             2021-10-18       FALSE             </span></span>
@@ -253,27 +255,33 @@ parameter to display information in the format of
 <code class="sourceCode R"><span><span class="co"># as = "tibble" (default)</span></span>
 <span><span class="va">datasets_col_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/datasets.html">datasets_default_columns</a></span><span class="op">(</span>as <span class="op">=</span> <span class="st">"tibble"</span><span class="op">)</span></span>
 <span><span class="va">datasets_col_tbl</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 9 × 1</span></span></span>
-<span><span class="co">#&gt;   columns                </span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> uuid                   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> hubmap_id              </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> group_name             </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> dataset_type           </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> data_types             </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> organ                  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> status                 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">8</span> last_modified_timestamp</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">9</span> donor.hubmap_id</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 13 × 1</span></span></span>
+<span><span class="co">#&gt;    columns                    </span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> uuid                       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> hubmap_id                  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> group_name                 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> data_types                 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> dataset_type               </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> organ                      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> analyte_class              </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> dataset_processing_category</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> sample_category            </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> registered_by              </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> status                     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> last_modified_timestamp    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> donor.hubmap_id</span></span>
 <span></span>
 <span><span class="co"># as = "character"</span></span>
 <span><span class="va">datasets_col_char</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/datasets.html">datasets_default_columns</a></span><span class="op">(</span>as <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span></span>
 <span><span class="va">datasets_col_char</span></span>
-<span><span class="co">#&gt; [1] "uuid"                    "hubmap_id"              </span></span>
-<span><span class="co">#&gt; [3] "group_name"              "dataset_type"           </span></span>
-<span><span class="co">#&gt; [5] "data_types"              "organ"                  </span></span>
-<span><span class="co">#&gt; [7] "status"                  "last_modified_timestamp"</span></span>
-<span><span class="co">#&gt; [9] "donor.hubmap_id"</span></span></code></pre></div>
+<span><span class="co">#&gt;  [1] "uuid"                        "hubmap_id"                  </span></span>
+<span><span class="co">#&gt;  [3] "group_name"                  "data_types"                 </span></span>
+<span><span class="co">#&gt;  [5] "dataset_type"                "organ"                      </span></span>
+<span><span class="co">#&gt;  [7] "analyte_class"               "dataset_processing_category"</span></span>
+<span><span class="co">#&gt;  [9] "sample_category"             "registered_by"              </span></span>
+<span><span class="co">#&gt; [11] "status"                      "last_modified_timestamp"    </span></span>
+<span><span class="co">#&gt; [13] "donor.hubmap_id"</span></span></code></pre></div>
 <p><code><a href="../reference/samples.html">samples_default_columns()</a></code>,
 <code><a href="../reference/donors.html">donors_default_columns()</a></code>,
 <code><a href="../reference/collections.html">collections_default_columns()</a></code>, and
@@ -283,27 +291,31 @@ is:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html" class="external-link">bind_cols</a></span><span class="op">(</span></span>
 <span>    dataset <span class="op">=</span> <span class="fu"><a href="../reference/datasets.html">datasets_default_columns</a></span><span class="op">(</span>as <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span>,</span>
-<span>    sample <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/samples.html">samples_default_columns</a></span><span class="op">(</span>as <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>    donor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/donors.html">donors_default_columns</a></span><span class="op">(</span>as <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span>, <span class="cn">NA</span><span class="op">)</span>,</span>
+<span>    sample <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/samples.html">samples_default_columns</a></span><span class="op">(</span>as <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">6</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    donor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/donors.html">donors_default_columns</a></span><span class="op">(</span>as <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>    collection <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/collections.html">collections_default_columns</a></span><span class="op">(</span>as <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span>,</span>
-<span>                    <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                    <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">9</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>    publication <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/publications.html">publications_default_columns</a></span><span class="op">(</span>as <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span>, </span>
-<span>                    <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span>                    <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">6</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">tbl</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 9 × 5</span></span></span>
-<span><span class="co">#&gt;   dataset                 sample                  donor   collection publication</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> uuid                    uuid                    hubmap… uuid       uuid       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> hubmap_id               hubmap_id               uuid    hubmap_id  hubmap_id  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> group_name              group_name              group_… title      title      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> dataset_type            sample_category         last_m… last_modi… publicatio…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> data_types              organ                   Sex     <span style="color: #BB0000;">NA</span>         last_modif…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> organ                   last_modified_timestamp Age     <span style="color: #BB0000;">NA</span>         publicatio…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> status                  donor.hubmap_id         Body M… <span style="color: #BB0000;">NA</span>         publicatio…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">8</span> last_modified_timestamp <span style="color: #BB0000;">NA</span>                      Race    <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>         </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">9</span> donor.hubmap_id         <span style="color: #BB0000;">NA</span>                      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 13 × 5</span></span></span>
+<span><span class="co">#&gt;    dataset                     sample               donor collection publication</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> uuid                        uuid                 hubm… uuid       uuid       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> hubmap_id                   hubmap_id            uuid  hubmap_id  hubmap_id  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> group_name                  group_name           grou… title      title      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> data_types                  sample_category      Sex   last_modi… publicatio…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> dataset_type                organ                Age   <span style="color: #BB0000;">NA</span>         last_modif…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> organ                       last_modified_times… Body… <span style="color: #BB0000;">NA</span>         publicatio…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> analyte_class               donor.hubmap_id      Race  <span style="color: #BB0000;">NA</span>         publicatio…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> dataset_processing_category <span style="color: #BB0000;">NA</span>                   last… <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>         </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> sample_category             <span style="color: #BB0000;">NA</span>                   <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>         </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> registered_by               <span style="color: #BB0000;">NA</span>                   <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>         </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> status                      <span style="color: #BB0000;">NA</span>                   <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>         </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> last_modified_timestamp     <span style="color: #BB0000;">NA</span>                   <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>         </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> donor.hubmap_id             <span style="color: #BB0000;">NA</span>                   <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span></span></span></code></pre></div>
 <p>Use <code><a href="../reference/organs.html">organ()</a></code> to read through the available organs
 included in <code>HuBMAP</code>. It can be helpful to filter retrieved
 data based on organ information.</p>
@@ -334,7 +346,7 @@ interested information.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 1</span></span></span>
 <span><span class="co">#&gt;       n</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>   431</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>   424</span></span></code></pre></div>
 <p>Any dataset, sample, donor, collection, and publication has special
 <strong>HuBMAP ID</strong> and <strong>UUID</strong>, and
 <strong>UUID</strong> is the main ID to be used in most of functions for
@@ -416,7 +428,7 @@ sample given sample UUID or one donor given donor UUID. Specify
 <span></span>
 <span><span class="co"># Derived Datasets</span></span>
 <span><span class="fu"><a href="../reference/samples.html">sample_derived</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">sample_uuid</span>, entity_type <span class="op">=</span> <span class="st">"Dataset"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 12 × 7</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 12 × 9</span></span></span>
 <span><span class="co">#&gt;    uuid                      hubmap_id group_name dataset_type data_types status</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 4fddf6de0f42a7e2648b547a… HBM782.S… Vanderbil… MALDI        MALDI-IMS  Publi…</span></span>
@@ -431,13 +443,14 @@ sample given sample UUID or one donor given donor UUID. Specify
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> c25d6febe5b007ad32bc5924… HBM672.N… Vanderbil… Auto-fluore… image_pyr… Publi…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> 744647801573d1d5700ee752… HBM222.J… Vanderbil… Auto-fluore… AF         Publi…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> 4a98c43ab3b20b06c11dfbed… HBM973.L… Vanderbil… Auto-fluore… image_pyr… Publi…</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 1 more variable: last_modified_timestamp &lt;date&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 3 more variables: last_modified_timestamp &lt;chr&gt;, registered_by &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   dataset_processing_category &lt;chr&gt;</span></span></span>
 <span></span>
 <span><span class="co"># Derived Samples</span></span>
 <span><span class="fu"><a href="../reference/samples.html">sample_derived</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">sample_uuid</span>, entity_type <span class="op">=</span> <span class="st">"Sample"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 6</span></span></span>
 <span><span class="co">#&gt;   uuid         hubmap_id group_name sample_category last_modified_timest…¹ organ</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> ec54b7d4ab4… HBM299.P… Vanderbil… section         2021-08-18             Kidn…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> ae98f6ca4f1… HBM636.L… Vanderbil… section         2021-08-18             Kidn…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> b099a37195f… HBM937.H… Vanderbil… section         2021-08-18             Kidn…</span></span>
@@ -467,23 +480,25 @@ sample given sample UUID or one donor given donor UUID. Specify
 <span>                by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"hubmap_id"</span> <span class="op">=</span> <span class="st">"donor.hubmap_id"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">donor_sub_dataset</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 76 × 14</span></span></span>
-<span><span class="co">#&gt;    uuid      hubmap_id group_name last_modified_timest…¹ Sex     Age Race    BMI</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> f8d963ca… HBM289.B… Universit… 2020-01-08             Fema…    57 White  19.6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> f8d963ca… HBM289.B… Universit… 2020-01-08             Fema…    57 White  19.6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> f8d963ca… HBM289.B… Universit… 2020-01-08             Fema…    57 White  19.6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> f8d963ca… HBM289.B… Universit… 2020-01-08             Fema…    57 White  19.6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> f8d963ca… HBM289.B… Universit… 2020-01-08             Fema…    57 White  19.6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> f8d963ca… HBM289.B… Universit… 2020-01-08             Fema…    57 White  19.6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> f8d963ca… HBM289.B… Universit… 2020-01-08             Fema…    57 White  19.6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> f8d963ca… HBM289.B… Universit… 2020-01-08             Fema…    57 White  19.6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> f8d963ca… HBM289.B… Universit… 2020-01-08             Fema…    57 White  19.6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> f8d963ca… HBM289.B… Universit… 2020-01-08             Fema…    57 White  19.6</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 76 × 18</span></span></span>
+<span><span class="co">#&gt;    uuid      hubmap_id group_name Sex   Age   Race  last_modified_timest…¹ BMI  </span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> f8d963ca… HBM289.B… Universit… Fema… 57    White 2020-01-08             19.6 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> f8d963ca… HBM289.B… Universit… Fema… 57    White 2020-01-08             19.6 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> f8d963ca… HBM289.B… Universit… Fema… 57    White 2020-01-08             19.6 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> f8d963ca… HBM289.B… Universit… Fema… 57    White 2020-01-08             19.6 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> f8d963ca… HBM289.B… Universit… Fema… 57    White 2020-01-08             19.6 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> f8d963ca… HBM289.B… Universit… Fema… 57    White 2020-01-08             19.6 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> f8d963ca… HBM289.B… Universit… Fema… 57    White 2020-01-08             19.6 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> f8d963ca… HBM289.B… Universit… Fema… 57    White 2020-01-08             19.6 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> f8d963ca… HBM289.B… Universit… Fema… 57    White 2020-01-08             19.6 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> f8d963ca… HBM289.B… Universit… Fema… 57    White 2020-01-08             19.6 </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 66 more rows</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​last_modified_timestamp</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 6 more variables: dataset_uuid &lt;chr&gt;, dataset_hubmap_id &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   dataset_type &lt;chr&gt;, status &lt;chr&gt;, data_types &lt;chr&gt;, organ &lt;chr&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 10 more variables: dataset_uuid &lt;chr&gt;, dataset_hubmap_id &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   registered_by &lt;chr&gt;, dataset_processing_category &lt;chr&gt;, dataset_type &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   sample_category &lt;chr&gt;, status &lt;chr&gt;, analyte_class &lt;chr&gt;, data_types &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   organ &lt;chr&gt;</span></span></span>
 <span></span>
 <span><span class="co"># Samples</span></span>
 <span><span class="va">donor_sub_sample</span> <span class="op">&lt;-</span> <span class="va">donor_sub</span> <span class="op">|&gt;</span></span>
@@ -495,17 +510,17 @@ sample given sample UUID or one donor given donor UUID. Specify
 <span></span>
 <span><span class="va">donor_sub_sample</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 9 × 12</span></span></span>
-<span><span class="co">#&gt;   uuid       hubmap_id group_name last_modified_timest…¹ Sex     Age Race    BMI</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> f8d963cab… HBM289.B… Universit… 2020-01-08             Fema…    57 White  19.6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> f8d963cab… HBM289.B… Universit… 2020-01-08             Fema…    57 White  19.6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> f8d963cab… HBM289.B… Universit… 2020-01-08             Fema…    57 White  19.6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> f8d963cab… HBM289.B… Universit… 2020-01-08             Fema…    57 White  19.6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> f8d963cab… HBM289.B… Universit… 2020-01-08             Fema…    57 White  19.6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> f8d963cab… HBM289.B… Universit… 2020-01-08             Fema…    57 White  19.6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> f8d963cab… HBM289.B… Universit… 2020-01-08             Fema…    57 White  19.6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">8</span> f8d963cab… HBM289.B… Universit… 2020-01-08             Fema…    57 White  19.6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">9</span> f8d963cab… HBM289.B… Universit… 2020-01-08             Fema…    57 White  19.6</span></span>
+<span><span class="co">#&gt;   uuid       hubmap_id group_name Sex   Age   Race  last_modified_timest…¹ BMI  </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> f8d963cab… HBM289.B… Universit… Fema… 57    White 2020-01-08             19.6 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> f8d963cab… HBM289.B… Universit… Fema… 57    White 2020-01-08             19.6 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> f8d963cab… HBM289.B… Universit… Fema… 57    White 2020-01-08             19.6 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> f8d963cab… HBM289.B… Universit… Fema… 57    White 2020-01-08             19.6 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> f8d963cab… HBM289.B… Universit… Fema… 57    White 2020-01-08             19.6 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> f8d963cab… HBM289.B… Universit… Fema… 57    White 2020-01-08             19.6 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> f8d963cab… HBM289.B… Universit… Fema… 57    White 2020-01-08             19.6 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">8</span> f8d963cab… HBM289.B… Universit… Fema… 57    White 2020-01-08             19.6 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">9</span> f8d963cab… HBM289.B… Universit… Fema… 57    White 2020-01-08             19.6 </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​last_modified_timestamp</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 4 more variables: sample_uuid &lt;chr&gt;, sample_hubmap_id &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   sample_category &lt;chr&gt;, organ &lt;chr&gt;</span></span></span></code></pre></div>
@@ -557,7 +572,7 @@ Example shows below.</p>
 <span><span class="va">sample_hubmap_id_sample_1</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 7</span></span></span>
 <span><span class="co">#&gt;   uuid               hubmap_id donor.hubmap_id group_name last_modified_timest…¹</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>                </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> c40774aa2f52a2811… HBM786.C… HBM994.BBMC.798 Vanderbil… 2023-05-30            </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> b1d41395cc87b8eff… HBM962.R… HBM994.BBMC.798 Vanderbil… 2023-05-30            </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> ec54b7d4ab4545166… HBM299.P… HBM994.BBMC.798 Vanderbil… 2021-08-18            </span></span>
@@ -572,7 +587,7 @@ Example shows below.</p>
 <span><span class="va">sample_hubmap_id_sample_2</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 6</span></span></span>
 <span><span class="co">#&gt;   uuid         hubmap_id group_name sample_category last_modified_timest…¹ organ</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> ec54b7d4ab4… HBM299.P… Vanderbil… section         2021-08-18             Kidn…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> ae98f6ca4f1… HBM636.L… Vanderbil… section         2021-08-18             Kidn…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> b099a37195f… HBM937.H… Vanderbil… section         2021-08-18             Kidn…</span></span>
@@ -606,23 +621,23 @@ Example shows below.</p>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/collections.html">collection_datasets</a></span><span class="op">(</span><span class="va">collection_uuid</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 211 × 8</span></span></span>
-<span><span class="co">#&gt;    uuid                 hubmap_id data_types dataset_type last_modified_timest…¹</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>                </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 59c8093930a89bc9f91… HBM296.N… <span style="color: #949494;">&lt;chr [1]&gt;</span>  MIBI         2023-03-09            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 09dcc99a01f38aae6a1… HBM374.N… <span style="color: #949494;">&lt;chr [1]&gt;</span>  MIBI         2023-03-09            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> c0ede749605a0062419… HBM255.F… <span style="color: #949494;">&lt;chr [1]&gt;</span>  MIBI         2023-03-09            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 18a68d8433ac8bf3fcc… HBM297.D… <span style="color: #949494;">&lt;chr [1]&gt;</span>  MIBI         2023-03-09            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 4e6a2c1bd0393f5affb… HBM495.D… <span style="color: #949494;">&lt;chr [1]&gt;</span>  MIBI         2023-03-09            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> f5619b5785725dfc5be… HBM452.K… <span style="color: #949494;">&lt;chr [1]&gt;</span>  MIBI         2023-03-09            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 2b56f0f0ee934e396d5… HBM887.D… <span style="color: #949494;">&lt;chr [1]&gt;</span>  MIBI         2023-03-09            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 54eec389e909636837c… HBM439.H… <span style="color: #949494;">&lt;chr [1]&gt;</span>  MIBI         2023-03-09            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> b77be6257b71ae7386f… HBM225.P… <span style="color: #949494;">&lt;chr [1]&gt;</span>  MIBI         2023-03-09            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 36a80d485f1fb6f56ef… HBM367.Q… <span style="color: #949494;">&lt;chr [1]&gt;</span>  MIBI         2023-03-09            </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 211 × 9</span></span></span>
+<span><span class="co">#&gt;    uuid                 hubmap_id data_types dataset_type dataset_processing_c…¹</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 59c8093930a89bc9f91… HBM296.N… <span style="color: #949494;">&lt;chr [1]&gt;</span>  MIBI         Raw                   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 09dcc99a01f38aae6a1… HBM374.N… <span style="color: #949494;">&lt;chr [1]&gt;</span>  MIBI         Raw                   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> c0ede749605a0062419… HBM255.F… <span style="color: #949494;">&lt;chr [1]&gt;</span>  MIBI         Raw                   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 18a68d8433ac8bf3fcc… HBM297.D… <span style="color: #949494;">&lt;chr [1]&gt;</span>  MIBI         Raw                   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 4e6a2c1bd0393f5affb… HBM495.D… <span style="color: #949494;">&lt;chr [1]&gt;</span>  MIBI         Raw                   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> f5619b5785725dfc5be… HBM452.K… <span style="color: #949494;">&lt;chr [1]&gt;</span>  MIBI         Raw                   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 2b56f0f0ee934e396d5… HBM887.D… <span style="color: #949494;">&lt;chr [1]&gt;</span>  MIBI         Raw                   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 54eec389e909636837c… HBM439.H… <span style="color: #949494;">&lt;chr [1]&gt;</span>  MIBI         Raw                   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> b77be6257b71ae7386f… HBM225.P… <span style="color: #949494;">&lt;chr [1]&gt;</span>  MIBI         Raw                   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 36a80d485f1fb6f56ef… HBM367.Q… <span style="color: #949494;">&lt;chr [1]&gt;</span>  MIBI         Raw                   </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 201 more rows</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​last_modified_timestamp</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 3 more variables: created_by_user_displayname &lt;chr&gt;, status &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   organ &lt;chr&gt;</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​dataset_processing_category</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 4 more variables: last_modified_timestamp &lt;dbl&gt;, registered_by &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   status &lt;chr&gt;, organ &lt;chr&gt;</span></span></span></code></pre></div>
 <p>Each publication has related datasets, samples, and donors, and use
 <code><a href="../reference/publications.html">publication_data()</a></code> to see, while specifying
 <code>entity_type</code> parameter to retrieve derived
@@ -636,19 +651,88 @@ Example shows below.</p>
 <span><span class="fu"><a href="../reference/publications.html">publication_data</a></span><span class="op">(</span><span class="va">publication_uuid</span>, entity_type <span class="op">=</span> <span class="st">"Dataset"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 7</span></span></span>
 <span><span class="co">#&gt;   uuid     hubmap_id data_types dataset_type status last_modified_timest…¹ organ</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 3a4fb23… HBM666.R… CODEX      CODEX        Publi… 2022-09-08             Smal…</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​last_modified_timestamp</span></span></span></code></pre></div>
-<div class="section level4">
-<h4 id="additional">Additional<a class="anchor" aria-label="anchor" href="#additional"></a>
-</h4>
-</div>
 </div>
 <div class="section level3">
-<h3 id="file-retieval">File Retieval<a class="anchor" aria-label="anchor" href="#file-retieval"></a>
+<h3 id="additional-information">Additional Information<a class="anchor" aria-label="anchor" href="#additional-information"></a>
 </h3>
-<pre><code><span><span class="co">#&gt; [1] "2024-08-04 21:19:39 EDT"</span></span></code></pre>
+<p>To read the textual description of one <strong>Collection</strong> or
+<strong>Publication</strong>, use
+<code>collection_information(uuid)</code> or
+<code>publication_information(uuid)</code> respectively.</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/collection_information.html">collection_information</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">collection_uuid</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Title</span></span>
+<span><span class="co">#&gt;   Spatiotemporal coordination at the maternal-fetal interface promotes trophoblast invasion and vascular remodeling in the first half of human pregnancy </span></span>
+<span><span class="co">#&gt;  Description</span></span>
+<span><span class="co">#&gt;   Beginning in the first trimester, fetally derived extravillous trophoblasts (EVTs) invade the uterus and remodel its spiral arteries, transforming them into large, dilated blood vessels left with a thin, discontinuous smooth muscle layer and partially lined with EVTs. Several mechanisms have been proposed to explain how EVTs coordinate with the maternal decidua to promote a tissue microenvironment conducive to spiral artery remodeling (SAR). However, it remains a matter of debate which immune and stromal cell types participate in these interactions and how this process evolves with respect to gestational age. Here, we used a multiomic approach that combined the strengths of spatial proteomics and transcriptomics to construct the first spatiotemporal atlas of the human maternal-fetal interface in the first half of pregnancy. We used multiplexed ion beam imaging by time of flight (MIBI-TOF) and a 37-plex antibody panel to analyze ∼500,000 cells and 588 spiral arteries within intact decidua from 66 patients between 6-20 weeks of gestation, integrating this with coregistered transcriptomic profiles. Gestational age substantially influenced the frequency of many maternal immune and stromal cells, with tolerogenic subsets expressing CD206, CD163, TIM-3, Galectin-9, and IDO-1 increasingly enriched and colocalized at later time points. In contrast, SAR progression preferentially correlated with EVT invasion and was transcriptionally defined by 78 gene ontology pathways exhibiting unique monotonic and biphasic trends. Lastly, we developed an integrated model of SAR supporting an intravasation mechanism where invasion is accompanied by upregulation of pro-angiogenic, immunoregulatory EVT programs that promote interactions with vascular endothelium while avoiding activation of immune cells in circulating maternal blood. Taken together, these results support a coordinated model of decidualization in which increasing gestational age drives a transition in maternal decidua towards a tolerogenic niche conducive to locally regulated, EVT-dependent SAR. </span></span>
+<span><span class="co">#&gt;  DOI</span></span>
+<span><span class="co">#&gt;  -  https://doi.org/10.35079/hbm585.qpdv.454 </span></span>
+<span><span class="co">#&gt;  URL</span></span>
+<span><span class="co">#&gt;  -  10.35079/hbm585.qpdv.454</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/publication_information.html">publication_information</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">publication_uuid</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Title</span></span>
+<span><span class="co">#&gt;  Organization of the human intestine at single-cell resolution</span></span>
+<span><span class="co">#&gt; Abstract</span></span>
+<span><span class="co">#&gt;  We investigated the spatial arrangement of individual cells using multiplexed imaging, as well as single-nucleus RNA and open chromatin assays, across eight different regions of the intestine from nine donors. Through comprehensive analyses, we observed significant variations in cell compositions among the intestinal regions and the intricate nature of epithelial subtypes. Furthermore, we discovered that similar cell types form distinct neighborhoods and communities, highlighting the presence of unique immunological niches within the intestine. Additionally, we identified gene regulatory differences within these cells, suggesting the existence of a regulatory differentiation cascade, and established associations between specific cell types and the heritability of intestinal diseases. These findings elucidate the intricate cell composition, regulation, and spatial organization within this organ, providing a valuable reference map for advancing our understanding of human biology and disease.</span></span>
+<span><span class="co">#&gt; Manuscript</span></span>
+<span><span class="co">#&gt;  - Nature: https://doi.org/10.1038/s41586-023-05915-x</span></span>
+<span><span class="co">#&gt; Corresponding Authors</span></span>
+<span><span class="co">#&gt;  - John Hickey 0000-0001-9961-7673</span></span>
+<span><span class="co">#&gt; Data Types</span></span>
+<span><span class="co">#&gt;  - CODEX</span></span>
+<span><span class="co">#&gt; Organs</span></span>
+<span><span class="co">#&gt;  - Small Intestine</span></span></code></pre></div>
+<p>Some additional contact/author/contributor information can be
+retrieved using <code>collection_contact(uuid)</code> and
+<code>collection_contributors(uuid)</code> for
+<strong>Collection</strong> entity, or
+<code><a href="../reference/publications.html">publication_authors()</a></code> for <strong>Publication</strong>
+entity.</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Collection</span></span>
+<span><span class="fu"><a href="../reference/collections.html">collection_contacts</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">collection_uuid</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 3</span></span></span>
+<span><span class="co">#&gt;   name              affiliation                                  orcid_id       </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Shirley Greenbaum Department of Pathology, Stanford University 0000-0002-0680…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Michael Angelo    Department of Pathology, Stanford University 0000-0003-1531…</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/collections.html">collection_contributors</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">collection_uuid</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 13 × 3</span></span></span>
+<span><span class="co">#&gt;    name              affiliation                                        orcid_id</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Shirley Greenbaum Department of Pathology, Stanford University       0000-00…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Inna Averbukh     Department of Pathology, Stanford University       0000-00…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Erin Soon         Department of Pathology, Stanford University       0000-00…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Gabrielle Rizzuto Department of Pathology, UCSF                      0000-00…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Noah Greenwald    Department of Pathology, Stanford University       0000-00…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Marc Bosse        Department of Pathology, Stanford University       0000-00…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Eleni G. Jaswa    Department of Obstetrics, Gynecology &amp; Reproducti… 0000-00…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Zumana Khair      Department of Pathology, Stanford University       0000-00…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> David Van Valen   Division of Biology and Bioengineering, Californi… 0000-00…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Leeat Keren       Department of Molecular Cell Biology, Weizmann In… 0000-00…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> Travis Hollmann   Department of Pathology, Memorial Sloan Kettering… 0000-00…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> Matt van de Rjin  Department of Pathology, Stanford University       0000-00…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> Michael Angelo    Department of Pathology, Stanford University       0000-00…</span></span>
+<span></span>
+<span><span class="co"># Publication</span></span>
+<span><span class="fu"><a href="../reference/publications.html">publication_authors</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">publication_uuid</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 8</span></span></span>
+<span><span class="co">#&gt;   affiliation       first_name is_contact last_name middle_name_or_initial name </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Stanford Univers… John       TRUE       Hickey    <span style="color: #949494;">"</span>W<span style="color: #949494;">"</span>                    John…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Stanford Univers… Chiara     FALSE      Caraccio  <span style="color: #949494;">""</span>                     Chia…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Stanford Univers… Garry      FALSE      Nolan     <span style="color: #949494;">""</span>                     Garr…</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 2 more variables: orcid_id &lt;chr&gt;, version &lt;chr&gt;</span></span></span></code></pre></div>
 </div>
+</div>
+<div class="section level2">
+<h2 id="file-retieval">File Retieval<a class="anchor" aria-label="anchor" href="#file-retieval"></a>
+</h2>
 </div>
 <div class="section level2">
 <h2 class="unnumbered" id="r-session-information">

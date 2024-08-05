@@ -129,32 +129,42 @@ donor_derived <-
     
     tbl <- .query_match(uuid, option = "hits.hits[]._source.descendants[]") |>
             filter(entity_type == entity) |>
-            select(any_of(.default_columns(entity,"character")))
+            select(any_of(.FIELDS[[entity]]))
     
-    if (identical(entity, "Sample")  && nrow(tbl) > 0L) {
-    
+    if (identical(entity, "Sample")) {
+        if (nrow(tbl) > 0L) {
+        
         uuids <- tbl$uuid
         organ_info <- rep("", length(uuids))
         
         for (i in seq_along(uuids)) {
         
-        organ_info[i] <- .query_match(uuids[i], 
+            organ_info[i] <- .query_match(uuids[i], 
                             "hits.hits[]._source.origin_samples[]") |>
                             left_join(organ(), 
-                                        by = c("organ" = "abbreviation")) |>
+                                by = c("organ" = "abbreviation")) |>
                             select("name")
         }
         
         tbl$organ <- organ_info
+        tbl <- .unnest_mutate_relocate(tbl)
         
-    } 
+    }
     else {
     
-        tbl <- tbl |> select(-"organ")
+        tbl <- tbl  
+        
+    }
+    }
+    else {
+    
+        tbl <- tbl |> 
+                .unnest_mutate_relocate() |>
+                .dataset_processing_category()
     
     }
     
-    .unnest_mutate_relocate(tbl)
+    tbl
     
     }
 
