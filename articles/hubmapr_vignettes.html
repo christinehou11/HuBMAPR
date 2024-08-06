@@ -267,10 +267,10 @@ parameter to display information in the format of
 <span><span class="co">#&gt;  [9] "sample_category"             "registered_by"              </span></span>
 <span><span class="co">#&gt; [11] "status"                      "last_modified_timestamp"    </span></span>
 <span><span class="co">#&gt; [13] "donor.hubmap_id"</span></span></code></pre></div>
-<p><code><a href="../reference/samples.html">samples_default_columns()</a></code>,
-<code><a href="../reference/donors.html">donors_default_columns()</a></code>,
-<code><a href="../reference/collections.html">collections_default_columns()</a></code>, and
-<code><a href="../reference/publications.html">publications_default_columns()</a></code> work same as above.</p>
+<p><code>samples_default_columns(as)</code>,
+<code>donors_default_columns(as)</code>,
+<code>collections_default_columns(as)</code>, and
+<code>publications_default_columns(as)</code> work same as above.</p>
 <p>A brief overview of selected information for five entity categories
 is:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
@@ -336,13 +336,14 @@ interested information.</p>
 <strong>HuBMAP ID</strong> and <strong>UUID</strong>, and
 <strong>UUID</strong> is the main ID to be used in most of functions for
 specific detail retrievals.</p>
-<p>Since <code><a href="../reference/datasets.html">datasets()</a></code>, <code><a href="../reference/samples.html">samples()</a></code>,
-<code><a href="../reference/donors.html">donors()</a></code>, <code><a href="../reference/collections.html">collections()</a></code>, and
-<code><a href="../reference/publications.html">publications()</a></code> returned selected information, you can use
-<code>*_detail()</code> to retrieve all available information for any
-entry of any entity category given <strong>UUID</strong>. Use
-<code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select()</a></code> and <code>unnest_*()</code> functions to expand
-list-columns.</p>
+<p>Since <code>datasets(size, from)</code>,
+<code>samples(size, from)</code>, <code>donors(size, from)</code>,
+<code>collections(size, from)</code>, and
+<code>publications(size, from)</code> returned selected information, you
+can use <code>*_detail(uuid)</code> to retrieve all available
+information for any entry of any entity category given
+<strong>UUID</strong>. Use <code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select()</a></code> and
+<code>unnest_*()</code> functions to expand list-columns.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dataset_uuid</span> <span class="op">&lt;-</span> <span class="va">datasets</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">dataset_type</span> <span class="op">==</span> <span class="st">"Auto-fluorescence"</span>,</span>
@@ -393,14 +394,55 @@ list-columns.</p>
 <p><code>sample_detail(uuid)</code>, <code>donor_detail(uuid)</code>,
 <code>collection_detail(uuid)</code>, and
 <code>publication_detail(uuid)</code> work same as above.</p>
+</div>
+<div class="section level3">
+<h3 id="derived-data">Derived Data<a class="anchor" aria-label="anchor" href="#derived-data"></a>
+</h3>
+<p>Some datasets from <strong>Data</strong> entity has derived (support)
+dataset(s). Use <code>dataset_derived(uuid)</code> to retrieve. The
+error message will be printed out if the given dataset UUID has no
+derived/support dataset; otherwise, selected details will be retrieved
+as a tibble.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># no derived/support dataset</span></span>
+<span><span class="va">dataset_uuid_1</span> <span class="op">&lt;-</span> <span class="st">"3acdb3ed962b2087fbe325514b098101"</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/datasets.html">dataset_detail</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">dataset_uuid_1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 39</span></span></span>
+<span><span class="co">#&gt;   ancestor_ids ancestors  contacts   contains_human_genetic_seque…¹ contributors</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>                          <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">&lt;chr [4]&gt;</span>    <span style="color: #949494;">&lt;list [4]&gt;</span> <span style="color: #949494;">&lt;list [1]&gt;</span> TRUE                           <span style="color: #949494;">&lt;list [1]&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​contains_human_genetic_sequences</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 34 more variables: created_by_user_displayname &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   created_by_user_email &lt;chr&gt;, created_timestamp &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   creation_action &lt;chr&gt;, data_access_level &lt;chr&gt;, data_types &lt;list&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   dataset_info &lt;chr&gt;, dataset_type &lt;chr&gt;, dbgap_sra_experiment_url &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   dbgap_study_url &lt;chr&gt;, descendant_ids &lt;list&gt;, descendants &lt;list&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   description &lt;chr&gt;, display_subtype &lt;chr&gt;, doi_url &lt;chr&gt;, donor &lt;list&gt;, …</span></span></span>
+<span></span>
+<span><span class="co"># has derived/support dataset</span></span>
+<span><span class="va">dataset_uuid_2</span> <span class="op">&lt;-</span> <span class="st">"baf976734dd652208d13134bc5c4594b"</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/datasets.html">dataset_detail</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">dataset_uuid_2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 35</span></span></span>
+<span><span class="co">#&gt;   ancestor_ids ancestors  contacts   contains_human_genetic_seque…¹ contributors</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>                          <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">&lt;chr [4]&gt;</span>    <span style="color: #949494;">&lt;list [4]&gt;</span> <span style="color: #949494;">&lt;list [3]&gt;</span> FALSE                          <span style="color: #949494;">&lt;list [5]&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​contains_human_genetic_sequences</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 30 more variables: created_by_user_displayname &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   created_by_user_email &lt;chr&gt;, created_timestamp &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   creation_action &lt;chr&gt;, data_access_level &lt;chr&gt;, dataset_type &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   descendant_ids &lt;list&gt;, descendants &lt;list&gt;, description &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   display_subtype &lt;chr&gt;, doi_url &lt;chr&gt;, donor &lt;list&gt;, entity_type &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   files &lt;list&gt;, group_name &lt;chr&gt;, group_uuid &lt;chr&gt;, hubmap_id &lt;chr&gt;, …</span></span></span></code></pre></div>
 <p><strong>Sample</strong> and <strong>Donor</strong> have derived
 samples and datasets. In <code>HuBAMPR</code> package,
-<code><a href="../reference/samples.html">sample_derived()</a></code> and <code><a href="../reference/donors.html">donor_derived()</a></code> functions
-are available to use to see the derived datasets and samples from one
-sample given sample UUID or one donor given donor UUID. Specify
+<code>sample_derived(uuid)</code> and <code>donor_derived(uuid)</code>
+functions are available to use to see the derived datasets and samples
+from one sample given sample UUID or one donor given donor UUID. Specify
 <code>entity_type</code> parameter to retrieve derived
 <code>Dataset</code> or <code>Sample</code>.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sample_uuid</span> <span class="op">&lt;-</span> <span class="va">samples</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">last_modified_timestamp</span> <span class="op">&gt;=</span> <span class="st">"2023-01-01"</span> <span class="op">&amp;</span></span>
 <span>            <span class="va">last_modified_timestamp</span> <span class="op">&lt;=</span> <span class="st">"2023-10-01"</span>,</span>
@@ -441,12 +483,13 @@ sample given sample UUID or one donor given donor UUID. Specify
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> b099a37195f… HBM937.H… Vanderbil… section         2021-08-18             Kidn…</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​last_modified_timestamp</span></span></span></code></pre></div>
 <p><code>donor_derived(uuid)</code> works same as above.</p>
-<p>In the retrieved tibbles using <code><a href="../reference/samples.html">samples()</a></code> and
-<code><a href="../reference/donors.html">donors()</a></code>, there is one column named
+<p>In the retrieved tibbles using <code>samples(size, from)</code> and
+<code>donors(size, from)</code>, there is one column named
 <strong>donor.hubmap_id</strong>. This can help to join the tibble from
-<code><a href="../reference/donors.html">donors()</a></code> with tibbles from <code><a href="../reference/datasets.html">datasets()</a></code> and
-<code><a href="../reference/samples.html">samples()</a></code>.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code>donors(size, from)</code> with tibbles from
+<code>datasets(size, from)</code> and
+<code>samples(size, from)</code>.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">donor_sub</span> <span class="op">&lt;-</span> <span class="va">donors</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">Sex</span> <span class="op">==</span> <span class="st">"Female"</span>,</span>
 <span>            <span class="va">Age</span> <span class="op">&lt;=</span> <span class="fl">76</span> <span class="op">&amp;</span> <span class="va">Age</span> <span class="op">&gt;=</span> <span class="fl">55</span>,</span>
@@ -512,7 +555,7 @@ sample given sample UUID or one donor given donor UUID. Specify
 <p>The retrieved tibbles are same as
 <code>donor_derived(uuid, entity_type = "Dataset")</code> and
 <code>donor_derived(uuid, entity_type = "Sample")</code>.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Derived Datasets</span></span>
 <span><span class="va">donor_sub_uuid</span> <span class="op">&lt;-</span> <span class="va">donor_sub</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span>
@@ -534,15 +577,15 @@ sample given sample UUID or one donor given donor UUID. Specify
 <span>        <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">donor_sub_uuid_sample</span><span class="op">$</span><span class="va">uuid</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 <p><strong>Note:</strong> For <strong>Donor</strong> entity,
-<code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join()</a></code> and <code><a href="../reference/donors.html">donor_derived()</a></code> produce same
-results for both derived datasets and derived samples. For
+<code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join()</a></code> and <code>donor_derived(uuid)</code> produce
+same results for both derived datasets and derived samples. For
 <strong>Sample</strong> entity, <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join()</a></code> and
-<code><a href="../reference/samples.html">sample_derived()</a></code> produce same results only for derived
+<code>sample_derived(uuid)</code> produce same results only for derived
 datasets. <em>Some</em> samples are derived from another sample but they
 are all derived from one donor. Therefore, we may see more results than
 that from <code>sample_derived(uuid, entity_type = "Sample")</code>.
 Example shows below.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sample_donor_hubmap_id</span> <span class="op">&lt;-</span> <span class="va">samples</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">uuid</span> <span class="op">==</span> <span class="va">sample_uuid</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">donor.hubmap_id</span><span class="op">)</span></span>
@@ -597,15 +640,23 @@ Example shows below.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">sample_hubmap_id_dataset_1</span><span class="op">$</span><span class="va">uuid</span><span class="op">)</span> <span class="op">==</span> </span>
 <span>        <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">sample_hubmap_id_dataset_2</span><span class="op">$</span><span class="va">uuid</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
-<p>Each collection has related datasets, and use
-<code><a href="../reference/collections.html">collection_datasets()</a></code> to retrieve.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+</div>
+<div class="section level3">
+<h3 id="provenance-data">Provenance Data<a class="anchor" aria-label="anchor" href="#provenance-data"></a>
+</h3>
+</div>
+<div class="section level3">
+<h3 id="related-data">Related Data<a class="anchor" aria-label="anchor" href="#related-data"></a>
+</h3>
+<p>Each <strong>Collection</strong> has related datasets, and use
+<code>collection_data(uuid)</code> to retrieve.</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">collection_uuid</span> <span class="op">&lt;-</span> <span class="va">collections</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">last_modified_timestamp</span> <span class="op">&gt;=</span> <span class="st">"2023-01-01"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/collections.html">collection_datasets</a></span><span class="op">(</span><span class="va">collection_uuid</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/collections.html">collection_data</a></span><span class="op">(</span><span class="va">collection_uuid</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 211 × 9</span></span></span>
 <span><span class="co">#&gt;    uuid                 hubmap_id data_types dataset_type dataset_processing_c…¹</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 </span></span>
@@ -624,10 +675,10 @@ Example shows below.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 4 more variables: last_modified_timestamp &lt;dbl&gt;, registered_by &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   status &lt;chr&gt;, organ &lt;chr&gt;</span></span></span></code></pre></div>
 <p>Each publication has related datasets, samples, and donors, and use
-<code><a href="../reference/publications.html">publication_data()</a></code> to see, while specifying
+<code>publication_data(uuid)</code> to see, while specifying
 <code>entity_type</code> parameter to retrieve derived
-<code>Dataset</code> or <code>Sample</code></p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code>Dataset</code> or <code>Sample</code>.</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">publication_uuid</span> <span class="op">&lt;-</span> <span class="va">publications</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">publication_venue</span> <span class="op">==</span> <span class="st">"Nature"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -647,7 +698,7 @@ Example shows below.</p>
 <strong>Publication</strong>, use
 <code>collection_information(uuid)</code> or
 <code>publication_information(uuid)</code> respectively.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/collection_information.html">collection_information</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">collection_uuid</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Title</span></span>
 <span><span class="co">#&gt;   Spatiotemporal coordination at the maternal-fetal interface promotes trophoblast invasion and vascular remodeling in the first half of human pregnancy </span></span>
@@ -675,9 +726,9 @@ Example shows below.</p>
 retrieved using <code>collection_contact(uuid)</code> and
 <code>collection_contributors(uuid)</code> for
 <strong>Collection</strong> entity, or
-<code><a href="../reference/publications.html">publication_authors()</a></code> for <strong>Publication</strong>
+<code>publication_authors(uuid)</code> for <strong>Publication</strong>
 entity.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Collection</span></span>
 <span><span class="fu"><a href="../reference/collections.html">collection_contacts</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">collection_uuid</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 3</span></span></span>
@@ -716,8 +767,31 @@ entity.</p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="file-retieval">File Retieval<a class="anchor" aria-label="anchor" href="#file-retieval"></a>
+<h2 id="file-download">File Download<a class="anchor" aria-label="anchor" href="#file-download"></a>
 </h2>
+<p>For each dataset, there are corresponding data files. Most of the
+datasets’ files are saved in Globus HuBMAP Public Collection, and the
+URL is available. Some of the datasets’ files are not available via
+Globus, but can be accessed via dbGAP (database of Genotypes and
+Phenotypes) and/or SRA (Sequence Read Archive). But some of the
+datasets’ files are not available in any authorized platform.</p>
+<p>Use <code>files_globus_url(uuid)</code> to access data files. If the
+Globus URL is available, the function will direct you to chrome, and you
+can choose to download or read any document. If not, error messages will
+be printed out with addition instructions, either providing dbGAP/SRA
+URLs or pointing out the unavailability.</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">uuid_globus</span> <span class="op">&lt;-</span> <span class="st">"d1dcab2df80590d8cd8770948abaf976"</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/files.html">files_globus_url</a></span><span class="op">(</span><span class="va">uuid_globus</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">uuid_dbGAP_SRA</span> <span class="op">&lt;-</span> <span class="st">"d926c41ac08f3c2ba5e61eec83e90b0c"</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/files.html">files_globus_url</a></span><span class="op">(</span><span class="va">uuid_dbGAP_SRA</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">uuid_not_avail</span> <span class="op">&lt;-</span> <span class="st">"0eb5e457b4855ce28531bc97147196b6"</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/files.html">files_globus_url</a></span><span class="op">(</span><span class="va">uuid_not_avail</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 class="unnumbered" id="r-session-information">

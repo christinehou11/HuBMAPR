@@ -6,14 +6,22 @@ character vector describing the content of the tibble returned
 by samples(), datasets(),  donors(), collections(),
 or publications().
 dataset_detail() takes a unique dataset_id and
-returns details about one specified dataset as a tibble"><meta property="og:description" content="datasets returns the details available datasets, ordered by
+returns details about one specified dataset as a tibble
+dataset_derived() takes a unique sample_id and
+returns the derived (support) dataset details. Support datasets normally
+belong to Image Pyramid, with image files available to download via
+Globus Collection. See details to download in files_globus_url()."><meta property="og:description" content="datasets returns the details available datasets, ordered by
 last modified dates
 *_columns() returns a tibble or named
 character vector describing the content of the tibble returned
 by samples(), datasets(),  donors(), collections(),
 or publications().
 dataset_detail() takes a unique dataset_id and
-returns details about one specified dataset as a tibble"></head><body>
+returns details about one specified dataset as a tibble
+dataset_derived() takes a unique sample_id and
+returns the derived (support) dataset details. Support datasets normally
+belong to Image Pyramid, with image files available to download via
+Globus Collection. See details to download in files_globus_url()."></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -60,6 +68,10 @@ by <code><a href="samples.html">samples()</a></code>, <code>datasets()</code>,  
 or <code><a href="publications.html">publications()</a></code>.</p>
 <p><code>dataset_detail()</code> takes a unique dataset_id and
 returns details about one specified dataset as a tibble</p>
+<p><code>dataset_derived()</code> takes a unique sample_id and
+returns the derived (support) dataset details. Support datasets normally
+belong to Image Pyramid, with image files available to download via
+Globus Collection. See details to download in <code><a href="files.html">files_globus_url()</a></code>.</p>
     </div>
 
     <div class="section level2">
@@ -68,7 +80,9 @@ returns details about one specified dataset as a tibble</p>
 <span></span>
 <span><span class="fu">datasets_default_columns</span><span class="op">(</span>as <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tibble"</span>, <span class="st">"character"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">dataset_detail</span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">dataset_detail</span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">dataset_derived</span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -90,7 +104,7 @@ or <code>"character"</code>.</p></dd>
 
 
 <dt id="arg-uuid">uuid<a class="anchor" aria-label="anchor" href="#arg-uuid"></a></dt>
-<dd><p>character(1) corresponding to the HuBMAP Dataset UUID
+<dd><p>character(1) corresponding to the HuBMAP Sample UUID
 string. This is expected to be a 32-digit hex number.</p></dd>
 
 </dl></div>
@@ -106,6 +120,8 @@ with paths as elements and abbreviations as names.</p>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Additional details are provided on the HuBMAP consortium
+webpage, https://software.docs.hubmapconsortium.org/apis</p>
+<p>Additional details are provided on the HuBMAP consortium
 webpage, https://software.docs.hubmapconsortium.org/apis</p>
     </div>
 
@@ -143,6 +159,9 @@ webpage, https://software.docs.hubmapconsortium.org/apis</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   dataset_info &lt;chr&gt;, dataset_type &lt;chr&gt;, descendant_ids &lt;list&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   descendants &lt;list&gt;, display_subtype &lt;chr&gt;, donor &lt;list&gt;, entity_type &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   files &lt;list&gt;, group_name &lt;chr&gt;, group_uuid &lt;chr&gt;, hubmap_id &lt;chr&gt;, …</span></span>
+<span class="r-in"><span><span class="co"># no derived dataset</span></span></span>
+<span class="r-in"><span><span class="va">uuid</span> <span class="op">&lt;-</span> <span class="st">"3acdb3ed962b2087fbe325514b098101"</span></span></span>
+<span class="r-in"><span><span class="co"># dataset_derived(uuid)</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
