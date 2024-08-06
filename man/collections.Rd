@@ -4,7 +4,7 @@
 \alias{collections}
 \alias{collections_default_columns}
 \alias{collection_contacts}
-\alias{collection_datasets}
+\alias{collection_data}
 \alias{collection_contributors}
 \title{HuBMAP Collections}
 \usage{
@@ -14,7 +14,7 @@ collections_default_columns(as = c("tibble", "character"))
 
 collection_contacts(uuid)
 
-collection_datasets(uuid)
+collection_data(uuid)
 
 collection_contributors(uuid)
 }
@@ -50,7 +50,7 @@ or \code{publications()}.
 \code{collection_contacts()} takes a unique collection_id and
 returns contacts information of one specified collection as a tibble
 
-\code{collection_datasets()} takes a unique collection_id and
+\code{collection_data()} takes a unique collection_id and
 returns related datasets of one specified collection as a tibble
 
 \code{collection_contributors()} takes a unique collection_id and
@@ -76,7 +76,7 @@ collections_default_columns()
 uuid <- "381f65e58d5e2c1d16a9cef2cc203aab"
 collection_contacts(uuid)
 uuid <- "381f65e58d5e2c1d16a9cef2cc203aab"
-collection_datasets(uuid)
+collection_data(uuid)
 uuid <- "590b0485a196956284b8f3344276bc50"
 collection_contributors(uuid)
 }

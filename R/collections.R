@@ -97,9 +97,9 @@ collection_contacts <-
 
 #' @rdname collections
 #'
-#' @name collection_datasets
+#' @name collection_data
 #'
-#' @description `collection_datasets()` takes a unique collection_id and 
+#' @description `collection_data()` takes a unique collection_id and 
 #' returns related datasets of one specified collection as a tibble
 #' 
 #' @param uuid character(1) corresponding to the HuBMAP Collection UUID
@@ -112,8 +112,8 @@ collection_contacts <-
 #' 
 #' @examples
 #' uuid <- "381f65e58d5e2c1d16a9cef2cc203aab"
-#' collection_datasets(uuid)
-collection_datasets <-
+#' collection_data(uuid)
+collection_data <-
     function(uuid) {
     
     stopifnot( .is_uuid(uuid))

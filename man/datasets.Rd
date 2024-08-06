@@ -4,6 +4,7 @@
 \alias{datasets}
 \alias{datasets_default_columns}
 \alias{dataset_detail}
+\alias{dataset_derived}
 \title{HuBMAP Datasets}
 \usage{
 datasets(size = 10000L, from = 0L)
@@ -11,6 +12,8 @@ datasets(size = 10000L, from = 0L)
 datasets_default_columns(as = c("tibble", "character"))
 
 dataset_detail(uuid)
+
+dataset_derived(uuid)
 }
 \arguments{
 \item{size}{integer(1) number of maximum results to return;
@@ -21,7 +24,7 @@ The default (10000) is meant to be large enough to return all results.}
 \item{as}{character(1) return format. One of \code{"tibble"} (default),
 or \code{"character"}.}
 
-\item{uuid}{character(1) corresponding to the HuBMAP Dataset UUID
+\item{uuid}{character(1) corresponding to the HuBMAP Sample UUID
 string. This is expected to be a 32-digit hex number.}
 }
 \value{
@@ -43,8 +46,16 @@ or \code{publications()}.
 
 \code{dataset_detail()} takes a unique dataset_id and
 returns details about one specified dataset as a tibble
+
+\code{dataset_derived()} takes a unique sample_id and
+returns the derived (support) dataset details. Support datasets normally
+belong to Image Pyramid, with image files available to download via
+Globus Collection. See details to download in \code{files_globus_url()}.
 }
 \details{
+Additional details are provided on the HuBMAP consortium
+webpage, https://software.docs.hubmapconsortium.org/apis
+
 Additional details are provided on the HuBMAP consortium
 webpage, https://software.docs.hubmapconsortium.org/apis
 }
@@ -54,4 +65,7 @@ datasets_default_columns()
 
 uuid <- "7754aa5ebde628b5e92705e33e74a4ef"
 dataset_detail(uuid)
+# no derived dataset
+uuid <- "3acdb3ed962b2087fbe325514b098101"
+# dataset_derived(uuid)
 }

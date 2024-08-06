@@ -29,3 +29,14 @@ test_that("'datasets_default_columns()' works", {
   expect_true(tibble::is_tibble(tbl))
   expect_true(nrow(tbl) > 0L && all("columns" %in% names(tbl)))
 })
+
+test_that("'dataset_derived()' works", {
+  
+  # derived dataset yes
+  test_uuid <- "2c77b1cdf33dbed3dbfb74e4b578300e"
+  tbl <- dataset_derived(test_uuid)
+  expect_true(tibble::is_tibble(tbl))
+  expect_true(nrow(tbl) > 0L)
+  
+  
+})
