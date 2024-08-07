@@ -37,6 +37,4 @@ test_that("'dataset_derived()' works", {
   tbl <- dataset_derived(test_uuid)
   expect_true(tibble::is_tibble(tbl))
   expect_true(nrow(tbl) > 0L)
-  
-  
 })
