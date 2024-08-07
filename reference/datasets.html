@@ -82,7 +82,7 @@ Globus Collection. See details to download in <code><a href="files.html">files_g
 <span></span>
 <span><span class="fu">dataset_detail</span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">dataset_derived</span><span class="op">(</span><span class="va">uuid</span>, as <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"All"</span>, <span class="st">"Immediate"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">dataset_derived</span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -99,8 +99,8 @@ The default (10000) is meant to be large enough to return all results.</p></dd>
 
 
 <dt id="arg-as">as<a class="anchor" aria-label="anchor" href="#arg-as"></a></dt>
-<dd><p>character(1) selected provenance list.
-One of <code>"All"</code> or <code>"Immediate"</code>.</p></dd>
+<dd><p>character(1) return format. One of <code>"tibble"</code> (default),
+or <code>"character"</code>.</p></dd>
 
 
 <dt id="arg-uuid">uuid<a class="anchor" aria-label="anchor" href="#arg-uuid"></a></dt>
@@ -162,16 +162,16 @@ webpage, https://software.docs.hubmapconsortium.org/apis</p>
 <span class="r-in"><span><span class="co"># no derived dataset</span></span></span>
 <span class="r-in"><span><span class="va">uuid</span> <span class="op">&lt;-</span> <span class="st">"3acdb3ed962b2087fbe325514b098101"</span></span></span>
 <span class="r-in"><span><span class="fu">dataset_derived</span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 0 × 0</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># with derived dataset</span></span></span>
 <span class="r-in"><span><span class="va">uuid</span> <span class="op">&lt;-</span> <span class="st">"2c77b1cdf33dbed3dbfb74e4b578300e"</span></span></span>
 <span class="r-in"><span><span class="fu">dataset_derived</span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 7</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   uuid                       hubmap_id group_name dataset_type data_types status</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 9e7b040f23124fec8f6542464… HBM896.G… Stanford … RNAseq [Sal… salmon_rn… Publi…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: last_modified_timestamp &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 6</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   uuid           hubmap_id data_types dataset_type status last_modified_timest…¹</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 9e7b040f23124… HBM896.G… salmon_rn… RNAseq [Sal… Publi… 2020-08-22            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​last_modified_timestamp</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

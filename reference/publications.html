@@ -110,7 +110,7 @@ string. This is expected to be a 32-digit hex number.</p></dd>
 
 <dt id="arg-entity-type">entity_type<a class="anchor" aria-label="anchor" href="#arg-entity-type"></a></dt>
 <dd><p>character(1) selected derived entity type.
-One of <code>"Sample"</code>, <code>"Donor"</code> or <code>"Dataset"</code>.</p></dd>
+One of <code>"Sample"</code>, <code>"Donor"</code> or <code>"Dataset"</code> (default).</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -165,21 +165,20 @@ webpage, https://software.docs.hubmapconsortium.org/apis</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">uuid</span> <span class="op">&lt;-</span> <span class="st">"3c7273660cdf9ab91a7901533b2cd9a5"</span></span></span>
 <span class="r-in"><span><span class="fu">publication_authors</span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 50 × 8</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    affiliation      first_name is_contact last_name middle_name_or_initial name </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Department of B… Blue       FALSE      Lake      <span style="color: #949494;">"</span>B.<span style="color: #949494;">"</span>                   Blue…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Department of C… Rajasree   FALSE      Menon     <span style="color: #949494;">""</span>                     Raja…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Department of P… Seth       FALSE      Winfree   <span style="color: #949494;">""</span>                     Seth…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Department of B… Qiwen      FALSE      Hu        <span style="color: #949494;">""</span>                     Qiwe…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Department of M… Ricardo    FALSE      Melo Fer… <span style="color: #949494;">""</span>                     Rica…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Department of B… Kian       FALSE      Kalhor    <span style="color: #949494;">""</span>                     Kian…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Department of M… Daria      FALSE      Barwinska <span style="color: #949494;">""</span>                     Dari…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Department of I… Edgar      FALSE      Otto      <span style="color: #949494;">"</span>A.<span style="color: #949494;">"</span>                   Edga…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Department of M… Michael    FALSE      Ferkowicz <span style="color: #949494;">""</span>                     Mich…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Department of B… Dinh       FALSE      Diep      <span style="color: #949494;">""</span>                     Dinh…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 50 × 3</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    name                  affiliation                                    orcid_id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Blue B. Lake          Department of Bioengineering, University of C… 0000-00…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Rajasree Menon        Department of Computational Medicine and Bioi… 0000-00…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Seth Winfree          Department of Pathology and Microbiology, Uni… 0000-00…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Qiwen Hu              Department of Biomedical Informatics, Harvard… 0000-00…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Ricardo Melo Ferreira Department of Medicine, Indiana University Sc… 0000-00…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Kian Kalhor           Department of Bioengineering, University of C… 0000-00…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Daria Barwinska       Department of Medicine, Indiana University Sc… 0000-00…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Edgar A. Otto         Department of Internal Medicine, Division of … 0000-00…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Michael Ferkowicz     Department of Medicine, Indiana University Sc… 0000-00…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Dinh Diep             Department of Bioengineering, University of C… 0000-00…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 40 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: orcid_id &lt;chr&gt;, version &lt;chr&gt;</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
