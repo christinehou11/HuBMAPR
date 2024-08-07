@@ -94,8 +94,6 @@ dataset_detail <-
 #' @rdname datasets
 #'
 #' @name dataset_derived
-#' 
-#' @importFrom dplyr select any_of
 #'
 #' @description `dataset_derived()` takes a unique sample_id and 
 #'     returns the derived (support) dataset details. Support datasets normally
@@ -104,9 +102,6 @@ dataset_detail <-
 #' 
 #' @param uuid character(1) corresponding to the HuBMAP Sample UUID
 #'     string. This is expected to be a 32-digit hex number.
-#'     
-#' @param as character(1) selected provenance list. 
-#'        One of `"All"` or `"Immediate"`.
 #' 
 #' @details Additional details are provided on the HuBMAP consortium
 #'     webpage, https://software.docs.hubmapconsortium.org/apis
@@ -122,31 +117,21 @@ dataset_detail <-
 #' uuid <- "2c77b1cdf33dbed3dbfb74e4b578300e"
 #' dataset_derived(uuid)
 dataset_derived <-
-    function(uuid, as = c("All", "Immediate")) {
+    function(uuid) {
     
     stopifnot(.is_uuid(uuid))
     
-    as <- match.arg(as)
+    option <- .list_to_option(path = "hits.hits[]._source.descendants[]",
+                            fields = c("uuid","hubmap_id", "data_types", 
+                                        "dataset_type", "status", 
+                                        "last_modified_timestamp"))
     
-    tbl <- switch(
-        as,
-        
-        All = .query_match(uuid, 
-                        option = "hits.hits[]._source.descendants[]"),
-        
-        Immediate = .query_match(uuid, 
-                        option = "hits.hits[]._source.immediate_descendants[]")
-    )
+    tbl <- .query_match(uuid, option = option) |>
+            .unnest_mutate_relocate()
     
-    if (nrow(tbl) > 0L) {
-        
-    tbl <- tbl |>
-        .unnest_mutate_relocate() |>
-        .dataset_processing_category()
-        
-    }
+    if (tbl$uuid == "") { tbl <- NULL }
     
-    tbl |> select(any_of(.FIELDS[["Dataset"]]))
+    tbl
     
     }
 

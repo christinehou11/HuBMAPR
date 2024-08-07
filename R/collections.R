@@ -67,6 +67,8 @@ collections_default_columns <-
 #' @rdname collections
 #'
 #' @name collection_contacts
+#' 
+#' @importFrom tidyr unnest everything
 #'
 #' @description `collection_contacts()` takes a unique collection_id and 
 #' returns contacts information of one specified collection as a tibble
@@ -90,14 +92,16 @@ collection_contacts <-
     option <- .list_to_option(path = "hits.hits[]._source.contacts[]",
                                 fields = c("name", "affiliation", "orcid_id"))
     
-    .query_match(uuid, option) |>
-        tidyr::unnest(tidyr::everything())
+    .query_match(uuid, option) |> unnest(everything())
     
     }
 
 #' @rdname collections
 #'
 #' @name collection_data
+#' 
+#' @importFrom tidyr unnest everything
+#' @importFrom dplyr select
 #'
 #' @description `collection_data()` takes a unique collection_id and 
 #' returns related datasets of one specified collection as a tibble
@@ -121,23 +125,21 @@ collection_data <-
     option <- .list_to_option(path = "hits.hits[]._source.datasets[]",
                                 fields = c("uuid", "hubmap_id", "data_types", 
                                             "dataset_type", "title",
-                                            "creation_action",
                                             "last_modified_timestamp",
-                                            "created_by_user_displayname",
                                             "status"))
     
-    tbl <- .query_match(uuid, option)
+    tbl <- .query_match(uuid, option) |> unnest(everything()) 
     tbl$organ <- .title_to_organ(tbl$title)
     
-    tbl |>
-        unnest(everything()) |>
-        .dataset_processing_category() |>
-        dplyr::select(-"title")
+    .unnest_mutate_relocate(tbl) |> select(-"title")
+    
     }
 
 #' @rdname collections
 #'
 #' @name collection_contributors
+#' 
+#' @importFrom tidyr unnest everything
 #'
 #' @description `collection_contributors()` takes a unique collection_id and 
 #' returns contributors information of one specified collection as a tibble
@@ -160,7 +162,6 @@ collection_contributors <-
     option <- .list_to_option(path = "hits.hits[]._source.creators[]",
                                 fields = c("name", "affiliation", "orcid_id"))
     
-    .query_match(uuid, option) |>
-        tidyr::unnest(tidyr::everything())
+    .query_match(uuid, option) |> unnest(everything())
     
     }

@@ -28,7 +28,7 @@ or \code{"character"}.}
 string. This is expected to be a 32-digit hex number.}
 
 \item{entity_type}{character(1) selected derived entity type.
-One of \code{"Sample"} or \code{"Dataset"}.}
+One of \code{"Sample"} or \code{"Dataset"} (default).}
 }
 \value{
 \verb{*_columns()} returns a named list \code{name}

@@ -116,7 +116,7 @@ string. This is expected to be a 32-digit hex number.</p></dd>
 
 <dt>entity_type</dt>
 <dd><p>character(1) selected derived entity type.
-One of <code>"Sample"</code> or <code>"Dataset"</code>.</p></dd>
+One of <code>"Sample"</code> or <code>"Dataset"</code> (default).</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -182,14 +182,15 @@ webpage, https://software.docs.hubmapconsortium.org/apis</p>
 <span class="r-in"><span><span class="va">uuid</span> <span class="op">&lt;-</span> <span class="st">"1dcde05aea3509b2cf89a41ceb3d700f"</span></span></span>
 <span class="r-in"><span><span class="fu">donor_derived</span><span class="op">(</span><span class="va">uuid</span>, <span class="st">"Sample"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 6</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   uuid         hubmap_id group_name sample_category last_modified_timest…¹ organ</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 146c221bca3… HBM847.D… Vanderbil… organ           2021-08-04             Kidn…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 27485b21a22… HBM693.K… Vanderbil… block           2022-07-19             Kidn…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> 1441346ca08… HBM488.F… Vanderbil… section         2021-08-25             Kidn…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> e97fd3e2b6d… HBM695.M… Vanderbil… section         2021-08-25             Kidn…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> 92cd878bf5b… HBM686.B… Vanderbil… section         2021-08-25             Kidn…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   uuid                    hubmap_id sample_category last_modified_timest…¹ organ</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 146c221bca3759ffa64cd0… HBM847.D… organ           2021-08-04             Kidn…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 27485b21a2285dbcae38f2… HBM693.K… block           2022-07-19             Kidn…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> 1441346ca08aadbb631539… HBM488.F… section         2021-08-25             Kidn…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> e97fd3e2b6dae2238cfe05… HBM695.M… section         2021-08-25             Kidn…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> 92cd878bf5be78131c6a3f… HBM686.B… section         2021-08-25             Kidn…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​last_modified_timestamp</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: derived_dataset_count &lt;int&gt;</span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

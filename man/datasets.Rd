@@ -13,7 +13,7 @@ datasets_default_columns(as = c("tibble", "character"))
 
 dataset_detail(uuid)
 
-dataset_derived(uuid, as = c("All", "Immediate"))
+dataset_derived(uuid)
 }
 \arguments{
 \item{size}{integer(1) number of maximum results to return;
@@ -21,8 +21,8 @@ The default (10000) is meant to be large enough to return all results.}
 
 \item{from}{integer(1) number of number of results to skip, defaulting to 0.}
 
-\item{as}{character(1) selected provenance list.
-One of \code{"All"} or \code{"Immediate"}.}
+\item{as}{character(1) return format. One of \code{"tibble"} (default),
+or \code{"character"}.}
 
 \item{uuid}{character(1) corresponding to the HuBMAP Sample UUID
 string. This is expected to be a 32-digit hex number.}

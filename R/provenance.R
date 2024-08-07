@@ -7,12 +7,14 @@
 #' @importFrom dplyr select 
 #' @importFrom tidyr unnest everything
 #' 
-#' @param uuid character(1) corresponding to the HuBMAP Sample UUID
+#' @param uuid character(1) corresponding to the HuBMAP Dataset or Sample UUID
 #'     string. This is expected to be a 32-digit hex number.
 #'     
-#' @return `uuid_provenance()` takes a Dataset, Sample, or Donor UUID, 
+#' @return `uuid_provenance()` takes a Dataset or Sample UUID, 
 #' and returns the provenance details as a list of characters, from the most 
-#' recent ancestor to the furthest ancestor. All entity types are included.
+#' recent ancestor to the furthest ancestor. The entity type of ancestors 
+#' include Dataset, Sample, and Donor. Note that there is no ancestor for Donor
+#' entity such that the returned result will be an empty list. 
 #' 
 #' @details Additional details are provided on the HuBMAP consortium
 #'     webpage, https://software.docs.hubmapconsortium.org/apis

@@ -100,7 +100,8 @@ donor_detail <-
 #'
 #' @name donor_derived
 #'
-#' @importFrom dplyr select filter left_join any_of
+#' @importFrom dplyr select filter mutate any_of
+#' @importFrom purrr map_chr map_int
 #' 
 #' @description `donor_derived()` takes a unique donor_id and 
 #' returns the derived dataset or/and sample details.
@@ -109,7 +110,7 @@ donor_detail <-
 #'     string. This is expected to be a 32-digit hex number.
 #'     
 #' @param entity_type character(1) selected derived entity type. 
-#' One of `"Sample"` or `"Dataset"`.
+#' One of `"Sample"` or `"Dataset"` (default).
 #' 
 #' @details Additional details are provided on the HuBMAP consortium
 #'     webpage, https://software.docs.hubmapconsortium.org/apis
@@ -128,39 +129,32 @@ donor_derived <-
     entity <- match.arg(entity_type)
     
     tbl <- .query_match(uuid, option = "hits.hits[]._source.descendants[]") |>
-            filter(entity_type == entity) |>
-            select(any_of(.FIELDS[[entity]]))
+            filter(entity_type == entity)
     
     if (identical(entity, "Sample")) {
         if (nrow(tbl) > 0L) {
-        
-        uuids <- tbl$uuid
-        organ_info <- rep("", length(uuids))
-        
-        for (i in seq_along(uuids)) {
-        
-            organ_info[i] <- .query_match(uuids[i], 
-                            "hits.hits[]._source.origin_samples[]") |>
-                            left_join(organ(), 
-                                by = c("organ" = "abbreviation")) |>
-                            select("name")
-        }
-        
-        tbl$organ <- organ_info
-        tbl <- .unnest_mutate_relocate(tbl)
-        
-    }
-    else {
-    
-        tbl <- tbl  
-        
-    }
-    }
-    else {
     
         tbl <- tbl |> 
-                .unnest_mutate_relocate() |>
-                .dataset_processing_category()
+            select("uuid", "hubmap_id", "sample_category", 
+                    "last_modified_timestamp") |>
+            .unnest_mutate_relocate() |>
+            mutate(organ = map_chr(uuid, ~.organ_sample_uuid(.x)),
+                    derived_dataset_count = map_int(uuid, ~{
+                                        nrow(sample_derived(.x, "Dataset"))}))
+        
+        }
+        else { tbl <- NULL }
+        
+    }
+    else {
+        
+        tbl <- tbl |>
+            select(any_of(c("uuid", "hubmap_id", "data_types", "dataset_type", 
+                            "status", "last_modified_timestamp"))) |>
+            .unnest_mutate_relocate() |>
+            mutate(derived_dataset_count = map_int(uuid, ~{
+                            nrow(.query_match(.x, 
+                            option = "hits.hits[]._source.descendants[]"))}))
     
     }
     

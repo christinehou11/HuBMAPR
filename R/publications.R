@@ -83,7 +83,7 @@ publications_default_columns <-
 #'     string. This is expected to be a 32-digit hex number.
 #'     
 #' @param entity_type character(1) selected derived entity type. 
-#' One of `"Sample"`, `"Donor"` or `"Dataset"`.
+#' One of `"Sample"`, `"Donor"` or `"Dataset"` (default).
 #' 
 #' @details Additional details are provided on the HuBMAP consortium
 #'     webpage, https://software.docs.hubmapconsortium.org/apis
@@ -134,6 +134,8 @@ publication_data <-
 #' @rdname publications
 #'
 #' @name publication_authors
+#' 
+#' @importFrom tidyr unnest everything
 #'
 #' @description `publication_authors()` takes a unique publication_id and 
 #' returns authors information of one specified collection as a tibble
@@ -157,7 +159,7 @@ publication_authors <-
     option <- .list_to_option(path = "hits.hits[]._source.contributors[]",
                                 fields = c("name", "affiliation", "orcid_id"))
     
-    .query_match(uuid, option = "hits.hits[]._source.contributors[]") |>
-        tidyr::unnest(tidyr::everything())
+    .query_match(uuid, option = option) |>
+        unnest(everything())
     
     }

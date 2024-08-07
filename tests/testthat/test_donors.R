@@ -28,10 +28,20 @@ test_that("'donors_default_columns()' works", {
   expect_true(nrow(tbl) > 0L && all("columns" %in% names(tbl)))
 })
 
-test_that("'donor_derived()' works with specific entity type", {
+test_that("'donor_derived()' works", {
+  
   test_uuid <- "3b5d057daf1e84d746d01a16acf4f0bb"
-  test_donor <- donor_derived(test_uuid, "Sample")
-  expect_true(tibble::is_tibble(test_donor))
-  expect_true(nrow(test_donor) > 0L && 
-                all(names(test_donor) %in% samples_default_columns("character")))
+  
+  # Derived Samples
+  test_sample <- donor_derived(test_uuid, "Sample")
+  expect_true(tibble::is_tibble(test_sample))
+  expect_true(nrow(test_sample) > 0L && 
+              all(c("organ", "derived_dataset_count") %in% names(test_sample)))
+  
+  # Derived Datasets
+  test_dataset <- donor_derived(test_uuid, "Dataset")
+  expect_true(tibble::is_tibble(test_dataset))
+  expect_true(nrow(test_dataset) > 0L &&  
+                "derived_dataset_count" %in% names(test_sample))
+  
 })
