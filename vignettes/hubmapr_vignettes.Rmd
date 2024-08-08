@@ -5,12 +5,7 @@ author:
     affiliation: Department of Biostatistics, Johns Hopkins University
     email: chris2018hou@gmail.com
 output: 
-  BiocStyle::html_document:
-    self_contained: yes
-    toc: true
-    toc_float: true
-    toc_depth: 2
-    code_folding: show
+  BiocStyle::html_document
 package: "HuBMAPR"
 vignette: |
   %\VignetteIndexEntry{Accessing Human Cell Atlas Data}
@@ -30,7 +25,7 @@ knitr::opts_chunk$set(
 'HuBMAP' data portal (<https://portal.hubmapconsortium.org/>) provides an open,
 global bio-molecular atlas of the human body at the cellular level. 
 `HuBMAPR` package provides an alternative interface to access the data
-exploration and file retrieval.
+exploration and file retrieval via R.
 
 # Installation
 
@@ -62,7 +57,9 @@ BiocManager::install("christinehou11/HuBMAPR")
 Install additional required packages before running package codes.
 
 ```{r 'pkg install', eval=FALSE}
-
+pkgs <- c("dplyr", "tidyr")
+required_pkgs <- pkgs[!pkgs %in% rownames(installed.packages())]
+BiocManager::install(required_pkgs)
 ```
 
 Load additional packages. `dplyr` package is widely used in this vignettes to
@@ -122,8 +119,8 @@ datasets_col_char <- datasets_default_columns(as = "character")
 datasets_col_char
 ```
 
-`samples_default_columns(as)`, `donors_default_columns(as)`, 
-`collections_default_columns(as)`, and `publications_default_columns(as)` 
+`samples_default_columns()`, `donors_default_columns()`, 
+`collections_default_columns()`, and `publications_default_columns()` 
 work same as above.
 
 A brief overview of selected information for five entity categories is:
@@ -164,80 +161,8 @@ Any dataset, sample, donor, collection, and publication has special
 **HuBMAP ID** and **UUID**, and **UUID** is the main ID to be used in most of 
 functions for specific detail retrievals. 
 
-Since `datasets(size, from)`, `samples(size, from)`, `donors(size, from)`,
-`collections(size, from)`, and `publications(size, from)` returned selected
-information, you can use `*_detail(uuid)` to retrieve all available information
-for any entry of any entity category given **UUID**. Use `select()` and
-`unnest_*()` functions to expand list-columns.
-
-```{r '*_detail()'}
-dataset_uuid <- datasets |>
-    filter(dataset_type == "Auto-fluorescence",
-            organ == "Kidney (Right)") |>
-    head(1) |>
-    pull(uuid)
-
-# Full Information
-dataset_detail(dataset_uuid)
-
-# Specific Information
-dataset_detail(uuid = dataset_uuid) |>
-    select(contributors) |>
-    unnest_longer(contributors) |>
-    unnest_wider(everything())
-```
-
-`sample_detail(uuid)`, `donor_detail(uuid)`, `collection_detail(uuid)`, and
-`publication_detail(uuid)` work same as above.
-
-## Derived Data
-
-Some datasets from **Data** entity has derived (support) dataset(s). Use 
-`dataset_derived(uuid)` to retrieve. The error message will be printed out if
-the given dataset UUID has no derived/support dataset; otherwise, selected 
-details will be retrieved as a tibble.
-
-```{r 'dataset derived'}
-# no derived/support dataset
-dataset_uuid_1 <- "3acdb3ed962b2087fbe325514b098101"
-
-dataset_detail(uuid = dataset_uuid_1)
-
-# has derived/support dataset
-dataset_uuid_2 <- "baf976734dd652208d13134bc5c4594b"
-
-dataset_detail(uuid = dataset_uuid_2)
-```
-
-**Sample** and **Donor** have derived samples and datasets. In `HuBAMPR`
-package, `sample_derived(uuid)` and `donor_derived(uuid)` functions are
-available to use to see the derived datasets and samples from one sample given
-sample UUID or one donor given donor UUID. Specify `entity_type` parameter to
-retrieve derived `Dataset` or `Sample`.
-
-```{r 'derived using sample_derived'}
-sample_uuid <- samples |>
-    filter(last_modified_timestamp >= "2023-01-01" &
-            last_modified_timestamp <= "2023-10-01",
-            organ == "Kidney (Left)") |>
-    head(1) |>
-    pull(uuid)
-
-sample_uuid
-
-# Derived Datasets
-sample_derived(uuid = sample_uuid, entity_type = "Dataset")
-
-# Derived Samples
-sample_derived(uuid = sample_uuid, entity_type = "Sample")
-```
-
-`donor_derived(uuid)` works same as above.
-
-In the retrieved tibbles using `samples(size, from)` and `donors(size, from)`,
-there is one column named **donor.hubmap_id**. This can help to join the tibble
-from `donors(size, from)` with tibbles from `datasets(size, from)` and
-`samples(size, from)`.
+The column of **donor.hubmap_id** is included in the retrieved tibbles from
+`samples()` and `datasets()`, which can help to join the tibble.
 
 ```{r 'derived using left_join'}
 donor_sub <- donors |>
@@ -270,79 +195,99 @@ donor_sub_sample <- donor_sub |>
 donor_sub_sample
 ```
 
-The retrieved tibbles are same as 
-`donor_derived(uuid, entity_type = "Dataset")` and 
-`donor_derived(uuid, entity_type = "Sample")`.
+You can use `*_detail(uuid)` to retrieve all available information for any
+entry of any entity category given **UUID**. 
+Use `select()` and `unnest_*()` functions to expand list-columns.
 
-```{r}
-# Derived Datasets
-donor_sub_uuid <- donor_sub |>
+```{r '*_detail()'}
+dataset_uuid <- datasets |>
+    filter(dataset_type == "Auto-fluorescence",
+            organ == "Kidney (Right)") |>
+    head(1) |>
     pull(uuid)
 
-donor_sub_uuid_dataset <- donor_derived(uuid = donor_sub_uuid,
-                                        entity_type = "Dataset")
+# Full Information
+dataset_detail(dataset_uuid)
 
-all(donor_sub_dataset$dataset_uuid %in% donor_sub_uuid_dataset$uuid)
+# Specific Information
+dataset_detail(uuid = dataset_uuid) |>
+    select(contributors) |>
+    unnest_longer(contributors) |>
+    unnest_wider(everything())
+```
+
+`sample_detail()`, `donor_detail()`, `collection_detail()`, and
+`publication_detail()` work same as above.
+
+## Derived Data
+
+Some datasets from **Data** entity has derived (support) dataset(s). Use 
+`dataset_derived()` to retrieve. A tibble with selected details will be
+retrieved as if the given dataset has support dataset; otherwise, nothing
+returns.
+
+```{r 'dataset derived'}
+# no derived/support dataset
+dataset_uuid_1 <- "3acdb3ed962b2087fbe325514b098101"
+
+dataset_detail(uuid = dataset_uuid_1)
+
+# has derived/support dataset
+dataset_uuid_2 <- "baf976734dd652208d13134bc5c4594b"
+
+dataset_detail(uuid = dataset_uuid_2)
+```
+
+**Sample** and **Donor** have derived samples and datasets. In `HuBAMPR`
+package, `sample_derived()` and `donor_derived()` functions are
+available to use to see the derived datasets and samples from one sample given
+sample UUID or one donor given donor UUID. Specify `entity_type` parameter to
+retrieve derived `Dataset` or `Sample`.
+
+```{r 'derived using sample_derived'}
+sample_uuid <- samples |>
+    filter(last_modified_timestamp >= "2023-01-01" &
+            last_modified_timestamp <= "2023-10-01",
+            organ == "Kidney (Left)") |>
+    head(1) |>
+    pull(uuid)
+
+sample_uuid
+
+# Derived Datasets
+sample_derived(uuid = sample_uuid, entity_type = "Dataset")
 
 # Derived Samples
-donor_sub_uuid_sample <- donor_derived(uuid = donor_sub_uuid,
-                                        entity_type = "Sample")
-
-all(donor_sub_sample$sample_uuid %in% donor_sub_uuid_sample$uuid)
-
-length(donor_sub_sample$sample_uuid) == 
-        length(donor_sub_uuid_sample$uuid)
+sample_derived(uuid = sample_uuid, entity_type = "Sample")
 ```
 
-
-**Note:** For **Donor** entity, `left_join()` and `donor_derived(uuid)` produce
-same results for both derived datasets and derived samples. For **Sample**
-entity, `left_join()` and `sample_derived(uuid)` produce same results only for
-derived datasets. *Some* samples are derived from another sample but they are
-all derived from one donor. Therefore, we may see more results than that from
-`sample_derived(uuid, entity_type = "Sample")`. Example shows below.
-
-```{r 'example derived sample left_join'}
-sample_donor_hubmap_id <- samples |>
-    filter(uuid == sample_uuid) |>
-    pull(donor.hubmap_id)
-
-sample_donor_hubmap_id
-
-# Derived Samples -> Different
-sample_hubmap_id_sample_1 <- samples |>
-    filter(donor.hubmap_id == sample_donor_hubmap_id)
-
-sample_hubmap_id_sample_1
-
-sample_hubmap_id_sample_2 <- sample_derived(uuid = sample_uuid, 
-                                            entity_type = "Sample")
-
-sample_hubmap_id_sample_2
-
-length(sample_hubmap_id_sample_1$uuid) == 
-        length(sample_hubmap_id_sample_2$uuid)
-
-
-# Derived Datasets -> Same
-sample_hubmap_id_dataset_1 <- datasets |>
-    filter(donor.hubmap_id == sample_donor_hubmap_id)
-
-sample_hubmap_id_dataset_2 <- sample_derived(uuid = sample_uuid,
-                                            entity_type = "Dataset")
-
-all(sample_hubmap_id_dataset_1$uuid %in%
-        sample_hubmap_id_dataset_2$uuid)
-
-length(sample_hubmap_id_dataset_1$uuid) == 
-        length(sample_hubmap_id_dataset_2$uuid)
-```
+`donor_derived()` works same as above.
 
 ## Provenance Data
 
+For individual entries from **Dataset** and **Sample** entities,
+`uuid_provenance()` helps to retrieve the provenance of the entry as a list of
+characters (UUID, HuBMAP ID, and entity type) from the most recent ancestor to
+the furthest ancestor. There is no ancestor for Donor UUID, and an empty list
+will be returned.
+
+```{r 'provenance'}
+# dataset provenance
+dataset_uuid <- "3e4c568d9ce8df9d73b8cddcf8d0fec3"
+uuid_provenance(dataset_uuid)
+
+# sample provenance
+sample_uuid <- "35e16f13caab262f446836f63cf4ad42"
+uuid_provenance(sample_uuid)
+
+# donor provenance 
+donor_uuid <- "0abacde2443881351ff6e9930a706c83"
+uuid_provenance(donor_uuid)
+```
+
 ## Related Data
 
-Each **Collection** has related datasets, and use `collection_data(uuid)` to
+Each **Collection** has related datasets, and use `collection_data()` to
 retrieve.
 
 ```{r 'collection datasets'}
@@ -356,7 +301,7 @@ collection_data(collection_uuid)
 
 
 Each publication has related datasets, samples, and donors, and use
-`publication_data(uuid)` to see, while specifying `entity_type` parameter to
+`publication_data()` to see, while specifying `entity_type` parameter to
 retrieve derived `Dataset` or `Sample`.
 
 ```{r 'publication data'}
@@ -366,12 +311,14 @@ publication_uuid <- publications |>
     pull(uuid)
 
 publication_data(publication_uuid, entity_type = "Dataset")
+
+publication_data(publication_uuid, entity_type = "Sample")
 ```
 
 ## Additional Information
 
 To read the textual description of one **Collection** or **Publication**, use
-`collection_information(uuid)` or `publication_information(uuid)` respectively.
+`collection_information()` or `publication_information()` respectively.
 
 ```{r 'information'}
 collection_information(uuid = collection_uuid)
@@ -380,8 +327,8 @@ publication_information(uuid = publication_uuid)
 ```
 
 Some additional contact/author/contributor information can be retrieved using
-`collection_contact(uuid)` and `collection_contributors(uuid)` for
-**Collection** entity, or `publication_authors(uuid)` for **Publication**
+`collection_contact()` and `collection_contributors()` for
+**Collection** entity, or `publication_authors()` for **Publication**
 entity.
 
 ```{r 'author'}
@@ -403,7 +350,7 @@ via dbGAP (database of Genotypes and Phenotypes) and/or SRA (Sequence Read
 Archive). But some of the datasets' files are not available in any authorized
 platform. 
 
-Use `files_globus_url(uuid)` to access data files. If the Globus URL is 
+Use `files_globus_url()` to access data files. If the Globus URL is 
 available, the function will direct you to chrome, and you can choose to 
 download or read any document. If not, error messages will be printed out with
 addition instructions, either providing dbGAP/SRA URLs or pointing out the

@@ -26,9 +26,9 @@ collection_information <-
     )
     
     option <- .list_to_option(
-    path = "hits.hits[]._source",
-    fields = c("uuid", "hubmap_id", "title", "description",
-                "doi_url", "registered_doi")
+        path = "hits.hits[]._source",
+        fields = c("uuid", "hubmap_id", "title", "description",
+                    "doi_url", "registered_doi")
     )
     
     tbl <- .query_match(uuid, option) |>

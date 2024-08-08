@@ -121,10 +121,10 @@ dataset_derived <-
     
     stopifnot(.is_uuid(uuid))
     
-    option <- .list_to_option(path = "hits.hits[]._source.descendants[]",
-                            fields = c("uuid","hubmap_id", "data_types", 
-                                        "dataset_type", "status", 
-                                        "last_modified_timestamp"))
+    option <- .list_to_option(
+        path = "hits.hits[]._source.descendants[]",
+        fields = c("uuid","hubmap_id", "data_types", 
+                    "dataset_type", "status", "last_modified_timestamp"))
     
     tbl <- .query_match(uuid, option = option) |>
             .unnest_mutate_relocate()
@@ -139,7 +139,7 @@ dataset_derived <-
 .dataset_edit <-
     function (tbl) {
     
-    tbl <- tbl |>
+    tbl |>
         .unnest_mutate_relocate() |>
         left_join(organ(), by = c("origin_samples.organ" = "abbreviation")) |>
         select(-"origin_samples.organ") |>

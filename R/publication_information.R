@@ -25,10 +25,10 @@ publication_information <-
     
     stopifnot(.is_uuid(uuid))
     
-    option <- .list_to_option(path = "hits.hits[]._source",
-                                fields = c("uuid", "hubmap_id", "title", 
-                                            "description", "publication_venue", 
-                                            "publication_url"))
+    option <- .list_to_option(
+        path = "hits.hits[]._source",
+        fields = c("uuid", "hubmap_id", "title", 
+                    "description", "publication_venue", "publication_url"))
     
     # corresponding_authors
     contacts <- .query_match(uuid, "hits.hits[]._source.contacts[]")

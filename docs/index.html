@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="index.html">HuBMAPR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,103 +66,36 @@
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9"><div class="section level3">
-<h3 id="hubmapr">HuBMAPR<a class="anchor" aria-label="anchor" href="#hubmapr"></a>
-</h3>
-<p>In R, load the package which is cloning from this repository.</p>
-<p><code>{r} devtools::load_all()</code></p>
-<p>In HuBMAP consortium, there are five main entity types, and each entity type with its related functions are included in one separate R script.</p>
-<ul>
-<li>
-<p>dataset: <code>datasets.R</code></p>
-<ul>
-<li><p>datasets(size = 10000L, from = 0L): returns the selected information of all datasets in tibble. The maximum number of rows returned tibble is 10000L. size and from are numeric parameters, determining the arbitrary size to return and the location of dataset to return based on the last modified date.</p></li>
-<li><p>datasets_default_columns(as = c(“tibble”, “character”)): returns the selected default columns as character or tibble included in the returned tibble from <strong>datasets()</strong>. The columns are <em>uuid, hubmap id, group name, dataset type, data types, organ, status, last modified timestamp,</em> and <em>donor hubmap id</em>.</p></li>
-<li><p>dataset_detail(uuid): return all available information of one specific dataset in tibble.</p></li>
-</ul>
-</li>
-<li>
-<p>sample: <code>samples.R</code></p>
-<ul>
-<li><p>samples(size = 10000L, from = 0L)</p></li>
-<li><p>samples_default_columns(as = c(“tibble”, “character”)): the selected default columns are <em>uuid, hubmap id, group name, sample category, organ, last modified timestamp,</em> and <em>donor hubmap id</em></p></li>
-<li><p>sample_detail(uuid)</p></li>
-<li>
-<p>samples_derived(uuid, entity_type = c(“Dataset”, “Sample”)): returns the derived Dataset(s) or Sample(s) information in tibble.</p>
-<ul>
-<li>Derived dataset(s) include columns <em>uuid, hubmap id, group name, dataset type, data types, status, last modified timestamp</em> (same as portal page)</li>
-</ul>
-<div class="float">
-<img src="images/Screenshot%202024-07-31%20at%2019.32.12.png" alt="Example from HBM876.SJWP.278 (uuid = e3b74d607c3b20c9c2349d98c235ce72)"><div class="figcaption">Example from HBM876.SJWP.278 (uuid = e3b74d607c3b20c9c2349d98c235ce72)</div>
+  <main id="main" class="col-md-9"><div class="section level2">
+<h2 id="hubmapr">HuBMAPR<a class="anchor" aria-label="anchor" href="#hubmapr"></a>
+</h2>
+<p>‘HuBMAP’ data portal (<a href="https://portal.hubmapconsortium.org/" class="external-link uri">https://portal.hubmapconsortium.org/</a>) provides an open, global bio-molecular atlas of the human body at the cellular level. <code>HuBMAPR</code> package provides an alternative interface to access the data exploration and file retrieval via R.</p>
+<div class="section level4">
+<h4 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h4>
+<p><code>HuBMAPR</code> is a R package available in <em>Bioconductor</em> version 3.19 and later. You can install <code>HuBMAPR</code> by using the following commands in R session from <em>Bioconductor</em>:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://bioconductor.github.io/BiocManager/" class="external-link">"BiocManager"</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://bioconductor.github.io/BiocManager/reference/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"HuBMAPR"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Check Bioconductor installation</span></span>
+<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://bioconductor.github.io/BiocManager/reference/valid.html" class="external-link">valid</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>Additionally, you can install development version from <a href="https://christinehou11.github.io/HuBMAPR">GitHub</a>:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://bioconductor.github.io/BiocManager/reference/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"christinehou11/HuBMAPR"</span><span class="op">)</span></span></code></pre></div>
+<p>Install additional required packages before running package codes in vignettes.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">pkgs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"dplyr"</span>, <span class="st">"tidyr"</span><span class="op">)</span></span>
+<span><span class="va">required_pkgs</span> <span class="op">&lt;-</span> <span class="va">pkgs</span><span class="op">[</span><span class="op">!</span><span class="va">pkgs</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/installed.packages.html" class="external-link">installed.packages</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://bioconductor.github.io/BiocManager/reference/install.html" class="external-link">install</a></span><span class="op">(</span><span class="va">required_pkgs</span><span class="op">)</span></span></code></pre></div>
 </div>
-<ul>
-<li>
-<p>Derived sample(s) include columns <em>uuid, hubmap id, group name, sample category, last modified timestamp, organ</em></p>
-<p>Note: The portal page does not show the tab to see the derived samples as the screenshot, but based on the provenance offered, there indeed is/are derived sample(s).</p>
-</li>
-</ul>
-</li>
-</ul>
-<div class="float">
-<img src="images/Screenshot%202024-07-31%20at%2019.50.43.png" alt="Example from HBM876.SJWP.278 (uuid = e3b74d607c3b20c9c2349d98c235ce72)"><div class="figcaption">Example from HBM876.SJWP.278 (uuid = e3b74d607c3b20c9c2349d98c235ce72)</div>
+<div class="section level4">
+<h4 id="use">Use<a class="anchor" aria-label="anchor" href="#use"></a>
+</h4>
+<p>View the article <a href="https://christinehou11.github.io/HuBMAPR/articles/hubmapr_vignettes.html">Explore Human BioMelecular Atlas Program Data Portal</a>.</p>
 </div>
-</li>
-<li>
-<p>donor: <code>donors.R</code></p>
-<ul>
-<li><p>donors(size = 10000L, from = 0L)</p></li>
-<li><p>donors_default_columns(as = c(“character”,“tibble”)): the selected default columns are <em>uuid, hubmap id, group name, Sex, Age, Body Mass Index, Race,</em> and <em>last modified timestamp</em></p></li>
-<li><p>donor_detail(uuid)</p></li>
-<li>
-<p>donor_derived(uuid, entity_type = c(“Dataset”, “Sample”))</p>
-<p>The returned tibble(s) for derived dataset(s)/sample(s) has same selected columns.</p>
-</li>
-</ul>
-<div class="float">
-<img src="images/Screenshot%202024-07-31%20at%2019.53.29.png" alt="Example from HBM666.XRTH.688 (uuid = a0bea4ae0ce4e03efd04c22cc38db644)"><div class="figcaption">Example from HBM666.XRTH.688 (uuid = a0bea4ae0ce4e03efd04c22cc38db644)</div>
-</div>
-</li>
-<li>
-<p>collection: <code>collections.R</code></p>
-<ul>
-<li><p>collections(size = 10000L, from = 0L)</p></li>
-<li><p>collections__default_columns(as = c(“tibble”, “character”)): the selected default columns are <em>uuid, hubmap id, title,</em> and <em>last modified timestamp</em></p></li>
-<li><p>collection_information(uuid): print out the textual descriptions of specific collection</p></li>
-<li><p>collection_datasets(uuid): return the related datasets in one collection. The selected default columns are <em>uuid, hubmap id, data types, dataset types, last modified timestamp, organ, created by user display name,</em> and <em>status</em></p></li>
-<li><p>collection_contacts(uuid): return the contact persons’ <em>name, affiliation,</em> and <em>orcid id</em> in tibble</p></li>
-<li><p>collection_contributors(uuid): return the contributors <em>name, affiliation,</em> and <em>orcid id</em> in tibble</p></li>
-</ul>
-</li>
-<li>
-<p>publication: <code>publications.R</code></p>
-<ul>
-<li><p>publications(size = 10000L, from = 0L)</p></li>
-<li><p>publications__default_columns(as = c(“tibble”, “character”)): the selected default columns are <em>uuid, hubmap id, title, publication venue, publication date, publication status,</em> and <em>last modified timestamp</em></p></li>
-<li><p>publication_information(uuid)</p></li>
-<li><p>publication_data(entity = c(“Dataset”,“Sample”,“Donor”))</p></li>
-<li><p>publication_authors(uuid)</p></li>
-</ul>
-</li>
-</ul>
-<p>The complete list of data and visualizations available to download are mostly saved in Globus HuBMAP Collection, and <code>files.R</code> has the function files_globus_url(uuid) to download/access them. There are three different scenarios while accessing data and visualizations:</p>
-<ol style="list-style-type: decimal">
-<li><p>UUID with data available via Globus: jump into Globus page</p></li>
-<li>
-<p>UUID with data available via others (dbGAP or SRA):</p>
-<p>dbGAP stands for “database for Genotypes and Phenotypes”</p>
-<p>SRA stands for “Sequence Read Archive”</p>
-<ol style="list-style-type: decimal">
-<li><p>dbGAP yes + SRA yes</p></li>
-<li><p>dbGAP yes + SRA no</p></li>
-</ol>
-</li>
-</ol>
-<p>print out message to notify that the datasets are not available via Globus and give them dbGAP and SRA (if available) for them to explore</p>
-<ol start="3" style="list-style-type: decimal">
-<li>UUID not available: print out the message to notify the unavailability</li>
-</ol>
-<p><code>template.R</code> has functions language_template(language, name, …) and json_template(name, …) functions to run the json queries saved in inst/json.</p>
-<p><code>utilities.R</code> contains many internal functions.</p>
 </div>
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>

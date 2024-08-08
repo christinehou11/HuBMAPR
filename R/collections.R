@@ -89,8 +89,9 @@ collection_contacts <-
     
     stopifnot(.is_uuid(uuid))
     
-    option <- .list_to_option(path = "hits.hits[]._source.contacts[]",
-                                fields = c("name", "affiliation", "orcid_id"))
+    option <- .list_to_option(
+        path = "hits.hits[]._source.contacts[]",
+        fields = c("name", "affiliation", "orcid_id"))
     
     .query_match(uuid, option) |> unnest(everything())
     
