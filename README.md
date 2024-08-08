@@ -1,9 +1,3 @@
----
-editor_options: 
-  markdown: 
-    wrap: 72
----
-
 ## HuBMAPR
 
 'HuBMAP' data portal (<https://portal.hubmapconsortium.org/>) provides
