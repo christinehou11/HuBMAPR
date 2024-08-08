@@ -29,7 +29,7 @@ Globus Collection. See details to download in files_globus_url()."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">HuBMAPR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -128,6 +128,24 @@ webpage, https://software.docs.hubmapconsortium.org/apis</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">datasets</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">100</span>, from <span class="op">=</span> <span class="fl">200</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 100 × 13</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    uuid   hubmap_id registered_by dataset_processing_c…¹ data_types dataset_type</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 42cad… HBM564.H… HuBMAP Proce… HuBMAP Process         image_pyr… Auto-fluore…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 38aa8… HBM594.K… HuBMAP Proce… Raw                    AF         Auto-fluore…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 46354… HBM393.Z… HuBMAP Proce… HuBMAP Process         image_pyr… Auto-fluore…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> dbb00… HBM597.B… HuBMAP Proce… HuBMAP Process         image_pyr… Auto-fluore…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 9a892… HBM594.N… HuBMAP Proce… Raw                    AF         Auto-fluore…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> c639d… HBM686.P… HuBMAP Proce… HuBMAP Process         image_pyr… Auto-fluore…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> a21b5… HBM729.X… HuBMAP Proce… HuBMAP Process         image_pyr… Auto-fluore…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 7c488… HBM574.D… HuBMAP Proce… HuBMAP Process         image_pyr… Auto-fluore…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 6b6c7… HBM232.N… HuBMAP Proce… HuBMAP Process         image_pyr… Auto-fluore…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 7a2b7… HBM893.W… HuBMAP Proce… HuBMAP Process         image_pyr… Auto-fluore…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 90 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​dataset_processing_category</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 7 more variables: donor.hubmap_id &lt;chr&gt;, group_name &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   last_modified_timestamp &lt;chr&gt;, sample_category &lt;chr&gt;, status &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   analyte_class &lt;chr&gt;, organ &lt;chr&gt;</span></span>
 <span class="r-in"><span><span class="fu">datasets_default_columns</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 13 × 1</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    columns                    </span>
