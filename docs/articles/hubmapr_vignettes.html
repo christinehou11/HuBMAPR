@@ -153,9 +153,9 @@ corresponding functions to explore entity data.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 57b475b8ad39fa2c… HBM579.L… HuBMAP Proce… Raw                    Histology   </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 856aa4e05b68a784… HBM433.H… HuBMAP Proce… Raw                    Histology   </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> a86f65547dbb2528… HBM989.N… HuBMAP Proce… Raw                    MUSIC       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> bc88a7cec9952a4c… HBM436.Z… HuBMAP Proce… Raw                    MUSIC       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 80ec78509e49ec71… HBM644.W… HuBMAP Proce… Raw                    MUSIC       </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 8a7d2e1f06f01754… HBM634.F… HuBMAP Proce… Raw                    MUSIC       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 80ec78509e49ec71… HBM644.W… HuBMAP Proce… Raw                    MUSIC       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> bc88a7cec9952a4c… HBM436.Z… HuBMAP Proce… Raw                    MUSIC       </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 2,879 more rows</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​dataset_processing_category</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 8 more variables: donor.hubmap_id &lt;chr&gt;, group_name &lt;chr&gt;,</span></span></span>
@@ -169,8 +169,8 @@ corresponding functions to explore entity data.</p>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 509d2f22c9e9c33e… HBM944.X… HBM279.WPZP.978 Stanford … 2024-07-19            </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 1367446a254479d8… HBM668.F… HBM279.WPZP.978 Stanford … 2024-07-19            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 6f700af74a252c99… HBM363.L… HBM279.WPZP.978 Stanford … 2024-07-19            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 6874561561f77469… HBM435.T… HBM279.WPZP.978 Stanford … 2024-07-19            </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 6874561561f77469… HBM435.T… HBM279.WPZP.978 Stanford … 2024-07-19            </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 6f700af74a252c99… HBM363.L… HBM279.WPZP.978 Stanford … 2024-07-19            </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> f0905232556b1608… HBM396.V… HBM279.WPZP.978 Stanford … 2024-07-19            </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 1cfe67afe97094ac… HBM355.M… HBM279.WPZP.978 Stanford … 2024-07-19            </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 23820292ab47f319… HBM236.X… HBM279.WPZP.978 Stanford … 2024-07-19            </span></span>
@@ -244,16 +244,27 @@ corresponding functions to explore entity data.</p>
 reflects selected information. To see the names of selected information,
 use following commands for each entity category. Specify <code>as</code>
 parameter to display information in the format of
-<code>"character"</code> or <code>"tibble"</code>. It will be convenient
-to view tables with multiple columns but one row using
-<code><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse()</a></code>.</p>
+<code>"character"</code> or <code>"tibble"</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># as = "tibble" (default)</span></span>
 <span><span class="va">datasets_col_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/datasets.html">datasets_default_columns</a></span><span class="op">(</span>as <span class="op">=</span> <span class="st">"tibble"</span><span class="op">)</span></span>
-<span><span class="va">datasets_col_tbl</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 13</span></span>
-<span><span class="co">#&gt; Columns: 1</span></span>
-<span><span class="co">#&gt; $ columns <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "uuid", "hubmap_id", "group_name", "data_types", "dataset_type…</span></span>
+<span><span class="va">datasets_col_tbl</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 13 × 1</span></span></span>
+<span><span class="co">#&gt;    columns                    </span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> uuid                       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> hubmap_id                  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> group_name                 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> data_types                 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> dataset_type               </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> organ                      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> analyte_class              </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> dataset_processing_category</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> sample_category            </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> registered_by              </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> status                     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> last_modified_timestamp    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> donor.hubmap_id</span></span>
 <span></span>
 <span><span class="co"># as = "character"</span></span>
 <span><span class="va">datasets_col_char</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/datasets.html">datasets_default_columns</a></span><span class="op">(</span>as <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span></span>
@@ -401,27 +412,55 @@ retrieved tibbles from <code><a href="../reference/samples.html">samples()</a></
 <p>You can use <code>*_detail(uuid)</code> to retrieve all available
 information for any entry of any entity category given
 <strong>UUID</strong>. Use <code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select()</a></code> and
-<code>unnest_*()</code> functions to expand list-columns.</p>
+<code>unnest_*()</code> functions to expand list-columns. It will be
+convenient to view tables with multiple columns but one row using
+<code><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse()</a></code>.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dataset_uuid</span> <span class="op">&lt;-</span> <span class="va">datasets</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">dataset_type</span> <span class="op">==</span> <span class="st">"Auto-fluorescence"</span>,</span>
 <span>            <span class="va">organ</span> <span class="op">==</span> <span class="st">"Kidney (Right)"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span> </span>
 <span></span>
 <span><span class="co"># Full Information</span></span>
-<span><span class="fu"><a href="../reference/datasets.html">dataset_detail</a></span><span class="op">(</span><span class="va">dataset_uuid</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 35</span></span></span>
-<span><span class="co">#&gt;   ancestor_ids ancestors  contacts   contains_human_genetic_seque…¹ contributors</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>                          <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">&lt;chr [4]&gt;</span>    <span style="color: #949494;">&lt;list [4]&gt;</span> <span style="color: #949494;">&lt;list [1]&gt;</span> FALSE                          <span style="color: #949494;">&lt;list [16]&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​contains_human_genetic_sequences</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 30 more variables: created_by_user_displayname &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   created_by_user_email &lt;chr&gt;, created_timestamp &lt;dbl&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   creation_action &lt;chr&gt;, data_access_level &lt;chr&gt;, dataset_type &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   descendant_ids &lt;list&gt;, descendants &lt;list&gt;, description &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   display_subtype &lt;chr&gt;, doi_url &lt;chr&gt;, donor &lt;list&gt;, entity_type &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   files &lt;list&gt;, group_name &lt;chr&gt;, group_uuid &lt;chr&gt;, hubmap_id &lt;chr&gt;, …</span></span></span>
+<span><span class="fu"><a href="../reference/datasets.html">dataset_detail</a></span><span class="op">(</span><span class="va">dataset_uuid</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 1</span></span>
+<span><span class="co">#&gt; Columns: 35</span></span>
+<span><span class="co">#&gt; $ ancestor_ids                     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> &lt;"b64883fc7c11d070b5e5222c656eaae7",…</span></span>
+<span><span class="co">#&gt; $ ancestors                        <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [["Jamie Allen", "jamie.l.allen@vand…</span></span>
+<span><span class="co">#&gt; $ contacts                         <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [["Biomolecular Multimodal Imaging C…</span></span>
+<span><span class="co">#&gt; $ contains_human_genetic_sequences <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> FALSE</span></span>
+<span><span class="co">#&gt; $ contributors                     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [["Biomolecular Multimodal Imaging Ce…</span></span>
+<span><span class="co">#&gt; $ created_by_user_displayname      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "HuBMAP Process"</span></span>
+<span><span class="co">#&gt; $ created_by_user_email            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "hubmap@hubmapconsortium.org"</span></span>
+<span><span class="co">#&gt; $ created_timestamp                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.711126e+12</span></span>
+<span><span class="co">#&gt; $ creation_action                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Create Dataset Activity"</span></span>
+<span><span class="co">#&gt; $ data_access_level                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "public"</span></span>
+<span><span class="co">#&gt; $ dataset_type                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Auto-fluorescence"</span></span>
+<span><span class="co">#&gt; $ descendant_ids                   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "5cb9ec3acfe11753b9a2899fe87ee0e4"</span></span>
+<span><span class="co">#&gt; $ descendants                      <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [[FALSE, "HuBMAP Process", "hubmap@h…</span></span>
+<span><span class="co">#&gt; $ description                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Autofluorescence Microscopy collecte…</span></span>
+<span><span class="co">#&gt; $ display_subtype                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Auto-fluorescence"</span></span>
+<span><span class="co">#&gt; $ doi_url                          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://doi.org/10.35079/HBM793.WWZC…</span></span>
+<span><span class="co">#&gt; $ donor                            <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> ["Jamie Allen", "jamie.l.allen@vander…</span></span>
+<span><span class="co">#&gt; $ entity_type                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Dataset"</span></span>
+<span><span class="co">#&gt; $ files                            <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> []</span></span>
+<span><span class="co">#&gt; $ group_name                       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Vanderbilt TMC"</span></span>
+<span><span class="co">#&gt; $ group_uuid                       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "73bb26e4-ed43-11e8-8f19-0a7c1eab007a"</span></span>
+<span><span class="co">#&gt; $ hubmap_id                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "HBM793.WWZC.833"</span></span>
+<span><span class="co">#&gt; $ immediate_ancestors              <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [["Jamie Allen", "jamie.l.allen@vande…</span></span>
+<span><span class="co">#&gt; $ immediate_descendants            <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [[FALSE, "HuBMAP Process", "hubmap@hu…</span></span>
+<span><span class="co">#&gt; $ index_version                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "3.4.4"</span></span>
+<span><span class="co">#&gt; $ last_modified_timestamp          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.71691e+12</span></span>
+<span><span class="co">#&gt; $ metadata                         <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [[["a9099c6", "https://github.com/hub…</span></span>
+<span><span class="co">#&gt; $ origin_samples                   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [["Jamie Allen", "jamie.l.allen@vand…</span></span>
+<span><span class="co">#&gt; $ provider_info                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "VAN0042-RK-3 block AF : ./VAN0042-R…</span></span>
+<span><span class="co">#&gt; $ published_timestamp              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.715267e+12</span></span>
+<span><span class="co">#&gt; $ registered_doi                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "10.35079/HBM793.WWZC.833"</span></span>
+<span><span class="co">#&gt; $ source_samples                   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [["Jamie Allen", "jamie.l.allen@vande…</span></span>
+<span><span class="co">#&gt; $ status                           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Published"</span></span>
+<span><span class="co">#&gt; $ title                            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Auto-fluorescence data from the kidn…</span></span>
+<span><span class="co">#&gt; $ uuid                             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2e7123dcf2e9092a42ac42e44c2d686b"</span></span>
 <span></span>
 <span><span class="co"># Specific Information</span></span>
 <span><span class="fu"><a href="../reference/datasets.html">dataset_detail</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">dataset_uuid</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -464,34 +503,21 @@ support dataset; otherwise, nothing returns.</p>
 <code class="sourceCode R"><span><span class="co"># no derived/support dataset</span></span>
 <span><span class="va">dataset_uuid_1</span> <span class="op">&lt;-</span> <span class="st">"3acdb3ed962b2087fbe325514b098101"</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/datasets.html">dataset_detail</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">dataset_uuid_1</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 39</span></span></span>
-<span><span class="co">#&gt;   ancestor_ids ancestors  contacts   contains_human_genetic_seque…¹ contributors</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>                          <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">&lt;chr [4]&gt;</span>    <span style="color: #949494;">&lt;list [4]&gt;</span> <span style="color: #949494;">&lt;list [1]&gt;</span> TRUE                           <span style="color: #949494;">&lt;list [1]&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​contains_human_genetic_sequences</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 34 more variables: created_by_user_displayname &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   created_by_user_email &lt;chr&gt;, created_timestamp &lt;dbl&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   creation_action &lt;chr&gt;, data_access_level &lt;chr&gt;, data_types &lt;list&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   dataset_info &lt;chr&gt;, dataset_type &lt;chr&gt;, dbgap_sra_experiment_url &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   dbgap_study_url &lt;chr&gt;, descendant_ids &lt;list&gt;, descendants &lt;list&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   description &lt;chr&gt;, display_subtype &lt;chr&gt;, doi_url &lt;chr&gt;, donor &lt;list&gt;, …</span></span></span>
+<span><span class="fu"><a href="../reference/datasets.html">dataset_derived</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">dataset_uuid_1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; NULL</span></span>
 <span></span>
 <span><span class="co"># has derived/support dataset</span></span>
 <span><span class="va">dataset_uuid_2</span> <span class="op">&lt;-</span> <span class="st">"baf976734dd652208d13134bc5c4594b"</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/datasets.html">dataset_detail</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">dataset_uuid_2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 35</span></span></span>
-<span><span class="co">#&gt;   ancestor_ids ancestors  contacts   contains_human_genetic_seque…¹ contributors</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>                          <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">&lt;chr [4]&gt;</span>    <span style="color: #949494;">&lt;list [4]&gt;</span> <span style="color: #949494;">&lt;list [3]&gt;</span> FALSE                          <span style="color: #949494;">&lt;list [5]&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​contains_human_genetic_sequences</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 30 more variables: created_by_user_displayname &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   created_by_user_email &lt;chr&gt;, created_timestamp &lt;dbl&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   creation_action &lt;chr&gt;, data_access_level &lt;chr&gt;, dataset_type &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   descendant_ids &lt;list&gt;, descendants &lt;list&gt;, description &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   display_subtype &lt;chr&gt;, doi_url &lt;chr&gt;, donor &lt;list&gt;, entity_type &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   files &lt;list&gt;, group_name &lt;chr&gt;, group_uuid &lt;chr&gt;, hubmap_id &lt;chr&gt;, …</span></span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/datasets.html">dataset_derived</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">dataset_uuid_2</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 1</span></span>
+<span><span class="co">#&gt; Columns: 6</span></span>
+<span><span class="co">#&gt; $ uuid                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "bbbf5a5b29986dd57910daab00193f35"</span></span>
+<span><span class="co">#&gt; $ hubmap_id               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "HBM664.NZBB.674"</span></span>
+<span><span class="co">#&gt; $ data_types              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> ""</span></span>
+<span><span class="co">#&gt; $ dataset_type            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Histology [Image Pyramid]"</span></span>
+<span><span class="co">#&gt; $ status                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Published"</span></span>
+<span><span class="co">#&gt; $ last_modified_timestamp <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2024-08-08"</span></span></code></pre></div>
 <p><strong>Sample</strong> and <strong>Donor</strong> have derived
 samples and datasets. In <code>HuBAMPR</code> package,
 <code><a href="../reference/samples.html">sample_derived()</a></code> and <code><a href="../reference/donors.html">donor_derived()</a></code> functions
@@ -511,7 +537,7 @@ sample given sample UUID or one donor given donor UUID. Specify
 <span><span class="co">#&gt; [1] "c40774aa2f52a2811db15c5ca1949314"</span></span>
 <span></span>
 <span><span class="co"># Derived Datasets</span></span>
-<span><span class="fu"><a href="../reference/samples.html">sample_derived</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">sample_uuid</span>, entity_type <span class="op">=</span> <span class="st">"Dataset"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/samples.html">sample_derived</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">sample_uuid</span>, entity_type <span class="op">=</span> <span class="st">"Dataset"</span><span class="op">)</span> </span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 12 × 7</span></span></span>
 <span><span class="co">#&gt;    uuid          hubmap_id data_types dataset_type status last_modified_timest…¹</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 </span></span>

@@ -97,13 +97,12 @@ publications
 The default tibble produced by corresponding entity function only reflects
 selected information. To see the names of selected information, use following
 commands for each entity category. Specify `as` parameter to display
-information in the format of `"character"` or `"tibble"`. It will be convenient
-to view tables with multiple columns but one row using `glimpse()`.
+information in the format of `"character"` or `"tibble"`. 
 
 ```{r 'cols'}
 # as = "tibble" (default)
 datasets_col_tbl <- datasets_default_columns(as = "tibble")
-datasets_col_tbl |> glimpse()
+datasets_col_tbl
 
 # as = "character"
 datasets_col_char <- datasets_default_columns(as = "character")
@@ -188,17 +187,18 @@ donor_sub_sample
 
 You can use `*_detail(uuid)` to retrieve all available information for any
 entry of any entity category given **UUID**. 
-Use `select()` and `unnest_*()` functions to expand list-columns.
+Use `select()` and `unnest_*()` functions to expand list-columns. It will be
+convenient to view tables with multiple columns but one row using `glimpse()`.
 
 ```{r '*_detail()'}
 dataset_uuid <- datasets |>
     filter(dataset_type == "Auto-fluorescence",
             organ == "Kidney (Right)") |>
     head(1) |>
-    pull(uuid)
+    pull(uuid) 
 
 # Full Information
-dataset_detail(dataset_uuid)
+dataset_detail(dataset_uuid) |> glimpse()
 
 # Specific Information
 dataset_detail(uuid = dataset_uuid) |>
@@ -221,12 +221,12 @@ returns.
 # no derived/support dataset
 dataset_uuid_1 <- "3acdb3ed962b2087fbe325514b098101"
 
-dataset_detail(uuid = dataset_uuid_1)
+dataset_derived(uuid = dataset_uuid_1)
 
 # has derived/support dataset
 dataset_uuid_2 <- "baf976734dd652208d13134bc5c4594b"
 
-dataset_detail(uuid = dataset_uuid_2)
+dataset_derived(uuid = dataset_uuid_2) |> glimpse()
 ```
 
 **Sample** and **Donor** have derived samples and datasets. In `HuBAMPR`
@@ -246,7 +246,7 @@ sample_uuid <- samples |>
 sample_uuid
 
 # Derived Datasets
-sample_derived(uuid = sample_uuid, entity_type = "Dataset")
+sample_derived(uuid = sample_uuid, entity_type = "Dataset") 
 
 # Derived Samples
 sample_derived(uuid = sample_uuid, entity_type = "Sample")
