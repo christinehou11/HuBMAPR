@@ -32,7 +32,6 @@ SEARCH <- "https://search.api.hubmapconsortium.org/v3/search"
 
 #' @importFrom rjsoncons j_query j_patch_apply
 #' @importFrom httr2 resp_body_string
-#' @importFrom glue glue
 .rnext_req_fun <- function(resp, req) {
     
     from <- j_query(req$body$data, "from", as = "R")
@@ -42,17 +41,27 @@ SEARCH <- "https://search.api.hubmapconsortium.org/v3/search"
     from <- from + n_results
     if (from >= n_total)
         return(NULL)
-    patch <- glue('[
-            {{"op": "replace", "path": "/from", "value": {from}}}
-        ]')
+
+    patch <- json_template("query_patch", from = from)
     req$body$data <- j_patch_apply(req$body$data, patch)
     req
     
 }
 
-#' @importFrom httr2 request req_headers req_body_raw
-#'              resp_body_string req_cache req_perform_iterative
+#' @importFrom httr2 resp_body_string
 #' @importFrom rjsoncons j_pivot
+.query_response_as_tibble <-
+    function(resp) {
+
+    resp |>
+        resp_body_string() |>
+        j_pivot("hits.hits[].fields", as = "tibble")
+
+    }
+
+#' @importFrom httr2 request req_headers req_body_raw req_cache
+#'              req_perform_iterative
+#' @importFrom dplyr bind_rows
 .query_entity <-
     function(entity = c("Dataset","Sample","Donor","Publication","Collection")){
     
@@ -69,33 +78,11 @@ SEARCH <- "https://search.api.hubmapconsortium.org/v3/search"
         req_headers(Accept = "application/json") |>
         req_body_raw(query_string)
     
-    resp <- req |>
-        req_perform() |>
-        resp_body_string()
-    
-    n_results <- j_query(resp, "length(hits.hits)", as = "R")
-    tbl <- tibble()
-    
-    if (n_results > 10000L) {
-        
-        resps <- req_perform_iterative(req, .rnext_req_fun)
-        n_resps <- length(resps)
-        
-        for (i in seq_along(resps)) {
-            
-            resp <- resps[[i]] |>
-                resp_body_string() |>
-                j_pivot("hits.hits[].fields", as = "tibble")
-            
-            tbl <- rbind(tbl, resp)
-        }
-    }
-    
-    tbl <- resp |>
-        j_pivot("hits.hits[].fields", as = "tibble")
-    
-    tbl
-    
+    resps <- req_perform_iterative(req, .rnext_req_fun, progress = FALSE)
+    data <- lapply(resps, .query_response_as_tibble)
+
+    bind_rows(data)
+
     }
 
 #' @importFrom httr2 request req_headers req_body_raw req_perform 
