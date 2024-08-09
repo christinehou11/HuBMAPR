@@ -70,7 +70,7 @@ returns the derived dataset or/and sample details.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">samples</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">10000L</span>, from <span class="op">=</span> <span class="fl">0L</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">samples</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">samples_default_columns</span><span class="op">(</span>as <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tibble"</span>, <span class="st">"character"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -83,16 +83,7 @@ returns the derived dataset or/and sample details.</p>
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
 
 
-<dl><dt id="arg-size">size<a class="anchor" aria-label="anchor" href="#arg-size"></a></dt>
-<dd><p>integer(1) number of maximum results to return;
-The default (10000) is meant to be large enough to return all results.</p></dd>
-
-
-<dt id="arg-from">from<a class="anchor" aria-label="anchor" href="#arg-from"></a></dt>
-<dd><p>integer(1) number of number of results to skip, defaulting to 0.</p></dd>
-
-
-<dt id="arg-as">as<a class="anchor" aria-label="anchor" href="#arg-as"></a></dt>
+<dl><dt id="arg-as">as<a class="anchor" aria-label="anchor" href="#arg-as"></a></dt>
 <dd><p>character(1) return format. One of <code>"tibble"</code> (default),
 or <code>"character"</code>.</p></dd>
 
@@ -128,30 +119,21 @@ webpage, https://software.docs.hubmapconsortium.org/apis</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">samples</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">20</span>, from <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 20 × 7</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">samples</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,927 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    uuid              hubmap_id donor.hubmap_id group_name last_modified_timest…¹</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 1cfe67afe97094ac… HBM355.M… HBM279.WPZP.978 Stanford … 2024-07-19            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 23820292ab47f319… HBM236.X… HBM279.WPZP.978 Stanford … 2024-07-19            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 038e4fcefc00f7ec… HBM595.S… HBM279.WPZP.978 Stanford … 2024-07-19            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> e3b74d607c3b20c9… HBM876.S… HBM477.DBJN.952 Universit… 2024-05-29            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> e4ffe5a1de1e63b3… HBM867.F… HBM568.HLJW.252 Universit… 2024-05-29            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 744f20be06ec72b7… HBM796.X… HBM375.PJSC.682 Universit… 2024-05-29            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 681f7f1d0a87427c… HBM788.K… HBM984.MHHN.738 Universit… 2024-05-29            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> a6acb120173be820… HBM786.T… HBM662.VVHK.499 Universit… 2024-05-29            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 0ec930e0f4a8fcf1… HBM752.D… HBM994.SGLP.263 Universit… 2024-05-29            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> acb712bf26d8fe7d… HBM748.G… HBM735.QDFT.264 Universit… 2024-05-29            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> c18dbe465fe2dfdd… HBM735.Q… HBM894.PKMC.242 Universit… 2024-05-29            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> 5abbecf8d13b9df7… HBM562.L… HBM256.BRQS.425 Universit… 2024-05-29            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> 8d7ce3aab7013e41… HBM556.C… HBM867.BLQJ.787 Universit… 2024-05-29            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> c4200fa2bd88eca8… HBM486.Q… HBM984.MHHN.738 Universit… 2024-05-29            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> c15e6342d6905d6d… HBM548.T… HBM579.CTRK.363 Universit… 2024-05-29            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> d9e64e77d26d9fb8… HBM455.P… HBM377.WFTZ.879 Universit… 2024-05-29            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span> 2e398e91f1336b67… HBM387.K… HBM386.FNTC.294 Universit… 2024-05-29            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">18</span> 8cfd588e5bc4a31e… HBM865.P… HBM892.LCXT.493 General E… 2024-05-29            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">19</span> f187ff9a4631540a… HBM297.V… HBM372.JZTV.423 General E… 2024-05-29            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">20</span> c6f7a9e8189e2111… HBM393.S… HBM593.NGPZ.869 TTD - Uni… 2024-05-14            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 509d2f22c9e9c33e… HBM944.X… HBM279.WPZP.978 Stanford … 2024-07-19            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 1367446a254479d8… HBM668.F… HBM279.WPZP.978 Stanford … 2024-07-19            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 6f700af74a252c99… HBM363.L… HBM279.WPZP.978 Stanford … 2024-07-19            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 6874561561f77469… HBM435.T… HBM279.WPZP.978 Stanford … 2024-07-19            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> f0905232556b1608… HBM396.V… HBM279.WPZP.978 Stanford … 2024-07-19            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 1cfe67afe97094ac… HBM355.M… HBM279.WPZP.978 Stanford … 2024-07-19            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 23820292ab47f319… HBM236.X… HBM279.WPZP.978 Stanford … 2024-07-19            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 038e4fcefc00f7ec… HBM595.S… HBM279.WPZP.978 Stanford … 2024-07-19            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> e3b74d607c3b20c9… HBM876.S… HBM477.DBJN.952 Universit… 2024-05-29            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 744f20be06ec72b7… HBM796.X… HBM375.PJSC.682 Universit… 2024-05-29            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1,917 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​last_modified_timestamp</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: sample_category &lt;chr&gt;, organ &lt;chr&gt;</span></span>
 <span class="r-in"><span><span class="fu">samples_default_columns</span><span class="op">(</span><span class="op">)</span></span></span>

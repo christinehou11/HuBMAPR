@@ -76,7 +76,7 @@ returns authors information of one specified collection as a tibble</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">publications</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">10000L</span>, from <span class="op">=</span> <span class="fl">0L</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">publications</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">publications_default_columns</span><span class="op">(</span>as <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tibble"</span>, <span class="st">"character"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -89,16 +89,7 @@ returns authors information of one specified collection as a tibble</p>
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
 
 
-<dl><dt id="arg-size">size<a class="anchor" aria-label="anchor" href="#arg-size"></a></dt>
-<dd><p>integer(1) number of maximum results to return;
-The default (10000) is meant to be large enough to return all results.</p></dd>
-
-
-<dt id="arg-from">from<a class="anchor" aria-label="anchor" href="#arg-from"></a></dt>
-<dd><p>integer(1) number of number of results to skip, defaulting to 0.</p></dd>
-
-
-<dt id="arg-as">as<a class="anchor" aria-label="anchor" href="#arg-as"></a></dt>
+<dl><dt id="arg-as">as<a class="anchor" aria-label="anchor" href="#arg-as"></a></dt>
 <dd><p>character(1) return format. One of <code>"tibble"</code> (default),
 or <code>"character"</code>.</p></dd>
 
@@ -134,13 +125,19 @@ webpage, https://software.docs.hubmapconsortium.org/apis</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">publications</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">3</span>, from <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 7</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">publications</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 9 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   uuid      hubmap_id last_modified_timest…¹ publication_date publication_status</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 2ced91fd… HBM885.X… 2023-07-18             2021-10-18       FALSE             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> e8338966… HBM695.W… 2023-07-18             2023-07-19       TRUE              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> dd0e7aea… HBM599.D… 2023-07-18             2023-07-19       TRUE              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 77ab3588… HBM222.S… 2023-07-18             2023-07-20       TRUE              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> aea510e3… HBM332.M… 2023-07-18             2022-10-24       TRUE              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> 2ced91fd… HBM885.X… 2023-07-18             2021-10-18       FALSE             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> e8338966… HBM695.W… 2023-07-18             2023-07-19       TRUE              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> dd0e7aea… HBM599.D… 2023-07-18             2023-07-19       TRUE              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> 3c727366… HBM629.D… 2023-07-18             2023-07-19       TRUE              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> 0de8528c… HBM473.R… 2023-07-18             2023-07-19       TRUE              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> eb975811… HBM464.W… 2023-07-18             2023-07-19       TRUE              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">9</span> 72cbeb8f… HBM222.Z… 2023-07-18             2023-07-19       TRUE              </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​last_modified_timestamp</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: publication_venue &lt;chr&gt;, title &lt;chr&gt;</span></span>
 <span class="r-in"><span><span class="fu">publications_default_columns</span><span class="op">(</span><span class="op">)</span></span></span>
