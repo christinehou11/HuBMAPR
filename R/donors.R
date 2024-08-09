@@ -7,27 +7,17 @@
 #' @description `donors()` returns details about available samples, ordered by
 #' last modified dates
 #'
-#' @param size integer(1) number of maximum results to return; 
-#' The default (10000) is meant to be large enough to return all results.
-#'     
-#' @param from integer(1) number of number of results to skip, defaulting to 0.
-#' 
 #' @details Additional details are provided on the HuBMAP consortium
 #'     webpage, https://software.docs.hubmapconsortium.org/apis
 #'
 #' @export
 #'
 #' @examples
-#' donors(size = 4)
+#' donors()
 donors <-
-    function(size = 10000L, from = 0L)
+    function() {
     
-    {
-    
-    remaining <- size
-    query_size <- min(10000L, remaining) # max = 10000 at a time
-    
-    tbl <- .query_entity("Donor", query_size, from)
+    tbl <- .query_entity("Donor")
     
     .donor_edit(tbl)
 

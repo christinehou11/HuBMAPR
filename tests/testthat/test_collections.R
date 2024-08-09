@@ -1,5 +1,5 @@
 test_that("'collections()' works with small size and default arguments", {
-  test_collections <- collections(size = 3, from = 3)
+  test_collections <- collections()
   expect_true(tibble::is_tibble(test_collections))
   expect_true(nrow(test_collections) > 0L)
   expect_true(all(names(test_collections) %in% collections_default_columns("character")))

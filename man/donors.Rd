@@ -7,7 +7,7 @@
 \alias{donor_derived}
 \title{HuBMAP Donors}
 \usage{
-donors(size = 10000L, from = 0L)
+donors()
 
 donors_default_columns(as = c("tibble", "character"))
 
@@ -16,11 +16,6 @@ donor_detail(uuid)
 donor_derived(uuid, entity_type = c("Dataset", "Sample"))
 }
 \arguments{
-\item{size}{integer(1) number of maximum results to return;
-The default (10000) is meant to be large enough to return all results.}
-
-\item{from}{integer(1) number of number of results to skip, defaulting to 0.}
-
 \item{as}{character(1) return format. One of \code{"tibble"} (default),
 or \code{"character"}.}
 
@@ -64,7 +59,7 @@ Additional details are provided on the HuBMAP consortium
 webpage, https://software.docs.hubmapconsortium.org/apis
 }
 \examples{
-donors(size = 4)
+donors()
 donors_default_columns()
 
 uuid <- "1dcde05aea3509b2cf89a41ceb3d700f"

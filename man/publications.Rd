@@ -7,7 +7,7 @@
 \alias{publication_authors}
 \title{HuBMAP Samples}
 \usage{
-publications(size = 10000L, from = 0L)
+publications()
 
 publications_default_columns(as = c("tibble", "character"))
 
@@ -16,11 +16,6 @@ publication_data(uuid, entity_type = c("Dataset", "Sample", "Donor"))
 publication_authors(uuid)
 }
 \arguments{
-\item{size}{integer(1) number of maximum results to return;
-The default (10000) is meant to be large enough to return all results.}
-
-\item{from}{integer(1) number of number of results to skip, defaulting to 0.}
-
 \item{as}{character(1) return format. One of \code{"tibble"} (default),
 or \code{"character"}.}
 
@@ -66,7 +61,7 @@ Additional details are provided on the HuBMAP consortium
 webpage, https://software.docs.hubmapconsortium.org/apis
 }
 \examples{
-publications(size = 3, from = 2)
+publications()
 publications_default_columns()
 
 uuid <- "3c7273660cdf9ab91a7901533b2cd9a5"

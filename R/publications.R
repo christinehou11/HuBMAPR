@@ -9,10 +9,6 @@
 #' `publication_status == TRUE`: peer reviewed publication; 
 #' `publication_status == FALSE`: pre-print publication.
 #' 
-#' @param size integer(1) number of maximum results to return; 
-#' The default (10000) is meant to be large enough to return all results.
-#'     
-#' @param from integer(1) number of number of results to skip, defaulting to 0.
 #'     
 #' @details Additional details are provided on the HuBMAP consortium
 #'     webpage, https://software.docs.hubmapconsortium.org/apis
@@ -20,16 +16,11 @@
 #' @export
 #'
 #' @examples
-#' publications(size = 3, from = 2)
+#' publications()
 publications <-
-    function(size = 10000L, from = 0L) {
+    function() {
     
-    fields <- publications_default_columns(as = "character")
-    
-    remaining <- size
-    query_size <- min(10000L, remaining) # max = 10000 at a time
-    
-    tbl <-.query_entity("Publication", query_size, from)
+    tbl <-.query_entity("Publication")
     
     .unnest_mutate_relocate(tbl)
     

@@ -6,11 +6,6 @@
 #' 
 #' @description `datasets` returns the details available datasets, ordered by
 #' last modified dates
-#'
-#' @param size integer(1) number of maximum results to return; 
-#' The default (10000) is meant to be large enough to return all results.
-#'     
-#' @param from integer(1) number of number of results to skip, defaulting to 0.
 #'     
 #' @details Additional details are provided on the HuBMAP consortium
 #'     webpage, https://software.docs.hubmapconsortium.org/apis
@@ -18,17 +13,11 @@
 #' @export
 #'
 #' @examples
-#' datasets(size = 100, from = 200)
+#' datasets()
 datasets <-
-    function(size = 10000L, from = 0L)
-    {
+    function() {
     
-    stopifnot( .is_size(size))
-    
-    remaining <- size
-    query_size <- min(10000L, remaining) # max = 10000 at a time
-    
-    tbl <-  .query_entity("Dataset", query_size, from)
+    tbl <-  .query_entity("Dataset")
     
     .dataset_edit(tbl)
     
@@ -59,8 +48,7 @@ datasets <-
 #'
 #' @export
 datasets_default_columns <-
-    function(as = c( "tibble", "character"))
-    {
+    function(as = c( "tibble", "character")) {
     
     .default_columns("Dataset", as)
     
@@ -82,8 +70,7 @@ datasets_default_columns <-
 #' uuid <- "7754aa5ebde628b5e92705e33e74a4ef"
 #' dataset_detail(uuid)
 dataset_detail <-
-    function (uuid)
-    {
+    function (uuid) {
     
     stopifnot( .is_uuid(uuid))
     

@@ -1,5 +1,5 @@
 test_that("'.query_entity()' works", {
-  test <- .query_entity("Dataset", size = 10, from = 2)
+  test <- .query_entity("Dataset")
   expect_true(tibble::is_tibble(test))
 })
 

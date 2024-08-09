@@ -84,7 +84,7 @@ returns the derived dataset or/and sample details.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">donors</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">10000L</span>, from <span class="op">=</span> <span class="fl">0L</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">donors</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">donors_default_columns</span><span class="op">(</span>as <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tibble"</span>, <span class="st">"character"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -95,16 +95,7 @@ returns the derived dataset or/and sample details.</p>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>size</dt>
-<dd><p>integer(1) number of maximum results to return;
-The default (10000) is meant to be large enough to return all results.</p></dd>
-
-
-<dt>from</dt>
-<dd><p>integer(1) number of number of results to skip, defaulting to 0.</p></dd>
-
-
-<dt>as</dt>
+    <dl><dt>as</dt>
 <dd><p>character(1) return format. One of <code>"tibble"</code> (default),
 or <code>"character"</code>.</p></dd>
 
@@ -144,15 +135,22 @@ webpage, https://software.docs.hubmapconsortium.org/apis</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">donors</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 7</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   uuid             hubmap_id group_name Sex   Age   Race  last_modified_timest…¹</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> c09f875545a6469… HBM534.P… TTD - Uni… Fema… 90    White 2024-04-03            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 0abacde24438813… HBM358.K… TTD - Uni… Male  90    White 2024-04-03            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> d7c90f1fe1ae702… HBM639.M… TTD - Uni… Fema… 59    White 2024-04-03            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> b1acd1731563347… HBM674.F… TTD - Uni… Fema… 60    White 2024-04-03            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​last_modified_timestamp</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">donors</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 228 × 8</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    uuid                 hubmap_id group_name Sex   Age   `Body Mass Index` Race </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> c09f875545a64694d70… HBM534.P… TTD - Uni… Fema… 90    NA                White</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 0abacde2443881351ff… HBM358.K… TTD - Uni… Male  90    NA                White</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> d7c90f1fe1ae702df84… HBM639.M… TTD - Uni… Fema… 59    NA                White</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> b1acd1731563347de3a… HBM674.F… TTD - Uni… Fema… 60    NA                White</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 24e6946400b65468a96… HBM379.B… TTD - Uni… Male  79    NA                White</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> c9c39035edc9de812f6… HBM543.J… TTD - Uni… Male  71    NA                White</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> f079501ef0915131c8b… HBM448.V… TTD - Uni… Fema… 82    NA                White</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> a0bea4ae0ce4e03efd0… HBM666.X… TTD - Uni… Fema… 82    NA                White</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 03b6236566cfd447214… HBM263.S… TTD - Uni… Fema… 75    NA                White</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 5cc62ac9233e8c5d6c4… HBM993.R… TTD - Uni… Fema… 75    NA                White</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 218 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: last_modified_timestamp &lt;chr&gt;</span></span>
 <span class="r-in"><span><span class="fu">donors_default_columns</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 8 × 1</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   columns                </span>

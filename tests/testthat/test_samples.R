@@ -1,5 +1,5 @@
-test_that("'samples()' works with small size and default arguments", {
-  test_samples <- samples(size = 4)
+test_that("'samples()' works", {
+  test_samples <- samples()
   expect_true(tibble::is_tibble(test_samples))
   expect_true(nrow(test_samples) > 0L)
   expect_true(all(names(test_samples) %in% samples_default_columns("character")))

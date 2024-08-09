@@ -75,24 +75,14 @@ library(HuBMAPR)
 
 `HuBMAP` data portal page displays five categories of entity data, which are
 **Dataset, Sample, Donor, Publication, and Collection**, chronologically (last
-modified date time). You can choose to explore arbitrary size of data starting
-from random location. By default, you can only page through less than 10000
-data at one time using `from` and `size` numeric parameters. To read next or
-more pages, change `from` to other values. Using corresponding functions to
-explore entity data.
+modified date time). Using corresponding functions to explore entity data.
 
 ```{r 'main functions'}
-# Retrieve the first 200 datasets
-datasets_sub <- datasets(size = 200, from = 0)
-datasets_sub
-
-# Retrieve 200 samples from the 30th sample arranged chronologically
-samples_sub <- samples(size = 200, from = 10)
-samples_sub
-
-# Retrieve full
 datasets <- datasets()
+datasets
+
 samples <- samples()
+samples
 
 donors <- donors()
 donors
@@ -107,12 +97,13 @@ publications
 The default tibble produced by corresponding entity function only reflects
 selected information. To see the names of selected information, use following
 commands for each entity category. Specify `as` parameter to display
-information in the format of `"character"` or `"tibble"`.
+information in the format of `"character"` or `"tibble"`. It will be convenient
+to view tables with multiple columns but one row using `glimpse()`.
 
 ```{r 'cols'}
 # as = "tibble" (default)
 datasets_col_tbl <- datasets_default_columns(as = "tibble")
-datasets_col_tbl
+datasets_col_tbl |> glimpse()
 
 # as = "character"
 datasets_col_char <- datasets_default_columns(as = "character")
@@ -169,7 +160,7 @@ donor_sub <- donors |>
     filter(Sex == "Female",
             Age <= 76 & Age >= 55,
             Race == "White",
-            BMI <= 25,
+            `Body Mass Index` <= 25,
             last_modified_timestamp >= "2020-01-08" &
             last_modified_timestamp <= "2020-06-30") |>
     head(1)

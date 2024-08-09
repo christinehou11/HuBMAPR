@@ -1,12 +1,12 @@
-test_that("'datasets()' works with small size and default arguments", {
-  test_datasets <- datasets(size = 20)
+test_that("'datasets()' works", {
+  test_datasets <- datasets()
   expect_true(tibble::is_tibble(test_datasets))
   expect_true(nrow(test_datasets) > 0L)
   expect_true(all(names(test_datasets) %in% datasets_default_columns("character")))
 })
 
 test_that("'dataset_detail()' works for specific dataset", {
-  test_uuid <- datasets(size = 100, from = 88) |>
+  test_uuid <- datasets() |>
     utils::head(1) |>
     dplyr::pull("uuid")
   test_dataset <- dataset_detail(test_uuid)

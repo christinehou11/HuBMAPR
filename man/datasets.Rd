@@ -7,7 +7,7 @@
 \alias{dataset_derived}
 \title{HuBMAP Datasets}
 \usage{
-datasets(size = 10000L, from = 0L)
+datasets()
 
 datasets_default_columns(as = c("tibble", "character"))
 
@@ -16,11 +16,6 @@ dataset_detail(uuid)
 dataset_derived(uuid)
 }
 \arguments{
-\item{size}{integer(1) number of maximum results to return;
-The default (10000) is meant to be large enough to return all results.}
-
-\item{from}{integer(1) number of number of results to skip, defaulting to 0.}
-
 \item{as}{character(1) return format. One of \code{"tibble"} (default),
 or \code{"character"}.}
 
@@ -60,7 +55,7 @@ Additional details are provided on the HuBMAP consortium
 webpage, https://software.docs.hubmapconsortium.org/apis
 }
 \examples{
-datasets(size = 100, from = 200)
+datasets()
 datasets_default_columns()
 
 uuid <- "7754aa5ebde628b5e92705e33e74a4ef"

@@ -30,41 +30,71 @@ SEARCH <- "https://search.api.hubmapconsortium.org/v3/search"
     )
 
 
-#' @importFrom httr2 request req_headers req_body_raw req_perform 
-#'              resp_body_string req_cache
-.query_resp <-
-    function(query_string) {
+#' @importFrom rjsoncons j_query j_patch_apply
+#' @importFrom httr2 resp_body_string
+#' @importFrom glue glue
+.rnext_req_fun <- function(resp, req) {
     
-    stopifnot(is.character(query_string))
+    from <- j_query(req$body$data, "from", as = "R")
+    body <- resp_body_string(resp)
+    n_results <- j_query(body, "length(hits.hits)", as = "R")
+    n_total <- j_query(body, "hits.total.value", as = "R")
+    from <- from + n_results
+    if (from >= n_total)
+        return(NULL)
+    patch <- glue('[
+            {{"op": "replace", "path": "/from", "value": {from}}}
+        ]')
+    req$body$data <- j_patch_apply(req$body$data, patch)
+    req
     
-    request(SEARCH) |>
-        req_cache(tempdir(), debug = TRUE) |> 
-        req_headers(Accept = "application/json") |>
-        req_body_raw(query_string) |>
-        req_perform() |>
-        resp_body_string() 
-    
-    }
+}
 
-
+#' @importFrom httr2 request req_headers req_body_raw
+#'              resp_body_string req_cache req_perform_iterative
 #' @importFrom rjsoncons j_pivot
 .query_entity <-
-    function(entity = c("Dataset","Sample","Donor","Publication","Collection"),
-            size = 10000L,
-            from = 0L) {
+    function(entity = c("Dataset","Sample","Donor","Publication","Collection")){
     
     entity <- match.arg(entity)
     fields <- paste0('"', paste(.FIELDS[[entity]], collapse = '", "'), '"')
     query_string <- json_template("query_entity",
-                                    size = size,
-                                    from = from,
+                                    size = 10000,
+                                    from = 0,
                                     entity = entity,
                                     fields = fields)
     
-    resp <- .query_resp(query_string)
+    req <- request(SEARCH) |>
+        req_cache(tempdir(), debug = TRUE) |> 
+        req_headers(Accept = "application/json") |>
+        req_body_raw(query_string)
     
-    resp |>
+    resp <- req |>
+        req_perform() |>
+        resp_body_string()
+    
+    n_results <- j_query(resp, "length(hits.hits)", as = "R")
+    tbl <- tibble()
+    
+    if (n_results > 10000L) {
+        
+        resps <- req_perform_iterative(req, .rnext_req_fun)
+        n_resps <- length(resps)
+        
+        for (i in seq_along(resps)) {
+            
+            resp <- resps[[i]] |>
+                resp_body_string() |>
+                j_pivot("hits.hits[].fields", as = "tibble")
+            
+            tbl <- rbind(tbl, resp)
+        }
+    }
+    
+    tbl <- resp |>
         j_pivot("hits.hits[].fields", as = "tibble")
+    
+    tbl
     
     }
 
@@ -76,7 +106,12 @@ SEARCH <- "https://search.api.hubmapconsortium.org/v3/search"
     
     query_string <- json_template("query_match", uuid = uuid)
     
-    resp <- .query_resp(query_string)
+    resp <- request(SEARCH) |>
+        req_cache(tempdir(), debug = TRUE) |> 
+        req_headers(Accept = "application/json") |>
+        req_body_raw(query_string) |>
+        req_perform() |>
+        resp_body_string() 
     
     resp |>
         j_pivot(option, as = "tibble")

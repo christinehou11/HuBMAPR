@@ -1,5 +1,5 @@
-test_that("'publications()' works with small size and default arguments", {
-  test_publications <- collections(size = 3)
+test_that("'publications()' works", {
+  test_publications <- collections()
   expect_true(tibble::is_tibble(test_publications))
   expect_true(nrow(test_publications) > 0L)
   expect_true(all(names(test_publications) %in% publications_default_columns("character")))

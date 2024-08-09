@@ -90,7 +90,7 @@ Globus Collection. See details to download in <code><a href="files.html">files_g
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">datasets</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">10000L</span>, from <span class="op">=</span> <span class="fl">0L</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">datasets</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">datasets_default_columns</span><span class="op">(</span>as <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tibble"</span>, <span class="st">"character"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -101,16 +101,7 @@ Globus Collection. See details to download in <code><a href="files.html">files_g
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>size</dt>
-<dd><p>integer(1) number of maximum results to return;
-The default (10000) is meant to be large enough to return all results.</p></dd>
-
-
-<dt>from</dt>
-<dd><p>integer(1) number of number of results to skip, defaulting to 0.</p></dd>
-
-
-<dt>as</dt>
+    <dl><dt>as</dt>
 <dd><p>character(1) return format. One of <code>"tibble"</code> (default),
 or <code>"character"</code>.</p></dd>
 
@@ -143,25 +134,25 @@ webpage, https://software.docs.hubmapconsortium.org/apis</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">datasets</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">100</span>, from <span class="op">=</span> <span class="fl">200</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 100 × 13</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    uuid   hubmap_id registered_by dataset_processing_c…¹ data_types dataset_type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 42cad… HBM564.H… HuBMAP Proce… HuBMAP Process         image_pyr… Auto-fluore…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 38aa8… HBM594.K… HuBMAP Proce… Raw                    AF         Auto-fluore…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 46354… HBM393.Z… HuBMAP Proce… HuBMAP Process         image_pyr… Auto-fluore…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> dbb00… HBM597.B… HuBMAP Proce… HuBMAP Process         image_pyr… Auto-fluore…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 9a892… HBM594.N… HuBMAP Proce… Raw                    AF         Auto-fluore…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> c639d… HBM686.P… HuBMAP Proce… HuBMAP Process         image_pyr… Auto-fluore…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 7a2b7… HBM893.W… HuBMAP Proce… HuBMAP Process         image_pyr… Auto-fluore…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> a9503… HBM999.D… HuBMAP Proce… HuBMAP Process         image_pyr… Auto-fluore…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 7860a… HBM697.H… HuBMAP Proce… HuBMAP Process         image_pyr… Auto-fluore…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> dbc5b… HBM892.D… HuBMAP Proce… HuBMAP Process         image_pyr… Auto-fluore…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 90 more rows</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">datasets</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2,889 × 13</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    uuid              hubmap_id registered_by dataset_processing_c…¹ dataset_type</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 3e4c568d9ce8df9d… HBM422.K… HuBMAP Proce… Raw                    MUSIC       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> db0d7736f53dcf9b… HBM762.L… HuBMAP Proce… HuBMAP Process         Histology […</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> baf976734dd65220… HBM468.M… HuBMAP Proce… Raw                    Histology   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> bbbf5a5b29986dd5… HBM664.N… HuBMAP Proce… HuBMAP Process         Histology […</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 57b475b8ad39fa2c… HBM579.L… HuBMAP Proce… Raw                    Histology   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 856aa4e05b68a784… HBM433.H… HuBMAP Proce… Raw                    Histology   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> a86f65547dbb2528… HBM989.N… HuBMAP Proce… Raw                    MUSIC       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> bc88a7cec9952a4c… HBM436.Z… HuBMAP Proce… Raw                    MUSIC       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 8a7d2e1f06f01754… HBM634.F… HuBMAP Proce… Raw                    MUSIC       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 80ec78509e49ec71… HBM644.W… HuBMAP Proce… Raw                    MUSIC       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2,879 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​dataset_processing_category</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 7 more variables: donor.hubmap_id &lt;chr&gt;, group_name &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   last_modified_timestamp &lt;chr&gt;, sample_category &lt;chr&gt;, status &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   analyte_class &lt;chr&gt;, organ &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 8 more variables: donor.hubmap_id &lt;chr&gt;, group_name &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   last_modified_timestamp &lt;chr&gt;, analyte_class &lt;chr&gt;, sample_category &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   status &lt;chr&gt;, data_types &lt;chr&gt;, organ &lt;chr&gt;</span></span>
 <span class="r-in"><span><span class="fu">datasets_default_columns</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 13 × 1</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    columns                    </span>

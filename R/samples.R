@@ -7,25 +7,17 @@
 #' @description `samples()` returns details about available samples, ordered by
 #' last modified dates
 #'
-#' @param size integer(1) number of maximum results to return; 
-#' The default (10000) is meant to be large enough to return all results. 
-#'     
-#' @param from integer(1) number of number of results to skip, defaulting to 0.
-#' 
 #' @details Additional details are provided on the HuBMAP consortium
 #'     webpage, https://software.docs.hubmapconsortium.org/apis
 #'
 #' @export
 #'
 #' @examples
-#' samples(size = 20, from = 5)
+#' samples()
 samples <-
-    function(size = 10000L, from = 0L) {
+    function() {
     
-    remaining <- size
-    query_size <- min(10000L, remaining) # max = 10000 at a time
-    
-    tbl <- .query_entity("Sample", query_size, from)
+    tbl <- .query_entity("Sample")
     
     .sample_edit(tbl)
     
@@ -56,8 +48,7 @@ samples <-
 #'
 #' @export
 samples_default_columns <-
-    function(as = c("tibble", "character"))
-    {
+    function(as = c("tibble", "character")) {
     
     .default_columns("Sample", as)
     

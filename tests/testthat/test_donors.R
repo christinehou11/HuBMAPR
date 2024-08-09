@@ -1,5 +1,5 @@
-test_that("'donors()' works with small size and default arguments", {
-  test_donors <- donors(size = 4)
+test_that("'donors()' works", {
+  test_donors <- donors()
   expect_true(tibble::is_tibble(test_donors))
   expect_true(nrow(test_donors) > 0L)
   expect_true(all(names(test_donors) %in% donors_default_columns("character")))

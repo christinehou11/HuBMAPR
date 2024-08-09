@@ -8,7 +8,7 @@
 \alias{collection_contributors}
 \title{HuBMAP Collections}
 \usage{
-collections(size = 10000L, from = 0L)
+collections()
 
 collections_default_columns(as = c("tibble", "character"))
 
@@ -19,11 +19,6 @@ collection_data(uuid)
 collection_contributors(uuid)
 }
 \arguments{
-\item{size}{integer(1) number of maximum results to return;
-The default (10000) is meant to be large enough to return all results.}
-
-\item{from}{integer(1) number of number of results to skip, defaulting to 0.}
-
 \item{as}{character(1) return format. One of \code{"tibble"} (default),
 or \code{"character"}.}
 
@@ -70,7 +65,7 @@ Additional details are provided on the HuBMAP consortium
 webpage, https://software.docs.hubmapconsortium.org/apis
 }
 \examples{
-collections(size = 4, from = 2)
+collections()
 collections_default_columns()
 
 uuid <- "381f65e58d5e2c1d16a9cef2cc203aab"

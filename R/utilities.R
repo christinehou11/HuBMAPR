@@ -113,7 +113,7 @@
 .donor_matadata_modify <- 
     function(tbl) {
     
-    tbl <- tbl |>
+    tbl |>
         mutate(data_value = ifelse(.data$data_type == "Numeric",
                                     .data$data_value, ""),
                 data_value = vapply(.data$data_value, .to_numeric, numeric(1)),
@@ -129,35 +129,15 @@
         select(any_of(c(.default_columns("Donor", "character"), 
                         "Body mass index"))) |>
         summarise(across(everything(), .concat_values), .groups = 'drop') |>
-        mutate(Age = as.numeric(.data$Age))
-    
-    if ("Body Mass Index" %in% names(tbl) && 
-        "Body mass index" %in% names(tbl)) {
-    
-        tbl <- tbl |> mutate(
-                `Body Mass Index` = as.numeric(tbl$`Body Mass Index`),
-                `Body mass index` = as.numeric(tbl$`Body mass index`),
-                BMI = case_when(
+        mutate(Age = as.numeric(.data$Age),
+                `Body Mass Index` = as.numeric(.data$`Body Mass Index`),
+                `Body mass index` = as.numeric(.data$`Body mass index`),
+                `Body Mass Index` = case_when(
                     !is.na(.data$`Body Mass Index`) ~ .data$`Body Mass Index`, 
                     is.na(.data$`Body Mass Index`) & 
                     is.na(.data$`Body mass index`) ~ NA_real_, 
                     TRUE ~ .data$`Body mass index`)) |>
-                select(-c('Body Mass Index', "Body mass index"))
-        
-    }
-    else if ("Body Mass Index" %in% names(tbl)) {
-        
-        tbl <- tbl |>
-                mutate(`Body Mass Index` = as.numeric(tbl$`Body Mass Index`))
-        
-    } else if ("Body mass index" %in% names(tbl)) {
-        
-        tbl <- tbl |>
-                mutate(`Body mass index` = as.numeric(tbl$`Body mass index`))
-        
-    }
-    
-    tbl
+                select(-"Body mass index")
     
     }
 
