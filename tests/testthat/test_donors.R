@@ -45,3 +45,12 @@ test_that("'donor_derived()' works", {
                 "derived_dataset_count" %in% names(test_sample))
   
 })
+
+test_that("'donor_metadata()' works", {
+  
+  test_uuid <- "d37df2cad4e80dc368763caefccf7140"
+  test_dataset <- donor_metadata(test_uuid)
+  expect_true(tibble::is_tibble(test_dataset))
+  expect_true(nrow(test_dataset) > 0L && 
+                all(c("Key", "Value") %in% names(test_dataset)))
+})

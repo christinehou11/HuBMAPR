@@ -2,7 +2,7 @@ ENTITY <- "https://entity.api.hubmapconsortium.org"
 
 #' @rdname files
 #' 
-#' @name files_globus_url
+#' @name bulk_data_transfer
 #' 
 #' @title HuBMAP File Querying
 #' 
@@ -10,8 +10,8 @@ ENTITY <- "https://entity.api.hubmapconsortium.org"
 #' @importFrom rlang has_name
 #' @importFrom utils browseURL
 #'
-#' @description `files_globus_url()` takes a unique dataset UUID or publication 
-#'    UUID to be used to query theHuBMAP API for information about available 
+#' @description `bulk_data_transfer()` takes a unique dataset or publication 
+#'    UUID to be used to query the HuBMAP API for information about available 
 #'    files. 
 #'
 #' @param uuid character(1) corresponding to the HuBMAP Dataset UUID
@@ -19,9 +19,8 @@ ENTITY <- "https://entity.api.hubmapconsortium.org"
 #'     UUID corresponds to one specific URL on Globus. Files corresponding to
 #'     unique Dataset UUID are saved on Globus HuBMAP Public Collection webpage.
 #'     
-#' @return `file_globus_url()` helps to jump into Globus Collection webpage if 
-#' Globus link is available for data files; otherwise, external links 
-#' and related instructions. will be offered with 
+#' @return `bulk_data_transfer()` display information about how to bulk 
+#' download all files related to the dataset or publication. 
 #'     
 #' @details Additional details are provided on the HuBMAP consortium
 #'     webpage, https://software.docs.hubmapconsortium.org/apis
@@ -30,13 +29,13 @@ ENTITY <- "https://entity.api.hubmapconsortium.org"
 #' 
 #' @examples
 #' # Globus available
-#' uuid_globus <- "015153e7afb510d8624ee9f5fcad121d"
+#' uuid_globus <- "2d3dbd5e5a3d9d5cfc7a46f06815a4eb"
 #' uuid_sra_dbGaP <- "5ba6a5b81e95c93c26a33980f6e957d7"
 #' uuid_not_available <- "0eb5e457b4855ce28531bc97147196b6"
 #' 
-#' # files_globus_url(*_globus)
+#' # bulk_data_transfer(*_globus)
 #'
-files_globus_url <-
+bulk_data_transfer <-
     function(uuid) {
         
     stopifnot(.is_uuid(uuid))
@@ -91,3 +90,4 @@ files_globus_url <-
             req_error(is_error = \(resp) FALSE) |>
             req_perform()
     }
+

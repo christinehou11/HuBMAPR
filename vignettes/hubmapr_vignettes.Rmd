@@ -24,8 +24,7 @@ knitr::opts_chunk$set(
 
 'HuBMAP' data portal (<https://portal.hubmapconsortium.org/>) provides an open,
 global bio-molecular atlas of the human body at the cellular level. 
-`HuBMAPR` package provides an alternative interface to access the data
-exploration and file retrieval via R.
+`HuBMAPR` package provides an alternative interface to explore the data via R.
 
 # Installation
 
@@ -210,6 +209,29 @@ dataset_detail(uuid = dataset_uuid) |>
 `sample_detail()`, `donor_detail()`, `collection_detail()`, and
 `publication_detail()` work same as above.
 
+## Metadata
+
+There is a column named `"donor.hubmap_id"` in the retrieved tibble from 
+`datasets()` and `samples()`. This column can help to filter the retrieved
+tibble from `donors()` to obtain corresponding donor UUID. Then, the donor
+metadata can be obtained using `donor_metadata()`.
+
+```{r 'donor metadata'}
+# dataset uuid
+donor_hubmap_id <- datasets |>
+    filter(dataset_type == "Auto-fluorescence",
+            organ == "Kidney (Left)") |>
+    head(1) |>
+    pull(donor.hubmap_id)
+
+donor_uuid <- donors |>
+    filter(hubmap_id == donor_hubmap_id) |>
+    pull(uuid)
+
+donor_metadata(donor_uuid)
+```
+
+
 ## Derived Data
 
 Some datasets from **Data** entity has derived (support) dataset(s). Use 
@@ -335,30 +357,30 @@ publication_authors(uuid = publication_uuid)
 # File Download
 
 For each dataset, there are corresponding data files. Most of the datasets'
-files are saved in Globus HuBMAP Public Collection, and the URL is available.
+files are available on HuBMAP Globus with corresponding URL.
 Some of the datasets' files are not available via Globus, but can be accessed
 via dbGAP (database of Genotypes and Phenotypes) and/or SRA (Sequence Read
 Archive). But some of the datasets' files are not available in any authorized
 platform. 
 
-Use `files_globus_url()` to access data files. If the Globus URL is 
+Use `bulk_data_transfer()` to access data files. If the Globus URL is 
 available, the function will direct you to chrome, and you can choose to 
 download or read any document. If not, error messages will be printed out with
 addition instructions, either providing dbGAP/SRA URLs or pointing out the
 unavailability.
 
-```{r 'file retrieval', eval=FALSE}
+```{r 'bulk data transfer', eval=FALSE}
 uuid_globus <- "d1dcab2df80590d8cd8770948abaf976"
 
-files_globus_url(uuid_globus)
+bulk_data_transfer(uuid_globus)
 
 uuid_dbGAP_SRA <- "d926c41ac08f3c2ba5e61eec83e90b0c"
 
-files_globus_url(uuid_dbGAP_SRA)
+bulk_data_transfer(uuid_dbGAP_SRA)
 
 uuid_not_avail <- "0eb5e457b4855ce28531bc97147196b6"
 
-files_globus_url(uuid_not_avail)
+bulk_data_transfer(uuid_not_avail)
 ```
 
 # `R` session information {.unnumbered}

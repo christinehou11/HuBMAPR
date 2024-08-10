@@ -5,6 +5,7 @@
 \alias{donors_default_columns}
 \alias{donor_detail}
 \alias{donor_derived}
+\alias{donor_metadata}
 \title{HuBMAP Donors}
 \usage{
 donors()
@@ -14,6 +15,8 @@ donors_default_columns(as = c("tibble", "character"))
 donor_detail(uuid)
 
 donor_derived(uuid, entity_type = c("Dataset", "Sample"))
+
+donor_metadata(uuid)
 }
 \arguments{
 \item{as}{character(1) return format. One of \code{"tibble"} (default),
@@ -47,8 +50,14 @@ returns details about one specified sample as a tibble
 
 \code{donor_derived()} takes a unique donor_id and
 returns the derived dataset or/and sample details.
+
+\code{donor_metadata()} takes a unique donor_id and
+returns the metadata of the donor.
 }
 \details{
+Additional details are provided on the HuBMAP consortium
+webpage, https://software.docs.hubmapconsortium.org/apis
+
 Additional details are provided on the HuBMAP consortium
 webpage, https://software.docs.hubmapconsortium.org/apis
 
@@ -66,5 +75,8 @@ uuid <- "1dcde05aea3509b2cf89a41ceb3d700f"
 donor_detail(uuid)
 uuid <- "1dcde05aea3509b2cf89a41ceb3d700f"
 donor_derived(uuid, "Sample")
+
+uuid <- "d37df2cad4e80dc368763caefccf7140"
+donor_metadata(uuid)
 
 }

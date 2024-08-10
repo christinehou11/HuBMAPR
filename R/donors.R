@@ -152,6 +152,46 @@ donor_derived <-
     
     }
 
+#' @rdname donors
+#'
+#' @name donor_metadata
+#' 
+#' @importFrom dplyr mutate select rename
+#' @importFrom tidyr unnest unnest_wider everything
+#' @importFrom rlang .data
+#' 
+#' @description `donor_metadata()` takes a unique donor_id and 
+#' returns the metadata of the donor.
+#' 
+#' @param uuid character(1) corresponding to the HuBMAP Donor UUID
+#'     string. This is expected to be a 32-digit hex number.
+#' 
+#' @details Additional details are provided on the HuBMAP consortium
+#'     webpage, https://software.docs.hubmapconsortium.org/apis
+#'     
+#' @export
+#' 
+#' @examples
+#' uuid <- "d37df2cad4e80dc368763caefccf7140"
+#' donor_metadata(uuid)
+#' 
+donor_metadata <-
+    function(uuid) {
+    
+    stopifnot(.is_uuid(uuid))
+    
+    .query_match(uuid,
+                option = "hits.hits[]._source.metadata[]") |>
+    unnest(everything()) |>
+    unnest_wider(everything()) |>
+    mutate(preferred_term = ifelse(.data$data_type == "Numeric", 
+                                    .data$data_value, .data$preferred_term),
+            Value = paste(.data$preferred_term, .data$units, sep = " ")) |>
+    select("grouping_concept_preferred_term", "Value") |>
+    rename("Key" = "grouping_concept_preferred_term")
+    
+    }
+
 ## helper function
 #' @importFrom dplyr coalesce mutate select rename_with rename
 #' @importFrom tidyr unnest_longer everything
