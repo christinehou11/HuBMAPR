@@ -3,7 +3,7 @@ test_that("'.is_scalar()' works", {
   expect_false(.is_scalar(logical()))
   expect_true(.is_scalar(logical(1)))
   expect_false(.is_scalar(logical(2)))
-  
+
   ## NA values
   expect_false(.is_scalar(NA))
 })
@@ -44,5 +44,5 @@ test_that("'.title_to_organ()' works", {
                "Kidney (Left)")
   expect_equal(.title_to_organ('RNAseq data from the Brain of a 23-year-old white male'),
                "Brain")
-  
+
 })
