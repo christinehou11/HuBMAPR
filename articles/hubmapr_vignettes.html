@@ -131,21 +131,21 @@ corresponding functions to explore entity data.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2,889 × 13</span></span></span>
 <span><span class="co">#&gt;    uuid              hubmap_id registered_by dataset_processing_c…¹ dataset_type</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> baf976734dd65220… HBM468.M… HuBMAP Proce… Raw                    Histology   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> bbbf5a5b29986dd5… HBM664.N… HuBMAP Proce… HuBMAP Process         Histology […</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> db0d7736f53dcf9b… HBM762.L… HuBMAP Proce… HuBMAP Process         Histology […</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> db0d7736f53dcf9b… HBM762.L… HuBMAP Proce… HuBMAP Process         Histology […</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> baf976734dd65220… HBM468.M… HuBMAP Proce… Raw                    Histology   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> bbbf5a5b29986dd5… HBM664.N… HuBMAP Proce… HuBMAP Process         Histology […</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 57b475b8ad39fa2c… HBM579.L… HuBMAP Proce… Raw                    Histology   </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 856aa4e05b68a784… HBM433.H… HuBMAP Proce… Raw                    Histology   </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 3e4c568d9ce8df9d… HBM422.K… HuBMAP Proce… Raw                    MUSIC       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 9fa780b7403c4b04… HBM737.W… HuBMAP Proce… Raw                    Histology   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 2126c844cfbcfce9… HBM339.K… HuBMAP Proce… HuBMAP Process         Histology […</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 7ae50cd47b3d2291… HBM769.Q… HuBMAP Proce… HuBMAP Process         Histology […</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 7ae50cd47b3d2291… HBM769.Q… HuBMAP Proce… HuBMAP Process         Histology […</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 9fa780b7403c4b04… HBM737.W… HuBMAP Proce… Raw                    Histology   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 2126c844cfbcfce9… HBM339.K… HuBMAP Proce… HuBMAP Process         Histology […</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> a86f65547dbb2528… HBM989.N… HuBMAP Proce… Raw                    MUSIC       </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 2,879 more rows</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​dataset_processing_category</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 8 more variables: donor.hubmap_id &lt;chr&gt;, group_name &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   last_modified_timestamp &lt;chr&gt;, analyte_class &lt;chr&gt;, sample_category &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   status &lt;chr&gt;, data_types &lt;chr&gt;, organ &lt;chr&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   last_modified_timestamp &lt;chr&gt;, sample_category &lt;chr&gt;, status &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   analyte_class &lt;chr&gt;, data_types &lt;chr&gt;, organ &lt;chr&gt;</span></span></span>
 <span></span>
 <span><span class="va">samples</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/samples.html">samples</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">samples</span></span>
@@ -219,9 +219,9 @@ corresponding functions to explore entity data.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 2ced91fd… HBM885.X… 2023-07-18             2021-10-18       FALSE             </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> e8338966… HBM695.W… 2023-07-18             2023-07-19       TRUE              </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> dd0e7aea… HBM599.D… 2023-07-18             2023-07-19       TRUE              </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 0de8528c… HBM473.R… 2023-07-18             2023-07-19       TRUE              </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> eb975811… HBM464.W… 2023-07-18             2023-07-19       TRUE              </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">8</span> 3c727366… HBM629.D… 2023-07-18             2023-07-19       TRUE              </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 3c727366… HBM629.D… 2023-07-18             2023-07-19       TRUE              </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> 0de8528c… HBM473.R… 2023-07-18             2023-07-19       TRUE              </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">8</span> eb975811… HBM464.W… 2023-07-18             2023-07-19       TRUE              </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">9</span> 72cbeb8f… HBM222.Z… 2023-07-18             2023-07-19       TRUE              </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​last_modified_timestamp</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 2 more variables: publication_venue &lt;chr&gt;, title &lt;chr&gt;</span></span></span></code></pre></div>
@@ -368,8 +368,9 @@ retrieved tibbles from <code><a href="../reference/samples.html">samples()</a></
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 66 more rows</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 11 more variables: last_modified_timestamp &lt;chr&gt;, dataset_uuid &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   dataset_hubmap_id &lt;chr&gt;, registered_by &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   dataset_processing_category &lt;chr&gt;, dataset_type &lt;chr&gt;, analyte_class &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   sample_category &lt;chr&gt;, status &lt;chr&gt;, data_types &lt;chr&gt;, organ &lt;chr&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   dataset_processing_category &lt;chr&gt;, dataset_type &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   sample_category &lt;chr&gt;, status &lt;chr&gt;, analyte_class &lt;chr&gt;, data_types &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   organ &lt;chr&gt;</span></span></span>
 <span></span>
 <span><span class="co"># Samples</span></span>
 <span><span class="va">donor_sub_sample</span> <span class="op">&lt;-</span> <span class="va">donor_sub</span> <span class="op">|&gt;</span></span>
@@ -821,7 +822,7 @@ URLs or pointing out the unavailability.</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Christine, Martin Morgan, Federico Marini.</p>
+  <p>Developed by Christine Hou, Martin Morgan, Federico Marini.</p>
 </div>
 
 <div class="pkgdown-footer-right">
