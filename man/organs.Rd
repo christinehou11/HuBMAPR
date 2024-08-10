@@ -14,7 +14,7 @@ and corresponding full name.
 \code{organ} retrieves available organ categories and abbreviations
 }
 \examples{
-organs <- organ() 
+organs <- organ()
 organs |>
     dplyr::select("name") |>
     dplyr::distinct()

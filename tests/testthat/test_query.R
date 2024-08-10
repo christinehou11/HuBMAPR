@@ -18,7 +18,7 @@ test_that("'.default_columns()' works", {
   expect_true(ncol(test1) >= 1L && nrow(test1) == 13L)
   expect_true(ncol(test2) >= 1L && nrow(test2) == 7L)
   expect_true("organ" %in% test1$columns && "organ" %in% test2$columns)
-  
+
   test3 <- .default_columns("Donor", "character")
   expect_true(is.character(test3))
   expect_true(length(test3) == 8L)

@@ -1,7 +1,7 @@
 #' @rdname publication_information
 #'
 #' @title Publication Information Summaries from Publication UUID
-#' 
+#'
 #' @importFrom dplyr select mutate left_join
 #' @importFrom tidyr unnest_longer
 #'
@@ -22,45 +22,45 @@
 #' @export
 publication_information <-
     function(uuid) {
-    
+
     stopifnot(.is_uuid(uuid))
-    
+
     option <- .list_to_option(
         path = "hits.hits[]._source",
-        fields = c("uuid", "hubmap_id", "title", 
+        fields = c("uuid", "hubmap_id", "title",
                     "description", "publication_venue", "publication_url"))
-    
+
     # corresponding_authors
     contacts <- .query_match(uuid, "hits.hits[]._source.contacts[]")
-    
+
     # organ
-    origin_samples <- .query_match(uuid, 
+    origin_samples <- .query_match(uuid,
                                     "hits.hits[]._source.origin_samples[]") |>
                         left_join(organ(), by = c("organ" = "abbreviation"))
     organs <- unique(origin_samples$"name")
-    
+
     # data_types
     ancestors <- .query_match(uuid, "hits.hits[]._source.ancestors[]") |>
         unnest_longer("data_types")
     data_types <- unique(ancestors$"data_types")
-    
+
     tbl <- .query_match(uuid, option) |>
         .unnest_mutate_relocate() |>
-        mutate(corresponding_authors = paste(paste(contacts$"name", 
-                                                contacts$"orcid_id"), 
+        mutate(corresponding_authors = paste(paste(contacts$"name",
+                                                contacts$"orcid_id"),
                                                 collapse = "\n - "),
                 organ = paste(organs, collapse = "\n - "),
                 data_type = paste(data_types, collapse = "\n - "))
-    
+
     class(tbl) <- c("publication_information", class(tbl))
-    
+
     tbl
-    
+
     }
 
 #' @rdname publication_information
 #'
-#' @description `publication_information()` organizes the returned tibble 
+#' @description `publication_information()` organizes the returned tibble
 #'     from `publication_information()` in a more legible format.
 #'
 #' @param x an object of class `publication_information`, the result of a
@@ -74,9 +74,9 @@ publication_information <-
 #'     side effect of displaying the object.
 #'
 #' @export
-print.publication_information <- 
+print.publication_information <-
     function(x, ...) {
-    
+
     cat(
         "Title\n ",
         x$title, "\n",
@@ -92,5 +92,5 @@ print.publication_information <-
         x$organ, "\n",
         sep = ""
     )
-    
+
     }

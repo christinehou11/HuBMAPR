@@ -1,5 +1,5 @@
 #' @rdname collection_information
-#' 
+#'
 #' @title Collection Information Summaries from Collection UUID
 #'
 #' @description `collection_information()` queries the HuBMAP collection for
@@ -17,32 +17,32 @@
 #' collection_information(uuid)
 #'
 #' @export
-collection_information <- 
-    function(uuid) 
+collection_information <-
+    function(uuid)
     {
-    
+
     stopifnot(
     .is_uuid(uuid)
     )
-    
+
     option <- .list_to_option(
         path = "hits.hits[]._source",
         fields = c("uuid", "hubmap_id", "title", "description",
                     "doi_url", "registered_doi")
     )
-    
+
     tbl <- .query_match(uuid, option) |>
                 .unnest_mutate_relocate()
-    
+
     class(tbl) <- c("collection_information", class(tbl))
-    
+
     tbl
-    
+
     }
 
 #' @rdname collection_information
 #'
-#' @description `print.collection_information()` organizes the returned tibble 
+#' @description `print.collection_information()` organizes the returned tibble
 #'     from `collection_information()` in a more legible format.
 #'
 #' @param x an object of class `collection_information`, the result of a
@@ -56,19 +56,19 @@ collection_information <-
 #'     side effect of displaying the object.
 #'
 #' @export
-print.collection_information <- 
-    function(x, ...) 
+print.collection_information <-
+    function(x, ...)
     {
-        
+
     cat(
         "Title\n ",
         x$title, "\n",
-        "Description\n ", 
+        "Description\n ",
         x$description, "\n",
-        "DOI\n - ", 
+        "DOI\n - ",
         x$doi_url, "\n",
-        "URL\n - ", 
+        "URL\n - ",
         x$registered_doi, "\n"
     )
-    
+
     }
