@@ -6,7 +6,7 @@ test_that("'publications()' works", {
 })
 
 test_that("'publications_default_columns()' works", {
-  
+
   ## testing tibble output
   tbl <- publications_default_columns()
   expect_true(tibble::is_tibble(tbl))
@@ -15,10 +15,10 @@ test_that("'publications_default_columns()' works", {
 
 test_that("'publication_authors()' works with specific uuid", {
   test_uuid <- "3c7273660cdf9ab91a7901533b2cd9a5"
-  
+
   # authors
   test_authors <- publication_authors(test_uuid)
   expect_true(tibble::is_tibble(test_authors))
   expect_true(nrow(test_authors) > 0L)
-  
+
 })

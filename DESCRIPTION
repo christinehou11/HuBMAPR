@@ -1,37 +1,37 @@
 Package: HuBMAPR
 Title: Interface to 'HuBMAP'
 Version: 1.0.0
-Authors@R: 
+Authors@R:
     c(person(
-        given = "Christine",
-        family = "Hou",
-        role = c("aut", "cre"),
-        email = "chris2018hou@gmail.com",
-        comment = c(ORCID = "0009-0001-5350-0629")
+	given = "Christine",
+	family = "Hou",
+	role = c("aut", "cre"),
+	email = "chris2018hou@gmail.com",
+	comment = c(ORCID = "0009-0001-5350-0629")
     ),
     person(
-        given = "Martin",
-        family = "Morgan",
-        role = "aut",
-        email = "mtmorgan.bioc@gmail.com",
-        comment = c(ORCID = "0000-0002-5874-8148")
+	given = "Martin",
+	family = "Morgan",
+	role = "aut",
+	email = "mtmorgan.bioc@gmail.com",
+	comment = c(ORCID = "0000-0002-5874-8148")
     ),
     person(
-        given = "Federico", 
-        family = "Marini", 
-        role = "aut",
-        comment = c(ORCID = "0000-0003-3252-7758")
+	given = "Federico",
+	family = "Marini",
+	role = "aut",
+	comment = c(ORCID = "0000-0003-3252-7758")
     )
     )
 Description: 'HuBMAP' provides an open, global bio-molecular atlas of the
     human body at the cellular level. The `datasets()`, `samples()`, `donors()`,
-    `publications()`, and `collections()` functions retrieves the information 
-    for each of these entity types. `*_details()` are available for individual 
-    entries of each entity type. `*_derived()` are available for retrieving 
-    derived datasets or samples for individual entries of each entity type. 
+    `publications()`, and `collections()` functions retrieves the information
+    for each of these entity types. `*_details()` are available for individual
+    entries of each entity type. `*_derived()` are available for retrieving
+    derived datasets or samples for individual entries of each entity type.
     Data files can be accessed using `files_globus_url()`.
 License: Artistic-2.0
-Imports: 
+Imports:
     httr2,
     dplyr,
     tidyr,
@@ -42,11 +42,13 @@ Imports:
     stringr,
     whisker,
     purrr
-Collate: query.R datasets.R samples.R donors.R utilities.R publications.R publication_information.R collections.R collection_information.R provenance.R files.R organ.R template.R
+Collate: query.R datasets.R samples.R donors.R utilities.R
+    publications.R publication_information.R collections.R
+    collection_information.R provenance.R files.R organ.R template.R
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
-Suggests: 
+Suggests:
     testthat (>= 3.0.0),
     knitr,
     rmarkdown,

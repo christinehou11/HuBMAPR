@@ -23,7 +23,7 @@ test_that("'dataset_detail()' works for uuid that does not exist", {
 })
 
 test_that("'datasets_default_columns()' works", {
-  
+
   ## testing tibble output
   tbl <- datasets_default_columns()
   expect_true(tibble::is_tibble(tbl))
@@ -31,13 +31,13 @@ test_that("'datasets_default_columns()' works", {
 })
 
 test_that("'dataset_derived()' works", {
-  
+
   # derived dataset yes
   test_uuid <- "2c77b1cdf33dbed3dbfb74e4b578300e"
   tbl <- dataset_derived(test_uuid)
   expect_true(tibble::is_tibble(tbl))
   expect_true(nrow(tbl) > 0L)
-  
+
   # derived dataset no
   test_uuid <- "3acdb3ed962b2087fbe325514b098101"
   tbl <- dataset_derived(test_uuid)
