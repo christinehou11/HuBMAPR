@@ -161,7 +161,7 @@ corresponding functions to explore entity data.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 23820292ab47f319… HBM236.X… HBM279.WPZP.978 Stanford … 2024-07-19            </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 038e4fcefc00f7ec… HBM595.S… HBM279.WPZP.978 Stanford … 2024-07-19            </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> e3b74d607c3b20c9… HBM876.S… HBM477.DBJN.952 Universit… 2024-05-29            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 681f7f1d0a87427c… HBM788.K… HBM984.MHHN.738 Universit… 2024-05-29            </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 744f20be06ec72b7… HBM796.X… HBM375.PJSC.682 Universit… 2024-05-29            </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 1,918 more rows</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​last_modified_timestamp</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 2 more variables: sample_category &lt;chr&gt;, organ &lt;chr&gt;</span></span></span>
@@ -735,12 +735,22 @@ or <code><a href="../reference/publication_information.html">publication_informa
 <span><span class="co">#&gt; Organs</span></span>
 <span><span class="co">#&gt;  - Small Intestine</span></span></code></pre></div>
 <p>Some additional contact/author/contributor information can be
-retrieved using <code>collection_contact()</code> and
+retrieved using <code>dataset_contributor()</code> for
+<strong>Dataset</strong> entity, <code>collection_contact()</code> and
 <code><a href="../reference/collections.html">collection_contributors()</a></code> for <strong>Collection</strong>
 entity, or <code><a href="../reference/publications.html">publication_authors()</a></code> for
 <strong>Publication</strong> entity.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Collection</span></span>
+<code class="sourceCode R"><span><span class="co"># Dataset</span></span>
+<span><span class="fu"><a href="../reference/datasets.html">dataset_contributors</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">dataset_uuid</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 5</span></span></span>
+<span><span class="co">#&gt;   display_name affiliation                    email orcid is_principal_investi…¹</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Xingzhao Wen <span style="color: #949494;">"</span>University of California, Sa… xzwe… 0000… No                    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Sheng Zhong  <span style="color: #949494;">"</span>University of California, Sa… szho… 0000… Yes                   </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​is_principal_investigator</span></span></span>
+<span></span>
+<span><span class="co"># Collection</span></span>
 <span><span class="fu"><a href="../reference/collections.html">collection_contacts</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">collection_uuid</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 3</span></span></span>
 <span><span class="co">#&gt;   name              affiliation                                  orcid_id       </span></span>
