@@ -10,7 +10,14 @@ returns details about one specified dataset as a tibble
 dataset_derived() takes a unique sample_id and
 returns the derived (support) dataset details. Support datasets normally
 belong to Image Pyramid, with image files available to download via
-Globus Collection. See details to download in files_globus_url()."><meta property="og:description" content="datasets returns the details available datasets, ordered by
+Globus Collection. See details to download in files_globus_url().
+dataset_metadata() takes a unique dataset_id and
+returns the metadata of the dataset.
+dataset_contributors() takes a unique dataset_id and
+returns the contributors of the dataset. For questions for this
+dataset, reach out to the individuals listed as contacts, either via
+the email address listed in the table or contact information provided
+on their ORCID profile page."><meta property="og:description" content="datasets returns the details available datasets, ordered by
 last modified dates
 *_columns() returns a tibble or named
 character vector describing the content of the tibble returned
@@ -21,7 +28,14 @@ returns details about one specified dataset as a tibble
 dataset_derived() takes a unique sample_id and
 returns the derived (support) dataset details. Support datasets normally
 belong to Image Pyramid, with image files available to download via
-Globus Collection. See details to download in files_globus_url()."></head><body>
+Globus Collection. See details to download in files_globus_url().
+dataset_metadata() takes a unique dataset_id and
+returns the metadata of the dataset.
+dataset_contributors() takes a unique dataset_id and
+returns the contributors of the dataset. For questions for this
+dataset, reach out to the individuals listed as contacts, either via
+the email address listed in the table or contact information provided
+on their ORCID profile page."></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -72,6 +86,13 @@ returns details about one specified dataset as a tibble</p>
 returns the derived (support) dataset details. Support datasets normally
 belong to Image Pyramid, with image files available to download via
 Globus Collection. See details to download in <code>files_globus_url()</code>.</p>
+<p><code>dataset_metadata()</code> takes a unique dataset_id and
+returns the metadata of the dataset.</p>
+<p><code>dataset_contributors()</code> takes a unique dataset_id and
+returns the contributors of the dataset. For questions for this
+dataset, reach out to the individuals listed as contacts, either via
+the email address listed in the table or contact information provided
+on their ORCID profile page.</p>
     </div>
 
     <div class="section level2">
@@ -82,7 +103,11 @@ Globus Collection. See details to download in <code>files_globus_url()</code>.</
 <span></span>
 <span><span class="fu">dataset_detail</span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">dataset_derived</span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">dataset_derived</span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">dataset_metadata</span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">dataset_contributors</span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -95,7 +120,7 @@ or <code>"character"</code>.</p></dd>
 
 
 <dt id="arg-uuid">uuid<a class="anchor" aria-label="anchor" href="#arg-uuid"></a></dt>
-<dd><p>character(1) corresponding to the HuBMAP Sample UUID
+<dd><p>character(1) corresponding to the HuBMAP Donor UUID
 string. This is expected to be a 32-digit hex number.</p></dd>
 
 </dl></div>
@@ -114,6 +139,10 @@ with paths as elements and abbreviations as names.</p>
 webpage, https://software.docs.hubmapconsortium.org/apis</p>
 <p>Additional details are provided on the HuBMAP consortium
 webpage, https://software.docs.hubmapconsortium.org/apis</p>
+<p>Additional details are provided on the HuBMAP consortium
+webpage, https://software.docs.hubmapconsortium.org/apis</p>
+<p>Additional details are provided on the HuBMAP consortium
+webpage, https://software.docs.hubmapconsortium.org/apis</p>
     </div>
 
     <div class="section level2">
@@ -128,9 +157,9 @@ webpage, https://software.docs.hubmapconsortium.org/apis</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 57b475b8ad39fa2c… HBM579.L… HuBMAP Proce… Raw                    Histology   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 856aa4e05b68a784… HBM433.H… HuBMAP Proce… Raw                    Histology   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 3e4c568d9ce8df9d… HBM422.K… HuBMAP Proce… Raw                    MUSIC       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 7ae50cd47b3d2291… HBM769.Q… HuBMAP Proce… HuBMAP Process         Histology […</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 9fa780b7403c4b04… HBM737.W… HuBMAP Proce… Raw                    Histology   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2126c844cfbcfce9… HBM339.K… HuBMAP Proce… HuBMAP Process         Histology […</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 9fa780b7403c4b04… HBM737.W… HuBMAP Proce… Raw                    Histology   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2126c844cfbcfce9… HBM339.K… HuBMAP Proce… HuBMAP Process         Histology […</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 7ae50cd47b3d2291… HBM769.Q… HuBMAP Proce… HuBMAP Process         Histology […</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> a86f65547dbb2528… HBM989.N… HuBMAP Proce… Raw                    MUSIC       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2,879 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​dataset_processing_category</span></span>
@@ -181,6 +210,33 @@ webpage, https://software.docs.hubmapconsortium.org/apis</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 9e7b040f23124… HBM896.G… salmon_rn… RNAseq [Sal… Publi… 2020-08-22            </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​last_modified_timestamp</span></span>
+<span class="r-in"><span><span class="va">uuid</span> <span class="op">&lt;-</span> <span class="st">"564167adbbb2fdd64c24e7ea409c23f1"</span></span></span>
+<span class="r-in"><span><span class="fu">dataset_metadata</span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 43 × 2</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Key                             Value                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> acquisition_instrument_model    BZ-X710                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> acquisition_instrument_vendor   Keyence                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> analyte_class                   Polysaccharide         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> contributors_path               extras/contributors.tsv</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> data_path                       .                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> dataset_type                    Histology              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> is_batch_staining_done          No                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> is_image_preprocessing_required No                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> is_staining_automated           No                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> is_targeted                     No                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 33 more rows</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">uuid</span> <span class="op">&lt;-</span> <span class="st">"564167adbbb2fdd64c24e7ea409c23f1"</span></span></span>
+<span class="r-in"><span><span class="fu">dataset_contributors</span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   display_name    affiliation email                 orcid is_principal_investi…¹</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> John Hickey     Stanford    john.hickey@duke.edu  0000… No                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Chiara Caraccio Stanford    caraccio@stanford.edu 0000… No                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Garry Nolan     Stanford    gnolan@stanford.edu   0000… Yes                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​is_principal_investigator</span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

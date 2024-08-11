@@ -481,40 +481,66 @@ work same as above.</p>
 <div class="section level3">
 <h3 id="metadata">Metadata<a class="anchor" aria-label="anchor" href="#metadata"></a>
 </h3>
-<p>There is a column named <code>"donor.hubmap_id"</code> in the
-retrieved tibble from <code><a href="../reference/datasets.html">datasets()</a></code> and
-<code><a href="../reference/samples.html">samples()</a></code>. This column can help to filter the retrieved
-tibble from <code><a href="../reference/donors.html">donors()</a></code> to obtain corresponding donor UUID.
-Then, the donor metadata can be obtained using
+<p>To retrieve the metadata for <strong>Dataset</strong>,
+<strong>Sample</strong>, and <strong>Donor</strong> metadata, use
+<code><a href="../reference/datasets.html">dataset_metadata()</a></code>, <code><a href="../reference/samples.html">sample_metadata()</a></code>, and
 <code><a href="../reference/donors.html">donor_metadata()</a></code>.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># dataset uuid</span></span>
-<span><span class="va">donor_hubmap_id</span> <span class="op">&lt;-</span> <span class="va">datasets</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">dataset_type</span> <span class="op">==</span> <span class="st">"Auto-fluorescence"</span>,</span>
-<span>            <span class="va">organ</span> <span class="op">==</span> <span class="st">"Kidney (Left)"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">donor.hubmap_id</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/datasets.html">dataset_metadata</a></span><span class="op">(</span><span class="st">"993bb1d6fa02e2755fd69613bb9d6e08"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 20 × 2</span></span></span>
+<span><span class="co">#&gt;    Key                             Value                                        </span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> acquisition_instrument_model    <span style="color: #949494;">"</span>Axio Scan.Z1<span style="color: #949494;">"</span>                               </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> acquisition_instrument_vendor   <span style="color: #949494;">"</span>Zeiss Microscopy<span style="color: #949494;">"</span>                           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> analyte_class                   <span style="color: #949494;">"</span>endogenous fluorophores<span style="color: #949494;">"</span>                    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> antibodies_path                 <span style="color: #949494;">"</span>extras/antibodies.tsv<span style="color: #949494;">"</span>                      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> contributors_path               <span style="color: #949494;">"</span>extras/contributors.tsv<span style="color: #949494;">"</span>                    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> data_path                       <span style="color: #949494;">"</span>.<span style="color: #949494;">"</span>                                          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> dataset_type                    <span style="color: #949494;">"</span>Auto-fluorescence<span style="color: #949494;">"</span>                          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> is_image_preprocessing_required <span style="color: #949494;">"</span>no<span style="color: #949494;">"</span>                                         </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> is_targeted                     <span style="color: #949494;">"</span>No<span style="color: #949494;">"</span>                                         </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> lab_id                          <span style="color: #949494;">"</span>VAN0042-RK-3-17-AF<span style="color: #949494;">"</span>                         </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> metadata_schema_id              <span style="color: #949494;">"</span>c9c6a02b-010e-4217-96dc-f7ef71dd14c4<span style="color: #949494;">"</span>       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> parent_sample_id                <span style="color: #949494;">"</span>HBM836.RXKQ.893<span style="color: #949494;">"</span>                            </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> preparation_protocol_doi        <span style="color: #949494;">"</span>https://dx.doi.org/10.17504/protocols.io.7e…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> source_storage_duration_unit    <span style="color: #949494;">"</span>hour<span style="color: #949494;">"</span>                                       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> source_storage_duration_value   <span style="color: #949494;">"</span>2<span style="color: #949494;">"</span>                                          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> tile_configuration              <span style="color: #949494;">"</span>Not applicable<span style="color: #949494;">"</span>                             </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> donor.Age                       <span style="color: #949494;">"</span>57 years<span style="color: #949494;">"</span>                                   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">18</span> donor.Body Mass Index           <span style="color: #949494;">"</span>25.3 kg/m2<span style="color: #949494;">"</span>                                 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">19</span> donor.Race                      <span style="color: #949494;">"</span>White <span style="color: #949494;">"</span>                                     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">20</span> donor.Sex                       <span style="color: #949494;">"</span>Male <span style="color: #949494;">"</span></span></span>
 <span></span>
-<span><span class="va">donor_uuid</span> <span class="op">&lt;-</span> <span class="va">donors</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">hubmap_id</span> <span class="op">==</span> <span class="va">donor_hubmap_id</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/samples.html">sample_metadata</a></span><span class="op">(</span><span class="st">"8ecdbdc3e2d04898e2563d666658b6a9"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 2</span></span></span>
+<span><span class="co">#&gt;   Key                              Value                        </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> donor.Age                        <span style="color: #949494;">"</span>71 years<span style="color: #949494;">"</span>                   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> donor.Apolipoprotein E phenotype <span style="color: #949494;">"</span>Apolipoprotein E phenotype <span style="color: #949494;">"</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> donor.Pathology note             <span style="color: #949494;">"</span>Pathology note <span style="color: #949494;">"</span>            </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> donor.Race                       <span style="color: #949494;">"</span>White <span style="color: #949494;">"</span>                     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> donor.Sex                        <span style="color: #949494;">"</span>Male <span style="color: #949494;">"</span></span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/donors.html">donor_metadata</a></span><span class="op">(</span><span class="va">donor_uuid</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 4 × 2</span></span></span>
-<span><span class="co">#&gt;   Key             Value       </span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Age             <span style="color: #949494;">"</span>65 years<span style="color: #949494;">"</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Race            <span style="color: #949494;">"</span>White <span style="color: #949494;">"</span>    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Sex             <span style="color: #949494;">"</span>Male <span style="color: #949494;">"</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Body Mass Index <span style="color: #949494;">"</span>35.3 kg/m2<span style="color: #949494;">"</span></span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/donors.html">donor_metadata</a></span><span class="op">(</span><span class="st">"b2c75c96558c18c9e13ba31629f541b6"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 8 × 2</span></span></span>
+<span><span class="co">#&gt;   Key                 Value                      </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Age                 <span style="color: #949494;">"</span>41 years<span style="color: #949494;">"</span>                 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Body mass index     <span style="color: #949494;">"</span>37.1 kg/m^2<span style="color: #949494;">"</span>              </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Cause of death      <span style="color: #949494;">"</span>Cerebrovascular accident <span style="color: #949494;">"</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Death event         <span style="color: #949494;">"</span>Natural causes <span style="color: #949494;">"</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Mechanism of injury <span style="color: #949494;">"</span>Intracranial hemorrhage <span style="color: #949494;">"</span> </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> Race                <span style="color: #949494;">"</span>White <span style="color: #949494;">"</span>                   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> Sex                 <span style="color: #949494;">"</span>Female <span style="color: #949494;">"</span>                  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">8</span> Social history      <span style="color: #949494;">"</span>Smoker <span style="color: #949494;">"</span></span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="derived-data">Derived Data<a class="anchor" aria-label="anchor" href="#derived-data"></a>
 </h3>
-<p>Some datasets from <strong>Data</strong> entity has derived (support)
-dataset(s). Use <code><a href="../reference/datasets.html">dataset_derived()</a></code> to retrieve. A tibble
-with selected details will be retrieved as if the given dataset has
-support dataset; otherwise, nothing returns.</p>
+<p>Some datasets from <strong>Dataset</strong> entity has derived
+(support) dataset(s). Use <code><a href="../reference/datasets.html">dataset_derived()</a></code> to retrieve. A
+tibble with selected details will be retrieved as if the given dataset
+has support dataset; otherwise, nothing returns.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># no derived/support dataset</span></span>
 <span><span class="va">dataset_uuid_1</span> <span class="op">&lt;-</span> <span class="st">"3acdb3ed962b2087fbe325514b098101"</span></span>

@@ -8,7 +8,9 @@ or publications().
 sample_detail() takes a unique sample_id and
 returns details about one specified sample as a tibble
 sample_derived() takes a unique sample_id and
-returns the derived dataset or/and sample details."><meta property="og:description" content="samples() returns details about available samples, ordered by
+returns the derived dataset or/and sample details.
+sample_metadata() takes a unique donor_id and
+returns the metadata of the sample."><meta property="og:description" content="samples() returns details about available samples, ordered by
 last modified dates
 *_columns() returns a tibble or named
 character vector describing the content of the tibble returned
@@ -17,7 +19,9 @@ or publications().
 sample_detail() takes a unique sample_id and
 returns details about one specified sample as a tibble
 sample_derived() takes a unique sample_id and
-returns the derived dataset or/and sample details."></head><body>
+returns the derived dataset or/and sample details.
+sample_metadata() takes a unique donor_id and
+returns the metadata of the sample."></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -66,6 +70,8 @@ or <code><a href="publications.html">publications()</a></code>.</p>
 returns details about one specified sample as a tibble</p>
 <p><code>sample_derived()</code> takes a unique sample_id and
 returns the derived dataset or/and sample details.</p>
+<p><code>sample_metadata()</code> takes a unique donor_id and
+returns the metadata of the sample.</p>
     </div>
 
     <div class="section level2">
@@ -76,7 +82,9 @@ returns the derived dataset or/and sample details.</p>
 <span></span>
 <span><span class="fu">sample_detail</span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">sample_derived</span><span class="op">(</span><span class="va">uuid</span>, entity_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Dataset"</span>, <span class="st">"Sample"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">sample_derived</span><span class="op">(</span><span class="va">uuid</span>, entity_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Dataset"</span>, <span class="st">"Sample"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">sample_metadata</span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -89,7 +97,7 @@ or <code>"character"</code>.</p></dd>
 
 
 <dt id="arg-uuid">uuid<a class="anchor" aria-label="anchor" href="#arg-uuid"></a></dt>
-<dd><p>character(1) corresponding to the HuBMAP Sample UUID
+<dd><p>character(1) corresponding to the HuBMAP Donor UUID
 string. This is expected to be a 32-digit hex number.</p></dd>
 
 
@@ -110,6 +118,8 @@ with paths as elements and abbreviations as names.</p>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Additional details are provided on the HuBMAP consortium
+webpage, https://software.docs.hubmapconsortium.org/apis</p>
+<p>Additional details are provided on the HuBMAP consortium
 webpage, https://software.docs.hubmapconsortium.org/apis</p>
 <p>Additional details are provided on the HuBMAP consortium
 webpage, https://software.docs.hubmapconsortium.org/apis</p>
@@ -168,6 +178,21 @@ webpage, https://software.docs.hubmapconsortium.org/apis</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 63ef1040ae30473778dc4b… HBM976.W… section         2024-04-09             Brain</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​last_modified_timestamp</span></span>
+<span class="r-in"><span><span class="va">uuid</span> <span class="op">&lt;-</span> <span class="st">"8d7ce3aab7013e416263d23b0c048900"</span></span></span>
+<span class="r-in"><span><span class="fu">sample_metadata</span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 9 × 2</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Key                   Value                                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> donor.Age             <span style="color: #949494;">"</span>54 years<span style="color: #949494;">"</span>                                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> donor.Body Mass Index <span style="color: #949494;">"</span>53.06 kg/m2<span style="color: #949494;">"</span>                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> donor.Cause of Death  <span style="color: #949494;">"</span>Anoxia <span style="color: #949494;">"</span>                                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> donor.Height          <span style="color: #949494;">"</span>157.48 cm<span style="color: #949494;">"</span>                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> donor.Medical History <span style="color: #949494;">"</span>Type 2 Diabetes Mellitus ; Hypertension ; Asthma ; Chr…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> donor.Race            <span style="color: #949494;">"</span>Black or African American <span style="color: #949494;">"</span>                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> donor.Sex             <span style="color: #949494;">"</span>Female <span style="color: #949494;">"</span>                                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> donor.Social History  <span style="color: #949494;">"</span>Smoker ; Illicit drug use <span style="color: #949494;">"</span>                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">9</span> donor.Weight          <span style="color: #949494;">"</span>131.6 kg<span style="color: #949494;">"</span>                                              </span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
