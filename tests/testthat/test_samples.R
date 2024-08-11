@@ -47,3 +47,13 @@ test_that("'sample_derived()' works", {
   expect_true(tibble::is_tibble(test_sample_2))
   expect_true(nrow(test_sample_2) > 0L)
 })
+
+test_that("'sample_metadata()' works", {
+  
+  test_uuid <- "681f7f1d0a87427cf182f231a01ca6f0"
+  tbl <- sample_metadata(test_uuid)
+  expect_true(tibble::is_tibble(tbl))
+  expect_true(nrow(tbl) > 0L &&
+                all(c("Key", "Value") %in% names(tbl)))
+  
+})

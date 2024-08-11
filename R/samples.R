@@ -114,7 +114,7 @@ sample_derived <-
     entity <- match.arg(entity_type)
 
     tbl <- .query_match(uuid, option = "hits.hits[]._source.descendants[]") |>
-            filter(entity_type == entity)
+            filter(.data$entity_type == entity)
 
     if (identical(entity, "Sample")) {
         if (nrow(tbl) > 0L) {
@@ -145,6 +145,42 @@ sample_derived <-
 
     }
 
+#' @rdname samples
+#'
+#' @name sample_metadata
+#'
+#' @importFrom dplyr filter pull
+#' @importFrom rlang .data
+#'
+#' @description `sample_metadata()` takes a unique donor_id and
+#' returns the metadata of the sample.
+#'
+#' @param uuid character(1) corresponding to the HuBMAP Donor UUID
+#'     string. This is expected to be a 32-digit hex number.
+#'
+#' @details Additional details are provided on the HuBMAP consortium
+#'     webpage, https://software.docs.hubmapconsortium.org/apis
+#'
+#' @export
+#'
+#' @examples
+#' uuid <- "8d7ce3aab7013e416263d23b0c048900"
+#' sample_metadata(uuid)
+#'
+sample_metadata <-
+    function(uuid) {
+    
+    stopifnot(.is_uuid(uuid))
+    
+    donor_uuid <- .query_match(uuid,
+                    option = "hits.hits[]._source.ancestors[]") |>
+                    filter(.data$entity_type == "Donor") |>
+                    pull("uuid")
+    
+    .donor_metadata(donor_uuid) |>
+        mutate(Key = paste0("donor.", .data$Key))
+    
+    }
 
 #' @importFrom dplyr left_join rename select
 .sample_edit <-

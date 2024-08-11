@@ -5,6 +5,8 @@
 \alias{datasets_default_columns}
 \alias{dataset_detail}
 \alias{dataset_derived}
+\alias{dataset_metadata}
+\alias{dataset_contributors}
 \title{HuBMAP Datasets}
 \usage{
 datasets()
@@ -14,12 +16,16 @@ datasets_default_columns(as = c("tibble", "character"))
 dataset_detail(uuid)
 
 dataset_derived(uuid)
+
+dataset_metadata(uuid)
+
+dataset_contributors(uuid)
 }
 \arguments{
 \item{as}{character(1) return format. One of \code{"tibble"} (default),
 or \code{"character"}.}
 
-\item{uuid}{character(1) corresponding to the HuBMAP Sample UUID
+\item{uuid}{character(1) corresponding to the HuBMAP Donor UUID
 string. This is expected to be a 32-digit hex number.}
 }
 \value{
@@ -46,8 +52,23 @@ returns details about one specified dataset as a tibble
 returns the derived (support) dataset details. Support datasets normally
 belong to Image Pyramid, with image files available to download via
 Globus Collection. See details to download in \code{files_globus_url()}.
+
+\code{dataset_metadata()} takes a unique dataset_id and
+returns the metadata of the dataset.
+
+\code{dataset_contributors()} takes a unique dataset_id and
+returns the contributors of the dataset. For questions for this
+dataset, reach out to the individuals listed as contacts, either via
+the email address listed in the table or contact information provided
+on their ORCID profile page.
 }
 \details{
+Additional details are provided on the HuBMAP consortium
+webpage, https://software.docs.hubmapconsortium.org/apis
+
+Additional details are provided on the HuBMAP consortium
+webpage, https://software.docs.hubmapconsortium.org/apis
+
 Additional details are provided on the HuBMAP consortium
 webpage, https://software.docs.hubmapconsortium.org/apis
 
@@ -67,4 +88,10 @@ dataset_derived(uuid)
 # with derived dataset
 uuid <- "2c77b1cdf33dbed3dbfb74e4b578300e"
 dataset_derived(uuid)
+uuid <- "564167adbbb2fdd64c24e7ea409c23f1"
+dataset_metadata(uuid)
+
+uuid <- "564167adbbb2fdd64c24e7ea409c23f1"
+dataset_contributors(uuid)
+
 }

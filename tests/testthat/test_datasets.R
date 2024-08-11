@@ -43,3 +43,13 @@ test_that("'dataset_derived()' works", {
   tbl <- dataset_derived(test_uuid)
   expect_true(is.null(tbl))
 })
+
+test_that("'dataset_metadata()' works", {
+
+  test_uuid <- "993bb1d6fa02e2755fd69613bb9d6e08"
+  tbl <- dataset_metadata(test_uuid)
+  expect_true(tibble::is_tibble(tbl))
+  expect_true(nrow(tbl) > 0L &&
+                all(c("Key", "Value") %in% names(tbl)))
+  
+})

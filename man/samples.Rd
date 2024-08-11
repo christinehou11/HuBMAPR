@@ -5,6 +5,7 @@
 \alias{samples_default_columns}
 \alias{sample_detail}
 \alias{sample_derived}
+\alias{sample_metadata}
 \title{HuBMAP Samples}
 \usage{
 samples()
@@ -14,12 +15,14 @@ samples_default_columns(as = c("tibble", "character"))
 sample_detail(uuid)
 
 sample_derived(uuid, entity_type = c("Dataset", "Sample"))
+
+sample_metadata(uuid)
 }
 \arguments{
 \item{as}{character(1) return format. One of \code{"tibble"} (default),
 or \code{"character"}.}
 
-\item{uuid}{character(1) corresponding to the HuBMAP Sample UUID
+\item{uuid}{character(1) corresponding to the HuBMAP Donor UUID
 string. This is expected to be a 32-digit hex number.}
 
 \item{entity_type}{character(1) selected derived entity type.
@@ -47,8 +50,14 @@ returns details about one specified sample as a tibble
 
 \code{sample_derived()} takes a unique sample_id and
 returns the derived dataset or/and sample details.
+
+\code{sample_metadata()} takes a unique donor_id and
+returns the metadata of the sample.
 }
 \details{
+Additional details are provided on the HuBMAP consortium
+webpage, https://software.docs.hubmapconsortium.org/apis
+
 Additional details are provided on the HuBMAP consortium
 webpage, https://software.docs.hubmapconsortium.org/apis
 
@@ -66,4 +75,7 @@ uuid <- "d3525d35f6d5ee3dc3186613b0ab1762"
 sample_detail(uuid)
 uuid <- "3e7dc14313262af577f686dcb09f5119"
 sample_derived(uuid, "Sample")
+uuid <- "8d7ce3aab7013e416263d23b0c048900"
+sample_metadata(uuid)
+
 }

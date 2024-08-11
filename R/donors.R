@@ -156,10 +156,6 @@ donor_derived <-
 #'
 #' @name donor_metadata
 #'
-#' @importFrom dplyr mutate select rename
-#' @importFrom tidyr unnest unnest_wider everything
-#' @importFrom rlang .data
-#'
 #' @description `donor_metadata()` takes a unique donor_id and
 #' returns the metadata of the donor.
 #'
@@ -180,15 +176,7 @@ donor_metadata <-
 
     stopifnot(.is_uuid(uuid))
 
-    .query_match(uuid,
-                option = "hits.hits[]._source.metadata[]") |>
-    unnest(everything()) |>
-    unnest_wider(everything()) |>
-    mutate(preferred_term = ifelse(.data$data_type == "Numeric",
-                                    .data$data_value, .data$preferred_term),
-            Value = paste(.data$preferred_term, .data$units, sep = " ")) |>
-    select("grouping_concept_preferred_term", "Value") |>
-    rename("Key" = "grouping_concept_preferred_term")
+    .donor_metadata(uuid)
 
     }
 

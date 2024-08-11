@@ -175,6 +175,27 @@
 
     }
 
+#' @importFrom dplyr mutate select rename summarise group_by ungroup
+#' @importFrom tidyr unnest unnest_wider everything
+#' @importFrom rlang .data
+.donor_metadata <-
+    function(uuid) {
+        
+        .query_match(uuid,
+                    option = "hits.hits[]._source.metadata[]") |>
+        unnest(everything()) |>
+        unnest_wider(everything()) |>
+        mutate(preferred_term = ifelse(.data$data_type == "Numeric",
+                                        .data$data_value, .data$preferred_term),
+                Value = paste(.data$preferred_term, .data$units, sep = " ")) |>
+        select("grouping_concept_preferred_term", "Value") |>
+        rename("Key" = "grouping_concept_preferred_term") |>
+        group_by(.data$Key) |>
+        summarise(Value = paste(.data$Value, collapse = "; ")) |>
+        ungroup()
+        
+    }
+
 ## .onLoad
 
 .onLoad <-

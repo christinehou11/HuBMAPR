@@ -122,6 +122,99 @@ dataset_derived <-
 
     }
 
+#' @rdname datasets
+#'
+#' @name dataset_metadata
+#'
+#' @importFrom dplyr bind_rows mutate filter pull everything rename_with
+#' @importFrom tidyr pivot_longer
+#'
+#' @description `dataset_metadata()` takes a unique dataset_id and
+#' returns the metadata of the dataset.
+#'
+#' @param uuid character(1) corresponding to the HuBMAP Donor UUID
+#'     string. This is expected to be a 32-digit hex number.
+#'
+#' @details Additional details are provided on the HuBMAP consortium
+#'     webpage, https://software.docs.hubmapconsortium.org/apis
+#'
+#' @export
+#'
+#' @examples
+#' uuid <- "564167adbbb2fdd64c24e7ea409c23f1"
+#' dataset_metadata(uuid)
+#'
+dataset_metadata <-
+    function(uuid) {
+    
+    stopifnot(.is_uuid(uuid))
+    
+    donor_uuid <- .query_match(uuid,
+                    option = "hits.hits[]._source.ancestors[]") |>
+                    filter(.data$entity_type == "Donor") |>
+                    pull("uuid")
+    
+    sample_metadata <- .query_match(uuid,
+                option = "hits.hits[]._source.source_samples[].metadata[]") 
+    
+    tbl <- .query_match(uuid,
+                        option = "hits.hits[]._source.metadata.metadata[]") |>
+            pivot_longer(cols = everything(), names_to = "Key", 
+                        values_to = "Value") |>
+            bind_rows(
+                    .donor_metadata(donor_uuid) |>
+                    mutate(Key = paste0("donor.", .data$Key)))
+    
+    if (length(sample_metadata) != 0) {
+        tbl <- tbl |> 
+                bind_rows(
+                    sample_metadata|>
+                    rename_with(~ paste0("sample.", .)) |>
+                    pivot_longer(cols = everything(), names_to = "Key", 
+                                values_to = "Value"))
+    }
+    
+    tbl
+    
+    }
+
+#' @rdname datasets
+#'
+#' @name dataset_contributors
+#'
+#' @importFrom dplyr mutate select
+#' @importFrom rlang .data
+#'
+#' @description `dataset_contributors()` takes a unique dataset_id and
+#'        returns the contributors of the dataset. For questions for this 
+#'        dataset, reach out to the individuals listed as contacts, either via 
+#'        the email address listed in the table or contact information provided 
+#'        on their ORCID profile page.
+#'
+#' @param uuid character(1) corresponding to the HuBMAP Donor UUID
+#'     string. This is expected to be a 32-digit hex number.
+#'
+#' @details Additional details are provided on the HuBMAP consortium
+#'     webpage, https://software.docs.hubmapconsortium.org/apis
+#'
+#' @export
+#'
+#' @examples
+#' uuid <- "564167adbbb2fdd64c24e7ea409c23f1"
+#' dataset_contributors(uuid)
+#'
+dataset_contributors <-
+    function(uuid) {
+    
+    stopifnot(.is_uuid(uuid))
+    
+    .query_match(uuid,
+                option = "hits.hits[]._source.contributors[]") |> 
+    select("display_name", "affiliation", "email", 
+            "orcid", "is_principal_investigator")
+    
+    }
+
 #' @importFrom dplyr left_join rename select
 .dataset_edit <-
     function (tbl) {

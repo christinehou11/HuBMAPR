@@ -211,30 +211,21 @@ dataset_detail(uuid = dataset_uuid) |>
 
 ## Metadata
 
-There is a column named `"donor.hubmap_id"` in the retrieved tibble from
-`datasets()` and `samples()`. This column can help to filter the retrieved
-tibble from `donors()` to obtain corresponding donor UUID. Then, the donor
-metadata can be obtained using `donor_metadata()`.
+To retrieve the metadata for **Dataset**, **Sample**, and **Donor** metadata,
+use `dataset_metadata()`, `sample_metadata()`, and `donor_metadata()`. 
 
-```{r 'donor metadata'}
-# dataset uuid
-donor_hubmap_id <- datasets |>
-    filter(dataset_type == "Auto-fluorescence",
-            organ == "Kidney (Left)") |>
-    head(1) |>
-    pull(donor.hubmap_id)
+```{r 'metadata'}
+dataset_metadata("993bb1d6fa02e2755fd69613bb9d6e08")
 
-donor_uuid <- donors |>
-    filter(hubmap_id == donor_hubmap_id) |>
-    pull(uuid)
+sample_metadata("8ecdbdc3e2d04898e2563d666658b6a9")
 
-donor_metadata(donor_uuid)
+donor_metadata("b2c75c96558c18c9e13ba31629f541b6")
 ```
 
 
 ## Derived Data
 
-Some datasets from **Data** entity has derived (support) dataset(s). Use
+Some datasets from **Dataset** entity has derived (support) dataset(s). Use
 `dataset_derived()` to retrieve. A tibble with selected details will be
 retrieved as if the given dataset has support dataset; otherwise, nothing
 returns.
