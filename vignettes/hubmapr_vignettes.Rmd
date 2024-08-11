@@ -331,11 +331,14 @@ publication_information(uuid = publication_uuid)
 ```
 
 Some additional contact/author/contributor information can be retrieved using
-`collection_contact()` and `collection_contributors()` for
-**Collection** entity, or `publication_authors()` for **Publication**
-entity.
+`dataset_contributor()` for **Dataset** entity, `collection_contact()` and
+`collection_contributors()` for **Collection** entity, or 
+`publication_authors()` for **Publication** entity.
 
 ```{r 'author'}
+# Dataset
+dataset_contributors(uuid = dataset_uuid)
+
 # Collection
 collection_contacts(uuid = collection_uuid)
 
