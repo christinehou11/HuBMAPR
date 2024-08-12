@@ -127,6 +127,7 @@ dataset_derived <-
 #' @name dataset_metadata
 #'
 #' @importFrom dplyr bind_rows mutate filter pull everything rename_with
+#'                    mutate_all
 #' @importFrom tidyr pivot_longer
 #'
 #' @description `dataset_metadata()` takes a unique dataset_id and
@@ -159,6 +160,7 @@ dataset_metadata <-
     
     tbl <- .query_match(uuid,
                         option = "hits.hits[]._source.metadata.metadata[]") |>
+            mutate_all(as.character) |>
             pivot_longer(cols = everything(), names_to = "Key", 
                         values_to = "Value") |>
             bind_rows(
