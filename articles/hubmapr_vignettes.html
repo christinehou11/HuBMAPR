@@ -128,24 +128,23 @@ corresponding functions to explore entity data.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">datasets</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/datasets.html">datasets</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">datasets</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2,889 × 13</span></span></span>
-<span><span class="co">#&gt;    uuid              hubmap_id registered_by dataset_processing_c…¹ dataset_type</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> db0d7736f53dcf9b… HBM762.L… HuBMAP Proce… HuBMAP Process         Histology […</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> baf976734dd65220… HBM468.M… HuBMAP Proce… Raw                    Histology   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> bbbf5a5b29986dd5… HBM664.N… HuBMAP Proce… HuBMAP Process         Histology […</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 57b475b8ad39fa2c… HBM579.L… HuBMAP Proce… Raw                    Histology   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 856aa4e05b68a784… HBM433.H… HuBMAP Proce… Raw                    Histology   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 3e4c568d9ce8df9d… HBM422.K… HuBMAP Proce… Raw                    MUSIC       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 7ae50cd47b3d2291… HBM769.Q… HuBMAP Proce… HuBMAP Process         Histology […</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 9fa780b7403c4b04… HBM737.W… HuBMAP Proce… Raw                    Histology   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 2126c844cfbcfce9… HBM339.K… HuBMAP Proce… HuBMAP Process         Histology […</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> a86f65547dbb2528… HBM989.N… HuBMAP Proce… Raw                    MUSIC       </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2,889 × 14</span></span></span>
+<span><span class="co">#&gt;    uuid    hubmap_id dataset_type data_types organ analyte_class sample_category</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> db0d77… HBM762.L… Histology    <span style="color: #949494;">""</span>         Larg… <span style="color: #949494;">""</span>            section        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> baf976… HBM468.M… Histology    <span style="color: #949494;">""</span>         Smal… <span style="color: #949494;">"</span>Polysacchar… section        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> bbbf5a… HBM664.N… Histology    <span style="color: #949494;">""</span>         Smal… <span style="color: #949494;">""</span>            section        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 57b475… HBM579.L… Histology    <span style="color: #949494;">""</span>         Smal… <span style="color: #949494;">"</span>Polysacchar… section        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 856aa4… HBM433.H… Histology    <span style="color: #949494;">""</span>         Smal… <span style="color: #949494;">"</span>Polysacchar… section        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 3e4c56… HBM422.K… MUSIC        <span style="color: #949494;">""</span>         Brain <span style="color: #949494;">"</span>DNA + RNA<span style="color: #949494;">"</span>   section        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 7ae50c… HBM769.Q… Histology    <span style="color: #949494;">""</span>         Smal… <span style="color: #949494;">""</span>            section        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 9fa780… HBM737.W… Histology    <span style="color: #949494;">""</span>         Smal… <span style="color: #949494;">"</span>Polysacchar… section        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 2126c8… HBM339.K… Histology    <span style="color: #949494;">""</span>         Larg… <span style="color: #949494;">""</span>            section        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> a86f65… HBM989.N… MUSIC        <span style="color: #949494;">""</span>         Brain <span style="color: #949494;">"</span>DNA + RNA<span style="color: #949494;">"</span>   section        </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 2,879 more rows</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​dataset_processing_category</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 8 more variables: donor.hubmap_id &lt;chr&gt;, group_name &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   last_modified_timestamp &lt;chr&gt;, sample_category &lt;chr&gt;, status &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   analyte_class &lt;chr&gt;, data_types &lt;chr&gt;, organ &lt;chr&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 7 more variables: status &lt;chr&gt;, dataset_processing_category &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   pipeline &lt;chr&gt;, registered_by &lt;chr&gt;, donor.hubmap_id &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   group_name &lt;chr&gt;, last_modified_timestamp &lt;chr&gt;</span></span></span>
 <span></span>
 <span><span class="va">samples</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/samples.html">samples</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">samples</span></span>
@@ -219,9 +218,9 @@ corresponding functions to explore entity data.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 2ced91fd… HBM885.X… 2023-07-18             2021-10-18       FALSE             </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> e8338966… HBM695.W… 2023-07-18             2023-07-19       TRUE              </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> dd0e7aea… HBM599.D… 2023-07-18             2023-07-19       TRUE              </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 3c727366… HBM629.D… 2023-07-18             2023-07-19       TRUE              </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> 0de8528c… HBM473.R… 2023-07-18             2023-07-19       TRUE              </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">8</span> eb975811… HBM464.W… 2023-07-18             2023-07-19       TRUE              </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 0de8528c… HBM473.R… 2023-07-18             2023-07-19       TRUE              </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> eb975811… HBM464.W… 2023-07-18             2023-07-19       TRUE              </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">8</span> 3c727366… HBM629.D… 2023-07-18             2023-07-19       TRUE              </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">9</span> 72cbeb8f… HBM222.Z… 2023-07-18             2023-07-19       TRUE              </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​last_modified_timestamp</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 2 more variables: publication_venue &lt;chr&gt;, title &lt;chr&gt;</span></span></span></code></pre></div>
@@ -234,7 +233,7 @@ parameter to display information in the format of
 <code class="sourceCode R"><span><span class="co"># as = "tibble" (default)</span></span>
 <span><span class="va">datasets_col_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/datasets.html">datasets_default_columns</a></span><span class="op">(</span>as <span class="op">=</span> <span class="st">"tibble"</span><span class="op">)</span></span>
 <span><span class="va">datasets_col_tbl</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 13 × 1</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 14 × 1</span></span></span>
 <span><span class="co">#&gt;    columns                    </span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> uuid                       </span></span>
@@ -248,8 +247,9 @@ parameter to display information in the format of
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> sample_category            </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> registered_by              </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> status                     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> last_modified_timestamp    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> donor.hubmap_id</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> pipeline                   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> last_modified_timestamp    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> donor.hubmap_id</span></span>
 <span></span>
 <span><span class="co"># as = "character"</span></span>
 <span><span class="va">datasets_col_char</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/datasets.html">datasets_default_columns</a></span><span class="op">(</span>as <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span></span>
@@ -259,8 +259,8 @@ parameter to display information in the format of
 <span><span class="co">#&gt;  [5] "dataset_type"                "organ"                      </span></span>
 <span><span class="co">#&gt;  [7] "analyte_class"               "dataset_processing_category"</span></span>
 <span><span class="co">#&gt;  [9] "sample_category"             "registered_by"              </span></span>
-<span><span class="co">#&gt; [11] "status"                      "last_modified_timestamp"    </span></span>
-<span><span class="co">#&gt; [13] "donor.hubmap_id"</span></span></code></pre></div>
+<span><span class="co">#&gt; [11] "status"                      "pipeline"                   </span></span>
+<span><span class="co">#&gt; [13] "last_modified_timestamp"     "donor.hubmap_id"</span></span></code></pre></div>
 <p><code><a href="../reference/samples.html">samples_default_columns()</a></code>,
 <code><a href="../reference/donors.html">donors_default_columns()</a></code>,
 <code><a href="../reference/collections.html">collections_default_columns()</a></code>, and
@@ -270,16 +270,16 @@ is:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html" class="external-link">bind_cols</a></span><span class="op">(</span></span>
 <span>    dataset <span class="op">=</span> <span class="fu"><a href="../reference/datasets.html">datasets_default_columns</a></span><span class="op">(</span>as <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span>,</span>
-<span>    sample <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/samples.html">samples_default_columns</a></span><span class="op">(</span>as <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">6</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>    donor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/donors.html">donors_default_columns</a></span><span class="op">(</span>as <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    sample <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/samples.html">samples_default_columns</a></span><span class="op">(</span>as <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">7</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    donor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/donors.html">donors_default_columns</a></span><span class="op">(</span>as <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">6</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>    collection <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/collections.html">collections_default_columns</a></span><span class="op">(</span>as <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span>,</span>
-<span>                    <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">9</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                    <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>    publication <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/publications.html">publications_default_columns</a></span><span class="op">(</span>as <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span>,</span>
-<span>                    <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">6</span><span class="op">)</span><span class="op">)</span></span>
+<span>                    <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">7</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">tbl</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 13 × 5</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 14 × 5</span></span></span>
 <span><span class="co">#&gt;    dataset                     sample               donor collection publication</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> uuid                        uuid                 hubm… uuid       uuid       </span></span>
@@ -293,8 +293,9 @@ is:</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> sample_category             <span style="color: #BB0000;">NA</span>                   <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>         </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> registered_by               <span style="color: #BB0000;">NA</span>                   <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>         </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> status                      <span style="color: #BB0000;">NA</span>                   <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>         </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> last_modified_timestamp     <span style="color: #BB0000;">NA</span>                   <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>         </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> donor.hubmap_id             <span style="color: #BB0000;">NA</span>                   <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> pipeline                    <span style="color: #BB0000;">NA</span>                   <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>         </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> last_modified_timestamp     <span style="color: #BB0000;">NA</span>                   <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>         </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> donor.hubmap_id             <span style="color: #BB0000;">NA</span>                   <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span></span></span></code></pre></div>
 <p>Use <code><a href="../reference/organs.html">organ()</a></code> to read through the available organs
 included in <code>HuBMAP</code>. It can be helpful to filter retrieved
 data based on organ information.</p>
@@ -352,7 +353,7 @@ retrieved tibbles from <code><a href="../reference/samples.html">samples()</a></
 <span>                by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"hubmap_id"</span> <span class="op">=</span> <span class="st">"donor.hubmap_id"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">donor_sub_dataset</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 76 × 18</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 76 × 19</span></span></span>
 <span><span class="co">#&gt;    uuid                 hubmap_id group_name Sex   Age   `Body Mass Index` Race </span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> f8d963cab6bd10e2a4b… HBM289.B… Universit… Fema… 57    19.6              White</span></span>
@@ -366,11 +367,10 @@ retrieved tibbles from <code><a href="../reference/samples.html">samples()</a></
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> f8d963cab6bd10e2a4b… HBM289.B… Universit… Fema… 57    19.6              White</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> f8d963cab6bd10e2a4b… HBM289.B… Universit… Fema… 57    19.6              White</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 66 more rows</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 11 more variables: last_modified_timestamp &lt;chr&gt;, dataset_uuid &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   dataset_hubmap_id &lt;chr&gt;, registered_by &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   dataset_processing_category &lt;chr&gt;, dataset_type &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   sample_category &lt;chr&gt;, status &lt;chr&gt;, analyte_class &lt;chr&gt;, data_types &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   organ &lt;chr&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 12 more variables: last_modified_timestamp &lt;chr&gt;, dataset_uuid &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   dataset_hubmap_id &lt;chr&gt;, dataset_type &lt;chr&gt;, data_types &lt;chr&gt;, organ &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   analyte_class &lt;chr&gt;, sample_category &lt;chr&gt;, status &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   dataset_processing_category &lt;chr&gt;, pipeline &lt;chr&gt;, registered_by &lt;chr&gt;</span></span></span>
 <span></span>
 <span><span class="co"># Samples</span></span>
 <span><span class="va">donor_sub_sample</span> <span class="op">&lt;-</span> <span class="va">donor_sub</span> <span class="op">|&gt;</span></span>

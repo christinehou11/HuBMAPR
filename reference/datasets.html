@@ -148,26 +148,25 @@ webpage, https://software.docs.hubmapconsortium.org/apis</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">datasets</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2,889 × 13</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    uuid              hubmap_id registered_by dataset_processing_c…¹ dataset_type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> baf976734dd65220… HBM468.M… HuBMAP Proce… Raw                    Histology   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> bbbf5a5b29986dd5… HBM664.N… HuBMAP Proce… HuBMAP Process         Histology […</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> db0d7736f53dcf9b… HBM762.L… HuBMAP Proce… HuBMAP Process         Histology […</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 57b475b8ad39fa2c… HBM579.L… HuBMAP Proce… Raw                    Histology   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 856aa4e05b68a784… HBM433.H… HuBMAP Proce… Raw                    Histology   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 3e4c568d9ce8df9d… HBM422.K… HuBMAP Proce… Raw                    MUSIC       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 9fa780b7403c4b04… HBM737.W… HuBMAP Proce… Raw                    Histology   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2126c844cfbcfce9… HBM339.K… HuBMAP Proce… HuBMAP Process         Histology […</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 7ae50cd47b3d2291… HBM769.Q… HuBMAP Proce… HuBMAP Process         Histology […</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> a86f65547dbb2528… HBM989.N… HuBMAP Proce… Raw                    MUSIC       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2,889 × 14</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    uuid    hubmap_id dataset_type data_types organ analyte_class sample_category</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> baf976… HBM468.M… Histology    <span style="color: #949494;">""</span>         Smal… <span style="color: #949494;">"</span>Polysacchar… section        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> bbbf5a… HBM664.N… Histology    <span style="color: #949494;">""</span>         Smal… <span style="color: #949494;">""</span>            section        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> db0d77… HBM762.L… Histology    <span style="color: #949494;">""</span>         Larg… <span style="color: #949494;">""</span>            section        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 57b475… HBM579.L… Histology    <span style="color: #949494;">""</span>         Smal… <span style="color: #949494;">"</span>Polysacchar… section        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 856aa4… HBM433.H… Histology    <span style="color: #949494;">""</span>         Smal… <span style="color: #949494;">"</span>Polysacchar… section        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 3e4c56… HBM422.K… MUSIC        <span style="color: #949494;">""</span>         Brain <span style="color: #949494;">"</span>DNA + RNA<span style="color: #949494;">"</span>   section        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 9fa780… HBM737.W… Histology    <span style="color: #949494;">""</span>         Smal… <span style="color: #949494;">"</span>Polysacchar… section        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2126c8… HBM339.K… Histology    <span style="color: #949494;">""</span>         Larg… <span style="color: #949494;">""</span>            section        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 7ae50c… HBM769.Q… Histology    <span style="color: #949494;">""</span>         Smal… <span style="color: #949494;">""</span>            section        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> a86f65… HBM989.N… MUSIC        <span style="color: #949494;">""</span>         Brain <span style="color: #949494;">"</span>DNA + RNA<span style="color: #949494;">"</span>   section        </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2,879 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​dataset_processing_category</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 8 more variables: donor.hubmap_id &lt;chr&gt;, group_name &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   last_modified_timestamp &lt;chr&gt;, analyte_class &lt;chr&gt;, sample_category &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   status &lt;chr&gt;, data_types &lt;chr&gt;, organ &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 7 more variables: status &lt;chr&gt;, dataset_processing_category &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   pipeline &lt;chr&gt;, registered_by &lt;chr&gt;, donor.hubmap_id &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   group_name &lt;chr&gt;, last_modified_timestamp &lt;chr&gt;</span></span>
 <span class="r-in"><span><span class="fu">datasets_default_columns</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 13 × 1</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 14 × 1</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    columns                    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> uuid                       </span>
@@ -181,8 +180,9 @@ webpage, https://software.docs.hubmapconsortium.org/apis</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> sample_category            </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> registered_by              </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> status                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> last_modified_timestamp    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> donor.hubmap_id            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> pipeline                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> last_modified_timestamp    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> donor.hubmap_id            </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">uuid</span> <span class="op">&lt;-</span> <span class="st">"7754aa5ebde628b5e92705e33e74a4ef"</span></span></span>
 <span class="r-in"><span><span class="fu">dataset_detail</span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span></span>
