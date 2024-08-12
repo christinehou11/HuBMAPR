@@ -117,12 +117,12 @@ A brief overview of selected information for five entity categories is:
 ```{r 'summary cols'}
 tbl <- bind_cols(
     dataset = datasets_default_columns(as = "character"),
-    sample = c(samples_default_columns(as = "character"), rep(NA, 6)),
-    donor = c(donors_default_columns(as = "character"), rep(NA, 5)),
+    sample = c(samples_default_columns(as = "character"), rep(NA, 7)),
+    donor = c(donors_default_columns(as = "character"), rep(NA, 6)),
     collection = c(collections_default_columns(as = "character"),
-                    rep(NA, 9)),
+                    rep(NA, 10)),
     publication = c(publications_default_columns(as = "character"),
-                    rep(NA, 6))
+                    rep(NA, 7))
 )
 
 tbl

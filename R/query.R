@@ -122,7 +122,7 @@ SEARCH <- "https://search.api.hubmapconsortium.org/v3/search"
         Dataset = c("uuid", "hubmap_id", "group_name",
                     "data_types", "dataset_type", "organ", "analyte_class",
                     "dataset_processing_category", "sample_category",
-                    "registered_by", "status",
+                    "registered_by", "status", "pipeline",
                     "last_modified_timestamp", "donor.hubmap_id"),
 
         Sample = c("uuid", "hubmap_id", "group_name", "sample_category",

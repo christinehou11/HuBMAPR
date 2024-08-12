@@ -217,7 +217,8 @@ dataset_contributors <-
     
     }
 
-#' @importFrom dplyr left_join rename select
+#' @importFrom dplyr left_join rename select mutate relocate everything
+#' @importFrom stringr str_extract
 .dataset_edit <-
     function (tbl) {
 
@@ -228,6 +229,12 @@ dataset_contributors <-
         rename("organ" = "name",
                 "analyte_class" = "metadata.metadata.analyte_class",
                 "sample_category" = "source_samples.sample_category") |>
-        .dataset_processing_category()
+        .dataset_processing_category() |>
+        mutate(pipeline = str_extract(.data$dataset_type, 
+                                    "(?<=\\[).*?(?=\\])"),
+                dataset_type = gsub("\\s*\\[.*?\\]", "", .data$dataset_type)) |>
+        relocate("uuid", "hubmap_id", "dataset_type", "data_types",
+                "organ", "analyte_class", "sample_category", "status",
+                "dataset_processing_category", "pipeline", everything())
 
     }
