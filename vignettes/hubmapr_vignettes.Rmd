@@ -22,15 +22,15 @@ knitr::opts_chunk$set(
 
 # Overview
 
-'HuBMAP' data portal (<https://portal.hubmapconsortium.org/>) provides an open,
-global bio-molecular atlas of the human body at the cellular level.
+'HuBMAP' data portal (<https://portal.hubmapconsortium.org/>) provides an
+open, global bio-molecular atlas of the human body at the cellular level.
 `HuBMAPR` package provides an alternative interface to explore the data via R.
 
 # Installation
 
 `HuBMAPR` is a R package available in *Bioconductor* version 3.19 and later.
-You can install `HuBMAPR` by using the following commands in R session
-from *Bioconductor*:
+You can install `HuBMAPR` by using the following commands in R session from
+*Bioconductor*:
 
 ```{r 'install', eval = FALSE}
 if (!require("BiocManager", quietly = TRUE))
@@ -109,8 +109,8 @@ datasets_col_char
 ```
 
 `samples_default_columns()`, `donors_default_columns()`,
-`collections_default_columns()`, and `publications_default_columns()`
-work same as above.
+`collections_default_columns()`, and `publications_default_columns()` work same
+as above.
 
 A brief overview of selected information for five entity categories is:
 
@@ -128,7 +128,7 @@ tbl <- bind_cols(
 tbl
 ```
 
-Use `organ()` to read through the available organs included in `HuBMAP`. It can
+Use `organ()` to read through the available organs included in `HuBMAP`. It can 
 be helpful to filter retrieved data based on organ information.
 
 ```{r 'organs'}
@@ -146,7 +146,7 @@ datasets |>
     count()
 ```
 
-Any dataset, sample, donor, collection, and publication has special
+Any dataset, sample, donor, collection, and publication has special 
 **HuBMAP ID** and **UUID**, and **UUID** is the main ID to be used in most of
 functions for specific detail retrievals.
 
@@ -184,10 +184,10 @@ donor_sub_sample <- donor_sub |>
 donor_sub_sample
 ```
 
-You can use `*_detail(uuid)` to retrieve all available information for any
-entry of any entity category given **UUID**.
-Use `select()` and `unnest_*()` functions to expand list-columns. It will be
-convenient to view tables with multiple columns but one row using `glimpse()`.
+You can use `*_detail(uuid)` to retrieve all available information for any entry
+of any entity category given **UUID**. Use `select()` and `unnest_*()` functions
+to expand list-columns. It will be convenient to view tables with multiple 
+columns but one row using `glimpse()`.
 
 ```{r '*_detail()'}
 dataset_uuid <- datasets |>
@@ -211,8 +211,8 @@ dataset_detail(uuid = dataset_uuid) |>
 
 ## Metadata
 
-To retrieve the metadata for **Dataset**, **Sample**, and **Donor** metadata,
-use `dataset_metadata()`, `sample_metadata()`, and `donor_metadata()`. 
+To retrieve the metadata for **Dataset**, **Sample**, and **Donor** metadata, 
+use `dataset_metadata()`, `sample_metadata()`, and `donor_metadata()`.
 
 ```{r 'metadata'}
 dataset_metadata("993bb1d6fa02e2755fd69613bb9d6e08")
@@ -222,12 +222,11 @@ sample_metadata("8ecdbdc3e2d04898e2563d666658b6a9")
 donor_metadata("b2c75c96558c18c9e13ba31629f541b6")
 ```
 
-
 ## Derived Data
 
 Some datasets from **Dataset** entity has derived (support) dataset(s). Use
-`dataset_derived()` to retrieve. A tibble with selected details will be
-retrieved as if the given dataset has support dataset; otherwise, nothing
+`dataset_derived()` to retrieve. A tibble with selected details will be 
+retrieved as if the given dataset has support dataset; otherwise, nothing 
 returns.
 
 ```{r 'dataset derived'}
@@ -242,11 +241,11 @@ dataset_uuid_2 <- "baf976734dd652208d13134bc5c4594b"
 dataset_derived(uuid = dataset_uuid_2) |> glimpse()
 ```
 
-**Sample** and **Donor** have derived samples and datasets. In `HuBAMPR`
-package, `sample_derived()` and `donor_derived()` functions are
-available to use to see the derived datasets and samples from one sample given
-sample UUID or one donor given donor UUID. Specify `entity_type` parameter to
-retrieve derived `Dataset` or `Sample`.
+**Sample** and **Donor** have derived samples and datasets. In `HuBAMPR` 
+package, `sample_derived()` and `donor_derived()` functions are available to use
+to see the derived datasets and samples from one sample given sample UUID or one
+donor given donor UUID. Specify `entity_type` parameter to retrieve derived
+`Dataset` or `Sample`.
 
 ```{r 'derived using sample_derived'}
 sample_uuid <- samples |>
@@ -271,8 +270,8 @@ sample_derived(uuid = sample_uuid, entity_type = "Sample")
 
 For individual entries from **Dataset** and **Sample** entities,
 `uuid_provenance()` helps to retrieve the provenance of the entry as a list of
-characters (UUID, HuBMAP ID, and entity type) from the most recent ancestor to
-the furthest ancestor. There is no ancestor for Donor UUID, and an empty list
+characters (UUID, HuBMAP ID, and entity type) from the most recent ancestor to 
+the furthest ancestor. There is no ancestor for Donor UUID, and an empty list 
 will be returned.
 
 ```{r 'provenance'}
@@ -291,7 +290,7 @@ uuid_provenance(donor_uuid)
 
 ## Related Data
 
-Each **Collection** has related datasets, and use `collection_data()` to
+Each **Collection** has related datasets, and use `collection_data()` to 
 retrieve.
 
 ```{r 'collection datasets'}
@@ -303,9 +302,8 @@ collection_uuid <- collections |>
 collection_data(collection_uuid)
 ```
 
-
 Each publication has related datasets, samples, and donors, and use
-`publication_data()` to see, while specifying `entity_type` parameter to
+`publication_data()` to see, while specifying `entity_type` parameter to 
 retrieve derived `Dataset` or `Sample`.
 
 ```{r 'publication data'}
@@ -350,18 +348,16 @@ publication_authors(uuid = publication_uuid)
 
 # File Download
 
-For each dataset, there are corresponding data files. Most of the datasets'
-files are available on HuBMAP Globus with corresponding URL.
-Some of the datasets' files are not available via Globus, but can be accessed
-via dbGAP (database of Genotypes and Phenotypes) and/or SRA (Sequence Read
-Archive). But some of the datasets' files are not available in any authorized
-platform.
+For each dataset, there are corresponding data files. Most of the datasets' 
+files are available on HuBMAP Globus with corresponding URL. Some of the 
+datasets' files are not available via Globus, but can be accessed via dbGAP
+(database of Genotypes and Phenotypes) and/or SRA (Sequence Read Archive). But
+some of the datasets' files are not available in any authorized platform.
 
-Use `bulk_data_transfer()` to access data files. If the Globus URL is
-available, the function will direct you to chrome, and you can choose to
-download or read any document. If not, error messages will be printed out with
-addition instructions, either providing dbGAP/SRA URLs or pointing out the
-unavailability.
+Use `bulk_data_transfer()` to know whether data files are open-accessed or
+restricted. The function will direct you to chrome if the files are accessible;
+otherwise, the error messages will be printed out with addition instructions,
+either providing dbGAP/SRA URLs or pointing out the unavailability.
 
 ```{r 'bulk data transfer', eval=FALSE}
 uuid_globus <- "d1dcab2df80590d8cd8770948abaf976"
@@ -376,6 +372,12 @@ uuid_not_avail <- "0eb5e457b4855ce28531bc97147196b6"
 
 bulk_data_transfer(uuid_not_avail)
 ```
+
+You can choose to download data files on Globus webpage by clicking download
+button after choosing the desired document. You can also preview and download 
+data files using [rglobus](mtmorgan.github.io/rglobus/) package. Follow the
+instructions 
+[here](https://mtmorgan.github.io/rglobus/articles/a_get_started.html).
 
 # `R` session information {.unnumbered}
 
