@@ -128,27 +128,27 @@ corresponding functions to explore entity data.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">datasets</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/datasets.html">datasets</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">datasets</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2,889 × 14</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3,301 × 14</span></span></span>
 <span><span class="co">#&gt;    uuid    hubmap_id dataset_type data_types organ analyte_class sample_category</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> db0d77… HBM762.L… Histology    <span style="color: #949494;">""</span>         Larg… <span style="color: #949494;">""</span>            section        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> baf976… HBM468.M… Histology    <span style="color: #949494;">""</span>         Smal… <span style="color: #949494;">"</span>Polysacchar… section        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> bbbf5a… HBM664.N… Histology    <span style="color: #949494;">""</span>         Smal… <span style="color: #949494;">""</span>            section        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 57b475… HBM579.L… Histology    <span style="color: #949494;">""</span>         Smal… <span style="color: #949494;">"</span>Polysacchar… section        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 856aa4… HBM433.H… Histology    <span style="color: #949494;">""</span>         Smal… <span style="color: #949494;">"</span>Polysacchar… section        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 3e4c56… HBM422.K… MUSIC        <span style="color: #949494;">""</span>         Brain <span style="color: #949494;">"</span>DNA + RNA<span style="color: #949494;">"</span>   section        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 7ae50c… HBM769.Q… Histology    <span style="color: #949494;">""</span>         Smal… <span style="color: #949494;">""</span>            section        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 9fa780… HBM737.W… Histology    <span style="color: #949494;">""</span>         Smal… <span style="color: #949494;">"</span>Polysacchar… section        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 2126c8… HBM339.K… Histology    <span style="color: #949494;">""</span>         Larg… <span style="color: #949494;">""</span>            section        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> a86f65… HBM989.N… MUSIC        <span style="color: #949494;">""</span>         Brain <span style="color: #949494;">"</span>DNA + RNA<span style="color: #949494;">"</span>   section        </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 2,879 more rows</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 5904bf… HBM856.B… ATACseq      <span style="color: #949494;">""</span>         Uter… DNA           suspension     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> bf399e… HBM634.F… ATACseq      <span style="color: #949494;">""</span>         Uter… DNA           suspension     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 223c79… HBM625.W… RNAseq       <span style="color: #949494;">""</span>         Uter… RNA           suspension     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 2da752… HBM647.G… ATACseq      <span style="color: #949494;">""</span>         Fall… DNA           suspension     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 1991b9… HBM853.X… ATACseq      <span style="color: #949494;">""</span>         Uter… DNA           suspension     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> dda3b0… HBM834.K… RNAseq       <span style="color: #949494;">""</span>         Uter… RNA           suspension     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> aaed24… HBM956.C… ATACseq      <span style="color: #949494;">""</span>         Ovar… DNA           block          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 0955bb… HBM249.L… ATACseq      <span style="color: #949494;">""</span>         Uter… DNA           suspension     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> d7ef8d… HBM484.P… ATACseq      <span style="color: #949494;">""</span>         Ovar… DNA           block          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 33f5d0… HBM999.W… RNAseq       <span style="color: #949494;">""</span>         Fall… RNA           block          </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 3,291 more rows</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 7 more variables: status &lt;chr&gt;, dataset_processing_category &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   pipeline &lt;chr&gt;, registered_by &lt;chr&gt;, donor.hubmap_id &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   group_name &lt;chr&gt;, last_modified_timestamp &lt;chr&gt;</span></span></span>
 <span></span>
 <span><span class="va">samples</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/samples.html">samples</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">samples</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1,928 × 7</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2,177 × 7</span></span></span>
 <span><span class="co">#&gt;    uuid              hubmap_id donor.hubmap_id group_name last_modified_timest…¹</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 509d2f22c9e9c33e… HBM944.X… HBM279.WPZP.978 Stanford … 2024-07-19            </span></span>
@@ -160,14 +160,14 @@ corresponding functions to explore entity data.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 23820292ab47f319… HBM236.X… HBM279.WPZP.978 Stanford … 2024-07-19            </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 038e4fcefc00f7ec… HBM595.S… HBM279.WPZP.978 Stanford … 2024-07-19            </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> e3b74d607c3b20c9… HBM876.S… HBM477.DBJN.952 Universit… 2024-05-29            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 681f7f1d0a87427c… HBM788.K… HBM984.MHHN.738 Universit… 2024-05-29            </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 1,918 more rows</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 744f20be06ec72b7… HBM796.X… HBM375.PJSC.682 Universit… 2024-05-29            </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 2,167 more rows</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​last_modified_timestamp</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 2 more variables: sample_category &lt;chr&gt;, organ &lt;chr&gt;</span></span></span>
 <span></span>
 <span><span class="va">donors</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/donors.html">donors</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">donors</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 228 × 8</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 233 × 8</span></span></span>
 <span><span class="co">#&gt;    uuid                 hubmap_id group_name Sex   Age   `Body Mass Index` Race </span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> c09f875545a64694d70… HBM534.P… TTD - Uni… Fema… 90    NA                White</span></span>
@@ -180,7 +180,7 @@ corresponding functions to explore entity data.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> a0bea4ae0ce4e03efd0… HBM666.X… TTD - Uni… Fema… 82    NA                White</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 03b6236566cfd447214… HBM263.S… TTD - Uni… Fema… 75    NA                White</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 5cc62ac9233e8c5d6c4… HBM993.R… TTD - Uni… Fema… 75    NA                White</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 218 more rows</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 223 more rows</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 1 more variable: last_modified_timestamp &lt;chr&gt;</span></span></span>
 <span></span>
 <span><span class="va">collections</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/collections.html">collections</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -213,9 +213,9 @@ corresponding functions to explore entity data.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 9 × 7</span></span></span>
 <span><span class="co">#&gt;   uuid      hubmap_id last_modified_timest…¹ publication_date publication_status</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 77ab3588… HBM222.S… 2023-07-18             2023-07-20       TRUE              </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> aea510e3… HBM332.M… 2023-07-18             2022-10-24       TRUE              </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 2ced91fd… HBM885.X… 2023-07-18             2021-10-18       FALSE             </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> aea510e3… HBM332.M… 2023-07-18             2022-10-24       TRUE              </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 2ced91fd… HBM885.X… 2023-07-18             2021-10-18       FALSE             </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 77ab3588… HBM222.S… 2023-07-18             2023-07-20       TRUE              </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> e8338966… HBM695.W… 2023-07-18             2023-07-19       TRUE              </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> dd0e7aea… HBM599.D… 2023-07-18             2023-07-19       TRUE              </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 0de8528c… HBM473.R… 2023-07-18             2023-07-19       TRUE              </span></span>
@@ -795,11 +795,11 @@ Some of the datasets’ files are not available via Globus, but can be
 accessed via dbGAP (database of Genotypes and Phenotypes) and/or SRA
 (Sequence Read Archive). But some of the datasets’ files are not
 available in any authorized platform.</p>
-<p>Use <code><a href="../reference/files.html">bulk_data_transfer()</a></code> to access data files. If the
-Globus URL is available, the function will direct you to chrome, and you
-can choose to download or read any document. If not, error messages will
-be printed out with addition instructions, either providing dbGAP/SRA
-URLs or pointing out the unavailability.</p>
+<p>Use <code><a href="../reference/files.html">bulk_data_transfer()</a></code> to know whether data files are
+open-accessed or restricted. The function will direct you to chrome if
+the files are accessible; otherwise, the error messages will be printed
+out with addition instructions, either providing dbGAP/SRA URLs or
+pointing out the unavailability.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">uuid_globus</span> <span class="op">&lt;-</span> <span class="st">"d1dcab2df80590d8cd8770948abaf976"</span></span>
 <span></span>
@@ -812,6 +812,10 @@ URLs or pointing out the unavailability.</p>
 <span><span class="va">uuid_not_avail</span> <span class="op">&lt;-</span> <span class="st">"0eb5e457b4855ce28531bc97147196b6"</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/files.html">bulk_data_transfer</a></span><span class="op">(</span><span class="va">uuid_not_avail</span><span class="op">)</span></span></code></pre></div>
+<p>You can choose to download data files on Globus webpage by clicking
+download button after choosing the desired document. You can also
+preview and download data files using <a href="mtmorgan.github.io/rglobus/">rglobus</a> package. Follow the
+instructions <a href="https://mtmorgan.github.io/rglobus/articles/a_get_started.html" class="external-link">here</a>.</p>
 </div>
 <div class="section level2">
 <h2 class="unnumbered" id="r-session-information">
