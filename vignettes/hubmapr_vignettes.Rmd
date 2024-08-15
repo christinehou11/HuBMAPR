@@ -28,25 +28,11 @@ open, global bio-molecular atlas of the human body at the cellular level.
 
 # Installation
 
-`HuBMAPR` is a R package available in *Bioconductor* version 3.19 and later.
-You can install `HuBMAPR` by using the following commands in R session from
-*Bioconductor*:
-
-```{r 'install', eval = FALSE}
-if (!require("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-
-BiocManager::install("HuBMAPR")
-
-## Check Bioconductor installation
-BiocManager::valid()
-```
-
-Additionally, you can install development version from
+`HuBMAPR` is a R package. Install development version from
 [GitHub](https://christinehou11.github.io/HuBMAPR):
 
 ```{r 'install dev', eval = FALSE}
-BiocManager::install("christinehou11/HuBMAPR")
+remotes::install("christinehou11/HuBMAPR")
 ```
 
 # Basic User Guide
@@ -375,7 +361,7 @@ bulk_data_transfer(uuid_not_avail)
 
 You can choose to download data files on Globus webpage by clicking download
 button after choosing the desired document. You can also preview and download 
-data files using [rglobus](mtmorgan.github.io/rglobus/) package. Follow the
+data files using [rglobus](https://mtmorgan.github.io/rglobus/) package. Follow the
 instructions 
 [here](https://mtmorgan.github.io/rglobus/articles/a_get_started.html).
 
