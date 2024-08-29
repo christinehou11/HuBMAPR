@@ -361,8 +361,8 @@ bulk_data_transfer(uuid_not_avail)
 
 You can choose to download data files on Globus webpage by clicking download
 button after choosing the desired document. You can also preview and download 
-data files using [rglobus](https://mtmorgan.github.io/rglobus/) package. Follow the
-instructions 
+data files using [rglobus](https://mtmorgan.github.io/rglobus/) package.
+Follow the instructions 
 [here](https://mtmorgan.github.io/rglobus/articles/a_get_started.html).
 
 # `R` session information {.unnumbered}
