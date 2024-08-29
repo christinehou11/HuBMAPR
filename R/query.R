@@ -1,5 +1,4 @@
 ## helper function
-## internal only
 
 # available APIs
 SEARCH <- "https://search.api.hubmapconsortium.org/v3/search"
