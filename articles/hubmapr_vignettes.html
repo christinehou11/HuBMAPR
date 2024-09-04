@@ -130,30 +130,28 @@ corresponding functions to explore entity data.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3,301 × 14</span></span></span>
 <span><span class="co">#&gt;    uuid        hubmap_id dataset_type dataset_type_additio…¹ organ analyte_class</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 7e4c58d746… HBM952.D… ATACseq      sciATACseq             Heart DNA          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 319579dab9… HBM965.G… RNAseq       sciRNAseq              Heart RNA          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 42b73e4e34… HBM972.V… RNAseq       sciRNAseq              Heart RNA          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 756a0eed95… HBM388.Z… RNAseq       sciRNAseq              Heart RNA          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> e75d8b31cf… HBM667.Z… RNAseq       sciRNAseq              Heart RNA          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 48da185436… HBM583.S… ATACseq      sciATACseq             Sple… DNA          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> fe43e21822… HBM389.N… ATACseq      sciATACseq             Smal… DNA          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 02dcd83480… HBM429.Q… ATACseq      sciATACseq             Smal… DNA          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> dd39ed081f… HBM278.G… ATACseq      sciATACseq             Heart DNA          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 319579dab9… HBM965.G… RNAseq       sciRNAseq              Heart RNA          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 756a0eed95… HBM388.Z… RNAseq       sciRNAseq              Heart RNA          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 7e4c58d746… HBM952.D… ATACseq      sciATACseq             Heart DNA          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> e75d8b31cf… HBM667.Z… RNAseq       sciRNAseq              Heart RNA          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 42b73e4e34… HBM972.V… RNAseq       sciRNAseq              Heart RNA          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> b2db3414ce… HBM366.L… ATACseq      sciATACseq             Heart DNA          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 48da185436… HBM583.S… ATACseq      sciATACseq             Sple… DNA          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> fe43e21822… HBM389.N… ATACseq      sciATACseq             Smal… DNA          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 02dcd83480… HBM429.Q… ATACseq      sciATACseq             Smal… DNA          </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 8ea82dc9f2… HBM445.L… ATACseq      sciATACseq             Panc… DNA          </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 3,291 more rows</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​dataset_type_additional_information</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 8 more variables: sample_category &lt;chr&gt;, status &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   dataset_processing_category &lt;chr&gt;, pipeline &lt;chr&gt;, registered_by &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   donor_hubmap_id &lt;chr&gt;, group_name &lt;chr&gt;, last_modified_timestamp &lt;chr&gt;</span></span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; Warning in geom_histogram(stat = "count"): Ignoring unknown parameters:</span></span>
-<span><span class="co">#&gt; `binwidth`, `bins`, and `pad`</span></span></code></pre>
 <p><img src="hubmapr_vignettes_files/figure-html/plot-1.png" width="700"></p>
 <p>The default tibble produced by corresponding entity function only
 reflects selected information. To see the names of selected information,
 use following commands for each entity category. Specify <code>as</code>
 parameter to display information in the format of
 <code>"character"</code> or <code>"tibble"</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># as = "tibble" (default)</span></span>
 <span><span class="va">datasets_col_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/datasets.html">datasets_default_columns</a></span><span class="op">(</span>as <span class="op">=</span> <span class="st">"tibble"</span><span class="op">)</span></span>
 <span><span class="va">datasets_col_tbl</span></span>
@@ -191,7 +189,7 @@ parameter to display information in the format of
 <code><a href="../reference/publications.html">publications_default_columns()</a></code> work same as above.</p>
 <p>A brief overview of selected information for five entity categories
 is:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html" class="external-link">bind_cols</a></span><span class="op">(</span></span>
 <span>    dataset <span class="op">=</span> <span class="fu"><a href="../reference/datasets.html">datasets_default_columns</a></span><span class="op">(</span>as <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span>,</span>
 <span>    sample <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/samples.html">samples_default_columns</a></span><span class="op">(</span>as <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">7</span><span class="op">)</span><span class="op">)</span>,</span>
@@ -223,7 +221,7 @@ is:</p>
 <p>Use <code><a href="../reference/organs.html">organ()</a></code> to read through the available organs
 included in <code>HuBMAP</code>. It can be helpful to filter retrieved
 data based on organ information.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">organs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/organs.html">organ</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">organs</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 43 × 2</span></span></span>
@@ -242,7 +240,7 @@ data based on organ information.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 33 more rows</span></span></span></code></pre></div>
 <p>Data wrangling and filter are welcome to retrieve data based on
 interested information.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Example from datasets()</span></span>
 <span><span class="va">datasets_df</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">organ</span> <span class="op">==</span> <span class="st">'Small Intestine'</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -258,7 +256,7 @@ specific detail retrievals.</p>
 <p>The column of <strong>donor_hubmap_id</strong> is included in the
 retrieved tibbles from <code><a href="../reference/samples.html">samples()</a></code> and
 <code><a href="../reference/datasets.html">datasets()</a></code>, which can help to join the tibble.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">donors_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/donors.html">donors</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">donor_sub</span> <span class="op">&lt;-</span> <span class="va">donors_df</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">Sex</span> <span class="op">==</span> <span class="st">"Female"</span>,</span>
@@ -328,7 +326,7 @@ information for any entry of any entity category given
 <code>unnest_*()</code> functions to expand list-columns. It will be
 convenient to view tables with multiple columns but one row using
 <code><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse()</a></code>.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dataset_uuid</span> <span class="op">&lt;-</span> <span class="va">datasets_df</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">dataset_type</span> <span class="op">==</span> <span class="st">"Auto-fluorescence"</span>,</span>
 <span>            <span class="va">organ</span> <span class="op">==</span> <span class="st">"Kidney (Right)"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -414,7 +412,7 @@ work same as above.</p>
 <strong>Sample</strong>, and <strong>Donor</strong> metadata, use
 <code><a href="../reference/datasets.html">dataset_metadata()</a></code>, <code><a href="../reference/samples.html">sample_metadata()</a></code>, and
 <code><a href="../reference/donors.html">donor_metadata()</a></code>.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/datasets.html">dataset_metadata</a></span><span class="op">(</span><span class="st">"993bb1d6fa02e2755fd69613bb9d6e08"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 20 × 2</span></span></span>
 <span><span class="co">#&gt;    Key                             Value                                        </span></span>
@@ -470,7 +468,7 @@ work same as above.</p>
 (support) dataset(s). Use <code><a href="../reference/datasets.html">dataset_derived()</a></code> to retrieve. A
 tibble with selected details will be retrieved as if the given dataset
 has support dataset; otherwise, nothing returns.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># no derived/support dataset</span></span>
 <span><span class="va">dataset_uuid_1</span> <span class="op">&lt;-</span> <span class="st">"3acdb3ed962b2087fbe325514b098101"</span></span>
 <span></span>
@@ -496,7 +494,7 @@ are available to use to see the derived datasets and samples from one
 sample given sample UUID or one donor given donor UUID. Specify
 <code>entity_type</code> parameter to retrieve derived
 <code>Dataset</code> or <code>Sample</code>.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sample_uuid</span> <span class="op">&lt;-</span> <span class="va">samples_df</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">last_modified_timestamp</span> <span class="op">&gt;=</span> <span class="st">"2023-01-01"</span> <span class="op">&amp;</span></span>
 <span>            <span class="va">last_modified_timestamp</span> <span class="op">&lt;=</span> <span class="st">"2023-10-01"</span>,</span>
@@ -547,7 +545,7 @@ to retrieve the provenance of the entry as a list of characters (UUID,
 HuBMAP ID, and entity type) from the most recent ancestor to the
 furthest ancestor. There is no ancestor for Donor UUID, and an empty
 list will be returned.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># dataset provenance</span></span>
 <span><span class="va">dataset_uuid</span> <span class="op">&lt;-</span> <span class="st">"3e4c568d9ce8df9d73b8cddcf8d0fec3"</span></span>
 <span><span class="fu"><a href="../reference/provenance.html">uuid_provenance</a></span><span class="op">(</span><span class="va">dataset_uuid</span><span class="op">)</span></span>
@@ -585,7 +583,7 @@ list will be returned.</p>
 </h3>
 <p>Each <strong>Collection</strong> has related datasets, and use
 <code><a href="../reference/collections.html">collection_data()</a></code> to retrieve.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">collections_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/collections.html">collections</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">collection_uuid</span> <span class="op">&lt;-</span> <span class="va">collections_df</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">last_modified_timestamp</span> <span class="op">&gt;=</span> <span class="st">"2023-01-01"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -614,7 +612,7 @@ list will be returned.</p>
 <code><a href="../reference/publications.html">publication_data()</a></code> to see, while specifying
 <code>entity_type</code> parameter to retrieve derived
 <code>Dataset</code> or <code>Sample</code>.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">publications_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/publications.html">publications</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">publication_uuid</span> <span class="op">&lt;-</span> <span class="va">publications_df</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">publication_venue</span> <span class="op">==</span> <span class="st">"Nature"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -644,7 +642,7 @@ list will be returned.</p>
 <p>To read the textual description of one <strong>Collection</strong> or
 <strong>Publication</strong>, use <code><a href="../reference/collection_information.html">collection_information()</a></code>
 or <code><a href="../reference/publication_information.html">publication_information()</a></code> respectively.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/collection_information.html">collection_information</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">collection_uuid</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Title</span></span>
 <span><span class="co">#&gt;   Spatiotemporal coordination at the maternal-fetal interface promotes trophoblast invasion and vascular remodeling in the first half of human pregnancy </span></span>
@@ -674,7 +672,7 @@ retrieved using <code>dataset_contributor()</code> for
 <code><a href="../reference/collections.html">collection_contributors()</a></code> for <strong>Collection</strong>
 entity, or <code><a href="../reference/publications.html">publication_authors()</a></code> for
 <strong>Publication</strong> entity.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Dataset</span></span>
 <span><span class="fu"><a href="../reference/datasets.html">dataset_contributors</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">dataset_uuid</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 5</span></span></span>
@@ -734,7 +732,7 @@ open-accessed or restricted. The function will direct you to chrome if
 the files are accessible; otherwise, the error messages will be printed
 out with addition instructions, either providing dbGAP/SRA URLs or
 pointing out the unavailability.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">uuid_globus</span> <span class="op">&lt;-</span> <span class="st">"d1dcab2df80590d8cd8770948abaf976"</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/files.html">bulk_data_transfer</a></span><span class="op">(</span><span class="va">uuid_globus</span><span class="op">)</span></span>
