@@ -5,7 +5,8 @@
 #' @title HuBMAP Samples
 #'
 #' @description `samples()` returns details about available samples, ordered by
-#' last modified dates
+#' last modified dates. There are multiple tissue sample types displayed in 
+#' `sample_category` column which are block, organ, suspension, and section.
 #'
 #' @details Additional details are provided on the HuBMAP consortium
 #'     webpage, https://software.docs.hubmapconsortium.org/apis
@@ -76,7 +77,7 @@ samples_default_columns <-
 sample_detail <-
     function (uuid) {
 
-    stopifnot(.is_uuid(uuid))
+    stopifnot(.is_uuid(uuid), .uuid_category(uuid) == "Sample")
 
     .query_match(uuid, option = "hits.hits[]._source")
 
@@ -86,7 +87,7 @@ sample_detail <-
 #'
 #' @name sample_derived
 #'
-#' @importFrom dplyr select mutate filter any_of
+#' @importFrom dplyr select mutate filter any_of rename
 #' @importFrom purrr map_int map_chr
 #'
 #' @description `sample_derived()` takes a unique sample_id and
@@ -109,7 +110,7 @@ sample_detail <-
 sample_derived <-
     function(uuid, entity_type = c("Dataset", "Sample")) {
 
-    stopifnot(.is_uuid(uuid))
+    stopifnot(.is_uuid(uuid), .uuid_category(uuid) == "Sample")
 
     entity <- match.arg(entity_type)
 
@@ -132,13 +133,12 @@ sample_derived <-
     else {
 
         tbl <- tbl |>
-            select(any_of(c("uuid", "hubmap_id", "data_types", "dataset_type",
+            select(any_of(c("uuid", "hubmap_id", "dataset_type",
                         "status", "last_modified_timestamp"))) |>
             .unnest_mutate_relocate() |>
             mutate(derived_dataset_count = map_int(uuid, ~{
                             nrow(.query_match(.x,
                             option = "hits.hits[]._source.descendants[]"))}))
-
     }
 
     tbl
@@ -170,7 +170,7 @@ sample_derived <-
 sample_metadata <-
     function(uuid) {
     
-    stopifnot(.is_uuid(uuid))
+    stopifnot(.is_uuid(uuid), .uuid_category(uuid) == "Sample")
     
     donor_uuid <- .query_match(uuid,
                     option = "hits.hits[]._source.ancestors[]") |>
@@ -183,6 +183,7 @@ sample_metadata <-
     }
 
 #' @importFrom dplyr left_join rename select
+#' @importFrom stringr str_extract
 .sample_edit <-
     function (tbl) {
 
@@ -190,6 +191,8 @@ sample_metadata <-
         .unnest_mutate_relocate() |>
         left_join(organ(), by = c("origin_samples.organ" = "abbreviation")) |>
         select(-"origin_samples.organ") |>
-        rename("organ" = "name")
+        rename("organ" = "name",
+                "donor_hubmap_id" = "donor.hubmap_id") |>
+        mutate(sample_category = str_extract(.data$sample_category, "^[^,]+"))
 
     }

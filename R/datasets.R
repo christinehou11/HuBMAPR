@@ -72,7 +72,7 @@ datasets_default_columns <-
 dataset_detail <-
     function (uuid) {
 
-    stopifnot( .is_uuid(uuid))
+    stopifnot( .is_uuid(uuid), .uuid_category(uuid) == "Dataset")
 
     .query_match(uuid, option = "hits.hits[]._source")
 
@@ -106,7 +106,7 @@ dataset_detail <-
 dataset_derived <-
     function(uuid) {
 
-    stopifnot(.is_uuid(uuid))
+    stopifnot(.is_uuid(uuid), .uuid_category(uuid) == "Dataset")
 
     option <- .list_to_option(
         path = "hits.hits[]._source.descendants[]",
@@ -148,7 +148,7 @@ dataset_derived <-
 dataset_metadata <-
     function(uuid) {
     
-    stopifnot(.is_uuid(uuid))
+    stopifnot(.is_uuid(uuid), .uuid_category(uuid) == "Dataset")
     
     donor_uuid <- .query_match(uuid,
                     option = "hits.hits[]._source.ancestors[]") |>
@@ -208,7 +208,7 @@ dataset_metadata <-
 dataset_contributors <-
     function(uuid) {
     
-    stopifnot(.is_uuid(uuid))
+    stopifnot(.is_uuid(uuid), .uuid_category(uuid) == "Dataset")
     
     .query_match(uuid,
                 option = "hits.hits[]._source.contributors[]") |> 
@@ -228,12 +228,16 @@ dataset_contributors <-
         select(-"origin_samples.organ") |>
         rename("organ" = "name",
                 "analyte_class" = "metadata.metadata.analyte_class",
-                "sample_category" = "source_samples.sample_category") |>
+                "sample_category" = "source_samples.sample_category",
+                "dataset_type_additional_information" = "data_types",
+                "donor_hubmap_id" = "donor.hubmap_id") |>
         .dataset_processing_category() |>
         mutate(pipeline = str_extract(.data$dataset_type, 
                                     "(?<=\\[).*?(?=\\])"),
-                dataset_type = gsub("\\s*\\[.*?\\]", "", .data$dataset_type)) |>
-        relocate("uuid", "hubmap_id", "dataset_type", "data_types",
+            dataset_type = gsub("\\s*\\[.*?\\]", "",.data$dataset_type),
+            sample_category = str_extract(.data$sample_category, "^[^,]+")) |>
+        relocate("uuid", "hubmap_id", "dataset_type", 
+                "dataset_type_additional_information",
                 "organ", "analyte_class", "sample_category", "status",
                 "dataset_processing_category", "pipeline", everything())
 

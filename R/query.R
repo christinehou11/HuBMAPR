@@ -120,13 +120,14 @@ SEARCH <- "https://search.api.hubmapconsortium.org/v3/search"
         view,
 
         Dataset = c("uuid", "hubmap_id", "group_name",
-                    "data_types", "dataset_type", "organ", "analyte_class",
+                    "dataset_type_additional_information", 
+                    "dataset_type", "organ", "analyte_class",
                     "dataset_processing_category", "sample_category",
                     "registered_by", "status", "pipeline",
-                    "last_modified_timestamp", "donor.hubmap_id"),
+                    "last_modified_timestamp", "donor_hubmap_id"),
 
         Sample = c("uuid", "hubmap_id", "group_name", "sample_category",
-                    "organ", "last_modified_timestamp", "donor.hubmap_id"),
+                    "organ", "last_modified_timestamp", "donor_hubmap_id"),
 
         Donor = c("hubmap_id", "uuid", "group_name", "Sex", "Age",
                     "Body Mass Index", "Race", "last_modified_timestamp"),

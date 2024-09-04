@@ -23,7 +23,7 @@
 publication_information <-
     function(uuid) {
 
-    stopifnot(.is_uuid(uuid))
+    stopifnot(.is_uuid(uuid), .uuid_category(uuid) == "Publication")
 
     option <- .list_to_option(
         path = "hits.hits[]._source",

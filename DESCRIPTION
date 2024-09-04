@@ -52,7 +52,8 @@ Suggests:
     testthat (>= 3.0.0),
     knitr,
     rmarkdown,
-    BiocStyle
+    BiocStyle,
+    ggplot2
 VignetteBuilder: knitr
 biocViews: Software, SingleCell
 URL: https://christinehou11.github.io/HuBMAPR/, https://github.com/christinehou11/HuBMAPR

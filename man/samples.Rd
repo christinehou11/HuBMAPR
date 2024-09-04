@@ -38,7 +38,8 @@ with paths as elements and abbreviations as names.
 }
 \description{
 \code{samples()} returns details about available samples, ordered by
-last modified dates
+last modified dates. There are multiple tissue sample types displayed in
+\code{sample_category} column which are block, organ, suspension, and section.
 
 \verb{*_columns()} returns a tibble or named
 character vector describing the content of the tibble returned

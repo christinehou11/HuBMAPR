@@ -21,9 +21,7 @@ collection_information <-
     function(uuid)
     {
 
-    stopifnot(
-    .is_uuid(uuid)
-    )
+    stopifnot(.is_uuid(uuid), .uuid_category(uuid) == "Collection")
 
     option <- .list_to_option(
         path = "hits.hits[]._source",

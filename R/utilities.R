@@ -107,7 +107,7 @@
 
     }
 
-#' @importFrom dplyr mutate select case_when summarise group_by
+#' @importFrom dplyr mutate select summarise group_by
 #' @importFrom tidyr pivot_wider everything any_of
 #' @importFrom rlang .data
 .donor_matadata_modify <-
@@ -128,16 +128,7 @@
         group_by(.data$hubmap_id) |>
         select(any_of(c(.default_columns("Donor", "character"),
                         "Body mass index"))) |>
-        summarise(across(everything(), .concat_values), .groups = 'drop') |>
-        mutate(Age = as.numeric(.data$Age),
-                `Body Mass Index` = as.numeric(.data$`Body Mass Index`),
-                `Body mass index` = as.numeric(.data$`Body mass index`),
-                `Body Mass Index` = case_when(
-                    !is.na(.data$`Body Mass Index`) ~ .data$`Body Mass Index`,
-                    is.na(.data$`Body Mass Index`) &
-                    is.na(.data$`Body mass index`) ~ NA_real_,
-                    TRUE ~ .data$`Body mass index`)) |>
-                select(-"Body mass index")
+        summarise(across(everything(), .concat_values), .groups = 'drop')
 
     }
 
@@ -195,6 +186,18 @@
         ungroup()
         
     }
+
+.uuid_category <-
+    function(uuid) {
+        
+        stopifnot(.is_uuid(uuid))
+        
+        type <- .query_match(uuid,
+                    option = "hits.hits[]._source.{entity_type: entity_type}")
+        
+        type$entity_type
+    }
+
 
 ## .onLoad
 

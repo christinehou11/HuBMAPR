@@ -13,13 +13,6 @@ test_that("'sample_detail()' work for specific sample", {
   expect_equal(test_sample$uuid, test_uuid)
 })
 
-test_that("'sample_detail()' works for uuid that does not exist", {
-  test_uuid <- "feaaaaaf2bbbbb26ccccccb12ddd3a82"
-  test_sample <- sample_detail(test_uuid)
-  expect_true(tibble::is_tibble(test_sample))
-  expect_true(nrow(test_sample) == 0L)
-})
-
 test_that("'samples_default_columns()' works", {
 
   ## testing tibble output

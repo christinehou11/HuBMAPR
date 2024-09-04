@@ -80,7 +80,7 @@ donor_detail <-
     function (uuid)
     {
 
-    stopifnot(.is_uuid(uuid))
+    stopifnot(.is_uuid(uuid), .uuid_category(uuid) == "Donor")
 
     .query_match(uuid, option = "hits.hits[]._source")
 
@@ -90,7 +90,7 @@ donor_detail <-
 #'
 #' @name donor_derived
 #'
-#' @importFrom dplyr select filter mutate any_of
+#' @importFrom dplyr select filter mutate any_of rename
 #' @importFrom purrr map_chr map_int
 #'
 #' @description `donor_derived()` takes a unique donor_id and
@@ -114,7 +114,7 @@ donor_detail <-
 donor_derived <-
     function(uuid, entity_type = c("Dataset", "Sample")) {
 
-    stopifnot(.is_uuid(uuid))
+    stopifnot(.is_uuid(uuid), .uuid_category(uuid) == "Donor")
 
     entity <- match.arg(entity_type)
 
@@ -139,7 +139,7 @@ donor_derived <-
     else {
 
         tbl <- tbl |>
-            select(any_of(c("uuid", "hubmap_id", "data_types", "dataset_type",
+            select(any_of(c("uuid", "hubmap_id", "dataset_type",
                             "status", "last_modified_timestamp"))) |>
             .unnest_mutate_relocate() |>
             mutate(derived_dataset_count = map_int(uuid, ~{
@@ -174,15 +174,16 @@ donor_derived <-
 donor_metadata <-
     function(uuid) {
 
-    stopifnot(.is_uuid(uuid))
+    stopifnot(.is_uuid(uuid), .uuid_category(uuid) == "Donor")
 
     .donor_metadata(uuid)
 
     }
 
 ## helper function
-#' @importFrom dplyr coalesce mutate select rename_with rename
+#' @importFrom dplyr coalesce mutate select rename_with rename case_when
 #' @importFrom tidyr unnest_longer everything
+#' @importFrom rlang .data
 #'
 .donor_edit <-
     function(tbl) {
@@ -215,6 +216,15 @@ donor_metadata <-
         unnest_longer(c("data_value", "preferred_term",
                 "grouping_concept_preferred_term", "data_type")) |>
         .donor_matadata_modify() |>
-        .unnest_mutate_relocate()
+        .unnest_mutate_relocate() |>
+        mutate(Age = as.numeric(.data$Age),
+            `Body Mass Index` = as.numeric(.data$`Body Mass Index`),
+            `Body mass index` = as.numeric(.data$`Body mass index`),
+            `Body Mass Index` = case_when(
+                !is.na(.data$`Body Mass Index`) ~ .data$`Body Mass Index`,
+                is.na(.data$`Body Mass Index`) &
+                is.na(.data$`Body mass index`) ~ NA_real_,
+                TRUE ~ .data$`Body mass index`)) |>
+        select(-"Body mass index") 
 
     }

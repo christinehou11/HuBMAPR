@@ -32,7 +32,7 @@ Install additional required packages before running package codes in
 vignettes.
 
 ``` r
-pkgs <- c("dplyr", "tidyr")
+pkgs <- c("dplyr", "tidyr", "ggplot2")
 required_pkgs <- pkgs[!pkgs %in% rownames(installed.packages())]
 BiocManager::install(required_pkgs)
 ```

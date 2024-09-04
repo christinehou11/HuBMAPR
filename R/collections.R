@@ -76,7 +76,7 @@ collections_default_columns <-
 collection_contacts <-
     function(uuid) {
 
-    stopifnot(.is_uuid(uuid))
+    stopifnot(.is_uuid(uuid), .uuid_category(uuid) == "Collection")
 
     option <- .list_to_option(
         path = "hits.hits[]._source.contacts[]",
@@ -91,7 +91,7 @@ collection_contacts <-
 #' @name collection_data
 #'
 #' @importFrom tidyr unnest everything
-#' @importFrom dplyr select
+#' @importFrom dplyr select rename
 #'
 #' @description `collection_data()` takes a unique collection_id and
 #' returns related datasets of one specified collection as a tibble
@@ -110,7 +110,7 @@ collection_contacts <-
 collection_data <-
     function(uuid) {
 
-    stopifnot( .is_uuid(uuid))
+    stopifnot( .is_uuid(uuid), .uuid_category(uuid) == "Collection")
 
     option <- .list_to_option(path = "hits.hits[]._source.datasets[]",
                                 fields = c("uuid", "hubmap_id", "data_types",
@@ -121,7 +121,9 @@ collection_data <-
     tbl <- .query_match(uuid, option) |> unnest(everything())
     tbl$organ <- .title_to_organ(tbl$title)
 
-    .unnest_mutate_relocate(tbl) |> select(-"title")
+    .unnest_mutate_relocate(tbl) |> 
+        select(-"title") |>
+        rename("dataset_type_additional_information" = "data_types")
 
     }
 
@@ -148,7 +150,7 @@ collection_data <-
 collection_contributors <-
     function(uuid) {
 
-    stopifnot(.is_uuid(uuid))
+    stopifnot(.is_uuid(uuid), .uuid_category(uuid) == "Collection")
 
     option <- .list_to_option(path = "hits.hits[]._source.creators[]",
                                 fields = c("name", "affiliation", "orcid_id"))

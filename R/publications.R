@@ -62,7 +62,7 @@ publications_default_columns <-
 #'
 #' @name publication_data
 #'
-#' @importFrom dplyr select mutate
+#' @importFrom dplyr select mutate rename
 #' @importFrom tidyr unnest
 #' @importFrom purrr map
 #' @importFrom rlang .data
@@ -108,7 +108,9 @@ publication_data <-
 
         Dataset = entity_ids |>
                     mutate(organ = .title_to_organ(.data$title)) |>
-                    select(-"title"),
+                    select(-"title") |>
+                    rename(
+                        "dataset_type_additional_information" = "data_types"),
 
         Sample = entity_ids,
 

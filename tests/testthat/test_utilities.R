@@ -46,3 +46,12 @@ test_that("'.title_to_organ()' works", {
                "Brain")
 
 })
+
+test_that("'.uuid_category()' works", {
+  expect_equal(.uuid_category("2e7123dcf2e9092a42ac42e44c2d686b"),
+               "Dataset")
+  expect_equal(.uuid_category('0abacde2443881351ff6e9930a706c83'),
+               "Donor")
+  expect_equal(.uuid_category('6f700af74a252c99065125d908d97f5d'),
+               "Sample")
+})

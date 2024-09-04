@@ -15,13 +15,6 @@ test_that("'dataset_detail()' works for specific dataset", {
   expect_equal(test_dataset$uuid, test_uuid)
 })
 
-test_that("'dataset_detail()' works for uuid that does not exist", {
-  test_uuid <- "feaaaaaf2bbbbb26ccccccb12ddd3a82"
-  test_dataset <- dataset_detail(test_uuid)
-  expect_true(tibble::is_tibble(test_dataset))
-  expect_true(nrow(test_dataset) == 0L)
-})
-
 test_that("'datasets_default_columns()' works", {
 
   ## testing tibble output

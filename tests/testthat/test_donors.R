@@ -13,13 +13,6 @@ test_that("'donor_detail()' work for specific donor", {
   expect_equal(test_donor$uuid, test_uuid)
 })
 
-test_that("'donor_detail()' works for uuid that does not exist", {
-  test_uuid <- "feaaaaaf2bbbbb26ccccccb12ddd3a82"
-  test_donor <- donor_detail(test_uuid)
-  expect_true(tibble::is_tibble(test_donor))
-  expect_true(nrow(test_donor) == 0L)
-})
-
 test_that("'donors_default_columns()' works", {
 
   ## testing tibble output
