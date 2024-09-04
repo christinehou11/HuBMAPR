@@ -1,6 +1,6 @@
 Package: HuBMAPR
 Title: Interface to 'HuBMAP'
-Version: 0.99.2
+Version: 0.99.3
 Authors@R:
     c(person(
         given = "Christine",
@@ -52,8 +52,7 @@ Suggests:
     testthat (>= 3.0.0),
     knitr,
     rmarkdown,
-    BiocStyle,
-    ggplot2
+    BiocStyle
 VignetteBuilder: knitr
 biocViews: Software, SingleCell
 URL: https://christinehou11.github.io/HuBMAPR/, https://github.com/christinehou11/HuBMAPR

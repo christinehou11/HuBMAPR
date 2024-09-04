@@ -28,15 +28,6 @@ Additionally, you can install development version from
 BiocManager::install("christinehou11/HuBMAPR")
 ```
 
-Install additional required packages before running package codes in
-vignettes.
-
-``` r
-pkgs <- c("dplyr", "tidyr", "ggplot2")
-required_pkgs <- pkgs[!pkgs %in% rownames(installed.packages())]
-BiocManager::install(required_pkgs)
-```
-
 #### Use
 
 View the article [Explore Human BioMelecular Atlas Program Data
