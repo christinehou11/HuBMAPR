@@ -78,6 +78,42 @@ University<br><a class="author_email" href="mailto:#"></a><a href="mailto:chris2
 global bio-molecular atlas of the human body at the cellular level.
 <code>HuBMAPR</code> package provides an alternative interface to
 explore the data via R.</p>
+<p>The HuBMAP Consortium offers several <a href="https://docs.hubmapconsortium.org/apis.html" class="external-link">APIs</a>. To achieve
+the main objectives, <code>HuBMAPR</code> package specifically
+integrates three APIs:<br><a href="https://smart-api.info/ui/7aaf02b838022d564da776b03f357158" class="external-link">Search
+API</a>, <a href="https://smart-api.info/ui/0065e419668f3336a40d1f5ab89c6ba3" class="external-link">Entity
+API</a>, and <a href="https://smart-api.info/ui/d10ff85265d8b749fbe3ad7b51d0bf0a" class="external-link">Ontology
+API</a>. Each API serves a distinct purpose with unique query
+capabilities, tailored to meet various needs. Utilizing the
+<code>httr2</code> and <code>rjsoncons</code> packages,
+<code>HuBMAPR</code> effectively manages, modifies, and executes
+multiple requests via these APIs, presenting responses in formats such
+as tibble or character. These outputs are further modified for clarity
+in the final results from the <code>HuBMAPR</code> functions. The
+<strong>Search API</strong> is primarily searching relevant data
+information and is referenced to the <a href="https://www.elastic.co/guide/en/elasticsearch/" class="external-link">Elasticsearch
+API</a>. The <strong>Entity API</strong> is specifically utilized in the
+<code><a href="../reference/files.html">bulk_data_transfer()</a></code> function for Globus URL retrieval,
+while the <strong>Ontology API</strong> is applied in the
+<code><a href="../reference/organs.html">organ()</a></code> function. Referencing to HuBMAP Data Portal, the
+functions in <code>HuBAMPR</code> package reflects the data information
+of HuBMAP as much as possible.</p>
+<p>HuBMAP Data incorporates three different <a href="https://docs.hubmapconsortium.org/apis" class="external-link">identifiers</a>: HuBMAP
+ID, Universally Unique Identifier (UUID), and Digital Object Identifiers
+(DOI). The <code>HuBMAPR</code> package utilizes the UUID - a 32-digit
+hexadecimal number - and the more human-readable HuBMAP ID as two common
+identifiers in the retrieved results. Considering precision and
+compatibility with software implementation and data storage, UUID serves
+as the primary identifier to retrieve data across various functions,
+with the UUID mapping uniquely to its corresponding HuBMAP ID. The
+systematic nomenclature is adopted for functions in the package by
+appending the entity category prefix to the concise description of the
+specific functionality. Most of the functions are grouped by entity
+categories, thereby simplifying the process of selecting the appropriate
+functions to retrieve the desired information associated with the given
+UUID from the specific entity category. The structure of these functions
+is heavily consistent across all entity categories with some exceptions
+for collection and publication.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -124,11 +160,11 @@ corresponding functions to explore entity data.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3,301 × 14</span></span></span>
 <span><span class="co">#&gt;    uuid        hubmap_id dataset_type dataset_type_additio…¹ organ analyte_class</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 319579dab9… HBM965.G… RNAseq       sciRNAseq              Heart RNA          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 756a0eed95… HBM388.Z… RNAseq       sciRNAseq              Heart RNA          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 7e4c58d746… HBM952.D… ATACseq      sciATACseq             Heart DNA          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> e75d8b31cf… HBM667.Z… RNAseq       sciRNAseq              Heart RNA          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 42b73e4e34… HBM972.V… RNAseq       sciRNAseq              Heart RNA          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 7e4c58d746… HBM952.D… ATACseq      sciATACseq             Heart DNA          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 319579dab9… HBM965.G… RNAseq       sciRNAseq              Heart RNA          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 42b73e4e34… HBM972.V… RNAseq       sciRNAseq              Heart RNA          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 756a0eed95… HBM388.Z… RNAseq       sciRNAseq              Heart RNA          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> e75d8b31cf… HBM667.Z… RNAseq       sciRNAseq              Heart RNA          </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 48da185436… HBM583.S… ATACseq      sciATACseq             Sple… DNA          </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> fe43e21822… HBM389.N… ATACseq      sciATACseq             Smal… DNA          </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 02dcd83480… HBM429.Q… ATACseq      sciATACseq             Smal… DNA          </span></span>
