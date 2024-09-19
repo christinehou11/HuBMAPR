@@ -50,12 +50,13 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Suggests:
     testthat (>= 3.0.0),
-    ggplot2,
     knitr,
+    ggplot2,
     rmarkdown,
     BiocStyle
 VignetteBuilder: knitr
-biocViews: Software, SingleCell, DataImport, ThirdPartyClient, Spatial, Infrastructure
+biocViews: Software, SingleCell, DataImport, ThirdPartyClient, Spatial, 
+    Infrastructure
 URL: https://christinehou11.github.io/HuBMAPR/, https://github.com/christinehou11/HuBMAPR
 BugReports: https://github.com/christinehou11/HuBMAPR/issues
 Config/testthat/edition: 3

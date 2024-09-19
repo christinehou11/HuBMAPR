@@ -152,7 +152,7 @@ collection_contributors <-
 
     stopifnot(.is_uuid(uuid), .uuid_category(uuid) == "Collection")
 
-    option <- .list_to_option(path = "hits.hits[]._source.creators[]",
+    option <- .list_to_option(path = "hits.hits[]._source.contributors[]",
                                 fields = c("name", "affiliation", "orcid_id"))
 
     .query_match(uuid, option) |> unnest(everything())
