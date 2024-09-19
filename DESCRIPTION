@@ -54,7 +54,8 @@ Suggests:
     rmarkdown,
     BiocStyle
 VignetteBuilder: knitr
-biocViews: Software, SingleCell
+biocViews: Software, SingleCell, DataImport, ThirdPartyClient, Spatial, 
+    Infrastructure
 URL: https://christinehou11.github.io/HuBMAPR/, https://github.com/christinehou11/HuBMAPR
 BugReports: https://github.com/christinehou11/HuBMAPR/issues
 Config/testthat/edition: 3
