@@ -11,6 +11,8 @@ vignette: |
   %\VignetteIndexEntry{Accessing Human Cell Atlas Data}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteKeywords{Software, SingleCell, DataImport, ThirdPartyClient,
+  Spatial, Infrastructure}
 ---
 
 ```{r, include = FALSE}
