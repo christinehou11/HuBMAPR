@@ -62,7 +62,7 @@ publications_default_columns <-
 #'
 #' @name publication_data
 #'
-#' @importFrom dplyr select mutate rename
+#' @importFrom dplyr select mutate rename all_of
 #' @importFrom tidyr unnest
 #' @importFrom purrr map
 #' @importFrom rlang .data
@@ -101,7 +101,7 @@ publication_data <-
     entity_ids <-
         .query_match(uuid, "hits.hits[]._source.ancestors[]") |>
         filter(.data$entity_type == entity) |>
-        select(columns)
+        select(all_of(columns))
 
     entity_ids <- switch(
         entity,
