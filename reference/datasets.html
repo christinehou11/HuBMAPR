@@ -43,7 +43,7 @@ on their ORCID profile page."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">HuBMAPR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.5</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -148,20 +148,20 @@ webpage, https://software.docs.hubmapconsortium.org/apis</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">datasets</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3,301 × 14</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3,314 × 14</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    uuid        hubmap_id dataset_type dataset_type_additio…¹ organ analyte_class</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 7e3f3b5d18… HBM849.X… Histology    PAS                    Kidn… polysacchari…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 3d2c9295c0… HBM623.R… Histology    PAS                    Kidn… polysacchari…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 740ca3fb63… HBM837.F… RNAseq       scRNAseq-10xGenomics-… Knee… RNA          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> f2fd5839eb… HBM938.G… RNAseq       scRNAseq-10xGenomics-… Knee… RNA          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 035ba4d304… HBM743.F… RNAseq       scRNAseq-10xGenomics-… Knee… RNA          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 6dd798f989… HBM756.P… RNAseq       scRNAseq-10xGenomics-… Knee… RNA          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 01b351cf17… HBM586.W… RNAseq       scRNAseq-10xGenomics-… Knee… RNA          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> e2cecf9366… HBM599.G… RNAseq       scRNAseq-10xGenomics-… Knee… RNA          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> edc6e4c835… HBM925.G… RNAseq       scRNAseq-10xGenomics-… Knee… RNA          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 92ae57bd39… HBM739.W… RNAseq       scRNAseq-10xGenomics-… Knee… RNA          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 3,291 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 10b999e375… HBM395.M… Histology    <span style="color: #949494;">"</span>pas_ftu_segmentation<span style="color: #949494;">"</span> Kidn… <span style="color: #949494;">""</span>           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 1a68337776… HBM826.X… Histology    <span style="color: #949494;">""</span>                     Kidn… <span style="color: #949494;">""</span>           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> b6b4e098d2… HBM253.X… Histology    <span style="color: #949494;">"</span>pas_ftu_segmentation<span style="color: #949494;">"</span> Kidn… <span style="color: #949494;">""</span>           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 277c7aa876… HBM896.T… Histology    <span style="color: #949494;">""</span>                     Kidn… <span style="color: #949494;">""</span>           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> f49bfccbd0… HBM762.Q… Histology    <span style="color: #949494;">"</span>pas_ftu_segmentation<span style="color: #949494;">"</span> Kidn… <span style="color: #949494;">""</span>           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> f89a34ee32… HBM852.R… Histology    <span style="color: #949494;">""</span>                     Kidn… <span style="color: #949494;">""</span>           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 02f525ee26… HBM567.G… Histology    <span style="color: #949494;">""</span>                     Kidn… <span style="color: #949494;">""</span>           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 4533d4dd47… HBM854.C… Histology    <span style="color: #949494;">""</span>                     Kidn… <span style="color: #949494;">""</span>           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 1a7cbb8323… HBM669.T… Histology    <span style="color: #949494;">""</span>                     Kidn… <span style="color: #949494;">""</span>           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 50bac56b33… HBM686.C… Histology    <span style="color: #949494;">""</span>                     Kidn… <span style="color: #949494;">""</span>           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 3,304 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​dataset_type_additional_information</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 8 more variables: sample_category &lt;chr&gt;, status &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   dataset_processing_category &lt;chr&gt;, pipeline &lt;chr&gt;, registered_by &lt;chr&gt;,</span></span>
