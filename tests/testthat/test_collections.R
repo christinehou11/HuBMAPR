@@ -30,4 +30,9 @@ test_that("'collection_contacts()', 'collection_contributors()', and 'collection
   test_contributors <- collection_contributors(test_uuid)
   expect_true(tibble::is_tibble(test_contributors))
   expect_true(nrow(test_contributors) > 0L)
+  
+  # information
+  test_info <- collection_information(test_uuid)
+  expect_true(is(test_info, "collection_information"))
+  expect_output(print(test_info))
 })
