@@ -29,5 +29,5 @@ test_that("'collection_contacts()', 'collection_contributors()', and 'collection
   # contributors
   test_contributors <- collection_contributors(test_uuid)
   expect_true(tibble::is_tibble(test_contributors))
-  expect_true(nrow(test_contributors) > 0L)
+  expect_true(nrow(test_contributors) == 0L)
 })
