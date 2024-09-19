@@ -133,7 +133,7 @@ for collection and publication.</p>
 in this vignettes to conduct data wrangling and specific information
 extraction.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://dplyr.tidyverse.org" class="external-link">"dplyr"</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
 <span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
@@ -142,9 +142,9 @@ extraction.</p>
 <span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://christinehou11.github.io/HuBMAPR/">HuBMAPR</a></span><span class="op">)</span></span></code></pre></div>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://tidyr.tidyverse.org" class="external-link">"tidyr"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://christinehou11.github.io/HuBMAPR/">"HuBMAPR"</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="data-discovery">Data Discovery<a class="anchor" aria-label="anchor" href="#data-discovery"></a>
@@ -160,16 +160,16 @@ corresponding functions to explore entity data.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3,301 × 14</span></span></span>
 <span><span class="co">#&gt;    uuid        hubmap_id dataset_type dataset_type_additio…¹ organ analyte_class</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 7e4c58d746… HBM952.D… ATACseq      sciATACseq             Heart DNA          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 319579dab9… HBM965.G… RNAseq       sciRNAseq              Heart RNA          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 42b73e4e34… HBM972.V… RNAseq       sciRNAseq              Heart RNA          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 756a0eed95… HBM388.Z… RNAseq       sciRNAseq              Heart RNA          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> e75d8b31cf… HBM667.Z… RNAseq       sciRNAseq              Heart RNA          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 48da185436… HBM583.S… ATACseq      sciATACseq             Sple… DNA          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> fe43e21822… HBM389.N… ATACseq      sciATACseq             Smal… DNA          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 02dcd83480… HBM429.Q… ATACseq      sciATACseq             Smal… DNA          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> dd39ed081f… HBM278.G… ATACseq      sciATACseq             Heart DNA          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 8ea82dc9f2… HBM445.L… ATACseq      sciATACseq             Panc… DNA          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 7e3f3b5d18… HBM849.X… Histology    PAS                    Kidn… polysacchari…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 3d2c9295c0… HBM623.R… Histology    PAS                    Kidn… polysacchari…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 740ca3fb63… HBM837.F… RNAseq       scRNAseq-10xGenomics-… Knee… RNA          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> f2fd5839eb… HBM938.G… RNAseq       scRNAseq-10xGenomics-… Knee… RNA          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 035ba4d304… HBM743.F… RNAseq       scRNAseq-10xGenomics-… Knee… RNA          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 6dd798f989… HBM756.P… RNAseq       scRNAseq-10xGenomics-… Knee… RNA          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 01b351cf17… HBM586.W… RNAseq       scRNAseq-10xGenomics-… Knee… RNA          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> e2cecf9366… HBM599.G… RNAseq       scRNAseq-10xGenomics-… Knee… RNA          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 92ae57bd39… HBM739.W… RNAseq       scRNAseq-10xGenomics-… Knee… RNA          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 11b3087c27… HBM233.C… RNAseq       scRNAseq-10xGenomics-… Knee… RNA          </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 3,291 more rows</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​dataset_type_additional_information</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 8 more variables: sample_category &lt;chr&gt;, status &lt;chr&gt;,</span></span></span>
@@ -367,7 +367,7 @@ convenient to view tables with multiple columns but one row using
 <span><span class="fu"><a href="../reference/datasets.html">dataset_detail</a></span><span class="op">(</span><span class="va">dataset_uuid</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 1</span></span>
 <span><span class="co">#&gt; Columns: 37</span></span>
-<span><span class="co">#&gt; $ ancestor_ids                     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> &lt;"b64883fc7c11d070b5e5222c656eaae7",…</span></span>
+<span><span class="co">#&gt; $ ancestor_ids                     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> &lt;"3cae5fde9d581a22cea44f1283e4801c",…</span></span>
 <span><span class="co">#&gt; $ ancestors                        <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [["Jamie Allen", "jamie.l.allen@vand…</span></span>
 <span><span class="co">#&gt; $ contacts                         <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [["Biomolecular Multimodal Imaging C…</span></span>
 <span><span class="co">#&gt; $ contains_human_genetic_sequences <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> FALSE</span></span>
@@ -378,32 +378,32 @@ convenient to view tables with multiple columns but one row using
 <span><span class="co">#&gt; $ creation_action                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Create Dataset Activity"</span></span>
 <span><span class="co">#&gt; $ data_access_level                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "public"</span></span>
 <span><span class="co">#&gt; $ dataset_type                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Auto-fluorescence"</span></span>
-<span><span class="co">#&gt; $ descendant_ids                   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "5cb9ec3acfe11753b9a2899fe87ee0e4"</span></span>
+<span><span class="co">#&gt; $ descendant_ids                   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "7e4c13acb523952bdfd19a4892729462"</span></span>
 <span><span class="co">#&gt; $ descendants                      <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [[FALSE, "HuBMAP Process", "hubmap@h…</span></span>
 <span><span class="co">#&gt; $ description                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Autofluorescence Microscopy collecte…</span></span>
 <span><span class="co">#&gt; $ display_subtype                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Auto-fluorescence"</span></span>
-<span><span class="co">#&gt; $ doi_url                          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://doi.org/10.35079/HBM793.WWZC…</span></span>
+<span><span class="co">#&gt; $ doi_url                          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://doi.org/10.35079/HBM956.HGCD…</span></span>
 <span><span class="co">#&gt; $ donor                            <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> ["Jamie Allen", "jamie.l.allen@vander…</span></span>
 <span><span class="co">#&gt; $ entity_type                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Dataset"</span></span>
 <span><span class="co">#&gt; $ files                            <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> []</span></span>
 <span><span class="co">#&gt; $ group_name                       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Vanderbilt TMC"</span></span>
 <span><span class="co">#&gt; $ group_uuid                       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "73bb26e4-ed43-11e8-8f19-0a7c1eab007a"</span></span>
-<span><span class="co">#&gt; $ hubmap_id                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "HBM793.WWZC.833"</span></span>
-<span><span class="co">#&gt; $ immediate_ancestor_ids           <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "b64883fc7c11d070b5e5222c656eaae7"</span></span>
+<span><span class="co">#&gt; $ hubmap_id                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "HBM956.HGCD.825"</span></span>
+<span><span class="co">#&gt; $ immediate_ancestor_ids           <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "3cae5fde9d581a22cea44f1283e4801c"</span></span>
 <span><span class="co">#&gt; $ immediate_ancestors              <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [["Jamie Allen", "jamie.l.allen@vande…</span></span>
-<span><span class="co">#&gt; $ immediate_descendant_ids         <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "5cb9ec3acfe11753b9a2899fe87ee0e4"</span></span>
+<span><span class="co">#&gt; $ immediate_descendant_ids         <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "7e4c13acb523952bdfd19a4892729462"</span></span>
 <span><span class="co">#&gt; $ immediate_descendants            <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [[FALSE, "HuBMAP Process", "hubmap@hu…</span></span>
-<span><span class="co">#&gt; $ index_version                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "3.4.8"</span></span>
+<span><span class="co">#&gt; $ index_version                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "3.4.9"</span></span>
 <span><span class="co">#&gt; $ last_modified_timestamp          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.71691e+12</span></span>
 <span><span class="co">#&gt; $ metadata                         <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [[["a9099c6", "https://github.com/hub…</span></span>
 <span><span class="co">#&gt; $ origin_samples                   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [["Jamie Allen", "jamie.l.allen@vand…</span></span>
 <span><span class="co">#&gt; $ provider_info                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "VAN0042-RK-3 block AF : ./VAN0042-R…</span></span>
 <span><span class="co">#&gt; $ published_timestamp              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.715267e+12</span></span>
-<span><span class="co">#&gt; $ registered_doi                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "10.35079/HBM793.WWZC.833"</span></span>
+<span><span class="co">#&gt; $ registered_doi                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "10.35079/HBM956.HGCD.825"</span></span>
 <span><span class="co">#&gt; $ source_samples                   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [["Jamie Allen", "jamie.l.allen@vande…</span></span>
 <span><span class="co">#&gt; $ status                           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Published"</span></span>
 <span><span class="co">#&gt; $ title                            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Auto-fluorescence data from the kidn…</span></span>
-<span><span class="co">#&gt; $ uuid                             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2e7123dcf2e9092a42ac42e44c2d686b"</span></span>
+<span><span class="co">#&gt; $ uuid                             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "a4671d13636abd97f9024930d4f2bb5d"</span></span>
 <span></span>
 <span><span class="co"># Specific Information</span></span>
 <span><span class="fu"><a href="../reference/datasets.html">dataset_detail</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">dataset_uuid</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -757,6 +757,10 @@ Some of the datasets’ files are not available via Globus, but can be
 accessed via dbGAP (database of Genotypes and Phenotypes) and/or SRA
 (Sequence Read Archive). But some of the datasets’ files are not
 available in any authorized platform.</p>
+<p>Each dataset available on Globus has different components of
+data-related files to preview and download, include but not limited to
+images, metadata files, downstream analysis reports, raw data products,
+etc.</p>
 <p>Use <code><a href="../reference/files.html">bulk_data_transfer()</a></code> to know whether data files are
 open-accessed or restricted. The function will direct you to chrome if
 the files are accessible; otherwise, the error messages will be printed
@@ -785,7 +789,7 @@ the instructions <a href="https://mtmorgan.github.io/rglobus/articles/a_get_star
 </h2>
 <pre><code><span><span class="co">#&gt; R version 4.4.1 (2024-06-14)</span></span>
 <span><span class="co">#&gt; Platform: x86_64-pc-linux-gnu</span></span>
-<span><span class="co">#&gt; Running under: Ubuntu 22.04.4 LTS</span></span>
+<span><span class="co">#&gt; Running under: Ubuntu 22.04.5 LTS</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Matrix products: default</span></span>
 <span><span class="co">#&gt; BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 </span></span>
@@ -807,13 +811,13 @@ the instructions <a href="https://mtmorgan.github.io/rglobus/articles/a_get_star
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
 <span><span class="co">#&gt;  [1] rappdirs_0.3.3      sass_0.4.9          utf8_1.2.4          generics_0.1.3      stringi_1.8.4      </span></span>
-<span><span class="co">#&gt;  [6] digest_0.6.37       magrittr_2.0.3      evaluate_0.24.0     grid_4.4.1          bookdown_0.40      </span></span>
+<span><span class="co">#&gt;  [6] digest_0.6.37       magrittr_2.0.3      evaluate_1.0.0      grid_4.4.1          bookdown_0.40      </span></span>
 <span><span class="co">#&gt; [11] fastmap_1.2.0       jsonlite_1.8.8      whisker_0.4.1       BiocManager_1.30.25 purrr_1.0.2        </span></span>
-<span><span class="co">#&gt; [16] fansi_1.0.6         scales_1.3.0        httr2_1.0.3         textshaping_0.4.0   jquerylib_0.1.4    </span></span>
+<span><span class="co">#&gt; [16] fansi_1.0.6         scales_1.3.0        httr2_1.0.4         textshaping_0.4.0   jquerylib_0.1.4    </span></span>
 <span><span class="co">#&gt; [21] cli_3.6.3           rlang_1.1.4         munsell_0.5.1       withr_3.0.1         cachem_1.1.0       </span></span>
 <span><span class="co">#&gt; [26] yaml_2.3.10         tools_4.4.1         colorspace_2.1-1    curl_5.2.2          vctrs_0.6.5        </span></span>
 <span><span class="co">#&gt; [31] rjsoncons_1.3.1     R6_2.5.1            lifecycle_1.0.4     stringr_1.5.1       fs_1.6.4           </span></span>
-<span><span class="co">#&gt; [36] ragg_1.3.2          pkgconfig_2.0.3     desc_1.4.3          pkgdown_2.1.0       pillar_1.9.0       </span></span>
+<span><span class="co">#&gt; [36] ragg_1.3.3          pkgconfig_2.0.3     desc_1.4.3          pkgdown_2.1.1       pillar_1.9.0       </span></span>
 <span><span class="co">#&gt; [41] bslib_0.8.0         gtable_0.3.5        glue_1.7.0          systemfonts_1.1.0   highr_0.11         </span></span>
 <span><span class="co">#&gt; [46] xfun_0.47           tibble_3.2.1        tidyselect_1.2.1    knitr_1.48          farver_2.1.2       </span></span>
 <span><span class="co">#&gt; [51] htmltools_0.5.8.1   rmarkdown_2.28      labeling_0.4.3      compiler_4.4.1</span></span></code></pre>
@@ -829,7 +833,7 @@ the instructions <a href="https://mtmorgan.github.io/rglobus/articles/a_get_star
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
