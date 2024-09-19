@@ -79,11 +79,10 @@ Load additional packages. `dplyr` package is widely used in this vignettes to
 conduct data wrangling and specific information extraction.
 
 ```{r 'library'}
-#| output: false
-library(dplyr)
-library(tidyr)
-library(ggplot2)
-library(HuBMAPR)
+library("dplyr")
+library("tidyr")
+library("ggplot2")
+library("HuBMAPR")
 ```
 
 ## Data Discovery
@@ -390,10 +389,14 @@ datasets' files are not available via Globus, but can be accessed via dbGAP
 (database of Genotypes and Phenotypes) and/or SRA (Sequence Read Archive). But
 some of the datasets' files are not available in any authorized platform.
 
+Each dataset available on Globus has different components of data-related files
+to preview and download, include but not limited to images, metadata files,
+downstream analysis reports, raw data products, etc. 
+
 Use `bulk_data_transfer()` to know whether data files are open-accessed or
 restricted. The function will direct you to chrome if the files are accessible;
 otherwise, the error messages will be printed out with addition instructions,
-either providing dbGAP/SRA URLs or pointing out the unavailability.
+either providing dbGAP/SRA URLs or pointing out the unavailability. 
 
 ```{r 'bulk data transfer', eval=FALSE}
 uuid_globus <- "d1dcab2df80590d8cd8770948abaf976"
