@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">HuBMAPR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.6</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -118,9 +118,15 @@ for collection and publication.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p><code>HuBMAPR</code> is a R package. Install development version from
-<a href="https://christinehou11.github.io/HuBMAPR">GitHub</a>:</p>
+<p><code>HuBMAPR</code> is a R package. The package can be installed
+by</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://bioconductor.github.io/BiocManager/reference/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"HuBMAPR"</span><span class="op">)</span></span></code></pre></div>
+<p>Install development version from <a href="https://christinehou11.github.io/HuBMAPR">GitHub</a>:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install</span><span class="op">(</span><span class="st">"christinehou11/HuBMAPR"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -132,16 +138,8 @@ for collection and publication.</p>
 <p>Load additional packages. <code>dplyr</code> package is widely used
 in this vignettes to conduct data wrangling and specific information
 extraction.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://dplyr.tidyverse.org" class="external-link">"dplyr"</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     filter, lag</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://tidyr.tidyverse.org" class="external-link">"tidyr"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://christinehou11.github.io/HuBMAPR/">"HuBMAPR"</a></span><span class="op">)</span></span></code></pre></div>
@@ -153,24 +151,24 @@ extraction.</p>
 entity data, which are <strong>Dataset, Sample, Donor, Publication, and
 Collection</strong>, chronologically (last modified date time). Using
 corresponding functions to explore entity data.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">datasets_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/datasets.html">datasets</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Pruning cache</span></span>
 <span><span class="va">datasets_df</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3,317 × 14</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3,487 × 14</span></span></span>
 <span><span class="co">#&gt;    uuid        hubmap_id dataset_type dataset_type_additio…¹ organ analyte_class</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 10b999e375… HBM395.M… Histology    <span style="color: #949494;">"</span>pas_ftu_segmentation<span style="color: #949494;">"</span> Kidn… <span style="color: #949494;">""</span>           </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 1a68337776… HBM826.X… Histology    <span style="color: #949494;">""</span>                     Kidn… <span style="color: #949494;">""</span>           </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> f7145e25f7… HBM257.B… Histology    <span style="color: #949494;">"</span>pas_ftu_segmentation<span style="color: #949494;">"</span> Kidn… <span style="color: #949494;">""</span>           </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> b6b4e098d2… HBM253.X… Histology    <span style="color: #949494;">"</span>pas_ftu_segmentation<span style="color: #949494;">"</span> Kidn… <span style="color: #949494;">""</span>           </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 277c7aa876… HBM896.T… Histology    <span style="color: #949494;">""</span>                     Kidn… <span style="color: #949494;">""</span>           </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> f49bfccbd0… HBM762.Q… Histology    <span style="color: #949494;">"</span>pas_ftu_segmentation<span style="color: #949494;">"</span> Kidn… <span style="color: #949494;">""</span>           </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> f89a34ee32… HBM852.R… Histology    <span style="color: #949494;">""</span>                     Kidn… <span style="color: #949494;">""</span>           </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 02f525ee26… HBM567.G… Histology    <span style="color: #949494;">""</span>                     Kidn… <span style="color: #949494;">""</span>           </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 4533d4dd47… HBM854.C… Histology    <span style="color: #949494;">""</span>                     Kidn… <span style="color: #949494;">""</span>           </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 7c35d000ff… HBM597.D… Histology    <span style="color: #949494;">""</span>                     Kidn… <span style="color: #949494;">""</span>           </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 3,307 more rows</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> fa41085335… HBM995.V… RNAseq       <span style="color: #949494;">""</span>                     Uter… RNA          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 8f52ffc9dd… HBM474.Q… RNAseq       <span style="color: #949494;">""</span>                     Uter… RNA          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 0189bfe5ec… HBM272.X… Histology    <span style="color: #949494;">""</span>                     Uter… nucleic acid…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> d3adb9f148… HBM796.J… RNAseq       <span style="color: #949494;">""</span>                     Fall… RNA          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 416b162c70… HBM866.D… RNAseq       <span style="color: #949494;">""</span>                     Uter… RNA          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 3e56e5a7c2… HBM674.K… Histology    <span style="color: #949494;">""</span>                     Uter… nucleic acid…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> f70aa16de6… HBM722.Z… Histology    <span style="color: #949494;">""</span>                     Ovar… nucleic acid…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> c0846c02ff… HBM634.W… Histology    <span style="color: #949494;">""</span>                     Uter… nucleic acid…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 5531f0fe13… HBM528.M… RNAseq       <span style="color: #949494;">""</span>                     Uter… RNA          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> f09be53548… HBM586.G… Histology    <span style="color: #949494;">""</span>                     Uter… nucleic acid…</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 3,477 more rows</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​dataset_type_additional_information</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 8 more variables: sample_category &lt;chr&gt;, status &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   dataset_processing_category &lt;chr&gt;, pipeline &lt;chr&gt;, registered_by &lt;chr&gt;,</span></span></span>
@@ -181,7 +179,7 @@ reflects selected information. To see the names of selected information,
 use following commands for each entity category. Specify <code>as</code>
 parameter to display information in the format of
 <code>"character"</code> or <code>"tibble"</code>.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># as = "tibble" (default)</span></span>
 <span><span class="va">datasets_col_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/datasets.html">datasets_default_columns</a></span><span class="op">(</span>as <span class="op">=</span> <span class="st">"tibble"</span><span class="op">)</span></span>
 <span><span class="va">datasets_col_tbl</span></span>
@@ -219,7 +217,7 @@ parameter to display information in the format of
 <code><a href="../reference/publications.html">publications_default_columns()</a></code> work same as above.</p>
 <p>A brief overview of selected information for five entity categories
 is:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html" class="external-link">bind_cols</a></span><span class="op">(</span></span>
 <span>    dataset <span class="op">=</span> <span class="fu"><a href="../reference/datasets.html">datasets_default_columns</a></span><span class="op">(</span>as <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span>,</span>
 <span>    sample <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="../reference/samples.html">samples_default_columns</a></span><span class="op">(</span>as <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">7</span><span class="op">)</span><span class="op">)</span>,</span>
@@ -251,7 +249,7 @@ is:</p>
 <p>Use <code><a href="../reference/organs.html">organ()</a></code> to read through the available organs
 included in <code>HuBMAP</code>. It can be helpful to filter retrieved
 data based on organ information.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">organs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/organs.html">organ</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">organs</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 43 × 2</span></span></span>
@@ -270,7 +268,7 @@ data based on organ information.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 33 more rows</span></span></span></code></pre></div>
 <p>Data wrangling and filter are welcome to retrieve data based on
 interested information.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Example from datasets()</span></span>
 <span><span class="va">datasets_df</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">organ</span> <span class="op">==</span> <span class="st">'Small Intestine'</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -286,7 +284,7 @@ specific detail retrievals.</p>
 <p>The column of <strong>donor_hubmap_id</strong> is included in the
 retrieved tibbles from <code><a href="../reference/samples.html">samples()</a></code> and
 <code><a href="../reference/datasets.html">datasets()</a></code>, which can help to join the tibble.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">donors_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/donors.html">donors</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">donor_sub</span> <span class="op">&lt;-</span> <span class="va">donors_df</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">Sex</span> <span class="op">==</span> <span class="st">"Female"</span>,</span>
@@ -356,7 +354,7 @@ information for any entry of any entity category given
 <code>unnest_*()</code> functions to expand list-columns. It will be
 convenient to view tables with multiple columns but one row using
 <code><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse()</a></code>.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dataset_uuid</span> <span class="op">&lt;-</span> <span class="va">datasets_df</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">dataset_type</span> <span class="op">==</span> <span class="st">"Auto-fluorescence"</span>,</span>
 <span>            <span class="va">organ</span> <span class="op">==</span> <span class="st">"Kidney (Right)"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -366,9 +364,9 @@ convenient to view tables with multiple columns but one row using
 <span><span class="co"># Full Information</span></span>
 <span><span class="fu"><a href="../reference/datasets.html">dataset_detail</a></span><span class="op">(</span><span class="va">dataset_uuid</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 1</span></span>
-<span><span class="co">#&gt; Columns: 37</span></span>
-<span><span class="co">#&gt; $ ancestor_ids                     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> &lt;"3cae5fde9d581a22cea44f1283e4801c",…</span></span>
-<span><span class="co">#&gt; $ ancestors                        <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [["Jamie Allen", "jamie.l.allen@vand…</span></span>
+<span><span class="co">#&gt; Columns: 35</span></span>
+<span><span class="co">#&gt; $ ancestor_ids                     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> &lt;"de1076a42144debd94ba4f5d1f9b6d57",…</span></span>
+<span><span class="co">#&gt; $ ancestors                        <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [["de1076a42144debd94ba4f5d1f9b6d57"…</span></span>
 <span><span class="co">#&gt; $ contacts                         <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [["Biomolecular Multimodal Imaging C…</span></span>
 <span><span class="co">#&gt; $ contains_human_genetic_sequences <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> FALSE</span></span>
 <span><span class="co">#&gt; $ contributors                     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [["Biomolecular Multimodal Imaging Ce…</span></span>
@@ -378,32 +376,30 @@ convenient to view tables with multiple columns but one row using
 <span><span class="co">#&gt; $ creation_action                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Create Dataset Activity"</span></span>
 <span><span class="co">#&gt; $ data_access_level                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "public"</span></span>
 <span><span class="co">#&gt; $ dataset_type                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Auto-fluorescence"</span></span>
-<span><span class="co">#&gt; $ descendant_ids                   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "7e4c13acb523952bdfd19a4892729462"</span></span>
-<span><span class="co">#&gt; $ descendants                      <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [[FALSE, "HuBMAP Process", "hubmap@h…</span></span>
+<span><span class="co">#&gt; $ descendant_ids                   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "61530ed23518ee5f6cdaa818e91dde65"</span></span>
+<span><span class="co">#&gt; $ descendants                      <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [["Auto-fluorescence [Image Pyramid]…</span></span>
 <span><span class="co">#&gt; $ description                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Autofluorescence Microscopy collecte…</span></span>
 <span><span class="co">#&gt; $ display_subtype                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Auto-fluorescence"</span></span>
-<span><span class="co">#&gt; $ doi_url                          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://doi.org/10.35079/HBM956.HGCD…</span></span>
+<span><span class="co">#&gt; $ doi_url                          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://doi.org/10.35079/HBM223.DJQM…</span></span>
 <span><span class="co">#&gt; $ donor                            <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> ["Jamie Allen", "jamie.l.allen@vander…</span></span>
 <span><span class="co">#&gt; $ entity_type                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Dataset"</span></span>
 <span><span class="co">#&gt; $ files                            <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> []</span></span>
 <span><span class="co">#&gt; $ group_name                       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Vanderbilt TMC"</span></span>
 <span><span class="co">#&gt; $ group_uuid                       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "73bb26e4-ed43-11e8-8f19-0a7c1eab007a"</span></span>
-<span><span class="co">#&gt; $ hubmap_id                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "HBM956.HGCD.825"</span></span>
-<span><span class="co">#&gt; $ immediate_ancestor_ids           <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "3cae5fde9d581a22cea44f1283e4801c"</span></span>
-<span><span class="co">#&gt; $ immediate_ancestors              <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [["Jamie Allen", "jamie.l.allen@vande…</span></span>
-<span><span class="co">#&gt; $ immediate_descendant_ids         <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "7e4c13acb523952bdfd19a4892729462"</span></span>
-<span><span class="co">#&gt; $ immediate_descendants            <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [[FALSE, "HuBMAP Process", "hubmap@hu…</span></span>
-<span><span class="co">#&gt; $ index_version                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "3.4.9"</span></span>
+<span><span class="co">#&gt; $ hubmap_id                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "HBM223.DJQM.264"</span></span>
+<span><span class="co">#&gt; $ immediate_ancestor_ids           <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "de1076a42144debd94ba4f5d1f9b6d57"</span></span>
+<span><span class="co">#&gt; $ immediate_descendant_ids         <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "61530ed23518ee5f6cdaa818e91dde65"</span></span>
+<span><span class="co">#&gt; $ index_version                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "3.5.1"</span></span>
 <span><span class="co">#&gt; $ last_modified_timestamp          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.71691e+12</span></span>
 <span><span class="co">#&gt; $ metadata                         <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [[["a9099c6", "https://github.com/hub…</span></span>
-<span><span class="co">#&gt; $ origin_samples                   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [["Jamie Allen", "jamie.l.allen@vand…</span></span>
-<span><span class="co">#&gt; $ provider_info                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "VAN0042-RK-3 block AF : ./VAN0042-R…</span></span>
+<span><span class="co">#&gt; $ origin_samples                   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [["Jamie Allen", "jamie.l.allen@vande…</span></span>
+<span><span class="co">#&gt; $ provider_info                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "VAN0042-RK-3 block AF : ./VAN0042-RK…</span></span>
 <span><span class="co">#&gt; $ published_timestamp              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.715267e+12</span></span>
-<span><span class="co">#&gt; $ registered_doi                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "10.35079/HBM956.HGCD.825"</span></span>
-<span><span class="co">#&gt; $ source_samples                   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [["Jamie Allen", "jamie.l.allen@vande…</span></span>
+<span><span class="co">#&gt; $ registered_doi                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "10.35079/HBM223.DJQM.264"</span></span>
+<span><span class="co">#&gt; $ source_samples                   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [["Jamie Allen", "jamie.l.allen@vand…</span></span>
 <span><span class="co">#&gt; $ status                           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Published"</span></span>
-<span><span class="co">#&gt; $ title                            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Auto-fluorescence data from the kidn…</span></span>
-<span><span class="co">#&gt; $ uuid                             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "a4671d13636abd97f9024930d4f2bb5d"</span></span>
+<span><span class="co">#&gt; $ title                            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Auto-fluorescence data from the kid…</span></span>
+<span><span class="co">#&gt; $ uuid                             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "993bb1d6fa02e2755fd69613bb9d6e08"</span></span>
 <span></span>
 <span><span class="co"># Specific Information</span></span>
 <span><span class="fu"><a href="../reference/datasets.html">dataset_detail</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">dataset_uuid</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -442,7 +438,7 @@ work same as above.</p>
 <strong>Sample</strong>, and <strong>Donor</strong> metadata, use
 <code><a href="../reference/datasets.html">dataset_metadata()</a></code>, <code><a href="../reference/samples.html">sample_metadata()</a></code>, and
 <code><a href="../reference/donors.html">donor_metadata()</a></code>.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/datasets.html">dataset_metadata</a></span><span class="op">(</span><span class="st">"993bb1d6fa02e2755fd69613bb9d6e08"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 20 × 2</span></span></span>
 <span><span class="co">#&gt;    Key                             Value                                        </span></span>
@@ -498,7 +494,7 @@ work same as above.</p>
 (support) dataset(s). Use <code><a href="../reference/datasets.html">dataset_derived()</a></code> to retrieve. A
 tibble with selected details will be retrieved as if the given dataset
 has support dataset; otherwise, nothing returns.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># no derived/support dataset</span></span>
 <span><span class="va">dataset_uuid_1</span> <span class="op">&lt;-</span> <span class="st">"3acdb3ed962b2087fbe325514b098101"</span></span>
 <span></span>
@@ -512,11 +508,11 @@ has support dataset; otherwise, nothing returns.</p>
 <span><span class="co">#&gt; Rows: 1</span></span>
 <span><span class="co">#&gt; Columns: 6</span></span>
 <span><span class="co">#&gt; $ uuid                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "bbbf5a5b29986dd57910daab00193f35"</span></span>
-<span><span class="co">#&gt; $ hubmap_id               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "HBM664.NZBB.674"</span></span>
+<span><span class="co">#&gt; $ hubmap_id               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> ""</span></span>
 <span><span class="co">#&gt; $ data_types              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> ""</span></span>
 <span><span class="co">#&gt; $ dataset_type            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Histology [Image Pyramid]"</span></span>
-<span><span class="co">#&gt; $ status                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Published"</span></span>
-<span><span class="co">#&gt; $ last_modified_timestamp <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2024-08-08"</span></span></code></pre></div>
+<span><span class="co">#&gt; $ status                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> ""</span></span>
+<span><span class="co">#&gt; $ last_modified_timestamp <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "NA"</span></span></code></pre></div>
 <p><strong>Sample</strong> and <strong>Donor</strong> have derived
 samples and datasets. In <code>HuBAMPR</code> package,
 <code><a href="../reference/samples.html">sample_derived()</a></code> and <code><a href="../reference/donors.html">donor_derived()</a></code> functions
@@ -524,7 +520,7 @@ are available to use to see the derived datasets and samples from one
 sample given sample UUID or one donor given donor UUID. Specify
 <code>entity_type</code> parameter to retrieve derived
 <code>Dataset</code> or <code>Sample</code>.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sample_uuid</span> <span class="op">&lt;-</span> <span class="va">samples_df</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">last_modified_timestamp</span> <span class="op">&gt;=</span> <span class="st">"2023-01-01"</span> <span class="op">&amp;</span></span>
 <span>            <span class="va">last_modified_timestamp</span> <span class="op">&lt;=</span> <span class="st">"2023-10-01"</span>,</span>
@@ -537,33 +533,30 @@ sample given sample UUID or one donor given donor UUID. Specify
 <span></span>
 <span><span class="co"># Derived Datasets</span></span>
 <span><span class="fu"><a href="../reference/samples.html">sample_derived</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">sample_uuid</span>, entity_type <span class="op">=</span> <span class="st">"Dataset"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 12 × 6</span></span></span>
-<span><span class="co">#&gt;    uuid                     hubmap_id dataset_type status last_modified_timest…¹</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 4fddf6de0f42a7e2648b547… HBM782.S… MALDI        Publi… 2023-08-21            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> b6fd505b8e8e1829a278357… HBM775.Q… MALDI [Imag… Publi… 2023-08-21            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> c3db2027e148e92fecb85e7… HBM438.V… Auto-fluore… Publi… 2023-12-18            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 3a10030d3323e5353cfdc3a… HBM733.G… Auto-fluore… Publi… 2023-12-18            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 71642e4c4a9cc12f59f3317… HBM846.F… Histology    Publi… 2024-03-01            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> bd42ab2f422e45ce6b0f3f5… HBM665.R… Histology [… Publi… 2024-03-01            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> c8ad223f01b45b25e0dcb07… HBM472.N… MALDI        Publi… 2023-08-21            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> f7b49444b974c98c6300e0b… HBM629.S… MALDI [Imag… Publi… 2023-08-21            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> beb1b65624fe85b527ee2ce… HBM873.P… Auto-fluore… Publi… 2023-12-18            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> c25d6febe5b007ad32bc592… HBM672.N… Auto-fluore… Publi… 2023-12-18            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> 744647801573d1d5700ee75… HBM222.J… Auto-fluore… Publi… 2024-05-08            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> 4a98c43ab3b20b06c11dfbe… HBM973.L… Auto-fluore… Publi… 2024-05-08            </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​last_modified_timestamp</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 1 more variable: derived_dataset_count &lt;int&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 12 × 2</span></span></span>
+<span><span class="co">#&gt;    uuid                             derived_dataset_count</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                            <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 4fddf6de0f42a7e2648b547affefc234                     1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> b6fd505b8e8e1829a2783570f9f25256                     0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> c3db2027e148e92fecb85e7d6a1fd708                     1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 3a10030d3323e5353cfdc3ada45cad86                     0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 71642e4c4a9cc12f59f3317b4a19adc9                     1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> bd42ab2f422e45ce6b0f3f55171de8aa                     0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> c8ad223f01b45b25e0dcb07c48a42762                     1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> f7b49444b974c98c6300e0bfe5fc3a75                     0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> beb1b65624fe85b527ee2ce80ef208b2                     1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> c25d6febe5b007ad32bc59246c99833d                     0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> 744647801573d1d5700ee7523089734c                     1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> 4a98c43ab3b20b06c11dfbed5fd9034b                     0</span></span>
 <span></span>
 <span><span class="co"># Derived Samples</span></span>
 <span><span class="fu"><a href="../reference/samples.html">sample_derived</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">sample_uuid</span>, entity_type <span class="op">=</span> <span class="st">"Sample"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 5</span></span></span>
-<span><span class="co">#&gt;   uuid                    hubmap_id sample_category last_modified_timest…¹ organ</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> ec54b7d4ab4545166a0d12… HBM299.P… section         2021-08-18             Kidn…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> ae98f6ca4f1f9950f7e7e1… HBM636.L… section         2021-08-18             Kidn…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> b099a37195f532e4b38402… HBM937.H… section         2021-08-18             Kidn…</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​last_modified_timestamp</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 2</span></span></span>
+<span><span class="co">#&gt;   uuid                             organ        </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> ec54b7d4ab4545166a0d121b3dc1ec3f Kidney (Left)</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> ae98f6ca4f1f9950f7e7e1dedc2acc10 Kidney (Left)</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> b099a37195f532e4b384020dc0e94bb5 Kidney (Left)</span></span></code></pre></div>
 <p><code><a href="../reference/donors.html">donor_derived()</a></code> works same as above.</p>
 </div>
 <div class="section level3">
@@ -575,33 +568,33 @@ to retrieve the provenance of the entry as a list of characters (UUID,
 HuBMAP ID, and entity type) from the most recent ancestor to the
 furthest ancestor. There is no ancestor for Donor UUID, and an empty
 list will be returned.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># dataset provenance</span></span>
 <span><span class="va">dataset_uuid</span> <span class="op">&lt;-</span> <span class="st">"3e4c568d9ce8df9d73b8cddcf8d0fec3"</span></span>
 <span><span class="fu"><a href="../reference/provenance.html">uuid_provenance</a></span><span class="op">(</span><span class="va">dataset_uuid</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
-<span><span class="co">#&gt; [1] "eba120ab7bbd864a6f6f3ad41e598d25, HBM962.BLVL.393, Sample"</span></span>
+<span><span class="co">#&gt; [1] "eba120ab7bbd864a6f6f3ad41e598d25, Sample"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[2]]</span></span>
-<span><span class="co">#&gt; [1] "468d73d28b9e8c43ffa5fbd56d8e46e3, HBM346.VCLT.434, Sample"</span></span>
+<span><span class="co">#&gt; [1] "468d73d28b9e8c43ffa5fbd56d8e46e3, Sample"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[3]]</span></span>
-<span><span class="co">#&gt; [1] "1c749716d32310351cb9557c7e2937a0, HBM464.VFPP.474, Sample"</span></span>
+<span><span class="co">#&gt; [1] "1c749716d32310351cb9557c7e2937a0, Sample"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[4]]</span></span>
-<span><span class="co">#&gt; [1] "c09f875545a64694d70a28091ffbcf8b, HBM534.PKFT.943, Donor"</span></span>
+<span><span class="co">#&gt; [1] "c09f875545a64694d70a28091ffbcf8b, Donor"</span></span>
 <span></span>
 <span><span class="co"># sample provenance</span></span>
 <span><span class="va">sample_uuid</span> <span class="op">&lt;-</span> <span class="st">"35e16f13caab262f446836f63cf4ad42"</span></span>
 <span><span class="fu"><a href="../reference/provenance.html">uuid_provenance</a></span><span class="op">(</span><span class="va">sample_uuid</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
-<span><span class="co">#&gt; [1] "0b43d8d0dbbc5e3923a8b963650ab8e3, HBM945.PZHJ.983, Sample"</span></span>
+<span><span class="co">#&gt; [1] "0b43d8d0dbbc5e3923a8b963650ab8e3, Sample"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[2]]</span></span>
-<span><span class="co">#&gt; [1] "eed96170f42554db84d97d1652bb23ef, HBM465.ZCWN.623, Sample"</span></span>
+<span><span class="co">#&gt; [1] "eed96170f42554db84d97d1652bb23ef, Sample"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[3]]</span></span>
-<span><span class="co">#&gt; [1] "1628b6f7eb615862322d6274a6bc9fa0, HBM279.WPZP.978, Donor"</span></span>
+<span><span class="co">#&gt; [1] "1628b6f7eb615862322d6274a6bc9fa0, Donor"</span></span>
 <span></span>
 <span><span class="co"># donor provenance</span></span>
 <span><span class="va">donor_uuid</span> <span class="op">&lt;-</span> <span class="st">"0abacde2443881351ff6e9930a706c83"</span></span>
@@ -613,7 +606,7 @@ list will be returned.</p>
 </h3>
 <p>Each <strong>Collection</strong> has related datasets, and use
 <code><a href="../reference/collections.html">collection_data()</a></code> to retrieve.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">collections_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/collections.html">collections</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">collection_uuid</span> <span class="op">&lt;-</span> <span class="va">collections_df</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">last_modified_timestamp</span> <span class="op">&gt;=</span> <span class="st">"2023-01-01"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -642,7 +635,7 @@ list will be returned.</p>
 <code><a href="../reference/publications.html">publication_data()</a></code> to see, while specifying
 <code>entity_type</code> parameter to retrieve derived
 <code>Dataset</code> or <code>Sample</code>.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">publications_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/publications.html">publications</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">publication_uuid</span> <span class="op">&lt;-</span> <span class="va">publications_df</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">publication_venue</span> <span class="op">==</span> <span class="st">"Nature"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -650,21 +643,18 @@ list will be returned.</p>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/publications.html">publication_data</a></span><span class="op">(</span><span class="va">publication_uuid</span>, entity_type <span class="op">=</span> <span class="st">"Dataset"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 7</span></span></span>
-<span><span class="co">#&gt;   uuid                      hubmap_id dataset_type_additio…¹ dataset_type status</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 3a4fb23a49fba2647dba2b8f… HBM666.R… CODEX                  CODEX        Publi…</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​dataset_type_additional_information</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 2 more variables: last_modified_timestamp &lt;chr&gt;, organ &lt;chr&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 2</span></span></span>
+<span><span class="co">#&gt;   dataset_type uuid                            </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> CODEX        3a4fb23a49fba2647dba2b8f57976d25</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/publications.html">publication_data</a></span><span class="op">(</span><span class="va">publication_uuid</span>, entity_type <span class="op">=</span> <span class="st">"Sample"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 4</span></span></span>
-<span><span class="co">#&gt;   uuid                          hubmap_id sample_category last_modified_timest…¹</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 5ded68dde822d1c03ee04fe58b97… HBM853.Q… block           2022-02-16            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> ecca7757c924f2380669a15555d3… HBM555.R… block           2022-02-16            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 5d079766bf17544745c38d88d692… HBM628.H… organ           2021-01-27            </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​last_modified_timestamp</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 2</span></span></span>
+<span><span class="co">#&gt;   dataset_type uuid                            </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Sample       5ded68dde822d1c03ee04fe58b978a7e</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Sample       ecca7757c924f2380669a15555d35a5d</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Sample       5d079766bf17544745c38d88d6923dbf</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="additional-information">Additional Information<a class="anchor" aria-label="anchor" href="#additional-information"></a>
@@ -672,7 +662,7 @@ list will be returned.</p>
 <p>To read the textual description of one <strong>Collection</strong> or
 <strong>Publication</strong>, use <code><a href="../reference/collection_information.html">collection_information()</a></code>
 or <code><a href="../reference/publication_information.html">publication_information()</a></code> respectively.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/collection_information.html">collection_information</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">collection_uuid</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Title</span></span>
 <span><span class="co">#&gt;   Spatiotemporal coordination at the maternal-fetal interface promotes trophoblast invasion and vascular remodeling in the first half of human pregnancy </span></span>
@@ -702,7 +692,7 @@ retrieved using <code>dataset_contributor()</code> for
 <code><a href="../reference/collections.html">collection_contributors()</a></code> for <strong>Collection</strong>
 entity, or <code><a href="../reference/publications.html">publication_authors()</a></code> for
 <strong>Publication</strong> entity.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Dataset</span></span>
 <span><span class="fu"><a href="../reference/datasets.html">dataset_contributors</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">dataset_uuid</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 5</span></span></span>
@@ -766,7 +756,7 @@ open-accessed or restricted. The function will direct you to chrome if
 the files are accessible; otherwise, the error messages will be printed
 out with addition instructions, either providing dbGAP/SRA URLs or
 pointing out the unavailability.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">uuid_globus</span> <span class="op">&lt;-</span> <span class="st">"d1dcab2df80590d8cd8770948abaf976"</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/files.html">bulk_data_transfer</a></span><span class="op">(</span><span class="va">uuid_globus</span><span class="op">)</span></span>
@@ -807,19 +797,19 @@ the instructions <a href="https://mtmorgan.github.io/rglobus/articles/a_get_star
 <span><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; other attached packages:</span></span>
-<span><span class="co">#&gt; [1] HuBMAPR_0.99.5   ggplot2_3.5.1    tidyr_1.3.1      dplyr_1.1.4      BiocStyle_2.32.1</span></span>
+<span><span class="co">#&gt; [1] HuBMAPR_0.99.6   ggplot2_3.5.1    tidyr_1.3.1      dplyr_1.1.4      BiocStyle_2.32.1</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
 <span><span class="co">#&gt;  [1] rappdirs_0.3.3      sass_0.4.9          utf8_1.2.4          generics_0.1.3      stringi_1.8.4      </span></span>
-<span><span class="co">#&gt;  [6] digest_0.6.37       magrittr_2.0.3      evaluate_1.0.0      grid_4.4.1          bookdown_0.40      </span></span>
-<span><span class="co">#&gt; [11] fastmap_1.2.0       jsonlite_1.8.8      whisker_0.4.1       BiocManager_1.30.25 purrr_1.0.2        </span></span>
-<span><span class="co">#&gt; [16] fansi_1.0.6         scales_1.3.0        httr2_1.0.4         textshaping_0.4.0   jquerylib_0.1.4    </span></span>
+<span><span class="co">#&gt;  [6] digest_0.6.37       magrittr_2.0.3      evaluate_1.0.1      grid_4.4.1          bookdown_0.40      </span></span>
+<span><span class="co">#&gt; [11] fastmap_1.2.0       jsonlite_1.8.9      whisker_0.4.1       BiocManager_1.30.25 purrr_1.0.2        </span></span>
+<span><span class="co">#&gt; [16] fansi_1.0.6         scales_1.3.0        httr2_1.0.5         textshaping_0.4.0   jquerylib_0.1.4    </span></span>
 <span><span class="co">#&gt; [21] cli_3.6.3           rlang_1.1.4         munsell_0.5.1       withr_3.0.1         cachem_1.1.0       </span></span>
-<span><span class="co">#&gt; [26] yaml_2.3.10         tools_4.4.1         colorspace_2.1-1    curl_5.2.2          vctrs_0.6.5        </span></span>
+<span><span class="co">#&gt; [26] yaml_2.3.10         tools_4.4.1         colorspace_2.1-1    curl_5.2.3          vctrs_0.6.5        </span></span>
 <span><span class="co">#&gt; [31] rjsoncons_1.3.1     R6_2.5.1            lifecycle_1.0.4     stringr_1.5.1       fs_1.6.4           </span></span>
 <span><span class="co">#&gt; [36] ragg_1.3.3          pkgconfig_2.0.3     desc_1.4.3          pkgdown_2.1.1       pillar_1.9.0       </span></span>
-<span><span class="co">#&gt; [41] bslib_0.8.0         gtable_0.3.5        glue_1.7.0          systemfonts_1.1.0   highr_0.11         </span></span>
-<span><span class="co">#&gt; [46] xfun_0.47           tibble_3.2.1        tidyselect_1.2.1    knitr_1.48          farver_2.1.2       </span></span>
+<span><span class="co">#&gt; [41] bslib_0.8.0         gtable_0.3.5        glue_1.8.0          systemfonts_1.1.0   highr_0.11         </span></span>
+<span><span class="co">#&gt; [46] xfun_0.48           tibble_3.2.1        tidyselect_1.2.1    knitr_1.48          farver_2.1.2       </span></span>
 <span><span class="co">#&gt; [51] htmltools_0.5.8.1   rmarkdown_2.28      labeling_0.4.3      compiler_4.4.1</span></span></code></pre>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

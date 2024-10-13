@@ -29,7 +29,7 @@ returns the metadata of the donor."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">HuBMAPR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.6</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -130,20 +130,20 @@ webpage, https://software.docs.hubmapconsortium.org/apis</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">donors</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 233 × 8</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 239 × 8</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    uuid                 hubmap_id group_name Sex     Age `Body Mass Index` Race </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> c09f875545a64694d70… HBM534.P… TTD - Uni… Fema…    90                <span style="color: #BB0000;">NA</span> White</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 0abacde2443881351ff… HBM358.K… TTD - Uni… Male     90                <span style="color: #BB0000;">NA</span> White</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> d7c90f1fe1ae702df84… HBM639.M… TTD - Uni… Fema…    59                <span style="color: #BB0000;">NA</span> White</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> b1acd1731563347de3a… HBM674.F… TTD - Uni… Fema…    60                <span style="color: #BB0000;">NA</span> White</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 24e6946400b65468a96… HBM379.B… TTD - Uni… Male     79                <span style="color: #BB0000;">NA</span> White</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> c9c39035edc9de812f6… HBM543.J… TTD - Uni… Male     71                <span style="color: #BB0000;">NA</span> White</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> f079501ef0915131c8b… HBM448.V… TTD - Uni… Fema…    82                <span style="color: #BB0000;">NA</span> White</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 03b6236566cfd447214… HBM263.S… TTD - Uni… Fema…    75                <span style="color: #BB0000;">NA</span> White</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 03b82562be364ef0301… HBM232.Q… Universit… Male     11                <span style="color: #BB0000;">NA</span> Blac…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> c09f875545a64694d70… HBM534.P… TTD - Uni… Fema…    90                <span style="color: #BB0000;">NA</span> White</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 0abacde2443881351ff… HBM358.K… TTD - Uni… Male     90                <span style="color: #BB0000;">NA</span> White</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> d7c90f1fe1ae702df84… HBM639.M… TTD - Uni… Fema…    59                <span style="color: #BB0000;">NA</span> White</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> b1acd1731563347de3a… HBM674.F… TTD - Uni… Fema…    60                <span style="color: #BB0000;">NA</span> White</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 24e6946400b65468a96… HBM379.B… TTD - Uni… Male     79                <span style="color: #BB0000;">NA</span> White</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> c9c39035edc9de812f6… HBM543.J… TTD - Uni… Male     71                <span style="color: #BB0000;">NA</span> White</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> f079501ef0915131c8b… HBM448.V… TTD - Uni… Fema…    82                <span style="color: #BB0000;">NA</span> White</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> a0bea4ae0ce4e03efd0… HBM666.X… TTD - Uni… Fema…    82                <span style="color: #BB0000;">NA</span> White</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 5cc62ac9233e8c5d6c4… HBM993.R… TTD - Uni… Fema…    75                <span style="color: #BB0000;">NA</span> White</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 223 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 03b6236566cfd447214… HBM263.S… TTD - Uni… Fema…    75                <span style="color: #BB0000;">NA</span> White</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 229 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: last_modified_timestamp &lt;chr&gt;</span></span>
 <span class="r-in"><span><span class="fu">donors_default_columns</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 8 × 1</span></span>
@@ -160,29 +160,39 @@ webpage, https://software.docs.hubmapconsortium.org/apis</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">uuid</span> <span class="op">&lt;-</span> <span class="st">"1dcde05aea3509b2cf89a41ceb3d700f"</span></span></span>
 <span class="r-in"><span><span class="fu">donor_detail</span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 26</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 24</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ancestor_ids ancestors  created_by_user_displayname created_by_user_email     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">&lt;list [0]&gt;</span>   <span style="color: #949494;">&lt;list [0]&gt;</span> Jamie Allen                 jamie.l.allen@vanderbilt.…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 22 more variables: created_timestamp &lt;dbl&gt;, data_access_level &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 20 more variables: created_timestamp &lt;dbl&gt;, data_access_level &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   descendant_ids &lt;list&gt;, descendants &lt;list&gt;, description &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   display_subtype &lt;chr&gt;, entity_type &lt;chr&gt;, group_name &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   group_uuid &lt;chr&gt;, hubmap_id &lt;chr&gt;, immediate_ancestor_ids &lt;list&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   immediate_ancestors &lt;list&gt;, immediate_descendant_ids &lt;list&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   immediate_descendants &lt;list&gt;, index_version &lt;chr&gt;, lab_donor_id &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   label &lt;chr&gt;, last_modified_timestamp &lt;dbl&gt;, metadata &lt;list&gt;, …</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   immediate_descendant_ids &lt;list&gt;, index_version &lt;chr&gt;, lab_donor_id &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   label &lt;chr&gt;, last_modified_timestamp &lt;dbl&gt;, metadata &lt;list&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   protocol_url &lt;chr&gt;, submission_id &lt;chr&gt;, uuid &lt;chr&gt;</span></span>
 <span class="r-in"><span><span class="va">uuid</span> <span class="op">&lt;-</span> <span class="st">"1dcde05aea3509b2cf89a41ceb3d700f"</span></span></span>
 <span class="r-in"><span><span class="fu">donor_derived</span><span class="op">(</span><span class="va">uuid</span>, <span class="st">"Sample"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 6</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   uuid                    hubmap_id sample_category last_modified_timest…¹ organ</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 146c221bca3759ffa64cd0… HBM847.D… organ           2021-08-04             Kidn…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 27485b21a2285dbcae38f2… HBM693.K… block           2022-07-19             Kidn…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> 1441346ca08aadbb631539… HBM488.F… section         2021-08-25             Kidn…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> e97fd3e2b6dae2238cfe05… HBM695.M… section         2021-08-25             Kidn…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> 92cd878bf5be78131c6a3f… HBM686.B… section         2021-08-25             Kidn…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​last_modified_timestamp</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: derived_dataset_count &lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 17 × 3</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    uuid                             organ          derived_dataset_count</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 146c221bca3759ffa64cd01bc7069cf3 Kidney (Right)                    12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 27485b21a2285dbcae38f2d56d429dec Kidney (Right)                    12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 27485b21a2285dbcae38f2d56d429dec Kidney (Right)                    12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 27485b21a2285dbcae38f2d56d429dec Kidney (Right)                    12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 27485b21a2285dbcae38f2d56d429dec Kidney (Right)                    12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 27485b21a2285dbcae38f2d56d429dec Kidney (Right)                    12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 27485b21a2285dbcae38f2d56d429dec Kidney (Right)                    12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 27485b21a2285dbcae38f2d56d429dec Kidney (Right)                    12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 27485b21a2285dbcae38f2d56d429dec Kidney (Right)                    12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 27485b21a2285dbcae38f2d56d429dec Kidney (Right)                    12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> 27485b21a2285dbcae38f2d56d429dec Kidney (Right)                    12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> 27485b21a2285dbcae38f2d56d429dec Kidney (Right)                    12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> 27485b21a2285dbcae38f2d56d429dec Kidney (Right)                    12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> 27485b21a2285dbcae38f2d56d429dec Kidney (Right)                    12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> 1441346ca08aadbb631539663ab1874a Kidney (Right)                     2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> e97fd3e2b6dae2238cfe052a91409f40 Kidney (Right)                     2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span> 92cd878bf5be78131c6a3f701342a3ac Kidney (Right)                     8</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">uuid</span> <span class="op">&lt;-</span> <span class="st">"d37df2cad4e80dc368763caefccf7140"</span></span></span>
 <span class="r-in"><span><span class="fu">donor_metadata</span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span></span>
