@@ -87,8 +87,10 @@ sample_detail <-
 #'
 #' @name sample_derived
 #'
-#' @importFrom dplyr select mutate filter any_of rename
+#' @importFrom dplyr select mutate filter
+#' @importFrom tidyr unnest everything
 #' @importFrom purrr map_int map_chr
+#' @importFrom rlang .data
 #'
 #' @description `sample_derived()` takes a unique sample_id and
 #' returns the derived dataset or/and sample details.
@@ -115,15 +117,16 @@ sample_derived <-
     entity <- match.arg(entity_type)
 
     tbl <- .query_match(uuid, option = "hits.hits[]._source.descendants[]") |>
-            filter(.data$entity_type == entity)
+        unnest(everything())
 
     if (identical(entity, "Sample")) {
+        tbl <- tbl |>
+            filter(is.na(.data$dataset_type)) |>
+            select("uuid")
+        
         if (nrow(tbl) > 0L) {
 
         tbl <- tbl |>
-            select("uuid", "hubmap_id", "sample_category",
-                    "last_modified_timestamp") |>
-            .unnest_mutate_relocate() |>
             mutate(organ = map_chr(uuid, ~.organ_sample_uuid(.x)))
 
         }
@@ -131,11 +134,11 @@ sample_derived <-
 
     }
     else {
-
         tbl <- tbl |>
-            select(any_of(c("uuid", "hubmap_id", "dataset_type",
-                        "status", "last_modified_timestamp"))) |>
-            .unnest_mutate_relocate() |>
+            filter(!is.na(.data$dataset_type)) |>
+            select("uuid")
+        
+        tbl <- tbl |>
             mutate(derived_dataset_count = map_int(uuid, ~{
                             nrow(.query_match(.x,
                             option = "hits.hits[]._source.descendants[]"))}))
@@ -173,9 +176,7 @@ sample_metadata <-
     stopifnot(.is_uuid(uuid), .uuid_category(uuid) == "Sample")
     
     donor_uuid <- .query_match(uuid,
-                    option = "hits.hits[]._source.ancestors[]") |>
-                    filter(.data$entity_type == "Donor") |>
-                    pull("uuid")
+                    option = "hits.hits[]._source.ancestors[]")
     
     .donor_metadata(donor_uuid) |>
         mutate(Key = paste0("donor.", .data$Key))
@@ -184,6 +185,7 @@ sample_metadata <-
 
 #' @importFrom dplyr left_join rename select
 #' @importFrom stringr str_extract
+#' @importFrom rlang .data
 .sample_edit <-
     function (tbl) {
 

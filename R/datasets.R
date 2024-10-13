@@ -126,9 +126,10 @@ dataset_derived <-
 #'
 #' @name dataset_metadata
 #'
-#' @importFrom dplyr bind_rows mutate filter pull everything rename_with
-#'                    mutate_all
-#' @importFrom tidyr pivot_longer
+#' @importFrom dplyr bind_rows mutate ungroup summarise group_by mutate_all
+#'                    rename select if_else everything
+#' @importFrom tidyr unnest_wider unnest pivot_longer
+#' @importFrom rlang .data
 #'
 #' @description `dataset_metadata()` takes a unique dataset_id and
 #' returns the metadata of the dataset.
@@ -150,13 +151,19 @@ dataset_metadata <-
     
     stopifnot(.is_uuid(uuid), .uuid_category(uuid) == "Dataset")
     
-    donor_uuid <- .query_match(uuid,
-                    option = "hits.hits[]._source.ancestors[]") |>
-                    filter(.data$entity_type == "Donor") |>
-                    pull("uuid")
-    
-    sample_metadata <- .query_match(uuid,
-                option = "hits.hits[]._source.source_samples[].metadata[]") 
+    donor_metadata <- .query_match(uuid,
+        option = "hits.hits[]._source.donor[].metadata[]") |>
+        unnest(everything()) |>
+        unnest_wider(everything()) |>
+        mutate(preferred_term = ifelse(.data$data_type == "Numeric",
+            .data$data_value, .data$preferred_term),
+            Value = paste(.data$preferred_term, .data$units, sep = " ")) |>
+        select("grouping_concept_preferred_term", "Value") |>
+        rename("Key" = "grouping_concept_preferred_term") |>
+        group_by(.data$Key) |>
+        summarise(Value = paste(.data$Value, collapse = "; ")) |>
+        ungroup()
+        
     
     tbl <- .query_match(uuid,
                         option = "hits.hits[]._source.metadata.metadata[]") |>
@@ -164,17 +171,8 @@ dataset_metadata <-
             pivot_longer(cols = everything(), names_to = "Key", 
                         values_to = "Value") |>
             bind_rows(
-                    .donor_metadata(donor_uuid) |>
+                    donor_metadata |>
                     mutate(Key = paste0("donor.", .data$Key)))
-    
-    if (length(sample_metadata) != 0) {
-        tbl <- tbl |> 
-                bind_rows(
-                    sample_metadata|>
-                    rename_with(~ paste0("sample.", .)) |>
-                    pivot_longer(cols = everything(), names_to = "Key", 
-                                values_to = "Value"))
-    }
     
     tbl
     
@@ -185,7 +183,6 @@ dataset_metadata <-
 #' @name dataset_contributors
 #'
 #' @importFrom dplyr mutate select
-#' @importFrom rlang .data
 #'
 #' @description `dataset_contributors()` takes a unique dataset_id and
 #'        returns the contributors of the dataset. For questions for this 
@@ -219,6 +216,7 @@ dataset_contributors <-
 
 #' @importFrom dplyr left_join rename select mutate relocate everything
 #' @importFrom stringr str_extract
+#' @importFrom rlang .data
 .dataset_edit <-
     function (tbl) {
 

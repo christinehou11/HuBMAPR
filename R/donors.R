@@ -91,7 +91,9 @@ donor_detail <-
 #' @name donor_derived
 #'
 #' @importFrom dplyr select filter mutate any_of rename
+#' @importFrom tidyr unnest everything
 #' @importFrom purrr map_chr map_int
+#' @importFrom rlang .data
 #'
 #' @description `donor_derived()` takes a unique donor_id and
 #' returns the derived dataset or/and sample details.
@@ -119,15 +121,16 @@ donor_derived <-
     entity <- match.arg(entity_type)
 
     tbl <- .query_match(uuid, option = "hits.hits[]._source.descendants[]") |>
-            filter(entity_type == entity)
+            unnest(everything())
 
     if (identical(entity, "Sample")) {
+        tbl <- tbl |>
+            filter(is.na(.data$dataset_type)) |>
+            select("uuid")
+        
         if (nrow(tbl) > 0L) {
 
         tbl <- tbl |>
-            select("uuid", "hubmap_id", "sample_category",
-                    "last_modified_timestamp") |>
-            .unnest_mutate_relocate() |>
             mutate(organ = map_chr(uuid, ~.organ_sample_uuid(.x)),
                     derived_dataset_count = map_int(uuid, ~{
                                         nrow(sample_derived(.x, "Dataset"))}))
@@ -137,11 +140,10 @@ donor_derived <-
 
     }
     else {
-
         tbl <- tbl |>
-            select(any_of(c("uuid", "hubmap_id", "dataset_type",
-                            "status", "last_modified_timestamp"))) |>
-            .unnest_mutate_relocate() |>
+            filter(!is.na(.data$dataset_type))
+        
+        tbl <- tbl |>
             mutate(derived_dataset_count = map_int(uuid, ~{
                             nrow(.query_match(.x,
                             option = "hits.hits[]._source.descendants[]"))}))

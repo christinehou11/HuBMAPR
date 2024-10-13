@@ -4,8 +4,9 @@
 #'
 #' @name uuid_provenance
 #'
-#' @importFrom dplyr select
+#' @importFrom dplyr select pull
 #' @importFrom tidyr unnest everything
+#' @importFrom rlang .data
 #'
 #' @param uuid character(1) corresponding to the HuBMAP Dataset or Sample UUID
 #'     string. This is expected to be a 32-digit hex number.
@@ -32,16 +33,17 @@ uuid_provenance <-
     while (TRUE) {
 
     ancestors <- .query_match(uuid,
-                    option = "hits.hits[]._source.immediate_ancestors[]")
+                    option = "hits.hits[]._source") |>
+        select("immediate_ancestor_ids") |> 
+        unnest(everything())
 
     if(nrow(ancestors) == 0L) { break }
     else {
 
         ancestors <- ancestors |>
-                    select("uuid", "hubmap_id", "entity_type") |>
-                    unnest(everything())
-
-        uuid <- ancestors$uuid
+            mutate(entity_type = .uuid_category(.data$immediate_ancestor_ids))
+        
+        uuid <- ancestors$immediate_ancestor_ids
 
         provenance <- append(provenance,
                             paste(unlist(ancestors), collapse = ", "))

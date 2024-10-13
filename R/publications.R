@@ -64,7 +64,7 @@ publications_default_columns <-
 #'
 #' @importFrom dplyr select mutate rename all_of
 #' @importFrom tidyr unnest
-#' @importFrom purrr map
+#' @importFrom purrr map_chr
 #' @importFrom rlang .data
 #'
 #' @description `publication_data()` takes a unique publication_id and
@@ -90,38 +90,27 @@ publication_data <-
     stopifnot(.is_uuid(uuid))
 
     entity <- match.arg(entity_type)
-    columns <- switch(
-        entity,
-        Dataset = c("uuid", "hubmap_id", "data_types", "dataset_type",
-                    "title", "status", "last_modified_timestamp"),
-        Sample =  c("uuid", "hubmap_id",
-                    "sample_category", "last_modified_timestamp"),
-        Donor = c("uuid", "hubmap_id", "metadata", "last_modified_timestamp"))
 
     entity_ids <-
         .query_match(uuid, "hits.hits[]._source.ancestors[]") |>
-        filter(.data$entity_type == entity) |>
-        select(all_of(columns))
+        select(-"rui_location") |>
+        unnest(everything()) |>
+        mutate(dataset_type = ifelse(is.na(.data$dataset_type),
+            map_chr(.data$uuid, ~.uuid_category(.x)),.data$dataset_type))
 
     entity_ids <- switch(
         entity,
 
-        Dataset = entity_ids |>
-                    mutate(organ = .title_to_organ(.data$title)) |>
-                    select(-"title") |>
-                    rename(
-                        "dataset_type_additional_information" = "data_types"),
+        Dataset = entity_ids |> 
+            filter(!(.data$dataset_type %in% c("Sample", "Donor"))),
 
-        Sample = entity_ids,
+        Sample = entity_ids |> filter(.data$dataset_type == "Sample"),
 
-        Donor = entity_ids |>
-                    mutate(metadata = map(.data$metadata, .unify_metadata)) |>
-                    unnest("metadata")  |>
-                    .donor_matadata_modify()
+        Donor = entity_ids |> filter(.data$dataset_type == "Donor")
     )
 
-    .unnest_mutate_relocate(entity_ids)
-
+    entity_ids
+    
     }
 
 #' @rdname publications

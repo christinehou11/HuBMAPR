@@ -41,8 +41,8 @@ publication_information <-
 
     # data_types
     ancestors <- .query_match(uuid, "hits.hits[]._source.ancestors[]") |>
-        unnest_longer("data_types")
-    data_types <- unique(ancestors$"data_types")
+        unnest_longer("dataset_type")
+    data_types <- unique(ancestors$"dataset_type")
 
     tbl <- .query_match(uuid, option) |>
         .unnest_mutate_relocate() |>
