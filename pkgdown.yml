@@ -3,7 +3,7 @@ pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   hubmapr_vignettes: hubmapr_vignettes.html
-last_built: 2024-10-13T05:07Z
+last_built: 2024-10-14T17:39Z
 urls:
   reference: https://christinehou11.github.io/HuBMAPR/reference
   article: https://christinehou11.github.io/HuBMAPR/articles
