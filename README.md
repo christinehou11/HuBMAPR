@@ -32,3 +32,7 @@ BiocManager::install("christinehou11/HuBMAPR")
 
 View the article [Explore Human BioMelecular Atlas Program Data
 Portal](https://christinehou11.github.io/HuBMAPR/articles/hubmapr_vignettes.html).
+
+### Preprint
+
+Preprint: https://www.biorxiv.org/content/10.1101/2024.09.26.615227v1
