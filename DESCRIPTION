@@ -29,7 +29,7 @@ Description: 'HuBMAP' provides an open, global bio-molecular atlas of the
     for each of these entity types. `*_details()` are available for individual
     entries of each entity type. `*_derived()` are available for retrieving
     derived datasets or samples for individual entries of each entity type.
-    Data files can be accessed using `files_globus_url()`.
+    Data files can be accessed using `bulk_data_transfer()`.
 License: Artistic-2.0
 Depends: 
     R (>= 4.4.0)
