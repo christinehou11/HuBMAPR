@@ -29,7 +29,7 @@ returns the metadata of the donor."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">HuBMAPR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.99.7</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -160,17 +160,17 @@ webpage, https://software.docs.hubmapconsortium.org/apis</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">uuid</span> <span class="op">&lt;-</span> <span class="st">"1dcde05aea3509b2cf89a41ceb3d700f"</span></span></span>
 <span class="r-in"><span><span class="fu">donor_detail</span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 24</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 21</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ancestor_ids ancestors  created_by_user_displayname created_by_user_email     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">&lt;list [0]&gt;</span>   <span style="color: #949494;">&lt;list [0]&gt;</span> Jamie Allen                 jamie.l.allen@vanderbilt.…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 20 more variables: created_timestamp &lt;dbl&gt;, data_access_level &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 17 more variables: created_timestamp &lt;dbl&gt;, data_access_level &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   descendant_ids &lt;list&gt;, descendants &lt;list&gt;, description &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   display_subtype &lt;chr&gt;, entity_type &lt;chr&gt;, group_name &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   group_uuid &lt;chr&gt;, hubmap_id &lt;chr&gt;, immediate_ancestor_ids &lt;list&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   immediate_descendant_ids &lt;list&gt;, index_version &lt;chr&gt;, lab_donor_id &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   label &lt;chr&gt;, last_modified_timestamp &lt;dbl&gt;, metadata &lt;list&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   protocol_url &lt;chr&gt;, submission_id &lt;chr&gt;, uuid &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   immediate_descendant_ids &lt;list&gt;, index_version &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   last_modified_timestamp &lt;dbl&gt;, metadata &lt;list&gt;, protocol_url &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   uuid &lt;chr&gt;</span></span>
 <span class="r-in"><span><span class="va">uuid</span> <span class="op">&lt;-</span> <span class="st">"1dcde05aea3509b2cf89a41ceb3d700f"</span></span></span>
 <span class="r-in"><span><span class="fu">donor_derived</span><span class="op">(</span><span class="va">uuid</span>, <span class="st">"Sample"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 17 × 3</span></span>
