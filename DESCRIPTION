@@ -1,6 +1,6 @@
 Package: HuBMAPR
 Title: Interface to 'HuBMAP'
-Version: 1.1.4
+Version: 1.1.1
 Authors@R:
     c(person(
         given = "Christine",
