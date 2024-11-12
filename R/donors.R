@@ -90,7 +90,7 @@ donor_detail <-
 #'
 #' @name donor_derived
 #'
-#' @importFrom dplyr select filter mutate any_of rename
+#' @importFrom dplyr select filter mutate any_of rename distinct
 #' @importFrom tidyr unnest everything
 #' @importFrom purrr map_chr map_int
 #' @importFrom rlang .data
@@ -133,8 +133,8 @@ donor_derived <-
         tbl <- tbl |>
             mutate(organ = map_chr(uuid, ~.organ_sample_uuid(.x)),
                     derived_dataset_count = map_int(uuid, ~{
-                                        nrow(sample_derived(.x, "Dataset"))}))
-
+                                        nrow(sample_derived(.x, "Dataset"))}))|>
+            distinct(uuid, .keep_all = TRUE)
         }
         else { tbl <- NULL }
 

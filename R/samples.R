@@ -87,7 +87,7 @@ sample_detail <-
 #'
 #' @name sample_derived
 #'
-#' @importFrom dplyr select mutate filter
+#' @importFrom dplyr select mutate filter distinct
 #' @importFrom tidyr unnest everything
 #' @importFrom purrr map_int map_chr
 #' @importFrom rlang .data
@@ -127,7 +127,8 @@ sample_derived <-
         if (nrow(tbl) > 0L) {
 
         tbl <- tbl |>
-            mutate(organ = map_chr(uuid, ~.organ_sample_uuid(.x)))
+            mutate(organ = map_chr(uuid, ~.organ_sample_uuid(.x))) |>
+            distinct(uuid, .keep_all = TRUE)
 
         }
         else { tbl <- NULL }

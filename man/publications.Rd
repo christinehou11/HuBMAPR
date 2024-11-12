@@ -3,6 +3,7 @@
 \name{publications}
 \alias{publications}
 \alias{publications_default_columns}
+\alias{publication_detail}
 \alias{publication_data}
 \alias{publication_authors}
 \title{HuBMAP Samples}
@@ -10,6 +11,8 @@
 publications()
 
 publications_default_columns(as = c("tibble", "character"))
+
+publication_detail(uuid)
 
 publication_data(uuid, entity_type = c("Dataset", "Sample", "Donor"))
 
@@ -44,6 +47,9 @@ character vector describing the content of the tibble returned
 by \code{samples()}, \code{datasets()}, \code{donors()}, \code{collections()},
 or \code{publications()}.
 
+\code{publication_detail()} takes a unique publication_id and
+returns details about one specified publication as a tibble
+
 \code{publication_data()} takes a unique publication_id and
 returns details about one specified publication.
 
@@ -64,6 +70,8 @@ webpage, https://software.docs.hubmapconsortium.org/apis
 publications()
 publications_default_columns()
 
+uuid <- "2ced91fd6d543e79af90313e52ada57d"
+publication_detail(uuid)
 uuid <- "3c7273660cdf9ab91a7901533b2cd9a5"
 publication_data(uuid)
 

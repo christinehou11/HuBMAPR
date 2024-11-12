@@ -55,6 +55,31 @@ collections_default_columns <-
 
 #' @rdname collections
 #'
+#' @name collection_detail
+#'
+#' @description `collection_detail()` takes a unique collection_id and
+#' returns details about one specified collection as a tibble
+#'
+#' @param uuid character(1) corresponding to the HuBMAP Collection UUID
+#'     string. This is expected to be a 32-digit hex number.
+#'
+#' @export
+#'
+#' @examples
+#' uuid <- "a320abcf56241be2e5e453401efeaaf3"
+#' collection_detail(uuid)
+collection_detail <-
+    function (uuid) {
+    
+    stopifnot( .is_uuid(uuid), .uuid_category(uuid) == "Collection")
+    
+    .query_match(uuid, option = "hits.hits[]._source")
+    
+}
+
+
+#' @rdname collections
+#'
 #' @name collection_contacts
 #'
 #' @importFrom tidyr unnest everything
