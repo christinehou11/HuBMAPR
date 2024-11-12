@@ -15,8 +15,6 @@ collections_default_columns(as = c("tibble", "character"))
 
 collection_detail(uuid)
 
-collection_detail(uuid)
-
 collection_contacts(uuid)
 
 collection_data(uuid)
@@ -50,9 +48,6 @@ or \code{publications()}.
 \code{collection_detail()} takes a unique collection_id and
 returns details about one specified collection as a tibble
 
-\code{collection_detail()} takes a unique collection_id and
-returns details about one specified collection as a tibble
-
 \code{collection_contacts()} takes a unique collection_id and
 returns contacts information of one specified collection as a tibble
 
@@ -79,8 +74,6 @@ webpage, https://software.docs.hubmapconsortium.org/apis
 collections()
 collections_default_columns()
 
-uuid <- "a320abcf56241be2e5e453401efeaaf3"
-collection_detail(uuid)
 uuid <- "a320abcf56241be2e5e453401efeaaf3"
 collection_detail(uuid)
 uuid <- "381f65e58d5e2c1d16a9cef2cc203aab"
