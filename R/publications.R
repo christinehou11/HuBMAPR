@@ -57,6 +57,29 @@ publications_default_columns <-
 
     }
 
+#' @rdname publications
+#'
+#' @name publication_detail
+#'
+#' @description `publication_detail()` takes a unique publication_id and
+#' returns details about one specified publication as a tibble
+#'
+#' @param uuid character(1) corresponding to the HuBMAP Publication UUID
+#'     string. This is expected to be a 32-digit hex number.
+#'
+#' @export
+#'
+#' @examples
+#' uuid <- "2ced91fd6d543e79af90313e52ada57d"
+#' publication_detail(uuid)
+publication_detail <-
+    function (uuid) {
+    
+    stopifnot( .is_uuid(uuid), .uuid_category(uuid) == "Publication")
+    
+    .query_match(uuid, option = "hits.hits[]._source")
+    
+}
 
 #' @rdname publications
 #'
