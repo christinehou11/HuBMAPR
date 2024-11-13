@@ -208,9 +208,7 @@ dataset_contributors <-
     stopifnot(.is_uuid(uuid), .uuid_category(uuid) == "Dataset")
     
     .query_match(uuid,
-                option = "hits.hits[]._source.contributors[]") |> 
-    select("display_name", "affiliation", "email", 
-            "orcid", "is_principal_investigator")
+                option = "hits.hits[]._source.contributors[]")
     
     }
 
