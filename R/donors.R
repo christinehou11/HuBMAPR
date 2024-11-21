@@ -183,7 +183,7 @@ donor_metadata <-
     }
 
 ## helper function
-#' @importFrom dplyr coalesce mutate select rename_with rename case_when
+#' @importFrom dplyr coalesce mutate select rename_with
 #' @importFrom tidyr unnest_longer everything
 #' @importFrom rlang .data
 #'
@@ -220,13 +220,6 @@ donor_metadata <-
         .donor_matadata_modify() |>
         .unnest_mutate_relocate() |>
         mutate(Age = as.numeric(.data$Age),
-            `Body Mass Index` = as.numeric(.data$`Body Mass Index`),
-            `Body mass index` = as.numeric(.data$`Body mass index`),
-            `Body Mass Index` = case_when(
-                !is.na(.data$`Body Mass Index`) ~ .data$`Body Mass Index`,
-                is.na(.data$`Body Mass Index`) &
-                is.na(.data$`Body mass index`) ~ NA_real_,
-                TRUE ~ .data$`Body mass index`)) |>
-        select(-"Body mass index") 
+            `Body Mass Index` = as.numeric(.data$`Body Mass Index`))
 
     }
