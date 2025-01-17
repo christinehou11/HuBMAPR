@@ -1,6 +1,6 @@
 Package: HuBMAPR
 Title: Interface to 'HuBMAP'
-Version: 1.1.7
+Version: 1.1.8
 Authors@R:
     c(person(
         given = "Christine",
@@ -55,7 +55,8 @@ Suggests:
     knitr,
     ggplot2,
     rmarkdown,
-    BiocStyle
+    BiocStyle,
+    pryr
 VignetteBuilder: knitr
 biocViews: Software, SingleCell, DataImport, ThirdPartyClient, Spatial, 
     Infrastructure
