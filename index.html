@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">HuBMAPR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.7</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.8</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,11 +55,27 @@
   <main id="main" class="col-md-9"><div class="section level2">
 <h2 id="hubmapr">HuBMAPR<a class="anchor" aria-label="anchor" href="#hubmapr"></a>
 </h2>
-<p>‘HuBMAP’ data portal (<a href="https://portal.hubmapconsortium.org/" class="external-link uri">https://portal.hubmapconsortium.org/</a>) provides an open, global bio-molecular atlas of the human body at the cellular level. <code>HuBMAPR</code> package provides an alternative interface to access the data exploration and file retrieval via R.</p>
-<div class="section level4">
-<h4 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
-</h4>
-<p><code>HuBMAPR</code> is a R package available in <em>Bioconductor</em> version 3.19 and later. You can install <code>HuBMAPR</code> by using the following commands in R session from <em>Bioconductor</em>:</p>
+<p><a href="https://bioconductor.org/packages/HuBMAPR" class="external-link"><img src="https://img.shields.io/badge/Bioc3.20-HuBMAPR-blue.svg"></a></p>
+<p>‘HuBMAP’ data portal (<a href="https://portal.hubmapconsortium.org/" class="external-link uri">https://portal.hubmapconsortium.org/</a>) provides an open, global bio-molecular atlas of the human body at the cellular level. <code>HuBMAPR</code> package provides an alternative interface to explore the data via R.</p>
+<p>The HuBMAP Consortium offers several <a href="https://docs.hubmapconsortium.org/apis.html" class="external-link">APIs</a>. To achieve the main objectives, <code>HuBMAPR</code> package specifically integrates three APIs:</p>
+<ul>
+<li><p><a href="https://smart-api.info/ui/7aaf02b838022d564da776b03f357158" class="external-link">Search API</a>: The <strong>Search API</strong> is primarily searching relevant data information and is referenced to the <a href="https://www.elastic.co/guide/en/elasticsearch/" class="external-link">Elasticsearch API</a>.</p></li>
+<li><p><a href="https://smart-api.info/ui/0065e419668f3336a40d1f5ab89c6ba3" class="external-link">Entity API</a>: The <strong>Entity API</strong> is specifically utilized in the <code><a href="reference/files.html">bulk_data_transfer()</a></code> function for Globus URL retrieval</p></li>
+<li><p><a href="https://smart-api.info/ui/d10ff85265d8b749fbe3ad7b51d0bf0a" class="external-link">Ontology API</a>: The <strong>Ontology API</strong> is applied in the <code><a href="reference/organs.html">organ()</a></code> function to provide additional information about the abbreviation and corresponding full name of each organ.</p></li>
+</ul>
+<p>Each API serves a distinct purpose with unique query capabilities, tailored to meet various needs. Utilizing the <code>httr2</code> and <code>rjsoncons</code> packages, <code>HuBMAPR</code> effectively manages, modifies, and executes multiple requests via these APIs, presenting responses in formats such as tibble or character. These outputs are further modified for clarity in the final results from the <code>HuBMAPR</code> functions, and these functions help reflect the data information of HuBMAP Data Portal as much as possible.</p>
+<p>HuBMAP Data incorporates three different <a href="https://docs.hubmapconsortium.org/apis" class="external-link">identifiers</a>:</p>
+<ul>
+<li><p>HuBMAP ID, e.g. HBM399.VCTL.353</p></li>
+<li><p>Universally Unique Identifier (UUID), e.g. 7036a70229eff1a51af965454dddbe7d</p></li>
+<li><p>Digital Object Identifiers (DOI), e.g. 10.35079/HBM399.VCTL.353.</p></li>
+</ul>
+<p>The <code>HuBMAPR</code> package utilizes the UUID - a 32-digit hexadecimal number - and the more human-readable HuBMAP ID as two common identifiers in the retrieved results. Considering precision and compatibility with software implementation and data storage, UUID serves as the primary identifier to retrieve data across various functions, with the UUID mapping uniquely to its corresponding HuBMAP ID.</p>
+<p>The systematic nomenclature is adopted for functions in the package by appending the entity category prefix to the concise description of the specific functionality. Most of the functions are grouped by entity categories, thereby simplifying the process of selecting the appropriate functions to retrieve the desired information associated with the given UUID from the specific entity category. The structure of these functions is heavily consistent across all entity categories with some exceptions for collection and publication.</p>
+<div class="section level3">
+<h3 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h3>
+<p><code>HuBMAPR</code> is a R package available in <em>Bioconductor</em> version <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>≥</mo><annotation encoding="application/x-tex">\geq</annotation></semantics></math> 3.20 and R version <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>≥</mo><annotation encoding="application/x-tex">\geq</annotation></semantics></math> 4.4.0. You can install <code>HuBMAPR</code> by using the following commands in R session from <em>Bioconductor</em>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://bioconductor.github.io/BiocManager/" class="external-link">"BiocManager"</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
@@ -70,12 +86,95 @@
 <span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://bioconductor.github.io/BiocManager/reference/valid.html" class="external-link">valid</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Additionally, you can install development version from <a href="https://christinehou11.github.io/HuBMAPR">GitHub</a>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://bioconductor.github.io/BiocManager/reference/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"christinehou11/HuBMAPR"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"christinehou11/HuBMAPR"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level4">
-<h4 id="use">Use<a class="anchor" aria-label="anchor" href="#use"></a>
-</h4>
-<p>View the article <a href="https://christinehou11.github.io/HuBMAPR/articles/hubmapr_vignettes.html">Explore Human BioMelecular Atlas Program Data Portal</a>.</p>
+<div class="section level3">
+<h3 id="use">Use<a class="anchor" aria-label="anchor" href="#use"></a>
+</h3>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="bold">𝐄𝐧𝐭𝐢𝐭𝐲 𝐂𝐚𝐭𝐞𝐠𝐨𝐫𝐲:</mtext><annotation encoding="application/x-tex">\textbf{Entity Category:}</annotation></semantics></math></p>
+<ul>
+<li><p>Dataset</p></li>
+<li><p>Sample</p></li>
+<li><p>Donor</p></li>
+<li><p>Collection</p></li>
+<li><p>Publication</p></li>
+</ul>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="bold">𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞 𝐫𝐞𝐜𝐨𝐫𝐝𝐬 𝐟𝐨𝐫 [𝐄𝐧𝐭𝐢𝐭𝐲 𝐂𝐚𝐭𝐞𝐠𝐨𝐫𝐲]:</mtext><annotation encoding="application/x-tex">\textbf{Available records for [Entity Category]:}</annotation></semantics></math></p>
+<ul>
+<li><p>datasets()</p></li>
+<li><p>samples()</p></li>
+<li><p>donors()</p></li>
+<li><p>collections()</p></li>
+<li><p>publications()</p></li>
+</ul>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="bold">𝐓𝐡𝐞 𝐝𝐞𝐟𝐚𝐮𝐥𝐭 𝐜𝐨𝐥𝐮𝐦𝐧𝐬 𝐟𝐫𝐨𝐦 [𝐄𝐧𝐭𝐢𝐭𝐲 𝐂𝐚𝐭𝐞𝐠𝐨𝐫𝐲]()]:</mtext><annotation encoding="application/x-tex">\textbf{The default columns from [Entity Category]()]:}</annotation></semantics></math></p>
+<ul>
+<li><p>datasets_default_columns(as = c(“tibble”, “character”))</p></li>
+<li><p>samples _default_columns(as = c(“tibble”, “character”)</p></li>
+<li><p>donors _default_columns(as = c(“tibble”, “character”)</p></li>
+<li><p>collections _default_columns(as = c(“tibble”, “character”)</p></li>
+<li><p>publications _default_columns(as = c(“tibble”, “character”)</p></li>
+</ul>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="bold">𝐒𝐢𝐧𝐠𝐥𝐞 𝐑𝐞𝐜𝐨𝐫𝐝 𝐈𝐧𝐟𝐨𝐫𝐦𝐚𝐭𝐢𝐨𝐧 𝐟𝐨𝐫 [𝐄𝐧𝐭𝐢𝐭𝐲 𝐂𝐚𝐭𝐞𝐠𝐨𝐫𝐲] 𝐫𝐞𝐜𝐨𝐫𝐝:</mtext><annotation encoding="application/x-tex">\textbf{Single Record Information for [Entity Category] record:}</annotation></semantics></math></p>
+<ul>
+<li>
+<p>Dataset</p>
+<ul>
+<li><p>dataset_detail(dataset_uuid)</p></li>
+<li><p>dataset_derived(dataset_uuid)</p></li>
+<li><p>dataset_metadata(dataset_uuid)</p></li>
+<li><p>dataset_contributors(dataset_uuid)</p></li>
+</ul>
+</li>
+<li>
+<p>Sample</p>
+<ul>
+<li><p>sample_detail(sample_uuid)</p></li>
+<li><p>sample_derived(sample_uuid, entity_type = c(“Dataset”, “Sample”))</p></li>
+<li><p>sample_metadata(sample_uuid)</p></li>
+</ul>
+</li>
+<li>
+<p>Donor</p>
+<ul>
+<li><p>donor_detail(donor_uuid)</p></li>
+<li><p>donor _derived(donor_uuid, entity_type = c(“Dataset”, “Sample”))</p></li>
+<li><p>donor _metadata(donor_uuid)</p></li>
+</ul>
+</li>
+<li>
+<p>Collection</p>
+<ul>
+<li><p>collection_detail(collection_uuid)</p></li>
+<li><p>collection_data(collection_uuid)</p></li>
+<li><p>collection_contributors(collection_uuid)</p></li>
+<li><p>collection_contacts(collection_uuid)</p></li>
+<li><p>collection_information(collection_uuid)</p></li>
+</ul>
+</li>
+<li>
+<p>Publication</p>
+<ul>
+<li><p>publication_detail(publication_uuid)</p></li>
+<li><p>publication _data(publication_uuid)</p></li>
+<li><p>publication_authors(publication_uuid)</p></li>
+<li><p>publication_information(publication_uuid)</p></li>
+</ul>
+</li>
+</ul>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="bold">𝐏𝐫𝐨𝐯𝐞𝐧𝐚𝐧𝐜𝐞 𝐨𝐟 𝐚 𝐝𝐚𝐭𝐚𝐬𝐞𝐭/𝐬𝐚𝐦𝐩𝐥𝐞/𝐝𝐨𝐧𝐨𝐫</mtext><annotation encoding="application/x-tex">\textbf{Provenance of a dataset/sample/donor}</annotation></semantics></math>:</p>
+<ul>
+<li>uuid_provenance(dataset/sample/donor uuid)</li>
+</ul>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="bold">𝐀𝐝𝐝𝐢𝐭𝐢𝐨𝐧𝐚𝐥 𝐢𝐧𝐟𝐨𝐫𝐦𝐚𝐭𝐢𝐨𝐧 𝐚𝐛𝐨𝐮𝐭 𝐨𝐫𝐠𝐚𝐧 𝐚𝐛𝐛𝐫𝐞𝐯𝐢𝐚𝐭𝐢𝐨𝐧 𝐚𝐧𝐝 𝐢𝐭𝐬 𝐟𝐮𝐥𝐥 𝐧𝐚𝐦𝐞:</mtext><annotation encoding="application/x-tex">\textbf{Additional information about organ abbreviation and its full name:}</annotation></semantics></math></p>
+<ul>
+<li>organ()</li>
+</ul>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtext mathvariant="bold">𝐑𝐞𝐭𝐫𝐢𝐞𝐯𝐞 𝐝𝐚𝐭𝐚 𝐟𝐢𝐥𝐞𝐬 𝐟𝐫𝐨𝐦 𝐨𝐧𝐞 𝐝𝐚𝐭𝐚𝐬𝐞𝐭 𝐬𝐢𝐧𝐠𝐥𝐞 𝐫𝐞𝐜𝐨𝐫𝐝:</mtext><annotation encoding="application/x-tex">\textbf{Retrieve data files from one dataset single record:}</annotation></semantics></math></p>
+<ul>
+<li>bulk_data_transfer(dataset_uuid)</li>
+</ul>
+<p>View the article <a href="https://christinehou11.github.io/HuBMAPR/articles/hubmapr_vignettes.html">Explore Human BioMelecular Atlas Program Data Portal</a> to read detailed examples.</p>
 </div>
 <div class="section level3">
 <h3 id="preprint">Preprint<a class="anchor" aria-label="anchor" href="#preprint"></a>

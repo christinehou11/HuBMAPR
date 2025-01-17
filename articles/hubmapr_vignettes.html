@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">HuBMAPR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.7</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.8</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,35 +80,56 @@ global bio-molecular atlas of the human body at the cellular level.
 explore the data via R.</p>
 <p>The HuBMAP Consortium offers several <a href="https://docs.hubmapconsortium.org/apis.html" class="external-link">APIs</a>. To achieve
 the main objectives, <code>HuBMAPR</code> package specifically
-integrates three APIs:<br><a href="https://smart-api.info/ui/7aaf02b838022d564da776b03f357158" class="external-link">Search
-API</a>, <a href="https://smart-api.info/ui/0065e419668f3336a40d1f5ab89c6ba3" class="external-link">Entity
-API</a>, and <a href="https://smart-api.info/ui/d10ff85265d8b749fbe3ad7b51d0bf0a" class="external-link">Ontology
-API</a>. Each API serves a distinct purpose with unique query
-capabilities, tailored to meet various needs. Utilizing the
-<code>httr2</code> and <code>rjsoncons</code> packages,
-<code>HuBMAPR</code> effectively manages, modifies, and executes
-multiple requests via these APIs, presenting responses in formats such
-as tibble or character. These outputs are further modified for clarity
-in the final results from the <code>HuBMAPR</code> functions. The
-<strong>Search API</strong> is primarily searching relevant data
-information and is referenced to the <a href="https://www.elastic.co/guide/en/elasticsearch/" class="external-link">Elasticsearch
-API</a>. The <strong>Entity API</strong> is specifically utilized in the
-<code><a href="../reference/files.html">bulk_data_transfer()</a></code> function for Globus URL retrieval,
-while the <strong>Ontology API</strong> is applied in the
-<code><a href="../reference/organs.html">organ()</a></code> function. Referencing to HuBMAP Data Portal, the
-functions in <code>HuBAMPR</code> package reflects the data information
-of HuBMAP as much as possible.</p>
-<p>HuBMAP Data incorporates three different <a href="https://docs.hubmapconsortium.org/apis" class="external-link">identifiers</a>: HuBMAP
-ID, Universally Unique Identifier (UUID), and Digital Object Identifiers
-(DOI). The <code>HuBMAPR</code> package utilizes the UUID - a 32-digit
+integrates three APIs:</p>
+<ul>
+<li><p><a href="https://smart-api.info/ui/7aaf02b838022d564da776b03f357158" class="external-link">Search
+API</a>: The <strong>Search API</strong> is primarily searching relevant
+data information and is referenced to the <a href="https://www.elastic.co/guide/en/elasticsearch/" class="external-link">Elasticsearch
+API</a>.</p></li>
+<li><p><a href="https://smart-api.info/ui/0065e419668f3336a40d1f5ab89c6ba3" class="external-link">Entity
+API</a>: The <strong>Entity API</strong> is specifically utilized in the
+<code><a href="../reference/files.html">bulk_data_transfer()</a></code> function for Globus URL
+retrieval</p></li>
+<li><p><a href="https://smart-api.info/ui/d10ff85265d8b749fbe3ad7b51d0bf0a" class="external-link">Ontology
+API</a>: The <strong>Ontology API</strong> is applied in the
+<code><a href="../reference/organs.html">organ()</a></code> function to provide additional information about
+the abbreviation and corresponding full name of each organ.</p></li>
+</ul>
+<p>Each API serves a distinct purpose with unique query capabilities,
+tailored to meet various needs. Utilizing the <code>httr2</code> and
+<code>rjsoncons</code> packages, <code>HuBMAPR</code> effectively
+manages, modifies, and executes multiple requests via these APIs,
+presenting responses in formats such as tibble or character. These
+outputs are further modified for clarity in the final results from the
+<code>HuBMAPR</code> functions, and these functions help reflect the
+data information of HuBMAP Data Portal as much as possible.</p>
+<p>Using temporary storage to cache API responses facilitates efficient
+data retrieval by reducing the need for redundant requests to the HuBMAP
+Data Portal. This approach minimizes server load, improves response
+times (e.g. <code><a href="../reference/datasets.html">datasets()</a></code> takes less than 4 seconds to
+retrieve more than 3500 records’ information, shown below), and enhances
+overall query efficiency. By periodically clearing cached data or
+directing them to a temporary directory, the process ensures that the
+retrieved information remains relevant while managing storage
+effectively. This caching mechanism supports a smoother and more
+efficient user experience when accessing data from the portal.</p>
+<p>HuBMAP Data incorporates three different <a href="https://docs.hubmapconsortium.org/apis" class="external-link">identifiers</a>:</p>
+<ul>
+<li><p>HuBMAP ID, e.g. HBM399.VCTL.353</p></li>
+<li><p>Universally Unique Identifier (UUID),
+e.g. 7036a70229eff1a51af965454dddbe7d</p></li>
+<li><p>Digital Object Identifiers (DOI),
+e.g. 10.35079/HBM399.VCTL.353.</p></li>
+</ul>
+<p>The <code>HuBMAPR</code> package utilizes the UUID - a 32-digit
 hexadecimal number - and the more human-readable HuBMAP ID as two common
 identifiers in the retrieved results. Considering precision and
 compatibility with software implementation and data storage, UUID serves
 as the primary identifier to retrieve data across various functions,
-with the UUID mapping uniquely to its corresponding HuBMAP ID. The
-systematic nomenclature is adopted for functions in the package by
-appending the entity category prefix to the concise description of the
-specific functionality. Most of the functions are grouped by entity
+with the UUID mapping uniquely to its corresponding HuBMAP ID.</p>
+<p>The systematic nomenclature is adopted for functions in the package
+by appending the entity category prefix to the concise description of
+the specific functionality. Most of the functions are grouped by entity
 categories, thereby simplifying the process of selecting the appropriate
 functions to retrieve the desired information associated with the given
 UUID from the specific entity category. The structure of these functions
@@ -127,11 +148,30 @@ by</p>
 <span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://bioconductor.github.io/BiocManager/reference/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"HuBMAPR"</span><span class="op">)</span></span></code></pre></div>
 <p>Install development version from <a href="https://christinehou11.github.io/HuBMAPR">GitHub</a>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install</span><span class="op">(</span><span class="st">"christinehou11/HuBMAPR"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"christinehou11/HuBMAPR"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="basic-user-guide">Basic User Guide<a class="anchor" aria-label="anchor" href="#basic-user-guide"></a>
 </h2>
+<div class="section level3">
+<h3 id="implementation-notes">Implementation Notes<a class="anchor" aria-label="anchor" href="#implementation-notes"></a>
+</h3>
+<p>This session is to provide a guidance on extending or customizing the
+<code>HuBMAPR</code> package to accommodate potential future changes in
+data structure, enhancing the package’s long-term utility. We included a
+brief outline to illustrate the basics of the principles and approach to
+package design.</p>
+<ul>
+<li><p>Identify an API end point</p></li>
+<li><p>Provide an R client to translate R data structures to the
+arguments and parameters required by the API</p></li>
+<li><p>Handle the response in a consistent way with respect to argument
+and response validation</p></li>
+<li><p>Format the return value as a ‘tibble’ or ‘character’ to minimize
+cognitive demands on the user for interpreting the result, and to
+facilitate incorporation into general R workflows</p></li>
+</ul>
+</div>
 <div class="section level3">
 <h3 id="load-necessary-packages">Load Necessary Packages<a class="anchor" aria-label="anchor" href="#load-necessary-packages"></a>
 </h3>
@@ -142,36 +182,53 @@ extraction.</p>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://dplyr.tidyverse.org" class="external-link">"dplyr"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://tidyr.tidyverse.org" class="external-link">"tidyr"</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://christinehou11.github.io/HuBMAPR/">"HuBMAPR"</a></span><span class="op">)</span></span></code></pre></div>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://christinehou11.github.io/HuBMAPR/">"HuBMAPR"</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/hadley/pryr" class="external-link">"pryr"</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="data-discovery">Data Discovery<a class="anchor" aria-label="anchor" href="#data-discovery"></a>
 </h3>
-<p><code>HuBMAP</code> data portal page displays five categories of
-entity data, which are <strong>Dataset, Sample, Donor, Publication, and
-Collection</strong>, chronologically (last modified date time). Using
-corresponding functions to explore entity data.</p>
+<p><code>HuBMAP</code> data portal page displays chronologically (last
+modified date time) five categories of entity data:</p>
+<ul>
+<li><p><strong>Dataset</strong></p></li>
+<li><p><strong>Sample</strong></p></li>
+<li><p><strong>Donor</strong></p></li>
+<li><p><strong>Publication</strong></p></li>
+<li><p><strong>Collection</strong>.</p></li>
+</ul>
+<p>Using corresponding functions to explore entity data.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">datasets_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/datasets.html">datasets</a></span><span class="op">(</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>    <span class="va">datasets_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/datasets.html">datasets</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    user  system elapsed </span></span>
+<span><span class="co">#&gt;   0.775   0.031   7.328</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/pryr/man/object_size.html" class="external-link">object_size</a></span><span class="op">(</span><span class="va">datasets_df</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 1.04 MB</span></span>
+<span></span>
 <span><span class="va">datasets_df</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3,689 × 14</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3,691 × 14</span></span></span>
 <span><span class="co">#&gt;    uuid        hubmap_id dataset_type dataset_type_additio…¹ organ analyte_class</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> ca302925f0… HBM234.V… Histology    <span style="color: #949494;">""</span>                     Larg… Nucleic acid…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> aed6880fb3… HBM958.B… Histology    <span style="color: #949494;">""</span>                     Larg… Nucleic acid…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> bfda5e0865… HBM793.K… Histology    <span style="color: #949494;">""</span>                     Larg… Nucleic acid…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> b0c21c4002… HBM875.H… Histology    <span style="color: #949494;">""</span>                     Larg… Nucleic acid…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> baf976734d… HBM468.M… Histology    <span style="color: #949494;">""</span>                     Smal… Nucleic acid…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 57b475b8ad… HBM579.L… Histology    <span style="color: #949494;">""</span>                     Smal… Nucleic acid…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 856aa4e05b… HBM433.H… Histology    <span style="color: #949494;">""</span>                     Smal… Nucleic acid…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 9fa780b740… HBM737.W… Histology    <span style="color: #949494;">""</span>                     Smal… Nucleic acid…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> ac31408424… HBM284.R… Histology    <span style="color: #949494;">""</span>                     Larg… Nucleic acid…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 9b9e520cb9… HBM282.K… Histology    <span style="color: #949494;">""</span>                     Smal… Nucleic acid…</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 3,679 more rows</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 997e75072d… HBM236.G… 10X Multiome <span style="color: #949494;">""</span>                     Ovar… <span style="color: #949494;">""</span>           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 7036a70229… HBM399.V… Histology    <span style="color: #949494;">""</span>                     Lung… <span style="color: #949494;">"</span>Nucleic aci…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> c15f813973… HBM399.S… Histology    <span style="color: #949494;">""</span>                     Lung… <span style="color: #949494;">""</span>           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> ca302925f0… HBM234.V… Histology    <span style="color: #949494;">""</span>                     Larg… <span style="color: #949494;">"</span>Nucleic aci…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> aed6880fb3… HBM958.B… Histology    <span style="color: #949494;">""</span>                     Larg… <span style="color: #949494;">"</span>Nucleic aci…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> b0c21c4002… HBM875.H… Histology    <span style="color: #949494;">""</span>                     Larg… <span style="color: #949494;">"</span>Nucleic aci…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> bfda5e0865… HBM793.K… Histology    <span style="color: #949494;">""</span>                     Larg… <span style="color: #949494;">"</span>Nucleic aci…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> baf976734d… HBM468.M… Histology    <span style="color: #949494;">""</span>                     Smal… <span style="color: #949494;">"</span>Nucleic aci…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 57b475b8ad… HBM579.L… Histology    <span style="color: #949494;">""</span>                     Smal… <span style="color: #949494;">"</span>Nucleic aci…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 856aa4e05b… HBM433.H… Histology    <span style="color: #949494;">""</span>                     Smal… <span style="color: #949494;">"</span>Nucleic aci…</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 3,681 more rows</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​dataset_type_additional_information</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 8 more variables: sample_category &lt;chr&gt;, status &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   dataset_processing_category &lt;chr&gt;, pipeline &lt;chr&gt;, registered_by &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   donor_hubmap_id &lt;chr&gt;, group_name &lt;chr&gt;, last_modified_timestamp &lt;chr&gt;</span></span></span></code></pre></div>
+<p><code><a href="../reference/samples.html">samples()</a></code>, <code><a href="../reference/donors.html">donors()</a></code>,
+<code><a href="../reference/collections.html">collections()</a></code>, and <code><a href="../reference/publications.html">publications()</a></code> work same as
+above.</p>
 <p><img src="hubmapr_vignettes_files/figure-html/plot-1.png" width="700"></p>
 <p>The default tibble produced by corresponding entity function only
 reflects selected information. To see the names of selected information,
@@ -265,6 +322,9 @@ data based on organ information.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> LE           Eye (Left)           </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> LF           Fallopian Tube (Left)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 33 more rows</span></span></span></code></pre></div>
+<div class="section level4">
+<h4 id="data-wrangling-examples">Data Wrangling Examples<a class="anchor" aria-label="anchor" href="#data-wrangling-examples"></a>
+</h4>
 <p>Data wrangling and filter are welcome to retrieve data based on
 interested information.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
@@ -343,8 +403,8 @@ convenient to view tables with multiple columns but one row using
 <span><span class="fu"><a href="../reference/datasets.html">dataset_detail</a></span><span class="op">(</span><span class="va">dataset_uuid</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 1</span></span>
 <span><span class="co">#&gt; Columns: 35</span></span>
-<span><span class="co">#&gt; $ ancestor_ids                     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> &lt;"b64883fc7c11d070b5e5222c656eaae7",…</span></span>
-<span><span class="co">#&gt; $ ancestors                        <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [["b64883fc7c11d070b5e5222c656eaae7"…</span></span>
+<span><span class="co">#&gt; $ ancestor_ids                     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> &lt;"de1076a42144debd94ba4f5d1f9b6d57",…</span></span>
+<span><span class="co">#&gt; $ ancestors                        <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [["de1076a42144debd94ba4f5d1f9b6d57"…</span></span>
 <span><span class="co">#&gt; $ contacts                         <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [["Biomolecular Multimodal Imaging C…</span></span>
 <span><span class="co">#&gt; $ contains_human_genetic_sequences <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> FALSE</span></span>
 <span><span class="co">#&gt; $ contributors                     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [["Biomolecular Multimodal Imaging Ce…</span></span>
@@ -354,30 +414,30 @@ convenient to view tables with multiple columns but one row using
 <span><span class="co">#&gt; $ creation_action                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Create Dataset Activity"</span></span>
 <span><span class="co">#&gt; $ data_access_level                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "public"</span></span>
 <span><span class="co">#&gt; $ dataset_type                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Auto-fluorescence"</span></span>
-<span><span class="co">#&gt; $ descendant_ids                   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "5cb9ec3acfe11753b9a2899fe87ee0e4"</span></span>
+<span><span class="co">#&gt; $ descendant_ids                   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "61530ed23518ee5f6cdaa818e91dde65"</span></span>
 <span><span class="co">#&gt; $ descendants                      <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [["Auto-fluorescence [Image Pyramid]…</span></span>
 <span><span class="co">#&gt; $ description                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Autofluorescence Microscopy collecte…</span></span>
 <span><span class="co">#&gt; $ display_subtype                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Auto-fluorescence"</span></span>
-<span><span class="co">#&gt; $ doi_url                          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://doi.org/10.35079/HBM793.WWZC…</span></span>
+<span><span class="co">#&gt; $ doi_url                          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "https://doi.org/10.35079/HBM223.DJQM…</span></span>
 <span><span class="co">#&gt; $ donor                            <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> ["Jamie Allen", "jamie.l.allen@vander…</span></span>
 <span><span class="co">#&gt; $ entity_type                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Dataset"</span></span>
-<span><span class="co">#&gt; $ files                            <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> []</span></span>
 <span><span class="co">#&gt; $ group_name                       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Vanderbilt TMC"</span></span>
 <span><span class="co">#&gt; $ group_uuid                       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "73bb26e4-ed43-11e8-8f19-0a7c1eab007a"</span></span>
-<span><span class="co">#&gt; $ hubmap_id                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "HBM793.WWZC.833"</span></span>
-<span><span class="co">#&gt; $ immediate_ancestor_ids           <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "b64883fc7c11d070b5e5222c656eaae7"</span></span>
-<span><span class="co">#&gt; $ immediate_descendant_ids         <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "5cb9ec3acfe11753b9a2899fe87ee0e4"</span></span>
-<span><span class="co">#&gt; $ index_version                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "3.5.4"</span></span>
+<span><span class="co">#&gt; $ hubmap_id                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "HBM223.DJQM.264"</span></span>
+<span><span class="co">#&gt; $ immediate_ancestor_ids           <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "de1076a42144debd94ba4f5d1f9b6d57"</span></span>
+<span><span class="co">#&gt; $ immediate_descendant_ids         <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> "61530ed23518ee5f6cdaa818e91dde65"</span></span>
+<span><span class="co">#&gt; $ index_version                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "3.6.1"</span></span>
+<span><span class="co">#&gt; $ ingest_metadata                  <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [[["a9099c6", "https://github.com/hub…</span></span>
 <span><span class="co">#&gt; $ last_modified_timestamp          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.71691e+12</span></span>
-<span><span class="co">#&gt; $ metadata                         <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [[["a9099c6", "https://github.com/hub…</span></span>
+<span><span class="co">#&gt; $ metadata                         <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> ["Axio Scan.Z1", "Zeiss Microscopy", …</span></span>
 <span><span class="co">#&gt; $ origin_samples                   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [["Jamie Allen", "jamie.l.allen@vande…</span></span>
-<span><span class="co">#&gt; $ provider_info                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "VAN0042-RK-3 block AF : ./VAN0042-RK…</span></span>
+<span><span class="co">#&gt; $ provider_info                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "VAN0042-RK-3 block AF : ./VAN0042-R…</span></span>
 <span><span class="co">#&gt; $ published_timestamp              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.715267e+12</span></span>
-<span><span class="co">#&gt; $ registered_doi                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "10.35079/HBM793.WWZC.833"</span></span>
+<span><span class="co">#&gt; $ registered_doi                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "10.35079/HBM223.DJQM.264"</span></span>
 <span><span class="co">#&gt; $ source_samples                   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [["Jamie Allen", "jamie.l.allen@vand…</span></span>
 <span><span class="co">#&gt; $ status                           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Published"</span></span>
-<span><span class="co">#&gt; $ title                            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Auto-fluorescence data from the kid…</span></span>
-<span><span class="co">#&gt; $ uuid                             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2e7123dcf2e9092a42ac42e44c2d686b"</span></span>
+<span><span class="co">#&gt; $ title                            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Auto-fluorescence data from the kidn…</span></span>
+<span><span class="co">#&gt; $ uuid                             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "993bb1d6fa02e2755fd69613bb9d6e08"</span></span>
 <span></span>
 <span><span class="co"># Specific Information</span></span>
 <span><span class="fu"><a href="../reference/datasets.html">dataset_detail</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">dataset_uuid</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -409,6 +469,7 @@ convenient to view tables with multiple columns but one row using
 <code><a href="../reference/collections.html">collection_detail()</a></code>, and <code><a href="../reference/publications.html">publication_detail()</a></code>
 work same as above.</p>
 </div>
+</div>
 <div class="section level3">
 <h3 id="metadata">Metadata<a class="anchor" aria-label="anchor" href="#metadata"></a>
 </h3>
@@ -418,28 +479,22 @@ work same as above.</p>
 <code><a href="../reference/donors.html">donor_metadata()</a></code>.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/datasets.html">dataset_metadata</a></span><span class="op">(</span><span class="st">"993bb1d6fa02e2755fd69613bb9d6e08"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 19 × 2</span></span></span>
-<span><span class="co">#&gt;    Key                             Value                                        </span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> acquisition_instrument_model    <span style="color: #949494;">"</span>Axio Scan.Z1<span style="color: #949494;">"</span>                               </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> acquisition_instrument_vendor   <span style="color: #949494;">"</span>Zeiss Microscopy<span style="color: #949494;">"</span>                           </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> analyte_class                   <span style="color: #949494;">"</span>endogenous fluorophores<span style="color: #949494;">"</span>                    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> antibodies_path                 <span style="color: #949494;">"</span>extras/antibodies.tsv<span style="color: #949494;">"</span>                      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> contributors_path               <span style="color: #949494;">"</span>extras/contributors.tsv<span style="color: #949494;">"</span>                    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> data_path                       <span style="color: #949494;">"</span>.<span style="color: #949494;">"</span>                                          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> dataset_type                    <span style="color: #949494;">"</span>Auto-fluorescence<span style="color: #949494;">"</span>                          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> is_image_preprocessing_required <span style="color: #949494;">"</span>no<span style="color: #949494;">"</span>                                         </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> is_targeted                     <span style="color: #949494;">"</span>No<span style="color: #949494;">"</span>                                         </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> metadata_schema_id              <span style="color: #949494;">"</span>c9c6a02b-010e-4217-96dc-f7ef71dd14c4<span style="color: #949494;">"</span>       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> parent_sample_id                <span style="color: #949494;">"</span>HBM836.RXKQ.893<span style="color: #949494;">"</span>                            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> preparation_protocol_doi        <span style="color: #949494;">"</span>https://dx.doi.org/10.17504/protocols.io.7e…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> source_storage_duration_unit    <span style="color: #949494;">"</span>hour<span style="color: #949494;">"</span>                                       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> source_storage_duration_value   <span style="color: #949494;">"</span>2<span style="color: #949494;">"</span>                                          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> tile_configuration              <span style="color: #949494;">"</span>Not applicable<span style="color: #949494;">"</span>                             </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> donor.Age                       <span style="color: #949494;">"</span>57.0 years<span style="color: #949494;">"</span>                                 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> donor.Body Mass Index           <span style="color: #949494;">"</span>25.30 kg/m2<span style="color: #949494;">"</span>                                </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">18</span> donor.Race                      <span style="color: #949494;">"</span>White <span style="color: #949494;">"</span>                                     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">19</span> donor.Sex                       <span style="color: #949494;">"</span>Male <span style="color: #949494;">"</span></span></span>
+<span><span class="co">#&gt; New names:</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">•</span> `` -&gt; `...1`</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 22 × 2</span></span></span>
+<span><span class="co">#&gt;    Key                              Value                    </span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> acquisition_instrument_model     <span style="color: #949494;">"</span>Axio Scan.Z1<span style="color: #949494;">"</span>           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> acquisition_instrument_vendor    <span style="color: #949494;">"</span>Zeiss Microscopy<span style="color: #949494;">"</span>       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> analyte_class                    <span style="color: #949494;">"</span>Endogenous fluorophore<span style="color: #949494;">"</span> </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> antibodies_path                  <span style="color: #949494;">"</span>extras/antibodies.tsv<span style="color: #949494;">"</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> contributors_path                <span style="color: #949494;">"</span>extras/contributors.tsv<span style="color: #949494;">"</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> data_path                        <span style="color: #949494;">"</span>.<span style="color: #949494;">"</span>                      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> dataset_type                     <span style="color: #949494;">"</span>Auto-fluorescence<span style="color: #949494;">"</span>      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> intended_tile_overlap_percentage <span style="color: #949494;">""</span>                       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> is_image_preprocessing_required  <span style="color: #949494;">"</span>no<span style="color: #949494;">"</span>                     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> is_targeted                      <span style="color: #949494;">"</span>No<span style="color: #949494;">"</span>                     </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 12 more rows</span></span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/samples.html">sample_metadata</a></span><span class="op">(</span><span class="st">"8ecdbdc3e2d04898e2563d666658b6a9"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 2</span></span></span>
@@ -623,16 +678,15 @@ list will be returned.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 2</span></span></span>
 <span><span class="co">#&gt;   dataset_type uuid                            </span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                           </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> RNAseq       00d9d4bf8b010eaa6fca4361476cd2ad</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> CODEX        3a4fb23a49fba2647dba2b8f57976d25</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/publications.html">publication_data</a></span><span class="op">(</span><span class="va">publication_uuid</span>, entity_type <span class="op">=</span> <span class="st">"Sample"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 4 × 2</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 2</span></span></span>
 <span><span class="co">#&gt;   dataset_type uuid                            </span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                           </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Sample       5c8e3d25c84a3a86952133ca403fd7dc</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Sample       cdd62f7264902447922147c3098ecd6a</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Sample       e648ac3b4c3890ce3c667a2a0416bf3e</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Sample       b34c049c809533ca3ab0220670cb1632</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Sample       5ded68dde822d1c03ee04fe58b978a7e</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Sample       ecca7757c924f2380669a15555d35a5d</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Sample       5d079766bf17544745c38d88d6923dbf</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="additional-information">Additional Information<a class="anchor" aria-label="anchor" href="#additional-information"></a>
@@ -653,22 +707,17 @@ or <code><a href="../reference/publication_information.html">publication_informa
 <span></span>
 <span><span class="fu"><a href="../reference/publication_information.html">publication_information</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">publication_uuid</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Title</span></span>
-<span><span class="co">#&gt;  An atlas of healthy and injured cell states and niches in the human kidney</span></span>
+<span><span class="co">#&gt;  Organization of the human intestine at single-cell resolution</span></span>
 <span><span class="co">#&gt; Abstract</span></span>
-<span><span class="co">#&gt;  Understanding kidney disease relies on defining the complexity of cell types and states, their associated molecular profiles and interactions within tissue neighbourhoods1. Here we applied multiple single-cell and single-nucleus assays (&gt;400,000 nuclei/cells) and spatial imaging technologies to a broad spectrum of healthy reference kidneys (45 donors) and diseased kidneys (48 patients). This has provided a high-resolution cellular atlas of 51 main cell types that include rare and previously undescribed cell populations. The multi-omic approach provides detailed transcriptomic profiles, epigenomic regulatory factors and spatial localizations spanning the entire kidney. We also define 28 cellular states across nephron segments and interstitium that were altered in kidney injury, encompassing cycling, adaptive or maladaptive repair, transitioning and degenerative states. Molecular signatures permitted the localization of these states within injury neighbourhoods using spatial transcriptomics, while large-scale 3D imaging analysis (around 1.2 million neighbourhoods) provided corresponding linkages to active immune responses. These analyses defined biological pathways that are relevant to injury time-course and niches, including signatures underlying epithelial repair that predicted maladaptive states associated with a decline in kidney function. This integrated multimodal spatial cell atlas of healthy and diseased human kidneys represents a comprehensive benchmark of cellular states, neighbourhoods, outcome-associated signatures and publicly available interactive visualizations.</span></span>
+<span><span class="co">#&gt;  We investigated the spatial arrangement of individual cells using multiplexed imaging, as well as single-nucleus RNA and open chromatin assays, across eight different regions of the intestine from nine donors. Through comprehensive analyses, we observed significant variations in cell compositions among the intestinal regions and the intricate nature of epithelial subtypes. Furthermore, we discovered that similar cell types form distinct neighborhoods and communities, highlighting the presence of unique immunological niches within the intestine. Additionally, we identified gene regulatory differences within these cells, suggesting the existence of a regulatory differentiation cascade, and established associations between specific cell types and the heritability of intestinal diseases. These findings elucidate the intricate cell composition, regulation, and spatial organization within this organ, providing a valuable reference map for advancing our understanding of human biology and disease.</span></span>
 <span><span class="co">#&gt; Manuscript</span></span>
-<span><span class="co">#&gt;  - Nature: https://doi.org/10.1038/s41586-023-05769-3</span></span>
+<span><span class="co">#&gt;  - Nature: https://doi.org/10.1038/s41586-023-05915-x</span></span>
 <span><span class="co">#&gt; Corresponding Authors</span></span>
-<span><span class="co">#&gt;  - Michael T. Eadon 0000-0003-3066-2876</span></span>
-<span><span class="co">#&gt;  - Pierre C. Dagher 0000-0003-3321-5561</span></span>
-<span><span class="co">#&gt;  - Tarek M. El-Achkar 0000-0003-4645-3614</span></span>
-<span><span class="co">#&gt;  - Kun Zhang 0000-0002-7596-5224</span></span>
-<span><span class="co">#&gt;  - Matthias Kretzler 0000-0003-4064-0582</span></span>
-<span><span class="co">#&gt;  - Sanjay Jain 0000-0003-2804-127X</span></span>
+<span><span class="co">#&gt;  - John Hickey 0000-0001-9961-7673</span></span>
 <span><span class="co">#&gt; Data Types</span></span>
-<span><span class="co">#&gt;  - RNAseq</span></span>
+<span><span class="co">#&gt;  - CODEX</span></span>
 <span><span class="co">#&gt; Organs</span></span>
-<span><span class="co">#&gt;  - Kidney (Right)</span></span></code></pre></div>
+<span><span class="co">#&gt;  - Small Intestine</span></span></code></pre></div>
 <p>Some additional contact/author/contributor information can be
 retrieved using <code>dataset_contributor()</code> for
 <strong>Dataset</strong> entity, <code>collection_contact()</code> and
@@ -714,24 +763,16 @@ entity, or <code><a href="../reference/publications.html">publication_authors()<
 <span></span>
 <span><span class="co"># Publication</span></span>
 <span><span class="fu"><a href="../reference/publications.html">publication_authors</a></span><span class="op">(</span>uuid <span class="op">=</span> <span class="va">publication_uuid</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 50 × 3</span></span></span>
-<span><span class="co">#&gt;    name                  affiliation                                    orcid_id</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Blue B. Lake          Department of Bioengineering, University of C… 0000-00…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Rajasree Menon        Department of Computational Medicine and Bioi… 0000-00…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Seth Winfree          Department of Pathology and Microbiology, Uni… 0000-00…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Qiwen Hu              Department of Biomedical Informatics, Harvard… 0000-00…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Ricardo Melo Ferreira Department of Medicine, Indiana University Sc… 0000-00…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Kian Kalhor           Department of Bioengineering, University of C… 0000-00…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Daria Barwinska       Department of Medicine, Indiana University Sc… 0000-00…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Edgar A. Otto         Department of Internal Medicine, Division of … 0000-00…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Michael Ferkowicz     Department of Medicine, Indiana University Sc… 0000-00…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Dinh Diep             Department of Bioengineering, University of C… 0000-00…</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 40 more rows</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 3</span></span></span>
+<span><span class="co">#&gt;   name            affiliation         orcid_id           </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> John Hickey     Stanford University 0000-0001-9961-7673</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Chiara Caraccio Stanford University 0000-0002-3580-1348</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Garry Nolan     Stanford University 0000-0002-8862-9043</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
-<h2 id="file-download">File Download<a class="anchor" aria-label="anchor" href="#file-download"></a>
+<h2 id="file-transfer">File Transfer<a class="anchor" aria-label="anchor" href="#file-transfer"></a>
 </h2>
 <p>For each dataset, there are corresponding data files. Most of the
 datasets’ files are available on HuBMAP Globus with corresponding URL.
@@ -744,26 +785,89 @@ data-related files to preview and download, include but not limited to
 images, metadata files, downstream analysis reports, raw data products,
 etc.</p>
 <p>Use <code><a href="../reference/files.html">bulk_data_transfer()</a></code> to know whether data files are
-open-accessed or restricted. The function will direct you to chrome if
-the files are accessible; otherwise, the error messages will be printed
-out with addition instructions, either providing dbGAP/SRA URLs or
-pointing out the unavailability.</p>
+open-accessed or restricted. Only open-accessed files can be downloaded
+for downstream analysis.</p>
+<div class="section level5">
+<h5 id="files-are-publicly-accessible">Files are publicly accessible<a class="anchor" aria-label="anchor" href="#files-are-publicly-accessible"></a>
+</h5>
+<p>HuBMAP stored all public data files on Globus, which is a open-source
+and safe platform for the large-size data storage. For every dataset
+which the data files can be publicly accessed, the
+<code><a href="../reference/files.html">bulk_data_transfer()</a></code> function will direct to corresponding
+Globus webpage in Chrome.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">uuid_globus</span> <span class="op">&lt;-</span> <span class="st">"d1dcab2df80590d8cd8770948abaf976"</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/files.html">bulk_data_transfer</a></span><span class="op">(</span><span class="va">uuid_globus</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/files.html">bulk_data_transfer</a></span><span class="op">(</span><span class="va">uuid_globus</span><span class="op">)</span></span></code></pre></div>
+<figure><img src="../reference/figures/fig1.png" align="center" width="800px"></figure><p>By selecting the data file and clicking on “Download” button, the
+data file can be downloaded to the specific directory.</p>
+<figure><img src="../reference/figures/fig2.png" align="center" width="800px"></figure><div class="section level6">
+<h6 id="alternative-data-transfer-method-using-rglobus-package">Alternative data transfer method using rglobus package<a class="anchor" aria-label="anchor" href="#alternative-data-transfer-method-using-rglobus-package"></a>
+</h6>
+<p>Martin Morgan, one of the <code>HuBMAPR</code> package creators,
+generated an experimental package called <a href="https://github.com/mtmorgan/rglobus/" class="external-link">rglobus</a>.</p>
+<p>Globus is in part a cloud-based file transfer service, available at
+<a href="https://www.globus.org/" class="external-link uri">https://www.globus.org/</a>. This package provides an
+<em>R</em> client with the ability to discover and navigate collections,
+and to transfer files and directories between collections. Therefore,
+<code>rglobus</code> is an alternative method to transfer HuBMAP data
+files on the local computer using HuBMAP dataset UUID.</p>
+<p><code>rglobus</code> has the vignette documentation <a href="https://mtmorgan.github.io/rglobus/articles/a_get_started.html" class="external-link">here</a>
+using HuBMAP collection as the main example to illustrate how to
+discover and navigate the correct collection, and transfer the
+files.</p>
+<p>Since <code>rglobus</code> is an experimental package, the
+functionality may not be complete. It is possible to see transfer issues
+while using functions. There will be more information updated in the
+future. You are welcome to report any issue or provide any comment <a href="https://github.com/mtmorgan/rglobus/issues" class="external-link">here</a> to help us
+develop.</p>
+</div>
+</div>
+<div class="section level5">
+<h5 id="files-are-restricted">Files are restricted<a class="anchor" aria-label="anchor" href="#files-are-restricted"></a>
+</h5>
+<p>For every dataset which the data files are restricted under dbGAP or
+SRA, the <code><a href="../reference/files.html">bulk_data_transfer()</a></code> function will print out the
+instruction messages. The dbGaP or/and SRA link(s) allow the users to
+request the protected-access sequence data from authenticated
+platform.</p>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">uuid_dbGAP_SRA</span> <span class="op">&lt;-</span> <span class="st">"d926c41ac08f3c2ba5e61eec83e90b0c"</span></span>
 <span></span>
-<span><span class="va">uuid_dbGAP_SRA</span> <span class="op">&lt;-</span> <span class="st">"d926c41ac08f3c2ba5e61eec83e90b0c"</span></span>
-<span></span>
-<span><span class="fu"><a href="../reference/files.html">bulk_data_transfer</a></span><span class="op">(</span><span class="va">uuid_dbGAP_SRA</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">uuid_not_avail</span> <span class="op">&lt;-</span> <span class="st">"0eb5e457b4855ce28531bc97147196b6"</span></span>
+<span><span class="fu"><a href="../reference/files.html">bulk_data_transfer</a></span><span class="op">(</span><span class="va">uuid_dbGAP_SRA</span><span class="op">)</span></span></code></pre></div>
+<pre><code>Pruning cache
+Error in bulk_data_transfer(uuid_dbGAP_SRA) :
+This dataset contains protected-access human sequence data.
+If you are not a Consortium member,
+you must access these data through dbGaP if available.
+dbGaP authentication is required for downloading.
+View documentation on how to attain dbGaP access.
+Additional Help: 'https://hubmapconsortium.org/contact-form/'
+Navigate to the 'Bioproject' or 'Sequencing Read Archive' links.
+dbGaP URL: 
+https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs002267
+Select the 'Run' link on the page to download the dataset.
+Additional documentation: https://www.ncbi.nlm.nih.gov/sra/docs/.
+SRA URL: https://www.ncbi.nlm.nih.gov/sra/SRX13283313.)</code></pre>
+</div>
+<div class="section level5">
+<h5 id="files-are-unavailable">Files are unavailable<a class="anchor" aria-label="anchor" href="#files-are-unavailable"></a>
+</h5>
+<p>For every dataset which the data files not available, the
+<code><a href="../reference/files.html">bulk_data_transfer()</a></code> function will print out the
+messages.</p>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">uuid_not_avail</span> <span class="op">&lt;-</span> <span class="st">"0eb5e457b4855ce28531bc97147196b6"</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/files.html">bulk_data_transfer</a></span><span class="op">(</span><span class="va">uuid_not_avail</span><span class="op">)</span></span></code></pre></div>
-<p>You can choose to download data files on Globus webpage by clicking
-download button after choosing the desired document. You can also
-preview and download data files using <a href="https://mtmorgan.github.io/rglobus/" class="external-link">rglobus</a> package. Follow
-the instructions <a href="https://mtmorgan.github.io/rglobus/articles/a_get_started.html" class="external-link">here</a>.</p>
+<pre><code>Pruning cache
+Error in bulk_data_transfer(uuid_not_avail) :
+This dataset contains protected-access human sequence data.
+Data isn't yet available through dbGaP,
+but will be available soon.
+Please contact us via 'https://hubmapconsortium.org/contact-form/'
+with any questions regarding this data.</code></pre>
+</div>
 </div>
 <div class="section level2">
 <h2 class="unnumbered" id="r-session-information">
@@ -771,11 +875,11 @@ the instructions <a href="https://mtmorgan.github.io/rglobus/articles/a_get_star
 </h2>
 <pre><code><span><span class="co">#&gt; R version 4.4.2 (2024-10-31)</span></span>
 <span><span class="co">#&gt; Platform: x86_64-pc-linux-gnu</span></span>
-<span><span class="co">#&gt; Running under: Ubuntu 22.04.5 LTS</span></span>
+<span><span class="co">#&gt; Running under: Ubuntu 24.04.1 LTS</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Matrix products: default</span></span>
 <span><span class="co">#&gt; BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 </span></span>
-<span><span class="co">#&gt; LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so;  LAPACK version 3.10.0</span></span>
+<span><span class="co">#&gt; LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; locale:</span></span>
 <span><span class="co">#&gt;  [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8        LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8   </span></span>
@@ -789,20 +893,21 @@ the instructions <a href="https://mtmorgan.github.io/rglobus/articles/a_get_star
 <span><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; other attached packages:</span></span>
-<span><span class="co">#&gt; [1] HuBMAPR_1.1.7    ggplot2_3.5.1    tidyr_1.3.1      dplyr_1.1.4      BiocStyle_2.34.0</span></span>
+<span><span class="co">#&gt; [1] pryr_0.1.6       HuBMAPR_1.1.8    ggplot2_3.5.1    tidyr_1.3.1      dplyr_1.1.4      BiocStyle_2.34.0</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
-<span><span class="co">#&gt;  [1] rappdirs_0.3.3      sass_0.4.9          utf8_1.2.4          generics_0.1.3      stringi_1.8.4      </span></span>
-<span><span class="co">#&gt;  [6] digest_0.6.37       magrittr_2.0.3      evaluate_1.0.1      grid_4.4.2          bookdown_0.41      </span></span>
-<span><span class="co">#&gt; [11] fastmap_1.2.0       jsonlite_1.8.9      whisker_0.4.1       BiocManager_1.30.25 purrr_1.0.2        </span></span>
-<span><span class="co">#&gt; [16] fansi_1.0.6         scales_1.3.0        httr2_1.0.6         textshaping_0.4.0   jquerylib_0.1.4    </span></span>
-<span><span class="co">#&gt; [21] cli_3.6.3           rlang_1.1.4         munsell_0.5.1       withr_3.0.2         cachem_1.1.0       </span></span>
-<span><span class="co">#&gt; [26] yaml_2.3.10         tools_4.4.2         colorspace_2.1-1    curl_6.0.1          vctrs_0.6.5        </span></span>
-<span><span class="co">#&gt; [31] rjsoncons_1.3.1     R6_2.5.1            lifecycle_1.0.4     stringr_1.5.1       fs_1.6.5           </span></span>
-<span><span class="co">#&gt; [36] ragg_1.3.3          pkgconfig_2.0.3     desc_1.4.3          pkgdown_2.1.1       pillar_1.9.0       </span></span>
-<span><span class="co">#&gt; [41] bslib_0.8.0         gtable_0.3.6        glue_1.8.0          systemfonts_1.1.0   xfun_0.49          </span></span>
-<span><span class="co">#&gt; [46] tibble_3.2.1        tidyselect_1.2.1    knitr_1.49          farver_2.1.2        htmltools_0.5.8.1  </span></span>
-<span><span class="co">#&gt; [51] rmarkdown_2.29      labeling_0.4.3      compiler_4.4.2</span></span></code></pre>
+<span><span class="co">#&gt;  [1] utf8_1.2.4          rappdirs_0.3.3      sass_0.4.9          generics_0.1.3      stringi_1.8.4      </span></span>
+<span><span class="co">#&gt;  [6] digest_0.6.37       magrittr_2.0.3      evaluate_1.0.3      grid_4.4.2          bookdown_0.42      </span></span>
+<span><span class="co">#&gt; [11] fastmap_1.2.0       lobstr_1.1.2        jsonlite_1.8.9      whisker_0.4.1       BiocManager_1.30.25</span></span>
+<span><span class="co">#&gt; [16] purrr_1.0.2         scales_1.3.0        codetools_0.2-20    httr2_1.0.7         textshaping_0.4.1  </span></span>
+<span><span class="co">#&gt; [21] jquerylib_0.1.4     cli_3.6.3           rlang_1.1.4         munsell_0.5.1       withr_3.0.2        </span></span>
+<span><span class="co">#&gt; [26] cachem_1.1.0        yaml_2.3.10         tools_4.4.2         colorspace_2.1-1    curl_6.1.0         </span></span>
+<span><span class="co">#&gt; [31] vctrs_0.6.5         rjsoncons_1.3.1     R6_2.5.1            lifecycle_1.0.4     stringr_1.5.1      </span></span>
+<span><span class="co">#&gt; [36] fs_1.6.5            ragg_1.3.3          pkgconfig_2.0.3     desc_1.4.3          pkgdown_2.1.1      </span></span>
+<span><span class="co">#&gt; [41] pillar_1.10.1       bslib_0.8.0         gtable_0.3.6        glue_1.8.0          Rcpp_1.0.14        </span></span>
+<span><span class="co">#&gt; [46] systemfonts_1.2.0   xfun_0.50           tibble_3.2.1        tidyselect_1.2.1    knitr_1.49         </span></span>
+<span><span class="co">#&gt; [51] farver_2.1.2        htmltools_0.5.8.1   labeling_0.4.3      rmarkdown_2.29      compiler_4.4.2     </span></span>
+<span><span class="co">#&gt; [56] prettyunits_1.2.0</span></span></code></pre>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
