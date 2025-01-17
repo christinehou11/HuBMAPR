@@ -1,3 +1,7 @@
+# HuBMAPR 1.0.6
+
+* Updated NEW.md
+
 # HuBMAPR 1.0.5
 
 * Updated dataset_metadata() function to accommodate with API changes 
