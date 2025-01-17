@@ -1,9 +1,22 @@
+# HuBMAPR 1.0.6
+
+* Updated NEW.md
+
 # HuBMAPR 1.0.5
 
-* Added summary functions to README
-* Updated details in Vignette
-* Reformatted vignette 
-* Updated the functionality to incorporate with change in APIs
+* Updated dataset_metadata() function to accommodate with API changes 
+* Reformatted vignette with with more technical details based on comments
+* Added summary lists in README
+
+# HuBMAPR 1.0.4
+
+* Updated dataset_metadata() function to accommodate with API changes 
+* Reformatted vignette with with more technical details based on comments
+* Added summary lists in README
+
+# HuBMAPR 1.0.4
+
+* Updated functions to accommodate with API changes 
 
 # HuBMAPR 1.0.0
 
