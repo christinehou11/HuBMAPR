@@ -32,30 +32,58 @@ The HuBMAP Consortium offers several
 [APIs](https://docs.hubmapconsortium.org/apis.html). 
 To achieve the main objectives, `HuBMAPR` package specifically integrates three
 APIs:  
-[Search API](https://smart-api.info/ui/7aaf02b838022d564da776b03f357158),
-[Entity API](https://smart-api.info/ui/0065e419668f3336a40d1f5ab89c6ba3), and
-[Ontology API](https://smart-api.info/ui/d10ff85265d8b749fbe3ad7b51d0bf0a).
+
+- [Search API](https://smart-api.info/ui/7aaf02b838022d564da776b03f357158): The
+**Search API** is primarily searching relevant data information and is
+referenced to the 
+[Elasticsearch API](https://www.elastic.co/guide/en/elasticsearch/). 
+
+- [Entity API](https://smart-api.info/ui/0065e419668f3336a40d1f5ab89c6ba3): The
+**Entity API** is specifically utilized in the `bulk_data_transfer()`
+function for Globus URL retrieval
+
+- [Ontology API](https://smart-api.info/ui/d10ff85265d8b749fbe3ad7b51d0bf0a): 
+The **Ontology API** is applied in the `organ()` function to provide additional
+information about the abbreviation and corresponding full name of each organ.
+
 Each API serves a distinct purpose with unique query capabilities, tailored to
 meet various needs. Utilizing the `httr2` and `rjsoncons` packages, `HuBMAPR`
 effectively manages, modifies, and executes multiple requests via these APIs,
 presenting responses in formats such as tibble or character. These outputs are
-further modified for clarity in the final results from the `HuBMAPR` functions.
-The **Search API** is primarily searching relevant data information and is
-referenced to the 
-[Elasticsearch API](https://www.elastic.co/guide/en/elasticsearch/). 
-The **Entity API** is specifically utilized in the `bulk_data_transfer()`
-function for Globus URL retrieval, while the **Ontology API** is applied in the
-`organ()` function. Referencing to HuBMAP Data Portal, the functions in
-`HuBAMPR` package reflects the data information of HuBMAP as much as possible.
+further modified for clarity in the final results from the `HuBMAPR` functions,
+and these functions help reflect the data information of HuBMAP Data Portal as 
+much as possible.
+
+Using temporary storage to cache API responses
+facilitates efficient data retrieval by reducing the need for
+redundant requests to the HuBMAP Data Portal. This
+approach minimizes server load, improves response times (e.g.
+`datasets()` takes less than 4 seconds to retrieve more than
+3500 records’ information, shown below), 
+and enhances overall query efficiency. By
+periodically clearing cached data or directing them to a
+temporary directory, the process ensures that the retrieved
+information remains relevant while managing storage effectively.
+This caching mechanism supports a smoother and more efficient
+user experience when accessing data from the portal.
 
 HuBMAP Data incorporates three different 
-[identifiers](https://docs.hubmapconsortium.org/apis): HuBMAP ID, Universally
-Unique Identifier (UUID), and Digital Object Identifiers (DOI). The `HuBMAPR`
+[identifiers](https://docs.hubmapconsortium.org/apis): 
+
+- HuBMAP ID, e.g. HBM399.VCTL.353
+
+- Universally Unique Identifier (UUID), e.g. 7036a70229eff1a51af965454dddbe7d
+
+- Digital Object Identifiers (DOI), e.g. 10.35079/HBM399.VCTL.353.
+
+The `HuBMAPR`
 package utilizes the UUID - a 32-digit hexadecimal number - and the more
 human-readable HuBMAP ID as two common identifiers in the retrieved results.
 Considering precision and compatibility with software implementation and data
 storage, UUID serves as the primary identifier to retrieve data across various
-functions, with the UUID mapping uniquely to its corresponding HuBMAP ID. The
+functions, with the UUID mapping uniquely to its corresponding HuBMAP ID. 
+
+The
 systematic nomenclature is adopted for functions in the package by appending
 the entity category prefix to the concise description of the specific
 functionality. Most of the functions are grouped by entity categories, thereby
@@ -78,11 +106,30 @@ BiocManager::install("HuBMAPR")
 Install development version from
 [GitHub](https://christinehou11.github.io/HuBMAPR):
 
-```{r 'install dev', eval = FALSE}
-remotes::install("christinehou11/HuBMAPR")
+```{r 'github', eval = FALSE}
+remotes::install_github("christinehou11/HuBMAPR")
 ```
 
 # Basic User Guide
+
+## Implementation Notes
+
+This session is to provide a guidance on extending or customizing the `HuBMAPR`
+package to accommodate potential future changes in data structure, enhancing 
+the package's long-term utility. We included a brief outline to illustrate the
+basics of the principles and approach to package design.
+
+- Identify an API end point
+
+- Provide an R client to translate R data structures to the arguments and 
+parameters required by the API
+  
+- Handle the response in a consistent way with respect to argument and response
+validation
+
+- Format the return value as a 'tibble' or 'character' to minimize cognitive 
+demands on the user for interpreting the result, and to facilitate incorporation
+into general R workflows
 
 ## Load Necessary Packages
 
@@ -94,18 +141,37 @@ library("dplyr")
 library("tidyr")
 library("ggplot2")
 library("HuBMAPR")
+library("pryr")
 ```
 
 ## Data Discovery
 
-`HuBMAP` data portal page displays five categories of entity data, which are
-**Dataset, Sample, Donor, Publication, and Collection**, chronologically (last
-modified date time). Using corresponding functions to explore entity data.
+`HuBMAP` data portal page displays chronologically (last modified date time) 
+five categories of entity data:
+
+- **Dataset**
+
+- **Sample** 
+
+- **Donor** 
+
+- **Publication**
+
+- **Collection**. 
+
+Using corresponding functions to explore entity data.
 
 ```{r 'datasets'}
-datasets_df <- datasets()
+system.time({
+    datasets_df <- datasets()
+})
+object_size(datasets_df)
+
 datasets_df
 ```
+
+`samples()`, `donors()`, `collections()`, and `publications()` work same
+as above.
 
 ```{r 'plot', echo=FALSE, warning=FALSE, message=FALSE}
 datasets_sub <- datasets_df |>
@@ -114,9 +180,32 @@ datasets_sub <- datasets_df |>
     mutate(count = n()) |>
     filter(!is.na(organ))
 
+colorblind_palette <- c(
+    "10X Multiome" = "#E69F00",
+    "2D Imaging Mass Cytometry" = "#56B4E9",
+    "3D Imaging Mass Cytometry" = "#009E73",
+    "ATACseq" = "#F0E442",
+    "Auto-fluorescence" = "#0072B2",
+    "Cell DIVE" = "#D55E00",
+    "CODEX" = "#CC79A7",
+    "DESI" = "#999999",
+    "Histology" = "#E69F00",
+    "LC-MS" = "#56B4E9",
+    "Light Sheet" = "#009E73",
+    "MALDI" = "#F0E442",
+    "MIBI" = "#0072B2",
+    "MUSIC" = "#D55E00",
+    "Publication" = "#CC79A7",
+    "RNAseq" = "#999999",
+    "seqFish" = "#E69F00",
+    "Slide-seq" = "#56B4E9",
+    "Visium (no probes)" = "#009E73",
+    "WGS" = "#F0E442")
+
 plot1 <- ggplot(datasets_sub,
                 aes(y = reorder(organ, count), fill = dataset_type)) + 
     geom_histogram(stat = "count") + 
+    scale_fill_manual(values = colorblind_palette) +
     labs(x = NULL, y = NULL, fill = "Assay Type") + 
     theme_minimal() +
     theme(
@@ -124,12 +213,12 @@ plot1 <- ggplot(datasets_sub,
         panel.grid.minor = element_blank(),
         axis.text.y = element_text(size = 9),
         axis.text.x = element_text(size = 9),
-        legend.position = "right",
+        legend.position = "bottom",
         legend.title = element_text(size = 9),
         legend.text = element_text(size = 7), 
         panel.background = element_rect(fill = "white", color = NA),
         plot.background = element_rect(fill = "white", color = NA)) +
-    guides(fill = guide_legend(ncol = 2))
+    guides(fill = guide_legend(nrow = 4))
 
 plot1
 ```
@@ -177,6 +266,8 @@ be helpful to filter retrieved data based on organ information.
 organs <- organ()
 organs
 ```
+
+### Data Wrangling Examples
 
 Data wrangling and filter are welcome to retrieve data based on interested
 information.
@@ -392,7 +483,7 @@ collection_contributors(uuid = collection_uuid)
 publication_authors(uuid = publication_uuid)
 ```
 
-# File Download
+# File Transfer
 
 For each dataset, there are corresponding data files. Most of the datasets'
 files are available on HuBMAP Globus with corresponding URL. Some of the
@@ -405,29 +496,113 @@ to preview and download, include but not limited to images, metadata files,
 downstream analysis reports, raw data products, etc. 
 
 Use `bulk_data_transfer()` to know whether data files are open-accessed or
-restricted. The function will direct you to chrome if the files are accessible;
-otherwise, the error messages will be printed out with addition instructions,
-either providing dbGAP/SRA URLs or pointing out the unavailability. 
+restricted. Only open-accessed files can be downloaded for downstream analysis.
 
-```{r 'bulk data transfer', eval=FALSE}
+#### Files are publicly accessible
+
+HuBMAP stored all public data files on Globus, which is a open-source and safe
+platform for the large-size data storage. For every dataset which the data
+files can be publicly accessed, the `bulk_data_transfer()` function will direct
+to corresponding Globus webpage in Chrome. 
+
+```{r 'bulk data transfer successful', eval=FALSE}
 uuid_globus <- "d1dcab2df80590d8cd8770948abaf976"
 
 bulk_data_transfer(uuid_globus)
+```
 
+<figure>
+<img src="../man/figures/fig1.png" align="center" width="800px"/>
+</figure>
+
+By selecting the data file and clicking on "Download" button, the data file can
+be downloaded to the specific directory.
+
+<figure>
+<img src="../man/figures/fig2.png" align="center" width="800px"/>
+</figure>
+
+##### Alternative data transfer method using rglobus package
+
+Martin Morgan, one of the `HuBMAPR` package creators, generated an 
+experimental package called
+[rglobus](https://github.com/mtmorgan/rglobus/). 
+
+Globus is in part a cloud-based file transfer service, available at
+https://www.globus.org/. This package provides an *R* client with the ability
+to discover and navigate collections, and to transfer files and directories
+between collections. Therefore, `rglobus` is an alternative method to transfer
+HuBMAP data files on the local computer using HuBMAP dataset UUID.
+
+`rglobus` has the vignette documentation 
+[here](https://mtmorgan.github.io/rglobus/articles/a_get_started.html) using
+HuBMAP collection as the main example to illustrate how to discover and 
+navigate the correct collection, and transfer the files. 
+
+Since `rglobus` is an experimental package, the functionality may not
+be complete. It is possible to see transfer issues while using functions. There
+will be more information updated in the future. You are welcome to report any
+issue or provide any comment [here](https://github.com/mtmorgan/rglobus/issues)
+to help us develop.
+
+#### Files are restricted
+
+For every dataset which the data files are restricted under dbGAP or SRA, the
+`bulk_data_transfer()` function will print out the instruction messages. The
+dbGaP or/and SRA link(s) allow the users to request the protected-access
+sequence data from authenticated platform.
+
+```{r 'bulk data transfer urls', eval=FALSE}
 uuid_dbGAP_SRA <- "d926c41ac08f3c2ba5e61eec83e90b0c"
 
 bulk_data_transfer(uuid_dbGAP_SRA)
+```
 
+```{r,comment=NA, echo=FALSE}
+result1 <- paste("Pruning cache",
+    "Error in bulk_data_transfer(uuid_dbGAP_SRA) :",
+    "This dataset contains protected-access human sequence data.",
+    "If you are not a Consortium member,",
+    "you must access these data through dbGaP if available.",
+    "dbGaP authentication is required for downloading.",
+    "View documentation on how to attain dbGaP access.",
+    "Additional Help: 'https://hubmapconsortium.org/contact-form/'",
+    "Navigate to the 'Bioproject' or 'Sequencing Read Archive' links.",
+    "dbGaP URL: 
+https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs002267",
+    "Select the 'Run' link on the page to download the dataset.",
+    "Additional documentation: https://www.ncbi.nlm.nih.gov/sra/docs/.",
+    "SRA URL: https://www.ncbi.nlm.nih.gov/sra/SRX13283313.)",
+    sep = "\n")
+
+cat(result1)
+```
+
+#### Files are unavailable
+
+For every dataset which the data files not available, the 
+`bulk_data_transfer()` function will print out the messages. 
+
+```{r 'bulk data transfer not avail', eval=FALSE}
 uuid_not_avail <- "0eb5e457b4855ce28531bc97147196b6"
 
 bulk_data_transfer(uuid_not_avail)
 ```
 
-You can choose to download data files on Globus webpage by clicking download
-button after choosing the desired document. You can also preview and download
-data files using [rglobus](https://mtmorgan.github.io/rglobus/) package. Follow
-the instructions 
-[here](https://mtmorgan.github.io/rglobus/articles/a_get_started.html).
+```{r,comment=NA, echo=FALSE}
+result2 <- paste("Pruning cache",
+    "Error in bulk_data_transfer(uuid_not_avail) :",
+    "This dataset contains protected-access human sequence data.",
+    "Data isn't yet available through dbGaP,",
+    "but will be available soon.",
+    "Please contact us via 'https://hubmapconsortium.org/contact-form/'",
+    "with any questions regarding this data.",
+    sep = "\n")
+
+cat(result2)
+```
+
+
 
 # `R` session information {.unnumbered}
 

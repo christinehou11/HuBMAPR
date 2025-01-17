@@ -15,13 +15,13 @@
 #' @examples
 #' donors()
 donors <-
-    function() {
-
+  function() {
+    
     tbl <- .query_entity("Donor")
-
+    
     .donor_edit(tbl)
-
-    }
+    
+  }
 
 
 #' @rdname donors
@@ -48,14 +48,14 @@ donors <-
 #'
 #' @export
 donors_default_columns <-
-    function(as = c("tibble", "character"))
-    {
-
+  function(as = c("tibble", "character"))
+  {
+    
     as <- match.arg(as)
-
+    
     .default_columns("Donor", as)
-
-    }
+    
+  }
 
 
 #' @rdname donors
@@ -77,20 +77,20 @@ donors_default_columns <-
 #' uuid <- "1dcde05aea3509b2cf89a41ceb3d700f"
 #' donor_detail(uuid)
 donor_detail <-
-    function (uuid)
-    {
-
+  function (uuid)
+  {
+    
     stopifnot(.is_uuid(uuid), .uuid_category(uuid) == "Donor")
-
+    
     .query_match(uuid, option = "hits.hits[]._source")
-
-    }
+    
+  }
 
 #' @rdname donors
 #'
 #' @name donor_derived
 #'
-#' @importFrom dplyr select filter mutate any_of rename
+#' @importFrom dplyr select filter mutate any_of rename distinct
 #' @importFrom tidyr unnest everything
 #' @importFrom purrr map_chr map_int
 #' @importFrom rlang .data
@@ -114,45 +114,45 @@ donor_detail <-
 #' donor_derived(uuid, "Sample")
 #'
 donor_derived <-
-    function(uuid, entity_type = c("Dataset", "Sample")) {
-
+  function(uuid, entity_type = c("Dataset", "Sample")) {
+    
     stopifnot(.is_uuid(uuid), .uuid_category(uuid) == "Donor")
-
+    
     entity <- match.arg(entity_type)
-
+    
     tbl <- .query_match(uuid, option = "hits.hits[]._source.descendants[]") |>
-            unnest(everything())
-
+      unnest(everything())
+    
     if (identical(entity, "Sample")) {
-        tbl <- tbl |>
-            filter(is.na(.data$dataset_type)) |>
-            select("uuid")
+      tbl <- tbl |>
+        filter(is.na(.data$dataset_type)) |>
+        select("uuid")
+      
+      if (nrow(tbl) > 0L) {
         
-        if (nrow(tbl) > 0L) {
-
         tbl <- tbl |>
-            mutate(organ = map_chr(uuid, ~.organ_sample_uuid(.x)),
-                    derived_dataset_count = map_int(uuid, ~{
-                                        nrow(sample_derived(.x, "Dataset"))}))
-
-        }
-        else { tbl <- NULL }
-
+          mutate(organ = map_chr(uuid, ~.organ_sample_uuid(.x)),
+                 derived_dataset_count = map_int(uuid, ~{
+                   nrow(sample_derived(.x, "Dataset"))}))|>
+          distinct(uuid, .keep_all = TRUE)
+      }
+      else { tbl <- NULL }
+      
     }
     else {
-        tbl <- tbl |>
-            filter(!is.na(.data$dataset_type))
-        
-        tbl <- tbl |>
-            mutate(derived_dataset_count = map_int(uuid, ~{
-                            nrow(.query_match(.x,
+      tbl <- tbl |>
+        filter(!is.na(.data$dataset_type))
+      
+      tbl <- tbl |>
+        mutate(derived_dataset_count = map_int(uuid, ~{
+          nrow(.query_match(.x,
                             option = "hits.hits[]._source.descendants[]"))}))
-
+      
     }
-
+    
     tbl
-
-    }
+    
+  }
 
 #' @rdname donors
 #'
@@ -174,59 +174,52 @@ donor_derived <-
 #' donor_metadata(uuid)
 #'
 donor_metadata <-
-    function(uuid) {
-
+  function(uuid) {
+    
     stopifnot(.is_uuid(uuid), .uuid_category(uuid) == "Donor")
-
+    
     .donor_metadata(uuid)
-
-    }
+    
+  }
 
 ## helper function
-#' @importFrom dplyr coalesce mutate select rename_with rename case_when
+#' @importFrom dplyr coalesce mutate select rename_with
 #' @importFrom tidyr unnest_longer everything
 #' @importFrom rlang .data
 #'
 .donor_edit <-
-    function(tbl) {
-
+  function(tbl) {
+    
     if (ncol(tbl) == 8) {
-        tbl  <- tbl |>
+      tbl  <- tbl |>
         rename_with(.rename_columns, .cols = everything())
-
+      
     } else {
-        tbl <- tbl |> mutate(
-            data_value = coalesce(
-                tbl$metadata.organ_donor_data.data_value,
-                tbl$metadata.living_donor_data.data_value),
-            preferred_term = coalesce(
-                tbl$metadata.organ_donor_data.preferred_term,
-                tbl$metadata.living_donor_data.preferred_term),
-            grouping_concept_preferred_term = coalesce(
-                tbl$metadata.organ_donor_data.grouping_concept_preferred_term,
-                tbl$metadata.living_donor_data.grouping_concept_preferred_term),
-            data_type = coalesce(
-                tbl$metadata.living_donor_data.data_type,
-                tbl$metadata.organ_donor_data.data_type)
-        )
+      tbl <- tbl |> mutate(
+        data_value = coalesce(
+          tbl$metadata.organ_donor_data.data_value,
+          tbl$metadata.living_donor_data.data_value),
+        preferred_term = coalesce(
+          tbl$metadata.organ_donor_data.preferred_term,
+          tbl$metadata.living_donor_data.preferred_term),
+        grouping_concept_preferred_term = coalesce(
+          tbl$metadata.organ_donor_data.grouping_concept_preferred_term,
+          tbl$metadata.living_donor_data.grouping_concept_preferred_term),
+        data_type = coalesce(
+          tbl$metadata.living_donor_data.data_type,
+          tbl$metadata.organ_donor_data.data_type)
+      )
     }
-
+    
     tbl |>
-        select("hubmap_id", "uuid", "group_name", "last_modified_timestamp",
-                "data_value", "preferred_term",
-                "grouping_concept_preferred_term", "data_type") |>
-        unnest_longer(c("data_value", "preferred_term",
-                "grouping_concept_preferred_term", "data_type")) |>
-        .donor_matadata_modify() |>
-        .unnest_mutate_relocate() |>
-        mutate(Age = as.numeric(.data$Age),
-            `Body Mass Index` = as.numeric(.data$`Body Mass Index`),
-            `Body mass index` = as.numeric(.data$`Body mass index`),
-            `Body Mass Index` = case_when(
-                !is.na(.data$`Body Mass Index`) ~ .data$`Body Mass Index`,
-                is.na(.data$`Body Mass Index`) &
-                is.na(.data$`Body mass index`) ~ NA_real_,
-                TRUE ~ .data$`Body mass index`)) |>
-        select(-"Body mass index") 
-
-    }
+      select("hubmap_id", "uuid", "group_name", "last_modified_timestamp",
+             "data_value", "preferred_term",
+             "grouping_concept_preferred_term", "data_type") |>
+      unnest_longer(c("data_value", "preferred_term",
+                      "grouping_concept_preferred_term", "data_type")) |>
+      .donor_matadata_modify() |>
+      .unnest_mutate_relocate() |>
+      mutate(Age = as.numeric(.data$Age),
+             `Body Mass Index` = as.numeric(.data$`Body Mass Index`))
+    
+  }
