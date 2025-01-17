@@ -128,7 +128,7 @@ dataset_derived <-
 #'
 #' @importFrom dplyr bind_rows mutate ungroup summarise group_by mutate_all
 #'                    rename select if_else everything
-#' @importFrom tidyr unnest_wider unnest pivot_longer
+#' @importFrom tidyr unnest_wider unnest pivot_longer as_tibble
 #' @importFrom rlang .data
 #'
 #' @description `dataset_metadata()` takes a unique dataset_id and
@@ -151,28 +151,11 @@ dataset_metadata <-
     
     stopifnot(.is_uuid(uuid), .uuid_category(uuid) == "Dataset")
     
-    donor_metadata <- .query_match(uuid,
-        option = "hits.hits[]._source.donor[].metadata[]") |>
-        unnest(everything()) |>
-        unnest_wider(everything()) |>
-        mutate(preferred_term = ifelse(.data$data_type == "Numeric",
-            .data$data_value, .data$preferred_term),
-            Value = paste(.data$preferred_term, .data$units, sep = " ")) |>
-        select("grouping_concept_preferred_term", "Value") |>
-        rename("Key" = "grouping_concept_preferred_term") |>
-        group_by(.data$Key) |>
-        summarise(Value = paste(.data$Value, collapse = "; ")) |>
-        ungroup()
-        
+    tbl <- .query_match(uuid, option = "hits.hits[]._source.metadata[]")
     
-    tbl <- .query_match(uuid,
-                        option = "hits.hits[]._source.metadata.metadata[]") |>
-            mutate_all(as.character) |>
-            pivot_longer(cols = everything(), names_to = "Key", 
-                        values_to = "Value") |>
-            bind_rows(
-                    donor_metadata |>
-                    mutate(Key = paste0("donor.", .data$Key)))
+    tbl <- t(tbl)
+    tbl <- as_tibble(tbl, rownames = "Key", .name_repair = "unique")
+    colnames(tbl) <- c("Key", "Value")
     
     tbl
     
@@ -223,7 +206,7 @@ dataset_contributors <-
         left_join(organ(), by = c("origin_samples.organ" = "abbreviation")) |>
         select(-"origin_samples.organ") |>
         rename("organ" = "name",
-                "analyte_class" = "metadata.metadata.analyte_class",
+                "analyte_class" = "metadata.analyte_class",
                 "sample_category" = "source_samples.sample_category",
                 "dataset_type_additional_information" = "data_types",
                 "donor_hubmap_id" = "donor.hubmap_id") |>

@@ -7,7 +7,7 @@ SEARCH <- "https://search.api.hubmapconsortium.org/v3/search"
 .FIELDS <- list(
     Dataset = c("uuid", "hubmap_id", "group_name", "dataset_type", "data_types",
                 "origin_samples.organ", "status", "last_modified_timestamp",
-                "donor.hubmap_id", "metadata.metadata.analyte_class",
+                "donor.hubmap_id", "metadata.analyte_class",
                 "source_samples.sample_category",
                 "created_by_user_displayname", "creation_action"),
     Sample = c("uuid", "hubmap_id", "group_name", "sample_category",
