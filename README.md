@@ -106,7 +106,7 @@ $\textbf{Available records for [Entity Category]:}$
 
 - publications()
 
-$\textbf{The default columns from [Entity Category]()]:}$
+$\textbf{The default columns from [Entity Category] ()]:}$
 
 - datasets_default_columns(as = c(“tibble”, “character”))
 
