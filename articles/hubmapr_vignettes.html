@@ -156,27 +156,27 @@ by</p>
 <div class="section level3">
 <h3 id="implementation-notes">Implementation Notes<a class="anchor" aria-label="anchor" href="#implementation-notes"></a>
 </h3>
-<p>This session is to provide a guidance on extending or customizing the
+<p>This session is to guide on extending or customizing the
 <code>HuBMAPR</code> package to accommodate potential future changes in
 data structure, enhancing the package’s long-term utility. We included a
 brief outline to illustrate the basics of the principles and approach to
 package design.</p>
 <ul>
-<li><p>Identify an API end point</p></li>
+<li><p>Identify an API endpoint</p></li>
 <li><p>Provide an R client to translate R data structures to the
 arguments and parameters required by the API</p></li>
-<li><p>Handle the response in a consistent way with respect to argument
-and response validation</p></li>
+<li><p>Handle the response consistently to argument and response
+validation</p></li>
 <li><p>Format the return value as a ‘tibble’ or ‘character’ to minimize
-cognitive demands on the user for interpreting the result, and to
-facilitate incorporation into general R workflows</p></li>
+cognitive demands on the user to interpret the result, and facilitate
+the incorporation into general R workflows</p></li>
 </ul>
 </div>
 <div class="section level3">
 <h3 id="load-necessary-packages">Load Necessary Packages<a class="anchor" aria-label="anchor" href="#load-necessary-packages"></a>
 </h3>
 <p>Load additional packages. <code>dplyr</code> package is widely used
-in this vignettes to conduct data wrangling and specific information
+in this vignette to conduct data wrangling and specific information
 extraction.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://dplyr.tidyverse.org" class="external-link">"dplyr"</a></span><span class="op">)</span></span>
@@ -203,7 +203,7 @@ modified date time) five categories of entity data:</p>
 <span>    <span class="va">datasets_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/datasets.html">datasets</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    user  system elapsed </span></span>
-<span><span class="co">#&gt;   0.776   0.027   2.263</span></span>
+<span><span class="co">#&gt;   0.798   0.030   3.386</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/pryr/man/object_size.html" class="external-link">object_size</a></span><span class="op">(</span><span class="va">datasets_df</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 1.05 MB</span></span>
 <span></span>
@@ -230,10 +230,10 @@ modified date time) five categories of entity data:</p>
 <code><a href="../reference/collections.html">collections()</a></code>, and <code><a href="../reference/publications.html">publications()</a></code> work same as
 above.</p>
 <p><img src="hubmapr_vignettes_files/figure-html/plot-1.png" width="700"></p>
-<p>The default tibble produced by corresponding entity function only
+<p>The default tibble produced by the corresponding entity function only
 reflects selected information. To see the names of selected information,
-use following commands for each entity category. Specify <code>as</code>
-parameter to display information in the format of
+use the following commands for each entity category. Specify the
+parameter of <code>as</code> to display information in the format of
 <code>"character"</code> or <code>"tibble"</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># as = "tibble" (default)</span></span>
@@ -336,9 +336,9 @@ interested information.</p>
 <span><span class="co">#&gt;       n</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>   424</span></span></code></pre></div>
-<p>Any dataset, sample, donor, collection, and publication has special
+<p>Any dataset, sample, donor, collection, and publication has a special
 <strong>HuBMAP ID</strong> and <strong>UUID</strong>, and
-<strong>UUID</strong> is the main ID to be used in most of functions for
+<strong>UUID</strong> is the main ID to be used in most functions for
 specific detail retrievals.</p>
 <p>The column of <strong>donor_hubmap_id</strong> is included in the
 retrieved tibbles from <code><a href="../reference/samples.html">samples()</a></code> and
@@ -522,10 +522,10 @@ work same as above.</p>
 <div class="section level3">
 <h3 id="derived-data">Derived Data<a class="anchor" aria-label="anchor" href="#derived-data"></a>
 </h3>
-<p>Some datasets from <strong>Dataset</strong> entity has derived
+<p>Some datasets from the <strong>Dataset</strong> entity have derived
 (support) dataset(s). Use <code><a href="../reference/datasets.html">dataset_derived()</a></code> to retrieve. A
 tibble with selected details will be retrieved as if the given dataset
-has support dataset; otherwise, nothing returns.</p>
+has a support dataset; otherwise, nothing returns.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># no derived/support dataset</span></span>
 <span><span class="va">dataset_uuid_1</span> <span class="op">&lt;-</span> <span class="st">"3acdb3ed962b2087fbe325514b098101"</span></span>
@@ -546,7 +546,7 @@ has support dataset; otherwise, nothing returns.</p>
 <span><span class="co">#&gt; $ status                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> ""</span></span>
 <span><span class="co">#&gt; $ last_modified_timestamp <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "NA"</span></span></code></pre></div>
 <p><strong>Sample</strong> and <strong>Donor</strong> have derived
-samples and datasets. In <code>HuBAMPR</code> package,
+samples and datasets. In the <code>HuBAMPR</code> package,
 <code><a href="../reference/samples.html">sample_derived()</a></code> and <code><a href="../reference/donors.html">donor_derived()</a></code> functions
 are available to use to see the derived datasets and samples from one
 sample given sample UUID or one donor given donor UUID. Specify
@@ -775,13 +775,13 @@ entity, or <code><a href="../reference/publications.html">publication_authors()<
 <h2 id="file-transfer">File Transfer<a class="anchor" aria-label="anchor" href="#file-transfer"></a>
 </h2>
 <p>For each dataset, there are corresponding data files. Most of the
-datasets’ files are available on HuBMAP Globus with corresponding URL.
-Some of the datasets’ files are not available via Globus, but can be
+datasets’ files are available on HuBMAP Globus with corresponding URLs.
+Some of the datasets’ files are not available via Globus but can be
 accessed via dbGAP (database of Genotypes and Phenotypes) and/or SRA
-(Sequence Read Archive). But some of the datasets’ files are not
-available in any authorized platform.</p>
+(Sequence Read Archive). However, some of the datasets’ files are not
+available on any authorized platform.</p>
 <p>Each dataset available on Globus has different components of
-data-related files to preview and download, include but not limited to
+data-related files to preview and download, including but not limited to
 images, metadata files, downstream analysis reports, raw data products,
 etc.</p>
 <p>Use <code><a href="../reference/files.html">bulk_data_transfer()</a></code> to know whether data files are
@@ -790,16 +790,16 @@ for downstream analysis.</p>
 <div class="section level5">
 <h5 id="files-are-publicly-accessible">Files are publicly accessible<a class="anchor" aria-label="anchor" href="#files-are-publicly-accessible"></a>
 </h5>
-<p>HuBMAP stored all public data files on Globus, which is a open-source
-and safe platform for the large-size data storage. For every dataset
-which the data files can be publicly accessed, the
-<code><a href="../reference/files.html">bulk_data_transfer()</a></code> function will direct to corresponding
-Globus webpage in Chrome.</p>
+<p>HuBMAP stored all public data files on Globus, which is an
+open-source and safe platform for large-size data storage. For every
+dataset in which the data files can be publicly accessed, the
+<code><a href="../reference/files.html">bulk_data_transfer()</a></code> function will direct to the
+corresponding Globus webpage in Chrome.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">uuid_globus</span> <span class="op">&lt;-</span> <span class="st">"d1dcab2df80590d8cd8770948abaf976"</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/files.html">bulk_data_transfer</a></span><span class="op">(</span><span class="va">uuid_globus</span><span class="op">)</span></span></code></pre></div>
-<figure><img src="../reference/figures/fig1.png" align="center" width="800px"></figure><p>By selecting the data file and clicking on “Download” button, the
+<figure><img src="../reference/figures/fig1.png" align="center" width="800px"></figure><p>By selecting the data file and clicking on the “Download” button, the
 data file can be downloaded to the specific directory.</p>
 <figure><img src="../reference/figures/fig2.png" align="center" width="800px"></figure><div class="section level6">
 <h6 id="alternative-data-transfer-method-using-rglobus-package">Alternative data transfer method using rglobus package<a class="anchor" aria-label="anchor" href="#alternative-data-transfer-method-using-rglobus-package"></a>
@@ -808,14 +808,13 @@ data file can be downloaded to the specific directory.</p>
 generated an experimental package called <a href="https://github.com/mtmorgan/rglobus/" class="external-link">rglobus</a>.</p>
 <p>Globus is in part a cloud-based file transfer service, available at
 <a href="https://www.globus.org/" class="external-link uri">https://www.globus.org/</a>. This package provides an
-<em>R</em> client with the ability to discover and navigate collections,
+<em>R</em> client with the ability to discover and navigate collections
 and to transfer files and directories between collections. Therefore,
 <code>rglobus</code> is an alternative method to transfer HuBMAP data
 files on the local computer using HuBMAP dataset UUID.</p>
 <p><code>rglobus</code> has the vignette documentation <a href="https://mtmorgan.github.io/rglobus/articles/a_get_started.html" class="external-link">here</a>
-using HuBMAP collection as the main example to illustrate how to
-discover and navigate the correct collection, and transfer the
-files.</p>
+using the HuBMAP collection as the main example to illustrate how to
+discover and navigate the correct collection and transfer the files.</p>
 <p>Since <code>rglobus</code> is an experimental package, the
 functionality may not be complete. It is possible to see transfer issues
 while using functions. There will be more information updated in the
@@ -826,10 +825,10 @@ develop.</p>
 <div class="section level5">
 <h5 id="files-are-restricted">Files are restricted<a class="anchor" aria-label="anchor" href="#files-are-restricted"></a>
 </h5>
-<p>For every dataset which the data files are restricted under dbGAP or
-SRA, the <code><a href="../reference/files.html">bulk_data_transfer()</a></code> function will print out the
-instruction messages. The dbGaP or/and SRA link(s) allow the users to
-request the protected-access sequence data from authenticated
+<p>For every dataset in which the data files are restricted under dbGAP
+or SRA, the <code><a href="../reference/files.html">bulk_data_transfer()</a></code> function will print out
+the instruction messages. The dbGaP and/or SRA link(s) allow the users
+to request the protected-access sequence data from an authenticated
 platform.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">uuid_dbGAP_SRA</span> <span class="op">&lt;-</span> <span class="st">"d926c41ac08f3c2ba5e61eec83e90b0c"</span></span>
