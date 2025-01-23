@@ -114,26 +114,25 @@ remotes::install_github("christinehou11/HuBMAPR")
 
 ## Implementation Notes
 
-This session is to provide a guidance on extending or customizing the `HuBMAPR`
+This session is to guide on extending or customizing the `HuBMAPR`
 package to accommodate potential future changes in data structure, enhancing 
 the package's long-term utility. We included a brief outline to illustrate the
 basics of the principles and approach to package design.
 
-- Identify an API end point
+- Identify an API endpoint
 
 - Provide an R client to translate R data structures to the arguments and 
 parameters required by the API
   
-- Handle the response in a consistent way with respect to argument and response
-validation
+- Handle the response consistently to argument and response validation
 
 - Format the return value as a 'tibble' or 'character' to minimize cognitive 
-demands on the user for interpreting the result, and to facilitate incorporation
+demands on the user to interpret the result, and facilitate the incorporation
 into general R workflows
 
 ## Load Necessary Packages
 
-Load additional packages. `dplyr` package is widely used in this vignettes to
+Load additional packages. `dplyr` package is widely used in this vignette to
 conduct data wrangling and specific information extraction.
 
 ```{r 'library', message=FALSE, warning=FALSE}
@@ -223,10 +222,10 @@ plot1 <- ggplot(datasets_sub,
 plot1
 ```
 
-The default tibble produced by corresponding entity function only reflects
-selected information. To see the names of selected information, use following
-commands for each entity category. Specify `as` parameter to display
-information in the format of `"character"` or `"tibble"`.
+The default tibble produced by the corresponding entity function only reflects
+selected information. To see the names of selected information, use the 
+following commands for each entity category. Specify the parameter of `as`
+to display information in the format of `"character"` or `"tibble"`.
 
 
 ```{r 'cols'}
@@ -279,8 +278,8 @@ datasets_df |>
     count()
 ```
 
-Any dataset, sample, donor, collection, and publication has special 
-**HuBMAP ID** and **UUID**, and **UUID** is the main ID to be used in most of
+Any dataset, sample, donor, collection, and publication has a special 
+**HuBMAP ID** and **UUID**, and **UUID** is the main ID to be used in most 
 functions for specific detail retrievals.
 
 The column of **donor_hubmap_id** is included in the retrieved tibbles from
@@ -357,9 +356,9 @@ donor_metadata("b2c75c96558c18c9e13ba31629f541b6")
 
 ## Derived Data
 
-Some datasets from **Dataset** entity has derived (support) dataset(s). Use
+Some datasets from the **Dataset** entity have derived (support) dataset(s). Use
 `dataset_derived()` to retrieve. A tibble with selected details will be
-retrieved as if the given dataset has support dataset; otherwise, nothing
+retrieved as if the given dataset has a support dataset; otherwise, nothing
 returns.
 
 ```{r 'dataset derived'}
@@ -374,7 +373,7 @@ dataset_uuid_2 <- "baf976734dd652208d13134bc5c4594b"
 dataset_derived(uuid = dataset_uuid_2) |> glimpse()
 ```
 
-**Sample** and **Donor** have derived samples and datasets. In `HuBAMPR`
+**Sample** and **Donor** have derived samples and datasets. In the `HuBAMPR`
 package, `sample_derived()` and `donor_derived()` functions are available to
 use to see the derived datasets and samples from one sample given sample UUID
 or one donor given donor UUID. Specify `entity_type` parameter to retrieve
@@ -484,13 +483,14 @@ publication_authors(uuid = publication_uuid)
 # File Transfer
 
 For each dataset, there are corresponding data files. Most of the datasets'
-files are available on HuBMAP Globus with corresponding URL. Some of the
-datasets' files are not available via Globus, but can be accessed via dbGAP
-(database of Genotypes and Phenotypes) and/or SRA (Sequence Read Archive). But
-some of the datasets' files are not available in any authorized platform.
+files are available on HuBMAP Globus with corresponding URLs. Some of the
+datasets' files are not available via Globus but can be accessed via dbGAP
+(database of Genotypes and Phenotypes) and/or SRA (Sequence Read Archive). 
+However, some of the datasets' files are not available on any authorized 
+platform.
 
 Each dataset available on Globus has different components of data-related files
-to preview and download, include but not limited to images, metadata files,
+to preview and download, including but not limited to images, metadata files,
 downstream analysis reports, raw data products, etc. 
 
 Use `bulk_data_transfer()` to know whether data files are open-accessed or
@@ -498,10 +498,10 @@ restricted. Only open-accessed files can be downloaded for downstream analysis.
 
 #### Files are publicly accessible
 
-HuBMAP stored all public data files on Globus, which is a open-source and safe
-platform for the large-size data storage. For every dataset which the data
+HuBMAP stored all public data files on Globus, which is an open-source and safe
+platform for large-size data storage. For every dataset in which the data
 files can be publicly accessed, the `bulk_data_transfer()` function will direct
-to corresponding Globus webpage in Chrome. 
+to the corresponding Globus webpage in Chrome. 
 
 ```{r 'bulk data transfer successful', eval=FALSE}
 uuid_globus <- "d1dcab2df80590d8cd8770948abaf976"
@@ -513,8 +513,8 @@ bulk_data_transfer(uuid_globus)
 <img src="../man/figures/fig1.png" align="center" width="800px"/>
 </figure>
 
-By selecting the data file and clicking on "Download" button, the data file can
-be downloaded to the specific directory.
+By selecting the data file and clicking on the "Download" button, the data file 
+can be downloaded to the specific directory.
 
 <figure>
 <img src="../man/figures/fig2.png" align="center" width="800px"/>
@@ -528,14 +528,14 @@ experimental package called
 
 Globus is in part a cloud-based file transfer service, available at
 https://www.globus.org/. This package provides an *R* client with the ability
-to discover and navigate collections, and to transfer files and directories
+to discover and navigate collections and to transfer files and directories
 between collections. Therefore, `rglobus` is an alternative method to transfer
 HuBMAP data files on the local computer using HuBMAP dataset UUID.
 
 `rglobus` has the vignette documentation 
 [here](https://mtmorgan.github.io/rglobus/articles/a_get_started.html) using
-HuBMAP collection as the main example to illustrate how to discover and 
-navigate the correct collection, and transfer the files. 
+the HuBMAP collection as the main example to illustrate how to discover and 
+navigate the correct collection and transfer the files. 
 
 Since `rglobus` is an experimental package, the functionality may not
 be complete. It is possible to see transfer issues while using functions. There
@@ -545,10 +545,10 @@ to help us develop.
 
 #### Files are restricted
 
-For every dataset which the data files are restricted under dbGAP or SRA, the
-`bulk_data_transfer()` function will print out the instruction messages. The
-dbGaP or/and SRA link(s) allow the users to request the protected-access
-sequence data from authenticated platform.
+For every dataset in which the data files are restricted under dbGAP or SRA, 
+the `bulk_data_transfer()` function will print out the instruction messages. 
+The dbGaP and/or SRA link(s) allow the users to request the protected-access
+sequence data from an authenticated platform.
 
 ```{r 'bulk data transfer urls', eval=FALSE}
 uuid_dbGAP_SRA <- "d926c41ac08f3c2ba5e61eec83e90b0c"
