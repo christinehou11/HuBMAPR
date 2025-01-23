@@ -1,3 +1,7 @@
+# HuBMAPR 1.0.7
+
+* Error check
+
 # HuBMAPR 1.0.6
 
 * Updated NEW.md
