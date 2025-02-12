@@ -1,3 +1,11 @@
+# HuBMAPR 1.0.8
+
+* Update the vignette plots by adding more disguishable colors
+
+# HuBMAPR 1.0.7
+
+* Error check
+
 # HuBMAPR 1.0.6
 
 * Updated NEW.md
