@@ -43,7 +43,7 @@ on their ORCID profile page."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">HuBMAPR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.7</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.8</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -148,20 +148,20 @@ webpage, https://software.docs.hubmapconsortium.org/apis</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">datasets</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3,711 × 14</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3,811 × 14</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    uuid        hubmap_id dataset_type dataset_type_additio…¹ organ analyte_class</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> d4fc9da8a2… HBM639.D… ATACseq      <span style="color: #949494;">"</span>sciATACseq<span style="color: #949494;">"</span>           Heart <span style="color: #949494;">"</span>DNA<span style="color: #949494;">"</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 6cd2abf4cb… HBM577.K… ATACseq      <span style="color: #949494;">""</span>                     Heart <span style="color: #949494;">""</span>           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> acaf75b829… HBM947.R… ATACseq      <span style="color: #949494;">"</span>sciATACseq<span style="color: #949494;">"</span>           Heart <span style="color: #949494;">"</span>DNA<span style="color: #949494;">"</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 97d807e4d5… HBM948.F… ATACseq      <span style="color: #949494;">""</span>                     Heart <span style="color: #949494;">""</span>           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 76bfd5a517… HBM254.J… ATACseq      <span style="color: #949494;">"</span>sciATACseq<span style="color: #949494;">"</span>           Heart <span style="color: #949494;">"</span>DNA<span style="color: #949494;">"</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> bb53dbcfc6… HBM333.G… ATACseq      <span style="color: #949494;">""</span>                     Heart <span style="color: #949494;">""</span>           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> dadef64c3b… HBM625.S… ATACseq      <span style="color: #949494;">""</span>                     Heart <span style="color: #949494;">""</span>           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> e74ba9723d… HBM569.M… ATACseq      <span style="color: #949494;">""</span>                     Heart <span style="color: #949494;">""</span>           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2d4d2f368c… HBM836.L… ATACseq      <span style="color: #949494;">"</span>sciATACseq<span style="color: #949494;">"</span>           Heart <span style="color: #949494;">"</span>DNA<span style="color: #949494;">"</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 0bf827ea01… HBM953.R… ATACseq      <span style="color: #949494;">"</span>sciATACseq<span style="color: #949494;">"</span>           Heart <span style="color: #949494;">"</span>DNA<span style="color: #949494;">"</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 3,701 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 5f746bfbfd… HBM649.H… SNARE-seq2   <span style="color: #949494;">""</span>                     Lung… <span style="color: #949494;">""</span>           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 93457f272f… HBM464.W… SNARE-seq2   <span style="color: #949494;">""</span>                     Lung… <span style="color: #949494;">""</span>           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 84aa0347ea… HBM649.V… SNARE-seq2   <span style="color: #949494;">""</span>                     Lung… <span style="color: #949494;">""</span>           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 6de9071380… HBM485.S… SNARE-seq2   <span style="color: #949494;">""</span>                     Lung… <span style="color: #949494;">""</span>           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 3d3522198b… HBM982.B… SNARE-seq2   <span style="color: #949494;">""</span>                     Lung… <span style="color: #949494;">""</span>           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> c6bc7e46a6… HBM483.G… SNARE-seq2   <span style="color: #949494;">""</span>                     Lung… <span style="color: #949494;">""</span>           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 1bb771b1ff… HBM276.X… SNARE-seq2   <span style="color: #949494;">""</span>                     Lung… <span style="color: #949494;">""</span>           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 822b2d0fa9… HBM724.H… SNARE-seq2   <span style="color: #949494;">""</span>                     Lung… <span style="color: #949494;">""</span>           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> d372038ed1… HBM648.W… SNARE-seq2   <span style="color: #949494;">""</span>                     Lung… <span style="color: #949494;">""</span>           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> f38b607f18… HBM588.W… SNARE-seq2   <span style="color: #949494;">""</span>                     Lung… <span style="color: #949494;">""</span>           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 3,801 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​dataset_type_additional_information</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 8 more variables: sample_category &lt;chr&gt;, status &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   dataset_processing_category &lt;chr&gt;, pipeline &lt;chr&gt;, registered_by &lt;chr&gt;,</span></span>
