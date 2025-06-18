@@ -31,6 +31,9 @@
 * Updated functions to accommodate with API changes 
 
 # HuBMAPR 1.0.0
+<<<<<<< HEAD
 >>>>>>> 0d1e1ff (bug fix)
+=======
+>>>>>>> 674152207e3ec8d593a8ad91e252a71511eada5c
 
 * HuBMAPR is ready for submitting to Bioconductor!

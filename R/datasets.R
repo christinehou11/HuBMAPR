@@ -15,13 +15,13 @@
 #' @examples
 #' datasets()
 datasets <-
-    function() {
-
+  function() {
+    
     tbl <-  .query_entity("Dataset")
-
+    
     .dataset_edit(tbl)
-
-    }
+    
+  }
 
 
 #' @rdname datasets
@@ -48,11 +48,11 @@ datasets <-
 #'
 #' @export
 datasets_default_columns <-
-    function(as = c( "tibble", "character")) {
-
+  function(as = c( "tibble", "character")) {
+    
     .default_columns("Dataset", as)
-
-    }
+    
+  }
 
 #' @rdname datasets
 #'
@@ -70,13 +70,13 @@ datasets_default_columns <-
 #' uuid <- "7754aa5ebde628b5e92705e33e74a4ef"
 #' dataset_detail(uuid)
 dataset_detail <-
-    function (uuid) {
-
+  function (uuid) {
+    
     stopifnot( .is_uuid(uuid), .uuid_category(uuid) == "Dataset")
-
+    
     .query_match(uuid, option = "hits.hits[]._source")
-
-    }
+    
+  }
 
 #' @rdname datasets
 #'
@@ -104,23 +104,23 @@ dataset_detail <-
 #' uuid <- "2c77b1cdf33dbed3dbfb74e4b578300e"
 #' dataset_derived(uuid)
 dataset_derived <-
-    function(uuid) {
-
+  function(uuid) {
+    
     stopifnot(.is_uuid(uuid), .uuid_category(uuid) == "Dataset")
-
+    
     option <- .list_to_option(
-        path = "hits.hits[]._source.descendants[]",
-        fields = c("uuid","hubmap_id", "data_types",
-                    "dataset_type", "status", "last_modified_timestamp"))
-
+      path = "hits.hits[]._source.descendants[]",
+      fields = c("uuid","hubmap_id", "data_types",
+                 "dataset_type", "status", "last_modified_timestamp"))
+    
     tbl <- .query_match(uuid, option = option) |>
-            .unnest_mutate_relocate()
-
+      .unnest_mutate_relocate()
+    
     if (tbl$uuid == "") { tbl <- NULL }
-
+    
     tbl
-
-    }
+    
+  }
 
 #' @rdname datasets
 #'
@@ -128,7 +128,7 @@ dataset_derived <-
 #'
 #' @importFrom dplyr bind_rows mutate ungroup summarise group_by mutate_all
 #'                    rename select if_else everything
-#' @importFrom tidyr unnest_wider unnest pivot_longer
+#' @importFrom tidyr unnest_wider unnest pivot_longer as_tibble
 #' @importFrom rlang .data
 #'
 #' @description `dataset_metadata()` takes a unique dataset_id and
@@ -147,36 +147,19 @@ dataset_derived <-
 #' dataset_metadata(uuid)
 #'
 dataset_metadata <-
-    function(uuid) {
+  function(uuid) {
     
     stopifnot(.is_uuid(uuid), .uuid_category(uuid) == "Dataset")
     
-    donor_metadata <- .query_match(uuid,
-        option = "hits.hits[]._source.donor[].metadata[]") |>
-        unnest(everything()) |>
-        unnest_wider(everything()) |>
-        mutate(preferred_term = ifelse(.data$data_type == "Numeric",
-            .data$data_value, .data$preferred_term),
-            Value = paste(.data$preferred_term, .data$units, sep = " ")) |>
-        select("grouping_concept_preferred_term", "Value") |>
-        rename("Key" = "grouping_concept_preferred_term") |>
-        group_by(.data$Key) |>
-        summarise(Value = paste(.data$Value, collapse = "; ")) |>
-        ungroup()
-        
+    tbl <- .query_match(uuid, option = "hits.hits[]._source.metadata[]")
     
-    tbl <- .query_match(uuid,
-                        option = "hits.hits[]._source.metadata.metadata[]") |>
-            mutate_all(as.character) |>
-            pivot_longer(cols = everything(), names_to = "Key", 
-                        values_to = "Value") |>
-            bind_rows(
-                    donor_metadata |>
-                    mutate(Key = paste0("donor.", .data$Key)))
+    tbl <- t(tbl)
+    tbl <- as_tibble(tbl, rownames = "Key", .name_repair = "unique")
+    colnames(tbl) <- c("Key", "Value")
     
     tbl
     
-    }
+  }
 
 #' @rdname datasets
 #'
@@ -203,38 +186,37 @@ dataset_metadata <-
 #' dataset_contributors(uuid)
 #'
 dataset_contributors <-
-    function(uuid) {
+  function(uuid) {
     
     stopifnot(.is_uuid(uuid), .uuid_category(uuid) == "Dataset")
     
-    .query_match(uuid,
-                option = "hits.hits[]._source.contributors[]")
+    .query_match(uuid,option = "hits.hits[]._source.contributors[]")
     
-    }
+  }
 
 #' @importFrom dplyr left_join rename select mutate relocate everything
 #' @importFrom stringr str_extract
 #' @importFrom rlang .data
 .dataset_edit <-
-    function (tbl) {
-
+  function (tbl) {
+    
     tbl |>
-        .unnest_mutate_relocate() |>
-        left_join(organ(), by = c("origin_samples.organ" = "abbreviation")) |>
-        select(-"origin_samples.organ") |>
-        rename("organ" = "name",
-                "analyte_class" = "metadata.metadata.analyte_class",
-                "sample_category" = "source_samples.sample_category",
-                "dataset_type_additional_information" = "data_types",
-                "donor_hubmap_id" = "donor.hubmap_id") |>
-        .dataset_processing_category() |>
-        mutate(pipeline = str_extract(.data$dataset_type, 
+      .unnest_mutate_relocate() |>
+      left_join(organ(), by = c("origin_samples.organ" = "abbreviation")) |>
+      select(-"origin_samples.organ") |>
+      rename("organ" = "name",
+             "analyte_class" = "metadata.analyte_class",
+             "sample_category" = "source_samples.sample_category",
+             "dataset_type_additional_information" = "data_types",
+             "donor_hubmap_id" = "donor.hubmap_id") |>
+      .dataset_processing_category() |>
+      mutate(pipeline = str_extract(.data$dataset_type, 
                                     "(?<=\\[).*?(?=\\])"),
-            dataset_type = gsub("\\s*\\[.*?\\]", "",.data$dataset_type),
-            sample_category = str_extract(.data$sample_category, "^[^,]+")) |>
-        relocate("uuid", "hubmap_id", "dataset_type", 
-                "dataset_type_additional_information",
-                "organ", "analyte_class", "sample_category", "status",
-                "dataset_processing_category", "pipeline", everything())
-
-    }
+             dataset_type = gsub("\\s*\\[.*?\\]", "",.data$dataset_type),
+             sample_category = str_extract(.data$sample_category, "^[^,]+")) |>
+      relocate("uuid", "hubmap_id", "dataset_type", 
+               "dataset_type_additional_information",
+               "organ", "analyte_class", "sample_category", "status",
+               "dataset_processing_category", "pipeline", everything())
+    
+  }
