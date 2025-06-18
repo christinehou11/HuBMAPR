@@ -1,3 +1,7 @@
+# HuBMAPR 1.2.2
+
+* Reformat README file
+
 # HuBMAPR 1.2.1
 
 * Update the functions to display the information properly
