@@ -4,6 +4,7 @@
 an open, global bio-molecular atlas of the human body at the cellular
 level. `HuBMAPR` package provides an alternative interface to access the
 data exploration and file retrieval via R.
+[![](https://img.shields.io/badge/Bioc3.21-HuBMAPR-blue.svg)](https://bioconductor.org/packages/HuBMAPR)
 
 #### Installation
 
