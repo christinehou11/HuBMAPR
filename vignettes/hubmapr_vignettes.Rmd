@@ -336,9 +336,7 @@ dataset_detail(dataset_uuid) |> glimpse()
 
 # Specific Information
 dataset_detail(uuid = dataset_uuid) |>
-    select(contributors) |>
-    unnest_longer(contributors) |>
-    unnest_wider(everything())
+    select(title)
 ```
 
 `sample_detail()`, `donor_detail()`, `collection_detail()`, and
@@ -431,7 +429,7 @@ retrieve.
 ```{r 'collection datasets'}
 collections_df <- collections()
 collection_uuid <- collections_df |>
-    filter(last_modified_timestamp >= "2023-01-01") |>
+    filter(last_modified_timestamp <= "2023-01-01") |>
     head(1) |>
     pull(uuid)
 

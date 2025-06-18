@@ -55,9 +55,31 @@ collections_default_columns <-
 
 #' @rdname collections
 #'
-#' @name collection_contacts
+#' @name collection_detail
 #'
-#' @importFrom tidyr unnest everything
+#' @description `collection_detail()` takes a unique collection_id and
+#' returns details about one specified collection as a tibble
+#'
+#' @param uuid character(1) corresponding to the HuBMAP Collection UUID
+#'     string. This is expected to be a 32-digit hex number.
+#'
+#' @export
+#'
+#' @examples
+#' uuid <- "a320abcf56241be2e5e453401efeaaf3"
+#' collection_detail(uuid)
+collection_detail <-
+    function (uuid) {
+    
+    stopifnot( .is_uuid(uuid), .uuid_category(uuid) == "Collection")
+    
+    .query_match(uuid, option = "hits.hits[]._source")
+    
+    }
+
+#' @rdname collections
+#'
+#' @name collection_contacts
 #'
 #' @description `collection_contacts()` takes a unique collection_id and
 #' returns contacts information of one specified collection as a tibble
@@ -82,7 +104,7 @@ collection_contacts <-
         path = "hits.hits[]._source.contacts[]",
         fields = c("name", "affiliation", "orcid_id"))
 
-    .query_match(uuid, option) |> unnest(everything())
+    .query_match(uuid, option)
 
     }
 
@@ -131,8 +153,6 @@ collection_data <-
 #'
 #' @name collection_contributors
 #'
-#' @importFrom tidyr unnest everything
-#'
 #' @description `collection_contributors()` takes a unique collection_id and
 #' returns contributors information of one specified collection as a tibble
 #'
@@ -155,6 +175,6 @@ collection_contributors <-
     option <- .list_to_option(path = "hits.hits[]._source.contributors[]",
                                 fields = c("name", "affiliation", "orcid_id"))
 
-    .query_match(uuid, option) |> unnest(everything())
+    .query_match(uuid, option)
 
     }

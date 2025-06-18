@@ -3,6 +3,7 @@
 \name{collections}
 \alias{collections}
 \alias{collections_default_columns}
+\alias{collection_detail}
 \alias{collection_contacts}
 \alias{collection_data}
 \alias{collection_contributors}
@@ -11,6 +12,8 @@
 collections()
 
 collections_default_columns(as = c("tibble", "character"))
+
+collection_detail(uuid)
 
 collection_contacts(uuid)
 
@@ -42,6 +45,9 @@ character vector describing the content of the tibble returned
 by \code{samples()}, \code{datasets()},  \code{donors()}, \code{collections()},
 or \code{publications()}.
 
+\code{collection_detail()} takes a unique collection_id and
+returns details about one specified collection as a tibble
+
 \code{collection_contacts()} takes a unique collection_id and
 returns contacts information of one specified collection as a tibble
 
@@ -68,6 +74,8 @@ webpage, https://software.docs.hubmapconsortium.org/apis
 collections()
 collections_default_columns()
 
+uuid <- "a320abcf56241be2e5e453401efeaaf3"
+collection_detail(uuid)
 uuid <- "381f65e58d5e2c1d16a9cef2cc203aab"
 collection_contacts(uuid)
 uuid <- "381f65e58d5e2c1d16a9cef2cc203aab"

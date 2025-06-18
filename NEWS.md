@@ -1,6 +1,10 @@
+# HuBMAPR 1.3.1
+
+* Update the functions to display the information properly
+
 # HuBMAPR 1.0.8
 
-* Update the vignette plots by adding more disguishable colors
+* Update the vignette plots by adding more distinguishable colors
 
 # HuBMAPR 1.0.7
 

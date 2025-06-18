@@ -1,6 +1,6 @@
 ## HuBMAPR
 
-[![](https://img.shields.io/badge/Bioc3.20-HuBMAPR-blue.svg)](https://bioconductor.org/packages/HuBMAPR)
+[![](https://img.shields.io/badge/Bioc3.21-HuBMAPR-blue.svg)](https://bioconductor.org/packages/HuBMAPR)
 
 'HuBMAP' data portal (<https://portal.hubmapconsortium.org/>) provides an open,
 global bio-molecular atlas of the human body at the cellular level. `HuBMAPR`
