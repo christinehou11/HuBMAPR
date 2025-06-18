@@ -7,10 +7,6 @@ an open, global bio-molecular atlas of the human body at the cellular
 level. `HuBMAPR` package provides an alternative interface to access the
 data exploration and file retrieval via R.
 
-'HuBMAP' data portal (<https://portal.hubmapconsortium.org/>) provides an open,
-global bio-molecular atlas of the human body at the cellular level. `HuBMAPR`
-package provides an alternative interface to explore the data via R.
-
 The HuBMAP Consortium offers several
 [APIs](https://docs.hubmapconsortium.org/apis.html). 
 To achieve the main objectives, `HuBMAPR` package specifically integrates three
