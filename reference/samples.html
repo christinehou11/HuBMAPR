@@ -31,7 +31,7 @@ returns the metadata of the sample."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">HuBMAPR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.8</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -133,20 +133,20 @@ webpage, https://software.docs.hubmapconsortium.org/apis</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">samples</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2,387 × 7</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3,036 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    uuid              hubmap_id donor_hubmap_id group_name last_modified_timest…¹</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 00f4835564265157… HBM964.X… HBM446.CSSP.335 TMC - Uni… 2024-12-02            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 39ede648fc605a57… HBM653.F… HBM274.TWRJ.896 TMC - Uni… 2024-12-02            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 8e285dd74b6d4ba1… HBM327.R… HBM274.TWRJ.896 TMC - Uni… 2024-12-02            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> fb2f4bb6b4befec1… HBM785.B… HBM274.TWRJ.896 TMC - Uni… 2024-12-02            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 9c083f959b8ae107… HBM888.Z… HBM274.TWRJ.896 TMC - Uni… 2024-12-02            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 3ac73ea468313de3… HBM865.F… HBM274.TWRJ.896 TMC - Uni… 2024-12-02            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 12b1605c7863430f… HBM587.G… HBM274.TWRJ.896 TMC - Uni… 2024-12-02            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 6e5b47192abbf6e4… HBM544.Z… HBM274.TWRJ.896 TMC - Uni… 2024-12-02            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 5def9bace9ed57ad… HBM949.Z… HBM274.TWRJ.896 TMC - Uni… 2024-12-02            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 82bf0896dd680284… HBM638.L… HBM274.TWRJ.896 TMC - Uni… 2024-12-02            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2,377 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> ff78b3739e397acb… HBM258.Z… HBM544.CDJS.566 Vanderbil… 2025-04-17            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 5c638b02d249cc85… HBM723.Z… HBM672.HSNT.629 Vanderbil… 2025-04-15            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 09af77a53cd7d037… HBM632.S… HBM245.VFCF.396 Vanderbil… 2025-04-15            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 9affaeb6324cca96… HBM699.Z… HBM395.HCTC.292 Vanderbil… 2025-04-15            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 45573b69ef0b3510… HBM269.Z… HBM924.QHJN.586 Vanderbil… 2025-04-14            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> e7cfa168d20491b7… HBM399.P… HBM425.SQGM.878 Vanderbil… 2025-04-14            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 3fcc51e98a9f2d3b… HBM948.K… HBM486.QQFH.565 Vanderbil… 2025-04-14            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> ea2cfa5b4d1ed386… HBM925.W… HBM368.WSHR.356 Vanderbil… 2025-04-14            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> db346f684630db7e… HBM364.W… HBM758.JRSC.348 Vanderbil… 2025-04-14            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 427d58dbfe9d4b39… HBM987.M… HBM547.NCQL.874 Vanderbil… 2025-04-14            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 3,026 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​last_modified_timestamp</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: sample_category &lt;chr&gt;, organ &lt;chr&gt;</span></span>
 <span class="r-in"><span><span class="fu">samples_default_columns</span><span class="op">(</span><span class="op">)</span></span></span>
@@ -185,7 +185,7 @@ webpage, https://software.docs.hubmapconsortium.org/apis</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 9 × 2</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Key                   Value                                                   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> donor.Age             <span style="color: #949494;">"</span>54.0 years<span style="color: #949494;">"</span>                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> donor.Age             <span style="color: #949494;">"</span>54 years<span style="color: #949494;">"</span>                                              </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> donor.Body Mass Index <span style="color: #949494;">"</span>53.06 kg/m2<span style="color: #949494;">"</span>                                           </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> donor.Cause of Death  <span style="color: #949494;">"</span>Anoxia <span style="color: #949494;">"</span>                                               </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> donor.Height          <span style="color: #949494;">"</span>157.48 cm<span style="color: #949494;">"</span>                                             </span>
@@ -193,7 +193,7 @@ webpage, https://software.docs.hubmapconsortium.org/apis</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> donor.Race            <span style="color: #949494;">"</span>Black or African American <span style="color: #949494;">"</span>                            </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> donor.Sex             <span style="color: #949494;">"</span>Female <span style="color: #949494;">"</span>                                               </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> donor.Social History  <span style="color: #949494;">"</span>Smoker ; Illicit drug use <span style="color: #949494;">"</span>                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">9</span> donor.Weight          <span style="color: #949494;">"</span>131.60 kg<span style="color: #949494;">"</span>                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">9</span> donor.Weight          <span style="color: #949494;">"</span>131.6 kg<span style="color: #949494;">"</span>                                              </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
@@ -206,7 +206,7 @@ webpage, https://software.docs.hubmapconsortium.org/apis</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer></div>

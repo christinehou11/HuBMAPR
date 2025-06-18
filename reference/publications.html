@@ -33,7 +33,7 @@ returns authors information of one specified collection as a tibble"></head><bod
 
     <a class="navbar-brand me-2" href="../index.html">HuBMAPR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.8</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -134,18 +134,21 @@ webpage, https://software.docs.hubmapconsortium.org/apis</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">publications</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 9 × 7</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   uuid      hubmap_id last_modified_timest…¹ publication_date publication_status</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 77ab3588… HBM222.S… 2023-07-18             2023-07-20       TRUE              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> aea510e3… HBM332.M… 2023-07-18             2022-10-24       TRUE              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> 2ced91fd… HBM885.X… 2023-07-18             2024-09-27       TRUE              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> e8338966… HBM695.W… 2023-07-18             2023-07-19       TRUE              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> dd0e7aea… HBM599.D… 2023-07-18             2023-07-19       TRUE              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> 3c727366… HBM629.D… 2023-07-18             2023-07-19       TRUE              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> 0de8528c… HBM473.R… 2023-07-18             2023-07-19       TRUE              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> eb975811… HBM464.W… 2023-07-18             2023-07-19       TRUE              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">9</span> 72cbeb8f… HBM222.Z… 2023-07-18             2023-07-19       TRUE              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 12 × 7</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    uuid     hubmap_id last_modified_timest…¹ publication_date publication_status</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> a10041a… HBM923.V… 2025-06-10             2025-05-23       FALSE             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 64ca708… HBM827.D… 2025-05-21             2024-07-30       FALSE             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> fa99f1a… HBM326.T… 2025-03-12             2025-03-12       TRUE              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2ced91f… HBM885.X… 2023-07-18             2024-09-27       TRUE              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> aea510e… HBM332.M… 2023-07-18             2022-10-24       TRUE              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 77ab358… HBM222.S… 2023-07-18             2023-07-20       TRUE              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> dd0e7ae… HBM599.D… 2023-07-18             2023-07-19       TRUE              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 3c72736… HBM629.D… 2023-07-18             2023-07-19       TRUE              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> e833896… HBM695.W… 2023-07-18             2023-07-19       TRUE              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 0de8528… HBM473.R… 2023-07-18             2023-07-19       TRUE              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> eb97581… HBM464.W… 2023-07-18             2023-07-19       TRUE              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> 72cbeb8… HBM222.Z… 2023-07-18             2023-07-19       TRUE              </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​last_modified_timestamp</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: publication_venue &lt;chr&gt;, title &lt;chr&gt;</span></span>
 <span class="r-in"><span><span class="fu">publications_default_columns</span><span class="op">(</span><span class="op">)</span></span></span>
@@ -175,10 +178,20 @@ webpage, https://software.docs.hubmapconsortium.org/apis</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   group_name &lt;chr&gt;, group_uuid &lt;chr&gt;, hubmap_id &lt;chr&gt;, …</span></span>
 <span class="r-in"><span><span class="va">uuid</span> <span class="op">&lt;-</span> <span class="st">"3c7273660cdf9ab91a7901533b2cd9a5"</span></span></span>
 <span class="r-in"><span><span class="fu">publication_data</span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 2</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   dataset_type uuid                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> RNAseq       00d9d4bf8b010eaa6fca4361476cd2ad</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 229 × 2</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    dataset_type uuid                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Slide-seq    74c2dc4a46ea54e64287d80d04d15959</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> ATACseq      545f3d609c49c4b4ebe884bc16cca9e5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> RNAseq       9c059f193bb4db45250e3b5eb303eaf4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> RNAseq       d34706323794467348995af37072b5ee</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> RNAseq       efe5894cd09b0a411ecfe46749e6db73</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> RNAseq       f21984fb4a908c1adfa921fbcaca8788</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> RNAseq       0a89c78b2de4c454c6df0a6e17ff17b6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> ATACseq      5af077748159ae4068d7eee08232f9ac</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> ATACseq      469e619ef4dd5fd8d6857029acd45a5d</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> RNAseq       d34eb3a317ac17d6f01b958cb2276793</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 219 more rows</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">uuid</span> <span class="op">&lt;-</span> <span class="st">"3c7273660cdf9ab91a7901533b2cd9a5"</span></span></span>
 <span class="r-in"><span><span class="fu">publication_authors</span><span class="op">(</span><span class="va">uuid</span><span class="op">)</span></span></span>
@@ -207,7 +220,7 @@ webpage, https://software.docs.hubmapconsortium.org/apis</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer></div>
