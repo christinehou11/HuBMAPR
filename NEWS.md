@@ -1,3 +1,7 @@
+# HuBMAPR 1.3.2
+
+* Error corrections 
+
 # HuBMAPR 1.3.1
 
 * Update the functions to display the information properly

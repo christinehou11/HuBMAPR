@@ -39,17 +39,18 @@ Imports:
     tidyr,
     tibble,
     rjsoncons,
-    rlang,
     utils,
     stringr,
     whisker,
-    purrr
+    purrr,
+    rlang
 Collate: query.R datasets.R samples.R donors.R utilities.R
     publications.R publication_information.R collections.R
     collection_information.R provenance.R files.R organ.R template.R
+    utils-globals.R
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Suggests:
     testthat (>= 3.0.0),
     knitr,

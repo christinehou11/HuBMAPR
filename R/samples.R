@@ -90,7 +90,6 @@ sample_detail <-
 #' @importFrom dplyr select mutate filter
 #' @importFrom tidyr unnest everything
 #' @importFrom purrr map_int map_chr
-#' @importFrom rlang .data
 #'
 #' @description `sample_derived()` takes a unique sample_id and
 #' returns the derived dataset or/and sample details.
@@ -121,7 +120,7 @@ sample_derived <-
 
     if (identical(entity, "Sample")) {
         tbl <- tbl |>
-            filter(is.na(.data$dataset_type)) |>
+            filter(is.na(dataset_type)) |>
             select("uuid")
         
         if (nrow(tbl) > 0L) {
@@ -135,7 +134,7 @@ sample_derived <-
     }
     else {
         tbl <- tbl |>
-            filter(!is.na(.data$dataset_type)) |>
+            filter(!is.na(dataset_type)) |>
             select("uuid")
         
         tbl <- tbl |>
@@ -153,7 +152,6 @@ sample_derived <-
 #' @name sample_metadata
 #'
 #' @importFrom dplyr filter pull
-#' @importFrom rlang .data
 #'
 #' @description `sample_metadata()` takes a unique donor_id and
 #' returns the metadata of the sample.
@@ -179,13 +177,12 @@ sample_metadata <-
                     option = "hits.hits[]._source.ancestors[]")
     
     .donor_metadata(donor_uuid) |>
-        mutate(Key = paste0("donor.", .data$Key))
+        mutate(Key = paste0("donor.", Key))
     
     }
 
 #' @importFrom dplyr left_join rename select
 #' @importFrom stringr str_extract
-#' @importFrom rlang .data
 .sample_edit <-
     function (tbl) {
 
@@ -195,6 +192,6 @@ sample_metadata <-
         select(-"origin_samples.organ") |>
         rename("organ" = "name",
                 "donor_hubmap_id" = "donor.hubmap_id") |>
-        mutate(sample_category = str_extract(.data$sample_category, "^[^,]+"))
+        mutate(sample_category = str_extract(sample_category, "^[^,]+"))
 
     }

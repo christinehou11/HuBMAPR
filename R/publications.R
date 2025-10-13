@@ -62,10 +62,9 @@ publications_default_columns <-
 #'
 #' @name publication_data
 #'
-#' @importFrom dplyr select mutate rename all_of
+#' @importFrom dplyr filter select
 #' @importFrom tidyr unnest
-#' @importFrom purrr map_chr
-#' @importFrom rlang .data
+#' @importFrom purrr map_lgl
 #'
 #' @description `publication_data()` takes a unique publication_id and
 #' returns details about one specified publication.
@@ -90,26 +89,31 @@ publication_data <-
     stopifnot(.is_uuid(uuid))
 
     entity <- match.arg(entity_type)
-
-    entity_ids <-
-        .query_match(uuid, "hits.hits[]._source.ancestors[]") |>
-        select(-"rui_location") |>
-        unnest(everything()) |>
-        mutate(dataset_type = ifelse(is.na(.data$dataset_type),
-            map_chr(.data$uuid, ~.uuid_category(.x)),.data$dataset_type))
-
-    entity_ids <- switch(
-        entity,
-
-        Dataset = entity_ids |> 
-            filter(!(.data$dataset_type %in% c("Sample", "Donor"))),
-
-        Sample = entity_ids |> filter(.data$dataset_type == "Sample"),
-
-        Donor = entity_ids |> filter(.data$dataset_type == "Donor")
-    )
-
-    entity_ids
+    
+    if (entity == "Donor") {
+        donor_data <- .query_match(uuid, "hits.hits[]._source.donor")
+        
+        return(donor_data)
+    }
+    
+    ancestors <- .query_match(uuid, 
+        option = "hits.hits[]._source.ancestors[][]") |>
+        unnest(cols = dataset_type, keep_empty = TRUE)
+    
+    if (entity == "Dataset") {
+        dataset_list <- ancestors |> 
+            filter(!is.na(dataset_type) )
+        
+        return(dataset_list)
+    }
+    
+    if (entity == "Sample") {
+        dataset_list <- ancestors |> 
+            filter(is.na(dataset_type) ) |>
+            select(-"dataset_type")
+      
+      return(dataset_list)
+    }
     
     }
 

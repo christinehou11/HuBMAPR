@@ -93,7 +93,6 @@ donor_detail <-
 #' @importFrom dplyr select filter mutate any_of rename distinct
 #' @importFrom tidyr unnest everything
 #' @importFrom purrr map_chr map_int
-#' @importFrom rlang .data
 #'
 #' @description `donor_derived()` takes a unique donor_id and
 #' returns the derived dataset or/and sample details.
@@ -125,7 +124,7 @@ donor_derived <-
     
     if (identical(entity, "Sample")) {
       tbl <- tbl |>
-        filter(is.na(.data$dataset_type)) |>
+        filter(is.na(dataset_type)) |>
         select("uuid")
       
       if (nrow(tbl) > 0L) {
@@ -141,7 +140,7 @@ donor_derived <-
     }
     else {
       tbl <- tbl |>
-        filter(!is.na(.data$dataset_type))
+        filter(!is.na(dataset_type))
       
       tbl <- tbl |>
         mutate(derived_dataset_count = map_int(uuid, ~{
@@ -185,7 +184,6 @@ donor_metadata <-
 ## helper function
 #' @importFrom dplyr coalesce mutate select rename_with
 #' @importFrom tidyr unnest_longer everything
-#' @importFrom rlang .data
 #'
 .donor_edit <-
   function(tbl) {
@@ -219,7 +217,7 @@ donor_metadata <-
                       "grouping_concept_preferred_term", "data_type")) |>
       .donor_matadata_modify() |>
       .unnest_mutate_relocate() |>
-      mutate(Age = as.numeric(.data$Age),
-             `Body Mass Index` = as.numeric(.data$`Body Mass Index`))
+      mutate(Age = as.numeric(Age),
+             `Body Mass Index` = as.numeric(`Body Mass Index`))
     
   }

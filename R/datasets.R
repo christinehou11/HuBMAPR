@@ -129,7 +129,6 @@ dataset_derived <-
 #' @importFrom dplyr bind_rows mutate ungroup summarise group_by mutate_all
 #'                    rename select if_else everything
 #' @importFrom tidyr unnest_wider unnest pivot_longer as_tibble
-#' @importFrom rlang .data
 #'
 #' @description `dataset_metadata()` takes a unique dataset_id and
 #' returns the metadata of the dataset.
@@ -197,7 +196,6 @@ dataset_contributors <-
 
 #' @importFrom dplyr left_join rename select mutate relocate everything
 #' @importFrom stringr str_extract
-#' @importFrom rlang .data
 .dataset_edit <-
   function (tbl) {
     
@@ -211,10 +209,10 @@ dataset_contributors <-
              "dataset_type_additional_information" = "data_types",
              "donor_hubmap_id" = "donor.hubmap_id") |>
       .dataset_processing_category() |>
-      mutate(pipeline = str_extract(.data$dataset_type, 
+      mutate(pipeline = str_extract(dataset_type, 
                                     "(?<=\\[).*?(?=\\])"),
-             dataset_type = gsub("\\s*\\[.*?\\]", "",.data$dataset_type),
-             sample_category = str_extract(.data$sample_category, "^[^,]+")) |>
+             dataset_type = gsub("\\s*\\[.*?\\]", "",dataset_type),
+             sample_category = str_extract(sample_category, "^[^,]+")) |>
       relocate("uuid", "hubmap_id", "dataset_type", 
                "dataset_type_additional_information",
                "organ", "analyte_class", "sample_category", "status",

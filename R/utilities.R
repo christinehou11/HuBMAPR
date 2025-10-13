@@ -109,23 +109,21 @@
 
 #' @importFrom dplyr mutate select summarise group_by
 #' @importFrom tidyr pivot_wider everything any_of
-#' @importFrom rlang .data
 .donor_matadata_modify <-
     function(tbl) {
 
     tbl |>
-        mutate(data_value = ifelse(.data$data_type == "Numeric",
-                                    .data$data_value, ""),
-                data_value = vapply(.data$data_value, .to_numeric, numeric(1)),
-                preferred_term = ifelse(is.na(.data$data_value),
-                                    .data$preferred_term,
-                                    .data$data_value))  |>
+        mutate(data_value = ifelse(data_type == "Numeric",
+                    data_value, ""),
+                data_value = vapply(data_value, .to_numeric, numeric(1)),
+                preferred_term = ifelse(is.na(data_value),preferred_term,
+                    data_value))  |>
         pivot_wider(
             names_from = "grouping_concept_preferred_term",
             values_from = "preferred_term",
             values_fn = list("preferred_term" = function(x)
                                         paste(unique(x), collapse = "/"))) |>
-        group_by(.data$hubmap_id) |>
+        group_by(hubmap_id) |>
         select(any_of(c(.default_columns("Donor", "character"),
                         "Body mass index"))) |>
         summarise(across(everything(), .concat_values), .groups = 'drop')
@@ -148,7 +146,6 @@
     }
 
 #' @importFrom dplyr mutate case_when rename
-#' @importFrom rlang .data
 .dataset_processing_category <-
     function(tbl) {
 
@@ -156,11 +153,11 @@
     rename("registered_by" = "created_by_user_displayname",
             "dataset_processing_category" = "creation_action") |>
     mutate(dataset_processing_category = case_when(
-        .data$dataset_processing_category == "Create Dataset Activity" ~
+        dataset_processing_category == "Create Dataset Activity" ~
             "Raw",
-        .data$dataset_processing_category == "Central Process" ~
+        dataset_processing_category == "Central Process" ~
             "HuBMAP Process",
-        .data$dataset_processing_category == "Lab Process" ~
+        dataset_processing_category == "Lab Process" ~
             "Lab Process",
         TRUE ~ dataset_processing_category))
 
@@ -168,7 +165,6 @@
 
 #' @importFrom dplyr mutate select rename summarise group_by ungroup
 #' @importFrom tidyr unnest unnest_wider everything
-#' @importFrom rlang .data
 .donor_metadata <-
     function(uuid) {
         
@@ -176,13 +172,13 @@
                     option = "hits.hits[]._source.metadata[]") |>
         unnest(everything()) |>
         unnest_wider(everything()) |>
-        mutate(preferred_term = ifelse(.data$data_type == "Numeric",
-                                        .data$data_value, .data$preferred_term),
-                Value = paste(.data$preferred_term, .data$units, sep = " ")) |>
+        mutate(preferred_term = ifelse(data_type == "Numeric",
+                    data_value, preferred_term),
+                Value = paste(preferred_term, units, sep = " ")) |>
         select("grouping_concept_preferred_term", "Value") |>
         rename("Key" = "grouping_concept_preferred_term") |>
-        group_by(.data$Key) |>
-        summarise(Value = paste(.data$Value, collapse = "; ")) |>
+        group_by(Key) |>
+        summarise(Value = paste(Value, collapse = "; ")) |>
         ungroup()
         
     }
@@ -197,7 +193,6 @@
         
         type$entity_type
     }
-
 
 ## .onLoad
 

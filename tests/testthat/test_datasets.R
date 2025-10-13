@@ -39,7 +39,7 @@ test_that("'dataset_derived()' works", {
 
 test_that("'dataset_metadata()' works", {
 
-  test_uuid <- "993bb1d6fa02e2755fd69613bb9d6e08"
+  test_uuid <- "564167adbbb2fdd64c24e7ea409c23f1"
   tbl <- dataset_metadata(test_uuid)
   expect_true(tibble::is_tibble(tbl))
   expect_true(nrow(tbl) > 0L &&
