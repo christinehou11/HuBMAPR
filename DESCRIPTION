@@ -57,7 +57,7 @@ Suggests:
     ggplot2,
     rmarkdown,
     BiocStyle,
-    pryr
+    lobstr
 VignetteBuilder: knitr
 biocViews: Software, SingleCell, DataImport, ThirdPartyClient, Spatial, 
     Infrastructure
