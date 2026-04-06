@@ -141,7 +141,6 @@ library("dplyr")
 library("tidyr")
 library("ggplot2")
 library("HuBMAPR")
-library("pryr")
 ```
 
 ## Data Discovery
@@ -165,7 +164,6 @@ Using corresponding functions to explore entity data.
 system.time({
     datasets_df <- datasets()
 })
-object_size(datasets_df)
 
 datasets_df
 ```
