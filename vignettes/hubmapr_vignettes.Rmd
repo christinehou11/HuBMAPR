@@ -140,6 +140,7 @@ conduct data wrangling and specific information extraction.
 library("dplyr")
 library("tidyr")
 library("ggplot2")
+library("lobstr")
 library("HuBMAPR")
 ```
 
@@ -164,6 +165,7 @@ Using corresponding functions to explore entity data.
 system.time({
     datasets_df <- datasets()
 })
+lobstr::obj_size(datasets_df)
 
 datasets_df
 ```
