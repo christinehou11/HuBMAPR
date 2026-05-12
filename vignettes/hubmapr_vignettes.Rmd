@@ -2,7 +2,8 @@
 title: "Explore Human BioMolecular Atlas Program Data Portal"
 author:
   - name: "Christine Hou"
-    affiliation: Department of Biostatistics, Johns Hopkins University
+    affiliation: Department of Biostatistics and Medical Informatics, 
+      University of Wisconsin - Madison
     email: chris2018hou@gmail.com
 output:
   BiocStyle::html_document
