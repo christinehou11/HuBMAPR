@@ -130,24 +130,27 @@ collection_contacts <-
 #' uuid <- "381f65e58d5e2c1d16a9cef2cc203aab"
 #' collection_data(uuid)
 collection_data <-
-    function(uuid) {
-
-    stopifnot( .is_uuid(uuid), .uuid_category(uuid) == "Collection")
-
-    option <- .list_to_option(path = "hits.hits[]._source.datasets[]",
-                                fields = c("uuid", "hubmap_id", "data_types",
-                                            "dataset_type", "title",
-                                            "last_modified_timestamp",
-                                            "status"))
-
-    tbl <- .query_match(uuid, option) |> unnest(everything())
-    tbl$organ <- .title_to_organ(tbl$title)
-
-    .unnest_mutate_relocate(tbl) |> 
+  function(uuid) {
+    
+    stopifnot(.is_uuid(uuid), .uuid_category(uuid) == "Collection")
+    
+    option <- .list_to_option(
+        path = "hits.hits[]._source.datasets[]",
+        fields = c(
+            "uuid", "hubmap_id", "data_types",
+            "dataset_type", "title",
+            "last_modified_timestamp",
+            "status"
+        )
+    )
+    
+    tbl <- .query_match(uuid, option) |>
+        unnest(everything(), keep_empty = TRUE)
+    
+    .unnest_mutate_relocate(tbl) |>
         select(-"title") |>
         rename("dataset_type_additional_information" = "data_types")
-
-    }
+  }
 
 #' @rdname collections
 #'

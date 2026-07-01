@@ -5,8 +5,7 @@ ONTOLOGY <- "https://ontology.api.hubmapconsortium.org"
 #'
 #' @title HuBMAP Organs
 #'
-#' @importFrom httr2 request req_url_path_append req_url_query req_perform
-#'              resp_body_string
+#' @importFrom httr2 request req_url_path_append req_url_query req_perform resp_body_string
 #' @importFrom rjsoncons j_pivot
 #' @importFrom tidyr pivot_longer everything
 #' @importFrom dplyr add_row

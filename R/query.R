@@ -59,8 +59,7 @@ SEARCH <- "https://search.api.hubmapconsortium.org/v3/search"
     
   }
 
-#' @importFrom httr2 request req_headers req_body_raw req_cache
-#'              req_perform_iterative
+#' @importFrom httr2 request req_headers req_body_raw req_cache req_perform_iterative
 #' @importFrom dplyr bind_rows
 .query_entity <-
   function(entity = c("Dataset","Sample","Donor","Publication","Collection")){
@@ -85,8 +84,7 @@ SEARCH <- "https://search.api.hubmapconsortium.org/v3/search"
     
   }
 
-#' @importFrom httr2 request req_headers req_body_raw req_perform
-#'              resp_body_string req_cache
+#' @importFrom httr2 request req_headers req_body_raw req_perform resp_body_string req_cache
 #' @importFrom rjsoncons j_pivot
 .query_match <-
   function(uuid, option) {
