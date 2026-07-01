@@ -126,8 +126,7 @@ dataset_derived <-
 #'
 #' @name dataset_metadata
 #'
-#' @importFrom dplyr bind_rows mutate ungroup summarise group_by mutate_all
-#'                    rename select if_else everything
+#' @importFrom dplyr bind_rows mutate ungroup summarise group_by mutate_all rename select if_else everything
 #' @importFrom tidyr unnest_wider unnest pivot_longer as_tibble
 #'
 #' @description `dataset_metadata()` takes a unique dataset_id and

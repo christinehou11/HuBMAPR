@@ -17,14 +17,14 @@ knitr::opts_chunk$set(
 library("dplyr")
 library("tidyr")
 library("ggplot2")
+library("lobstr")
 library("HuBMAPR")
-library("pryr")
 
 ## ----'datasets'---------------------------------------------------------------
 system.time({
     datasets_df <- datasets()
 })
-object_size(datasets_df)
+lobstr::obj_size(datasets_df)
 
 datasets_df
 
